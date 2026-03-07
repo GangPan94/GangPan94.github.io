@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gang (Ernest) Pan">
-<meta name="dcterms.date" content="2026-02-28">
+<meta name="dcterms.date" content="2026-03-07">
 
 <title>Antigravity Academic Workflow Guide</title>
 <style>
@@ -20,6 +20,41 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -2177,32 +2212,36 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#sec-why" id="toc-sec-why" class="nav-link active" data-scroll-target="#sec-why"><span class="header-section-number">1</span> Why This Workflow Exists</a>
   <ul class="collapse">
-  <li><a href="#what-is-antigravity" id="toc-what-is-antigravity" class="nav-link" data-scroll-target="#what-is-antigravity"><span class="header-section-number">1.1</span> What is Antigravity?</a></li>
-  <li><a href="#why-transition-from-claude-code-to-antigravity" id="toc-why-transition-from-claude-code-to-antigravity" class="nav-link" data-scroll-target="#why-transition-from-claude-code-to-antigravity"><span class="header-section-number">1.2</span> Why Transition from Claude Code to Antigravity?</a></li>
-  <li><a href="#the-problem" id="toc-the-problem" class="nav-link" data-scroll-target="#the-problem"><span class="header-section-number">1.3</span> The Problem</a></li>
-  <li><a href="#what-makes-antigravity-different" id="toc-what-makes-antigravity-different" class="nav-link" data-scroll-target="#what-makes-antigravity-different"><span class="header-section-number">1.4</span> What Makes Antigravity Different</a></li>
-  <li><a href="#the-antigravity-approach-vs-claude-hooks" id="toc-the-antigravity-approach-vs-claude-hooks" class="nav-link" data-scroll-target="#the-antigravity-approach-vs-claude-hooks"><span class="header-section-number">1.5</span> The Antigravity Approach vs Claude Hooks</a></li>
+  <li><a href="#the-problem-with-chat-type-ai-interfaces" id="toc-the-problem-with-chat-type-ai-interfaces" class="nav-link" data-scroll-target="#the-problem-with-chat-type-ai-interfaces"><span class="header-section-number">1.1</span> The Problem with Chat-Type AI Interfaces</a></li>
+  <li><a href="#the-solution-google-antigravity" id="toc-the-solution-google-antigravity" class="nav-link" data-scroll-target="#the-solution-google-antigravity"><span class="header-section-number">1.2</span> The Solution: Google Antigravity</a></li>
+  <li><a href="#antigravity-execution-architecture" id="toc-antigravity-execution-architecture" class="nav-link" data-scroll-target="#antigravity-execution-architecture"><span class="header-section-number">1.3</span> Antigravity Execution Architecture</a></li>
+  <li><a href="#transitioning-from-claude-code-to-antigravity" id="toc-transitioning-from-claude-code-to-antigravity" class="nav-link" data-scroll-target="#transitioning-from-claude-code-to-antigravity"><span class="header-section-number">1.4</span> Transitioning from Claude Code to Antigravity</a></li>
   </ul></li>
-  <li><a href="#sec-system" id="toc-sec-system" class="nav-link" data-scroll-target="#sec-system"><span class="header-section-number">2</span> The System in Action</a>
+  <li><a href="#sec-setup" id="toc-sec-setup" class="nav-link" data-scroll-target="#sec-setup"><span class="header-section-number">2</span> Getting Started</a>
   <ul class="collapse">
-  <li><a href="#specialized-workflows-beat-one-size-fits-all" id="toc-specialized-workflows-beat-one-size-fits-all" class="nav-link" data-scroll-target="#specialized-workflows-beat-one-size-fits-all"><span class="header-section-number">2.1</span> Specialized Workflows Beat One-Size-Fits-All</a></li>
-  <li><a href="#the-adversarial-qa-loop" id="toc-the-adversarial-qa-loop" class="nav-link" data-scroll-target="#the-adversarial-qa-loop"><span class="header-section-number">2.2</span> The Adversarial QA Loop</a></li>
-  <li><a href="#sec-quality" id="toc-sec-quality" class="nav-link" data-scroll-target="#sec-quality"><span class="header-section-number">2.3</span> Quality Scoring: The 80/90/95 System</a></li>
+  <li><a href="#the-starter-prompt" id="toc-the-starter-prompt" class="nav-link" data-scroll-target="#the-starter-prompt"><span class="header-section-number">2.1</span> The Starter Prompt</a></li>
   </ul></li>
-  <li><a href="#sec-patterns" id="toc-sec-patterns" class="nav-link" data-scroll-target="#sec-patterns"><span class="header-section-number">3</span> Core Workflow Patterns</a>
+  <li><a href="#sec-system" id="toc-sec-system" class="nav-link" data-scroll-target="#sec-system"><span class="header-section-number">3</span> The System in Action</a>
   <ul class="collapse">
-  <li><a href="#pattern-1-plan-first-development" id="toc-pattern-1-plan-first-development" class="nav-link" data-scroll-target="#pattern-1-plan-first-development"><span class="header-section-number">3.1</span> Pattern 1: Plan-First Development</a></li>
-  <li><a href="#pattern-2-the-multi-step-creation-workflow" id="toc-pattern-2-the-multi-step-creation-workflow" class="nav-link" data-scroll-target="#pattern-2-the-multi-step-creation-workflow"><span class="header-section-number">3.2</span> Pattern 2: The Multi-Step Creation Workflow</a></li>
-  <li><a href="#pattern-3-replication-first-coding" id="toc-pattern-3-replication-first-coding" class="nav-link" data-scroll-target="#pattern-3-replication-first-coding"><span class="header-section-number">3.3</span> Pattern 3: Replication-First Coding</a></li>
-  <li><a href="#pattern-4-devils-advocate" id="toc-pattern-4-devils-advocate" class="nav-link" data-scroll-target="#pattern-4-devils-advocate"><span class="header-section-number">3.4</span> Pattern 4: “Devil’s Advocate”</a></li>
+  <li><a href="#specialized-workflows-beat-one-size-fits-all" id="toc-specialized-workflows-beat-one-size-fits-all" class="nav-link" data-scroll-target="#specialized-workflows-beat-one-size-fits-all"><span class="header-section-number">3.1</span> Specialized Workflows Beat One-Size-Fits-All</a></li>
+  <li><a href="#the-adversarial-qa-loop" id="toc-the-adversarial-qa-loop" class="nav-link" data-scroll-target="#the-adversarial-qa-loop"><span class="header-section-number">3.2</span> The Adversarial QA Loop</a></li>
+  <li><a href="#sec-quality" id="toc-sec-quality" class="nav-link" data-scroll-target="#sec-quality"><span class="header-section-number">3.3</span> Quality Scoring: The 80/90/95 System</a></li>
   </ul></li>
-  <li><a href="#sec-directory" id="toc-sec-directory" class="nav-link" data-scroll-target="#sec-directory"><span class="header-section-number">4</span> Available Workflows Directory</a>
+  <li><a href="#sec-patterns" id="toc-sec-patterns" class="nav-link" data-scroll-target="#sec-patterns"><span class="header-section-number">4</span> Core Workflow Patterns</a>
   <ul class="collapse">
-  <li><a href="#core-cicd-compilation" id="toc-core-cicd-compilation" class="nav-link" data-scroll-target="#core-cicd-compilation"><span class="header-section-number">4.0.1</span> Core CI/CD &amp; Compilation</a></li>
-  <li><a href="#review-assitance" id="toc-review-assitance" class="nav-link" data-scroll-target="#review-assitance"><span class="header-section-number">4.0.2</span> Review Assitance</a></li>
-  <li><a href="#research-idea-generation" id="toc-research-idea-generation" class="nav-link" data-scroll-target="#research-idea-generation"><span class="header-section-number">4.0.3</span> Research &amp; Idea Generation</a></li>
+  <li><a href="#pattern-1-plan-first-development" id="toc-pattern-1-plan-first-development" class="nav-link" data-scroll-target="#pattern-1-plan-first-development"><span class="header-section-number">4.1</span> Pattern 1: Plan-First Development</a></li>
+  <li><a href="#pattern-2-the-multi-step-creation-workflow" id="toc-pattern-2-the-multi-step-creation-workflow" class="nav-link" data-scroll-target="#pattern-2-the-multi-step-creation-workflow"><span class="header-section-number">4.2</span> Pattern 2: The Multi-Step Creation Workflow</a></li>
+  <li><a href="#pattern-3-replication-first-coding" id="toc-pattern-3-replication-first-coding" class="nav-link" data-scroll-target="#pattern-3-replication-first-coding"><span class="header-section-number">4.3</span> Pattern 3: Replication-First Coding</a></li>
+  <li><a href="#pattern-4-devils-advocate" id="toc-pattern-4-devils-advocate" class="nav-link" data-scroll-target="#pattern-4-devils-advocate"><span class="header-section-number">4.4</span> Pattern 4: “Devil’s Advocate”</a></li>
   </ul></li>
-  <li><a href="#research-organization-and-exploration" id="toc-research-organization-and-exploration" class="nav-link" data-scroll-target="#research-organization-and-exploration"><span class="header-section-number">5</span> Research Organization and Exploration</a></li>
+  <li><a href="#sec-directory" id="toc-sec-directory" class="nav-link" data-scroll-target="#sec-directory"><span class="header-section-number">5</span> Available Workflows Directory</a>
+  <ul class="collapse">
+  <li><a href="#core-cicd-compilation" id="toc-core-cicd-compilation" class="nav-link" data-scroll-target="#core-cicd-compilation"><span class="header-section-number">5.0.1</span> Core CI/CD &amp; Compilation</a></li>
+  <li><a href="#review-assitance" id="toc-review-assitance" class="nav-link" data-scroll-target="#review-assitance"><span class="header-section-number">5.0.2</span> Review Assitance</a></li>
+  <li><a href="#research-idea-generation" id="toc-research-idea-generation" class="nav-link" data-scroll-target="#research-idea-generation"><span class="header-section-number">5.0.3</span> Research &amp; Idea Generation</a></li>
+  </ul></li>
+  <li><a href="#sec-ecosystem" id="toc-sec-ecosystem" class="nav-link" data-scroll-target="#sec-ecosystem"><span class="header-section-number">6</span> Community &amp; Extensions</a></li>
+  <li><a href="#research-organization-and-exploration" id="toc-research-organization-and-exploration" class="nav-link" data-scroll-target="#research-organization-and-exploration"><span class="header-section-number">7</span> Research Organization and Exploration</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="antigravity_workflow.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -2230,7 +2269,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 28, 2026</p>
+      <p class="date">March 7, 2026</p>
     </div>
   </div>
   
@@ -2257,90 +2296,162 @@ vertical-align: -.125em;
 <p>This guide and the associated Antigravity workflow configuration are currently actively in development. Workflows, rules, and structures are subject to change.</p>
 </div>
 </div>
-<section id="what-is-antigravity" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-antigravity"><span class="header-section-number">1.1</span> What is Antigravity?</h2>
-<p><a href="https://antigravity.google">Antigravity</a> is an “agent-first” AI-powered Integrated Development Environment (IDE) built by Google DeepMind. Designed as a heavily modified fork of Visual Studio Code, it shifts from traditional AI-assisted coding to a system where autonomous agents handle complex tasks with greater independence. Built on the Gemini architecture, Antigravity agents can autonomously plan, execute, debug, interact with terminals, and browse the web to gather information or test UIs.</p>
-</section>
-<section id="why-transition-from-claude-code-to-antigravity" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="why-transition-from-claude-code-to-antigravity"><span class="header-section-number">1.2</span> Why Transition from Claude Code to Antigravity?</h2>
-<p>The previous iteration of this workflow relied on Claude Code. While powerful, it had architectural limitations that Antigravity solves:</p>
-<ol type="1">
-<li><strong>Native Workspace Integration:</strong> Antigravity runs natively in your environment with full access to your file system, terminal, and git, without needing hacky shell “hooks” to monitor its behavior.</li>
-<li><strong>Explicit Workflow System:</strong> Claude relied on dynamic “skills” and background triggers. Antigravity uses explicit, structured <code>.agents/workflows/</code> markdown checklists that guarantee the agent follows a consistent, reproducible sequence of actions.</li>
-<li><strong>Built-in Verification and Guardrails:</strong> Antigravity has native safety gates and context management. We no longer need fragile Python scripts (<code>verify-reminder.py</code>, <code>protect-files.sh</code>) to force the agent to compile documents or protect configuration files—these constraints are built directly into the workflows.</li>
-<li><strong>Agentic UI:</strong> Antigravity natively creates <code>implementation_plan.md</code> and <code>task.md</code> checklists, interacting and pausing proactively for user feedback during complex tasks.</li>
-<li><strong>Significant Cost Advantage:</strong> Claude Code relies on direct API billing, meaning adversarial QA loops (like <code>/qa-quarto</code>) and multi-agent reviews quickly accumulate immense token costs. Antigravity operates natively within your environment and leverages the Google ecosystem. The <strong>Free Tier</strong> provides massive allotments subject to a weekly token limit, while the <strong>Google AI Pro</strong> subscription (Google One AI Premium, ~$20/month) unlocks advanced model logic with a five-hour token limit. Under normal conditions, subscribers experience almost unlimited tokens, making intensive, parallel research workflows incredibly cost-effective.</li>
-</ol>
-</section>
-<section id="the-problem" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="the-problem"><span class="header-section-number">1.3</span> The Problem</h2>
-<p>If you’ve ever built lecture slides or research replication packages, you know the pain:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Accessing This Setup
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are interested in using this setup, please send me an email. I will provide you with access to my GitHub repository.</p>
+<p>Once you have access, you can download the repository directly to your workspace using the following command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/<span class="pp">[</span><span class="ss">your</span><span class="pp">-</span><span class="ss">github</span><span class="pp">-</span><span class="ss">username</span><span class="pp">]</span>/AntigravitySetup.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> AntigravitySetup</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<section id="the-problem-with-chat-type-ai-interfaces" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="the-problem-with-chat-type-ai-interfaces"><span class="header-section-number">1.1</span> The Problem with Chat-Type AI Interfaces</h2>
+<p>If you’ve ever built lecture slides, reviewed academic papers, or written research replication packages using standard chat-based AI interfaces (like standard web UI chats), you know the challenges:</p>
 <ul>
-<li><strong>Context loss between sessions.</strong> You pick up where you left off, but your AI agent doesn’t remember <em>why</em> you chose that notation, <em>what</em> the instructor approved, or <em>which</em> bugs were fixed last time.</li>
-<li><strong>Quality is inconsistent.</strong> One slide has perfect spacing; the next overflows. Citations compile in Overleaf but break locally. Figures look great on your screen but pixelated on a projector.</li>
-<li><strong>Review is manual and exhausting.</strong> You proofread 140 slides by hand. You miss a typo in an equation, and a student catches it during lecture.</li>
-<li><strong>No one checks the math.</strong> Grammar checkers catch “teh” but not a flipped sign in a decomposition theorem.</li>
+<li><strong>Context loss between sessions.</strong> You pick up where you left off in a new chat, but your AI doesn’t remember <em>why</em> you chose that notation, <em>what</em> the instructor approved, or <em>which</em> bugs were fixed last time.</li>
+<li><strong>Inconsistent Output.</strong> One slide has perfect spacing; the next overflows. Code works in the chat window but breaks when you copy-paste it locally.</li>
+<li><strong>Manual Review is Exhausting.</strong> You proofread 140 slides by hand. You miss a typo in an equation, and a student catches it during lecture.</li>
+<li><strong>Execution Limitation.</strong> Standard chat interfaces cannot natively compile your LaTeX or run your full R pipeline to verify it actually works before giving you an answer.</li>
 </ul>
-<p>This workflow solves all of these problems. You describe what you want — “translate Lecture 5 to Quarto” or “create a new lecture on synthetic control” — and <strong>Antigravity</strong> handles the rest: plans the approach, implements it, runs specialized workflows, fixes issues, verifies quality, and presents results.</p>
 </section>
-<section id="what-makes-antigravity-different" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="what-makes-antigravity-different"><span class="header-section-number">1.4</span> What Makes Antigravity Different</h2>
-<p>Antigravity runs natively in your environment with full access to your file system, terminal, and git. Our setup utilizes an explicit <strong>Workflow System</strong> (<code>.agents/workflows/</code>).</p>
+<section id="the-solution-google-antigravity" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="the-solution-google-antigravity"><span class="header-section-number">1.2</span> The Solution: Google Antigravity</h2>
+<p><a href="https://antigravity.google">Antigravity</a> solves these issues by acting as an “agent-first” AI-powered Integrated Development Environment (IDE) built by Google DeepMind. Designed as a heavily modified fork of Visual Studio Code, it shifts from traditional AI chat assistance to a system where autonomous agents handle complex tasks with greater independence directly within your workspace.</p>
+<p>You simply describe what you want — “translate Lecture 5 to Quarto,” “review my paper before submission,” or “analyze this dataset and produce publication-ready tables” — and <strong>Antigravity</strong> handles the rest. It plans the approach, implements it, runs specialized workflows, fixes issues, verifies quality, and presents results.</p>
+</section>
+<section id="antigravity-execution-architecture" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="antigravity-execution-architecture"><span class="header-section-number">1.3</span> Antigravity Execution Architecture</h2>
+<p>Antigravity executes its tasks using a combination of two core components:</p>
+<ol type="1">
+<li><strong>Skills</strong>: Background intelligence contexts and tool definitions located in <code>.agents/skills/</code>.</li>
+<li><strong>Workflows</strong>: Explicit, structured markdown checklists located in <code>.agents/workflows/</code> that guarantee the agent follows a reproducible, step-by-step sequence.</li>
+</ol>
+<p>By combining contextual skills with explicit workflows, Antigravity natively creates <code>implementation_plan.md</code> and <code>task.md</code> checklists, pausing proactively for user feedback during complex tasks. It also enforces <strong>Built-in Verification</strong>, meaning the agent must compile and check its output (e.g., catching LaTeX <code>overfull \hbox</code> warnings) <em>before</em> concluding a task.</p>
+<p>Furthermore, this setup is uniquely empowered by a <strong>significant token cost advantage</strong>. A major inhibitor of adversarial QA loops (like <code>/qa-quarto</code>) or recursive multi-agent reviews in tools like Claude Code is direct, per-token API billing which quickly accumulates immense costs. By operating natively within your environment and leveraging the Google ecosystem, Antigravity avoids this trap. The <strong>Free Tier</strong> provides a generous allowance for daily prompts, while <strong>Google AI Pro</strong> (Google One AI Premium, ~$20/month) unlocks advanced reasoning through models like Gemini Advanced. With a massive 1-million token context window and significantly higher daily message limits (e.g., up to 100-500 prompts per day depending on the tier), subscribers experience almost unlimited capacity. This makes intensive, parallel research workflows incredibly cost-effective.</p>
+</section>
+<section id="transitioning-from-claude-code-to-antigravity" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="transitioning-from-claude-code-to-antigravity"><span class="header-section-number">1.4</span> Transitioning from Claude Code to Antigravity</h2>
+<p>The previous iteration of this academic setup was built for <strong>Claude Code</strong>—a highly capable, terminal-based AI agent. Claude Code remains a powerful tool for autonomous software engineering. However, for continuous, heavy-duty academic research tasks, Antigravity provides unique structural advantages tailored to our needs without needing to configure separate Python “hooks” or bash scripts to constrain the agent.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 66%">
+<col style="width: 25%">
+<col style="width: 29%">
+<col style="width: 45%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Capability</th>
-<th>What It Means for You</th>
+<th>Claude Code</th>
+<th>Google Antigravity</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Read &amp; edit your files</td>
-<td>Surgical edits to <code>.tex</code>, <code>.qmd</code>, <code>.R</code> files in place</td>
+<td><strong>Workspace Integration</strong></td>
+<td>A powerful CLI tool that uses dynamic python scripts, “hooks”, and custom bash commands to steer the AI’s boundaries.</td>
+<td>Operates natively as an AI-first IDE with safe constraints and direct VS Code integration.</td>
 </tr>
 <tr class="even">
-<td>Run shell commands</td>
-<td>Compile LaTeX, run R scripts, render Quarto — directly</td>
+<td><strong>Execution Architecture</strong></td>
+<td>Relies primarily on background skills to determine behavior dynamically.</td>
+<td>Integrates BOTH <strong>Skills</strong> (for contextual capability) and explicit <strong>Workflows</strong> (for step-by-step determinism).</td>
 </tr>
 <tr class="odd">
-<td>Access git history</td>
-<td>Commits, PRs, branches — all from the conversation</td>
+<td><strong>Quality Gates</strong></td>
+<td>Uses custom python scripts to block edits or force compilations.</td>
+<td>Workflows natively integrate step-by-step verification, instructing the agent to check the output of its execution.</td>
 </tr>
 <tr class="even">
-<td>Workflow execution</td>
-<td>Antigravity autonomously follows detailed markdown checklists</td>
+<td><strong>Task UI &amp; Memoirs</strong></td>
+<td>Logs sessions automatically in <code>.claude/sessions</code>.</td>
+<td>Natively creates and maintains user-visible <code>task.md</code> checklists and <code>implementation_plan.md</code> artifacts.</td>
 </tr>
 <tr class="odd">
-<td>Verification Built-In</td>
-<td>All workflows integrate QA and correctness checks</td>
-</tr>
-<tr class="even">
-<td>Quality gates</td>
-<td>Automated scoring — nothing ships below 80/100</td>
+<td><strong>Token Cost Structure</strong></td>
+<td>Direct, per-token API billing.</td>
+<td>Included in the Google ecosystem. <strong>Free Tier</strong> gives a generous message allowance; <strong>Google AI Pro</strong> unlocks massive 1-million token usage caps capable of handling massive documents.</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="the-antigravity-approach-vs-claude-hooks" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="the-antigravity-approach-vs-claude-hooks"><span class="header-section-number">1.5</span> The Antigravity Approach vs Claude Hooks</h2>
-<p>Previously, our workflow relied heavily on “hooks” (trigger scripts that aggressively monitored the AI) and dynamic skills. With Antigravity, the philosophy shifts to <strong>structured workflows</strong>. The intelligence is captured in <code>.agents/workflows/</code>, which dictate clear steps the agent must follow autonomously.</p>
-<ol type="1">
-<li><strong>Verify Everything:</strong> Antigravity must compile and check the output <em>before</em> concluding a task (e.g., catching LaTeX <code>overfull \hbox</code> warnings, Quarto render errors).</li>
-<li><strong>Explicit Agent Constraints:</strong> Instead of using stealth shell scripts to block file edits, we set rules inside the workflows.</li>
-<li><strong>Memoirs &amp; Planning:</strong> Emphasize documenting changes using Antigravity’s native <code>implementation_plan.md</code> and <code>task.md</code>.</li>
-</ol>
 <hr>
 </section>
 </section>
-<section id="sec-system" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> The System in Action</h1>
+<section id="sec-setup" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Getting Started</h1>
+<p>You need two things: get access to the repo, and start your first conversation with Antigravity.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Day 1 Checklist
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul class="task-list">
+<li><label><input type="checkbox">Email for repository access and clone it locally.</label></li>
+<li><label><input type="checkbox">Open the project directory in your IDE and launch your Antigravity assistant.</label></li>
+<li><label><input type="checkbox">Ask Antigravity to do something specific: <em>“Review my slides”</em>, <em>“Translate Lecture 5”</em>, or <em>“Create a lecture on [topic]”</em>.</label></li>
+<li><label><input type="checkbox">Antigravity will automatically create an <code>implementation_plan.md</code>.</label></li>
+<li><label><input type="checkbox">Review and approve the plan, watch it execute skills and workflows, and review the final output.</label></li>
+</ul>
+<p>That’s it. Everything else — specialized workflows, verifications, and agentic UI loops — is managed autonomously in the background by Antigravity.</p>
+</div>
+</div>
+<section id="the-starter-prompt" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="the-starter-prompt"><span class="header-section-number">2.1</span> The Starter Prompt</h2>
+<p>Once you have opened the project in your IDE and launched the Antigravity assistant, paste the following prompt to kick off the configuration process. Fill in the <strong>bolded placeholders</strong> with your project details:</p>
+<textarea id="starter-prompt-raw" style="display: none;">I am starting to work on **[PROJECT NAME]** in this repo. **[Describe your project in 2–3 sentences — what you’re building, who it’s for, what tools you use (e.g., LaTeX/Beamer, R, Quarto).]**
+
+I want our collaboration to be structured, precise, and rigorous — even if it takes more time. When creating visuals, everything must be polished and publication-ready. I don’t want to repeat myself, so our workflow should be smart about remembering decisions and learning from corrections.
+
+I’ve set up the Antigravity academic workflow (cloned from the AntigravitySetup repository). The configuration files are already in this repo (`.agents/workflows/`, `.agents/skills/`, templates, scripts). Please use your root directory tools to read them, understand the workflow, and then **update all configuration files to fit my project** — adjust workflows or skills if needed, and propose any customizations specific to my use case.
+
+Use the plan-first workflow for all non-trivial tasks. Once I approve your `implementation_plan.md`, coordinate everything autonomously using your execution mode, following explicit workflow checklists. Only pause to ask for my review via your communication interface when there’s ambiguity or a critical decision to make. For our first few tasks, check in with me a bit more often so I can learn how the workflow operates.
+
+Please start by building an `implementation_plan.md` to adapt the workflow configuration to this project.
+</textarea>
+<div class="position-relative mb-4">
+<button class="btn btn-outline-primary position-absolute top-0 end-0 mt-3 me-3 px-3 py-2" style="z-index: 10;" onclick="navigator.clipboard.writeText(document.getElementById(&#39;starter-prompt-raw&#39;).value.trim())">
+<i class="bi bi-clipboard"></i> Copy Prompt
+</button>
+<div class="callout callout-style-simple callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antigravity Starter Prompt
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div style="padding-top: 1.5rem;">
+<p>I am starting to work on <strong>[PROJECT NAME]</strong> in this repo. <strong>[Describe your project in 2–3 sentences — what you’re building, who it’s for, what tools you use (e.g., LaTeX/Beamer, R, Quarto).]</strong></p>
+<p>I want our collaboration to be structured, precise, and rigorous — even if it takes more time. When creating visuals, everything must be polished and publication-ready. I don’t want to repeat myself, so our workflow should be smart about remembering decisions and learning from corrections.</p>
+<p>I’ve set up the Antigravity academic workflow (cloned from the AntigravitySetup repository). The configuration files are already in this repo (<code>.agents/workflows/</code>, <code>.agents/skills/</code>, templates, scripts). Please use your root directory tools to read them, understand the workflow, and then <strong>update all configuration files to fit my project</strong> — adjust workflows or skills if needed, and propose any customizations specific to my use case.</p>
+<p>Use the plan-first workflow for all non-trivial tasks. Once I approve your <code>implementation_plan.md</code>, coordinate everything autonomously using your execution mode, following explicit workflow checklists. Only pause to ask for my review via your communication interface when there’s ambiguity or a critical decision to make. For our first few tasks, check in with me a bit more often so I can learn how the workflow operates.</p>
+<p>Please start by building an <code>implementation_plan.md</code> to adapt the workflow configuration to this project.</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="sec-system" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> The System in Action</h1>
 <p>With the setup covered, here is what the system actually <em>does</em>. This section walks through the core mechanisms that make the workflow powerful.</p>
-<section id="specialized-workflows-beat-one-size-fits-all" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="specialized-workflows-beat-one-size-fits-all"><span class="header-section-number">2.1</span> Specialized Workflows Beat One-Size-Fits-All</h2>
+<section id="specialized-workflows-beat-one-size-fits-all" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="specialized-workflows-beat-one-size-fits-all"><span class="header-section-number">3.1</span> Specialized Workflows Beat One-Size-Fits-All</h2>
 <p>Consider proofreading a 140-slide lecture deck. You could ask an LLM:</p>
 <blockquote class="blockquote">
 <p>“Review these slides for grammar, layout, math correctness, code quality, and pedagogical flow.”</p>
@@ -2384,12 +2495,12 @@ vertical-align: -.125em;
 </table>
 <p>Each workflow instructs the agent to examine a different dimension with full attention. The <code>/slide-excellence</code> workflow runs them comprehensively.</p>
 </section>
-<section id="the-adversarial-qa-loop" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="the-adversarial-qa-loop"><span class="header-section-number">2.2</span> The Adversarial QA Loop</h2>
+<section id="the-adversarial-qa-loop" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-adversarial-qa-loop"><span class="header-section-number">3.2</span> The Adversarial QA Loop</h2>
 <p>The single most powerful pattern in this system is the <strong>adversarial QA loop</strong> for translating formats (e.g., Beamer to Quarto). The <code>/qa-quarto</code> workflow institutes a critic-fixer dynamic: The agent reads the generated file, assesses it adversarially (the critic), and then switches contexts to fix the identified bugs (the fixer), repeating until it’s identical.</p>
 </section>
-<section id="sec-quality" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="sec-quality"><span class="header-section-number">2.3</span> Quality Scoring: The 80/90/95 System</h2>
+<section id="sec-quality" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="sec-quality"><span class="header-section-number">3.3</span> Quality Scoring: The 80/90/95 System</h2>
 <p>We implement strict quality gates via the <code>/quality-score</code> workflow:</p>
 <table class="caption-top table">
 <colgroup>
@@ -2437,32 +2548,32 @@ vertical-align: -.125em;
 <hr>
 </section>
 </section>
-<section id="sec-patterns" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Core Workflow Patterns</h1>
-<section id="pattern-1-plan-first-development" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="pattern-1-plan-first-development"><span class="header-section-number">3.1</span> Pattern 1: Plan-First Development</h2>
+<section id="sec-patterns" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Core Workflow Patterns</h1>
+<section id="pattern-1-plan-first-development" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="pattern-1-plan-first-development"><span class="header-section-number">4.1</span> Pattern 1: Plan-First Development</h2>
 <p>The plan-first pattern ensures that non-trivial tasks begin with thinking, not typing. In Antigravity, always ask the agent to create an <code>implementation_plan.md</code> first.</p>
 <p>Without a plan, the agent starts editing immediately, discovers a dependency, and has to undo work. With a plan, the approach is agreed upon before any edits happen, and you can approve changes via the <code>notify_user</code> interface.</p>
 </section>
-<section id="pattern-2-the-multi-step-creation-workflow" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="pattern-2-the-multi-step-creation-workflow"><span class="header-section-number">3.2</span> Pattern 2: The Multi-Step Creation Workflow</h2>
+<section id="pattern-2-the-multi-step-creation-workflow" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="pattern-2-the-multi-step-creation-workflow"><span class="header-section-number">4.2</span> Pattern 2: The Multi-Step Creation Workflow</h2>
 <p>Creating a new lecture from scratch is a massive undertaking. Call the <code>/create-lecture</code> workflow to guide Antigravity through: 1. Gathering materials (papers, outlines) 2. Designing slide structure 3. Drafting Beamer slides 4. Generating R figures 5. Polishing and verifying (<code>/slide-excellence</code>, <code>/proofread</code>) 6. Deploying (<code>/deploy</code>)</p>
 </section>
-<section id="pattern-3-replication-first-coding" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="pattern-3-replication-first-coding"><span class="header-section-number">3.3</span> Pattern 3: Replication-First Coding</h2>
+<section id="pattern-3-replication-first-coding" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="pattern-3-replication-first-coding"><span class="header-section-number">4.3</span> Pattern 3: Replication-First Coding</h2>
 <p>When working with empirical papers: 1. <strong>Inventory</strong>: Record “gold standard” numbers from the paper. 2. <strong>Translate</strong>: Match original specification EXACTLY in your new R code. 3. <strong>Verify Match</strong>: Tolerance &lt; 0.01 for estimates. If mismatch, stop and investigate. 4. <strong>Extend</strong>: Only add new estimators after baseline matches.</p>
 </section>
-<section id="pattern-4-devils-advocate" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="pattern-4-devils-advocate"><span class="header-section-number">3.4</span> Pattern 4: “Devil’s Advocate”</h2>
+<section id="pattern-4-devils-advocate" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="pattern-4-devils-advocate"><span class="header-section-number">4.4</span> Pattern 4: “Devil’s Advocate”</h2>
 <p>At any design decision, invoke the <code>/devils-advocate</code> workflow. Antigravity will challenge the slide design with 5-7 specific pedagogical questions referencing unstated assumptions, cognitive load issues, and prerequisite gaps.</p>
 <hr>
 </section>
 </section>
-<section id="sec-directory" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Available Workflows Directory</h1>
+<section id="sec-directory" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Available Workflows Directory</h1>
 <p>You can invoke any of the following by asking Antigravity to run them (or utilizing them as slash commands if available). All workflows are located in <code>.agents/workflows/</code>.</p>
-<section id="core-cicd-compilation" class="level3" data-number="4.0.1">
-<h3 data-number="4.0.1" class="anchored" data-anchor-id="core-cicd-compilation"><span class="header-section-number">4.0.1</span> Core CI/CD &amp; Compilation</h3>
+<section id="core-cicd-compilation" class="level3" data-number="5.0.1">
+<h3 data-number="5.0.1" class="anchored" data-anchor-id="core-cicd-compilation"><span class="header-section-number">5.0.1</span> Core CI/CD &amp; Compilation</h3>
 <ul>
 <li><strong>Compile LaTeX</strong> (<code>/compile-latex</code>): Runs the strict 3-pass compilation sequence (with <code>bibtex</code>) utilizing our <code>Preambles/</code> folder.</li>
 <li><strong>Deploy Slides</strong> (<code>/deploy</code>): Renders <code>.qmd</code> files and utilizes <code>scripts/sync_to_docs.sh</code> to populate the <code>docs/</code> folder for GitHub Pages.</li>
@@ -2470,8 +2581,8 @@ vertical-align: -.125em;
 <li><strong>Extract TikZ</strong> (<code>/extract-tikz</code>): Compiles TikZ to PDF and converts to SVG for web presentation.</li>
 </ul>
 </section>
-<section id="review-assitance" class="level3" data-number="4.0.2">
-<h3 data-number="4.0.2" class="anchored" data-anchor-id="review-assitance"><span class="header-section-number">4.0.2</span> Review Assitance</h3>
+<section id="review-assitance" class="level3" data-number="5.0.2">
+<h3 data-number="5.0.2" class="anchored" data-anchor-id="review-assitance"><span class="header-section-number">5.0.2</span> Review Assitance</h3>
 <ul>
 <li><strong>Pedagogy Review</strong> (<code>/pedagogy-review</code>): Checks narrative arc, student prerequisites, math/notation clarity, and pacing.</li>
 <li><strong>Visual Audit</strong> (<code>/visual-audit</code>): Adversarial visual audit checking for overflow, font consistency, box fatigue, and layout issues.</li>
@@ -2480,20 +2591,31 @@ vertical-align: -.125em;
 <li><strong>Validate Bibliography</strong> (<code>/validate-bib</code>): Verifies cross-citations and marks unused entries.</li>
 </ul>
 </section>
-<section id="research-idea-generation" class="level3" data-number="4.0.3">
-<h3 data-number="4.0.3" class="anchored" data-anchor-id="research-idea-generation"><span class="header-section-number">4.0.3</span> Research &amp; Idea Generation</h3>
+<section id="research-idea-generation" class="level3" data-number="5.0.3">
+<h3 data-number="5.0.3" class="anchored" data-anchor-id="research-idea-generation"><span class="header-section-number">5.0.3</span> Research &amp; Idea Generation</h3>
 <ul>
 <li><strong>Data Analysis in R</strong> (<code>/data-analysis</code>): End-to-end R data analysis workflow from exploration through regression to publication-ready tables and figures.</li>
 <li><strong>Literature Review</strong> (<code>/lit-review</code>): Structured literature search and synthesis.</li>
 <li><strong>Research Ideation</strong> (<code>/research-ideation</code>): Generate structured research questions, testable hypotheses, and empirical strategies.</li>
 <li><strong>Interview Me</strong> (<code>/interview-me</code>): Interactive interview to formalize a research idea into a structured specification.</li>
 <li><strong>Review Paper</strong> (<code>/review-paper</code>): Comprehensive manuscript review covering argument structure, econometric specification, and potential referee objections.</li>
+<li><strong>Deep Audit</strong> (<code>/deep-audit</code>): Repository infrastructure audit for consistency. Launches 3 parallel specialist agents to find factual errors, count mismatches, and cross-document inconsistencies.</li>
 </ul>
 <hr>
 </section>
 </section>
-<section id="research-organization-and-exploration" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Research Organization and Exploration</h1>
+<section id="sec-ecosystem" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Community &amp; Extensions</h1>
+<p>This repository is the foundation. Others have extended it for specific workflows in the Claude Code and AI coding spheres, which we are adapting for Antigravity:</p>
+<ul>
+<li><strong><a href="https://github.com/hsantanna88/clo-author">clo-author</a></strong> by Hugo Sant’Anna (UAB) — Paper-centric research workflows with adversarial worker-critic agent pairs, simulated blind peer review, AEA replication compliance, and full research lifecycle management.</li>
+<li><strong><a href="https://github.com/chrisblattman/claudeblattman">claudeblattman</a></strong> by Chris Blattman (U Chicago) — Comprehensive guide for non-technical academics: executive assistant workflows, proposal writing, agent debates, and self-improving configuration.</li>
+<li><strong><a href="https://github.com/scunning1975/MixtapeTools">MixtapeTools</a></strong> by Scott Cunningham (Baylor) — The Rhetoric of Decks: philosophy and practice of beautiful, rhetorically effective academic presentations.</li>
+</ul>
+<hr>
+</section>
+<section id="research-organization-and-exploration" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Research Organization and Exploration</h1>
 <p>Without structure, experimental code scatters across the repository. To combat this, we use the <strong>Exploration Folder Protocol</strong>.</p>
 <p>All experimental work goes into <code>explorations/</code> first:</p>
 <pre class="text"><code>explorations/
