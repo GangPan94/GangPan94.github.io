@@ -1,0 +1,326 @@
+% --- LaTeX CV Template - S. Venkatraman ---
+
+% Set document class and font size
+\documentclass[letterpaper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+
+% Package imports
+\usepackage{setspace, longtable, graphicx, hyphenat, hyperref, fancyhdr, ifthen, enumitem, amsmath}
+
+% --- Page layout settings ---
+
+% Set page margins
+\usepackage[left=1in, right=1in, bottom=0.7in, top=0.7in]{geometry}
+
+% Set line spacing
+\renewcommand{\baselinestretch}{1.15}
+
+% --- Page formatting ---
+
+% Set link colors
+\usepackage[dvipsnames]{xcolor}
+\hypersetup{colorlinks=true, linkcolor=RoyalBlue, urlcolor=RoyalBlue}
+
+% Set font to Libertine, including math support
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+% Remove page numbering
+\pagenumbering{gobble}
+
+% --- Document starts here ---
+
+\begin{document}
+\definecolor{internationalkleinblue}{rgb}{0.0, 0.184, 0.651}
+% Name and date of last update to this document
+\noindent{\Huge\color{internationalkleinblue}{Gang (Ernest) Pan}
+\hfill{\it\footnotesize Updated \today}}
+
+% --- Contact information and other items ---
+
+\vspace{0.5cm} 
+\begin{center}
+\begin{tabular}{lll}
+% Line 1: Email, GitHub, office location 
+\multicolumn{3}{c}{George W. Daverio School of Accountancy, The University of Akron} \\
+\textbf{Email}: \href{mailto:gpan@uakron.edu}{gpan@uakron.edu}      &
+\hspace{0.41in} \textbf{Homepage}: \href{https://sites.google.com/view/ernestgangpan}{sites.google.com/view/ernestgangpan}   & \\
+\textbf{Office}: College of Business 241  &
+\hspace{0.4in}  \textbf{Phone}: (314) 778-0609
+
+% Line 2: Phone number, LinkedIn, citizenship
+% \textbf{Phone}: (314) 778-0609   & & & 
+%\hspace{0.55in} \textbf{LinkedIn}: //LinkedIn-URL   & 
+%\hspace{0.4in} \textbf{Citizenship}: Country 
+\end{tabular}
+\end{center}
+
+% --- Start the two-column table storing the main content ---
+
+% Set spacing between columns
+\setlength{\tabcolsep}{5pt}
+
+% Set the width of each column
+\begin{longtable}{p{1.15in}p{5.05in}}
+
+\textcolor{internationalkleinblue}{ACADEMIC} & \textbf{The University of Akron} \hfill Akron, Ohio \\ 
+\textcolor{internationalkleinblue}{APPOINTMENTS} & Assistant Professor in Accounting \hfill 2025-present \\ 
+& Visiting Assistant Professor in Accounting \hfill 2024 \\ \\
+
+
+% --- Section: Research interests ---
+
+\nohyphens{\textcolor{internationalkleinblue}{RESEARCH INTERESTS}} & I apply neoclassical economic analysis to the study of corporate taxation, the structure and role of capital information intermediaries, the real effects of accounting, the accounting labor market, and firm strategies.\\
+& \\
+
+% --- Section: Education ---
+
+\textcolor{internationalkleinblue}{EDUCATION} & \textbf{Washington University in St. Louis} \hfill St. Louis, Missouri \\ 
+& Ph.D. in Accounting \hfill 2024 \\
+& Master of Science in Business Administration, Accounting  \hfill 2023 \\
+%& Mentors: Professors A, B. {\it GPA: X.YZ.}\\
+
+& \textbf{University of Texas at Dallas} \hfill Richardson, Texas \\
+& Graduate certificate in Accounting \hfill 2018\\
+%& Mentors: Professors C, D. {\it GPA: X.YZ.}\\
+
+& \textbf{Xiamen University} \hfill Xiamen, China\\
+& Bachelor of Management, Accounting \hfill 2017\\
+& Bachelor of Art, English \hfill 2017 \\
+%& Mentors: Professors E, F. {\it GPA: X.YZ.}\\
+& \\
+
+% --- Uncomment the next few lines if you want to include some courses ---
+%& \textbf{Selected coursework}
+%\begin{itemize}[noitemsep,leftmargin=*]
+%\item \underline{Relevant subject 1}: Course 1, Course 2, Course 3, Course 4
+%\item \underline{Relevant subject 2}: Course 1, Course 2, Course 3, Course 4
+%\end{itemize} \\
+
+% --- Section: Publications ---
+\nohyphens{\textcolor{internationalkleinblue}{RESEARCH}} & \textbf{[1] The (Limited) Competitive Advantage of Tax Planning} \\
+& \textit{Solo-authored} \\
+& \href{http://dx.doi.org/10.2139/ssrn.4817541}{http://dx.doi.org/10.2139/ssrn.4817541} \\
+& $\bullet$ Innovations in corporate tax planning increase excess returns.\\
+& $\bullet$ This relation reflects competitive advantages from tax planning. \\
+& $\bullet$ The competitive advantage of tax planning is limited and lacks persistence. \\
+%& with Richard Frankel \\ %and Zachary Kaplan
+%& \textit{Journal of something or the other, 2020.}
+
+& \textbf{[2] Serial Correlation of Analyst Coverage Initiations} \textit{(Buchan prize winner)}\\
+& \textit{with Richard Frankel and Yaping Zheng} \\ %and Zachary Kaplan
+%& \textit{Journal of something or the other, 2020.}\\
+& $\bullet$ The serial correlation of initiations captures the setup cost of following a firm.\\
+& $\bullet$ The serial correlation varies with accrual quality and GAAP changes.\\
+
+\iffalse
+& \textbf{[3] SPACs and Forward-Looking Disclosure: Hype or Information?} \\
+&  with Kimball Chapman, Richard Frankel, and Xiumin Martin\\
+%& \textit{Journal of something or the other, 2020.}\\
+& $\bullet$ SPAC forward-looking disclosure is not associated with future return reversals. \\
+& $\bullet$ Hype, if present, does not sway investors. \\
+\fi
+& \textbf{[3] Misapplications of Accounting Rate of Returns in Taxation Literature} \\
+& \textit{Solo-authored} \\
+& $\bullet$ Tax planning investments, when immediately expensed, reduce the contemporaneous accounting rate of return.\\
+& $\bullet$ These investments increase future accounting rates of return but do not indicate any ``real effects" of tax planning. \\
+& \textbf{[4] Conservatism, Compensation, and Firm Innovation} \\
+& \textit{Solo-authored} \\
+%& \textit{Journal of something or the other, 2020.}\\
+& $\bullet$ Conservatism or pay for performance alone cannot effectively induce innovation.\\
+& $\bullet$ Combining conservatism and high bonuses is associated with better innovation.  \\
+& $\bullet$ My results support Laux and Ray (2020)'s view that more conservatism increases the informativeness of good signals, allowing higher bonuses for high outcomes.  \\\\
+
+\nohyphens{\textcolor{internationalkleinblue}{WORK-IN-PROGRESS}} & \textbf{[1] Accounting Profession in the Era of Dopamine Indulgence: Evidence from Online Sports Betting Legalization} \\
+ & \textit{with Bo Ren} \\
+& \textbf{[2] Financial Information Federalism} \\
+ & \textit{Solo-authored} \\
+& \textbf{[3] Peer Tax Planning Co-movement} \\
+ & \textit{with Bright Godigbe} \\ \\
+ 
+
+%& \textbf{GAAP changes and accounting practice: Evidence from ASC 842} \\
+%& with Richard Frankel \\
+%& \textit{Journal of something or the other, 2020.}\\
+%& \\
+
+% --- Section: Teaching experience ---
+
+\textcolor{internationalkleinblue}{TEACHING} & \textbf{Instructor, School of Accountancy (The University of Akron)} \\
+& ACCT 321 Financial Reporting and Analysis I \hfill FL 2024-present \\
+& \hspace{3mm} Latest teaching evaluation 5/5 (Median); 4.56/5 (Mean)  \\
+& ACCT 322 Financial Reporting and Analysis II \hfill FL 2024-present \\
+& \hspace{3mm} Latest teaching evaluation 5/5 (Median); 4.38/5 (Mean)  \\
+& \textbf{Assistant lecturer, Olin Business School (Washington University)} \\
+ & Principles of Managerial Accounting \\
+& \hspace{3mm} with Zachary Kaplan \hfill FL 2023 \\
+& \hspace{3mm} Teaching Evaluation 4.5/5 (Median); 4.26/5 (Mean)  \\
+
+%& Topics and description of your responsibilities. Aliquam volutpat est vel massa. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque. \\
+& Introduction to Financial Accounting (MBA)  \\
+& \hspace{3mm} with Edwige Cheynel  \hfill SP/FL 2022, SP 2023 \\
+%Average student rating: x/10,
+
+& \textbf{Teaching assistant, Olin Business School (Washington University)}  \\
+& Business Analysis Using Financial Statements \\
+%& Topics and description of your responsibilities. Aliquam volutpat est vel massa. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque. \\
+& \hspace{3mm} with Jeremy Bertomeu  \hfill FL 2021\\
+%Average student rating: 8.57/10,
+& \hspace{3mm} with Kimball Chapman  \hfill SP/SU 2021\\
+%Average student rating: 9.00/10,
+%Average student rating: 9.15/10,
+& Advanced Business Analysis using Financial Statements \\
+%& Topics and description of your responsibilities. Aliquam volutpat est vel massa. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque. \\
+& \hspace{3mm} with Jeremy Bertomeu  \hfill FL 2021\\
+%Average student rating: 9.29/10,
+& \hspace{3mm} with Kimball Chapman  \hfill SP/SU 2021\\
+%Average student rating: 9.9/10,
+%Average student rating: 9.13/10,
+& \textbf{Teaching assistant, School of Management (Xiamen University)}  \\
+& Financial Strategy \\
+& \hspace{3mm} with Jianming Ye \hfill FL 2018\\
+%& Topics and description of your responsibilities. Aliquam volutpat est vel massa. \\
+%& \textit{Average student rating: X/5.} \\
+& \\
+
+% --- Section: Service and outreach ---
+
+\textcolor{internationalkleinblue}{SERVICE} & \textbf{Academic Service} \\
+& \textit{Ad Hoc} Referee, \textit{Business Horizons} \hfill 2025 \\
+& \textit{Ad Hoc} Referee, AAA Annual Meeting \hfill 2024 \\
+& \textit{Ad Hoc} Referee, Hawaii Accounting Research Conference \hfill 
+2025 \\
+& \textit{Ad Hoc} Referee, Annual American Taxation Association Midyear Meeting \hfill 2025 \\
+& \textit{Ad Hoc} Referee, Annual Conference of the Accounting and Economics Society \hfill 2025 \\
+& \textbf{George W. Daverio School of Accountancy, The University of Akron} \\
+& Research committee member \hfill 2024-present \\
+& Hiring committee member \hfill 2025 \\
+& Student professional development committee member \hfill 2024-present \\
+& \textbf{Olin Business School, Washington University} \\
+& Ph.D. Student Committee member \hfill 2022-2023 \\
+& Simon Hall Student Seminar organizer \hfill 2022-2023 \\
+%& Description of your responsibilities. Integer pretium semper justo. Proin risus. Aliquam volutpat est vel massa. \\
+& \\
+
+% --- Section: Awards, scholarships, etc. ---
+% --- Note: section title is spread over two lines ---
+
+\textcolor{internationalkleinblue}{HONORS AND} & Buchan Prize (Olin Business School, Washington University)\hfill 2023\\
+\textcolor{internationalkleinblue}{SCHOLARSHIPS} & Doctoral Fellowship (Olin Business School, Washington University) \hfill 2019\\
+& Faculty Development Program Endowment (Xiamen University)\hfill 2016\\
+& Fuyao Scholarship (Xiamen University; Fuyao Glass Industry Group) \hfill 2016 \\
+& \\
+
+
+
+
+
+% --- Section: Industry experience ---
+
+\textcolor{internationalkleinblue}{INDUSTRY} & {\textbf{Ernst \& Young,}} Assurance Department \hfill Beijing, China\\
+\textcolor{internationalkleinblue}{EXPERIENCE} & Audit Intern \hfill Spring 2016 \\
+%& Description of your responsibilities. Integer pretium semper justo. Proin risus. Nullam id quam. Nam neque. Phasellus at purus et lib ero lacinia dictum. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque.\\
+%& \\
+ 
+& {\textbf{Ernst \& Young,}} HR Department \hfill Xiamen, China\\
+& Campus Recruitment Assistant \hfill 2015-2016 \\
+%& Description of your responsibilities. Integer pretium semper justo. Proin risus. Nullam id quam. Nam neque. Phasellus at purus et lib ero lacinia dictum. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque.\\
+& \\
+
+% --- Section: Talks and tutorials ---
+
+%{\color{internationalkleinblue}{Talks and tutorials}} 
+%& \textbf{Title of your most recent presentation} \hfill Month Year \\
+%& Name of conference, workshop, seminar, venue, etc., or a description \\
+%& \\
+
+%& \textbf{Title of your second most recent presentation} \hfill Month Year \\
+%& Name of conference, workshop, seminar, venue, etc., or a description \\
+%& \\
+
+% --- Section: Research experience ---
+
+\nohyphens{\textcolor{internationalkleinblue}{PRESENTATION}} & Washington University \hfill 2020-2024  \\
+& Tulane University \hfill 2024  \\
+& The University of Akron\hfill 2024, 2026  \\
+& Case Western Reserve University \hfill 2024, 2026  \\
+& \\
+
+%& \textbf{Title of project or lab where research was conducted} \\
+%& Mentors: Professor B (University) \hfill Month Year -- Present \\
+%& This description of your work might spill onto the next page, which is fine. \hfill $\rightarrow$ \\
+%& Aliquam volutpat est vel massa. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque. Integer pretium semper justo. Proin risus. \\
+%& \\
+
+% --- Section: Conference ---
+
+\nohyphens{\textcolor{internationalkleinblue}{CONFERENCE}} & Nicholas Dopuch Accounting Research Conference \\
+\nohyphens{\textcolor{internationalkleinblue}{PARTICIPATION}} &  \hfill 2019, 2021, 2022, 2023\ddag, 2024, 2025 \\
+& AAA Annual meeting \hfill 2023, 2024\dag, 2025\S \\
+& Hawaii Accounting Research Conference \hfill 2025\dag\S \\
+& Annual American Taxation Association Midyear Meeting \hfill 2025\dag \\
+&The All-OHIO Accounting Conference \hfill 2025, 2026\dag\S \\
+& Fox and Haskayne Accounting Conference \hfill 2024 \\
+& Annual Ohio State and Local Tax Conference \hfill 2024 \\
+& WashU Annual Graduate Research Symposium  \hfill 2024\ddag \\
+& Accounting and Economics Society Summer Camp \hfill 2020, 2022 \\ 
+& Labor and Accounting Group Conference \hfill 2022 \\
+& CAPANA Research Conference \hfill 2018 \\
+& AAA New Faculty Consortium \hfill 2026 \\
+& IAS PhD/New Faculty Consortium\hfill 2026 \\
+
+&\dag \hspace{1pt} \textit{denotes presentation}; \ddag \hspace{1pt} \textit{denotes poster presentation}; \S \hspace{1pt} \textit{denotes discussion}.\\ \\
+
+
+% --- Section: Various skills (programming, software, languages, etc.) ---
+
+\textcolor{internationalkleinblue}{SKILLS} & \textbf{Programming}\\
+& \LaTeX, Matlab, Mathematica, Python, SAS, STATA \\
+%& Familiar with: programming language 3, programming language 4. \\
+& \textbf{Languages} \\
+& English, Mandarin Chinese\\
+& \\
+
+
+% --- Section: Professional society memberships ---
+% --- Note: section title is spread over two lines ---
+
+\textcolor{internationalkleinblue}{PROFESSIONAL} & {American Accounting Association} \hfill 2023 -- Present \\
+\textcolor{internationalkleinblue}{MEMBERSHIPS} & {American Taxation Association} \hfill 2023 -- Present \\
+& {AAA International Accounting Section } \hfill 2025 -- Present \\
+& {Accounting and Economics Society} \hfill 2024 -- Present \\
+
+
+%& Some things you did or conferences you attended. Aliquam volutpat est vel massa. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque. \\
+%& \\
+
+% --- Section: Other interests/hobbies ---
+
+%\nohyphens{\color{internationalkleinblue}{Other interests}} & Board games, cooking, movies, hiking, planting herbs, singing. \\
+
+% --- End of CV! ---
+
+\newpage
+
+\end{longtable}
+
+\noindent
+\begin{tabular}{p{.465\textwidth}p{.465\textwidth}}
+    \multicolumn{2}{l}{\textbf{Reference}}         \\ \hline
+    Richard Frankel (Chair)                     &  Xiumin Martin                               \\
+    Nicholas Dopuch Professor of Accounting   &  Professor of Accounting                     \\
+    Olin Business School, Washington University &  Olin Business School, Washington University \\
+    \href{mailto:frankel@wustl.edu}{frankel@wustl.edu}                    &  \href{mailto:xmartin@wustl.edu}{xmartin@wustl.edu}*     \\ 
+   314-935-6431                                 & 314-935-6331 \\
+   & *Email \href{mailto:denise.herren@wustl.edu}{Herren Denise (denise.herren@wustl.edu)} for the reference letter.\\
+   \\
+Jared Jennings                    &                                 \\
+    Associate Professor of Accounting   &                    \\
+    Olin Business School, Washington University &   \\
+    \href{mailto:jaredjennings@wustl.edu}{jaredjennings@wustl.edu}                    &   \\
+    314-935-8115& 
+\end{tabular}
+
+
+
+\end{document}
