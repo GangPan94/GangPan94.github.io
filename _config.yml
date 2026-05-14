@@ -87,7 +87,7 @@ publication_category:
   books:
     title: 'Books'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Manuscripts'    
   working_papers:
     title: 'Working Papers & Work-in-Progress'
   conferences:
