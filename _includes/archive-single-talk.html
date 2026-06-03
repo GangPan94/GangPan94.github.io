@@ -6,7 +6,7 @@
 
 <div class="{{ include.type | default: 'list' }}__item">
   <p class="archive__item-excerpt" itemprop="description" style="margin: 0.25em 0;">
-    {% if post.date %}<span itemprop="datePublished">{{ post.date | date: '%B %d, %Y' }}</span> — {% endif %}
+    {% if post.date %}<span itemprop="datePublished">{{ post.date | date: '%Y' }}</span> — {% endif %}
     <span itemprop="name">{{ title }}</span>{% if post.type %}, <em>{{ post.type }}</em>{% endif %}{% if post.venue %}, {{ post.venue }}{% endif %}{% if post.location %}, {{ post.location }}{% endif %}
   </p>
 </div>
