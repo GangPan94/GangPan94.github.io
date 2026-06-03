@@ -24,14 +24,10 @@ redirect_from:
 I apply neoclassical economic analysis to the study of corporate taxation, the structure and role of capital information intermediaries, the real effects of accounting, the accounting labor market, and firm strategies.
 
 ## Research
-<ul>{% for post in site.publications reversed %}
-  {% include archive-single-cv.html %}
-{% endfor %}</ul>
-  
+See the [Publications page](/publications/) for the full list of working papers and publications.
+
 ## Talks and Conference Presentations
-<ul>{% for post in site.talks reversed %}
-  {% include archive-single-talk-cv.html  %}
-{% endfor %}</ul>
+See the [Talks page](/talks/) for the full list of talks and presentations.
 
 ## Conference Participation
 * **Nicholas Dopuch Accounting Research Conference**: 2019, 2021, 2022, 2024, 2025
@@ -45,9 +41,7 @@ I apply neoclassical economic analysis to the study of corporate taxation, the s
 * **IAS PhD/New Faculty Consortium**: 2026
 
 ## Teaching
-<ul>{% for post in site.teaching reversed %}
-  {% include archive-single-cv.html %}
-{% endfor %}</ul>
+See the [Teaching page](/teaching/) for the full list of courses taught.
 
 ## Service and Leadership
 * **Ad Hoc Referee**, Business Horizons (2025)
