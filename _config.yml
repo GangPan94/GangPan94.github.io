@@ -23,7 +23,7 @@ repository               : "GangPan94/GangPan94.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "IMG_20191125_213739_735.jpg"
+  avatar           : "avatar.jpg"
   name             : "Ernest (Gang) Pan"
   pronouns         : # example: "she/her"  
   bio              : "Assistant Professor at the University of Akron. Ph.D. in Accounting from the Olin Business School, Washington University."

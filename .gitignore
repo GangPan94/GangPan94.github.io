@@ -21,3 +21,6 @@ package-lock.json
 
 # Ignore files created by MacOS
 .DS_Store
+
+# Ignore the local photo drop zone (gitignored by design — see _inbox-images/README.md)
+_inbox-images/

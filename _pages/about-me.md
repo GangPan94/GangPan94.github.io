@@ -27,8 +27,10 @@ In my spare time, I spoil my three beautiful cats — **Emma**, a mischievous Ne
 
 ---
 
+<!--
 ## "Earnings Per Share"
 
 Alongside **Sheryl Zhang**, my best friend and colleague at Washington University, we're playfully known as the "earnings per share" duo — a witty twist on "Ernest plus Sheryl." She will be joining ESSEC, a top European business school in France. *Félicitations!*
 
 [Link to Sheryl's website](https://sites.google.com/view/sheryl-zhang/)
+-->
