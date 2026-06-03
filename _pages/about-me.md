@@ -14,16 +14,9 @@ My Chinese name is **刚** (gāng), meaning "tough" or "strong." However, "Gang"
 
 In my spare time, I spoil my three beautiful cats — **Emma**, a mischievous Nebelung with a spicy personality; **Malady**, my affectionate Russian blue; and **Lucian**, my big-boned new addition from the Cleveland APL. Emma treats me like her personal cookie dough and automatic feeder, while Malady looks like Emma after a fresh salon visit. Lucian is as heavy as Emma and Malady put together. They're all irresistibly adorable!
 
-<div style="display:flex; gap:20px; flex-wrap:wrap; margin:20px 0;">
-  <a href="/about/emma/"><img src="/images/cats/emma.jpg" alt="Emma" style="width:200px;height:200px;object-fit:cover;border-radius:8px;" onerror="this.style.display='none'"></a>
-  <a href="/about/malady/"><img src="/images/cats/malady.jpg" alt="Malady" style="width:200px;height:200px;object-fit:cover;border-radius:8px;" onerror="this.style.display='none'"></a>
-  <a href="/about/lucian/"><img src="/images/cats/lucian.jpg" alt="Lucian" style="width:200px;height:200px;object-fit:cover;border-radius:8px;" onerror="this.style.display='none'"></a>
-</div>
-
 - [The Story of Emma](/about/emma/)
 - [The Story of Malady](/about/malady/)
 - [The Story of Lucian](/about/lucian/)
-- [Support the Cleveland APL](https://clevelandapl.org/donate/)
 
 ---
 
