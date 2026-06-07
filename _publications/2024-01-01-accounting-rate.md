@@ -5,6 +5,7 @@ category: manuscripts
 permalink: /publication/2024-01-01-accounting-rate
 excerpt: 'Tax planning investments, when immediately expensed, reduce the contemporaneous accounting rate of return.'
 date: 2024-01-01
+published: false
 ---
 
 Solo-authored.

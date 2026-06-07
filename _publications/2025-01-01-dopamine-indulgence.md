@@ -5,6 +5,7 @@ category: working_papers
 permalink: /publication/2025-01-01-dopamine-indulgence
 excerpt: 'Working paper with Bo Ren.'
 date: 2025-01-01
+published: false
 ---
 
 With Bo Ren.
