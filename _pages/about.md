@@ -12,13 +12,15 @@ My research examines the efficiency implications of corporate tax and accounting
 
 I am enthusiastic about applying my analytical skills and academic expertise in a dynamic and challenging environment. Please explore my site or contact me directly for more details about my work, research interests, and academic journey.
 
-## Recent Work
 {% assign cutoff = site.time | date_add: -180 | date: '%s' | plus: 0 %}
-{% assign recent_news = site.news | where_exp: "item", "item.date | date: '%s' | plus: 0 >= cutoff" | sort: "date" | reverse %}
-{% if recent_news.size > 0 %}
+## Recent Work
+{% assign recent_news = site.news | sort: "date" | reverse %}
 {% for item in recent_news %}
+{% assign item_epoch = item.date | date: '%s' | plus: 0 %}
+{% if item_epoch >= cutoff %}
 * **{{ item.date | date: '%b %Y' }}** — {{ item.content | strip_newlines | strip }}
+{% endif %}
 {% endfor %}
-{% else %}
+{% if recent_news.size == 0 %}
 *No recent news.*
 {% endif %}
