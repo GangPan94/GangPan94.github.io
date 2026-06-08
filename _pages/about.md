@@ -14,11 +14,13 @@ I am enthusiastic about applying my analytical skills and academic expertise in 
 
 {% assign cutoff = site.time | date_add: -180 | date: '%s' | plus: 0 %}
 ## Recent Work
+DEBUG: site.time = {{ site.time }}, cutoff = {{ cutoff }}
 {% assign recent_news = site.news | sort: "date" | reverse %}
+DEBUG: recent_news.size = {{ recent_news.size }}
 {% for item in recent_news %}
-{% assign item_epoch = item.date | date: '%s' | plus: 0 %}
-{% if item_epoch >= cutoff %}
-* **{{ item.date | date: '%b %Y' }}** — {{ item.content | strip_newlines | strip }}
+DEBUG: item.date = {{ item.date }}, item_epoch = {{ item.date | date: '%s' | plus: 0 }}, content = {{ item.content | strip_newlines | strip }}
+{% if item.date | date: '%s' | plus: 0 >= cutoff %}
+* {{ item.content | strip_newlines | strip }}
 {% endif %}
 {% endfor %}
 {% if recent_news.size == 0 %}
