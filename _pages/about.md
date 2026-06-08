@@ -16,7 +16,7 @@ I am enthusiastic about applying my analytical skills and academic expertise in 
 ## Recent Work
 {% if recent_news.size > 0 %}
 {% for item in recent_news %}
-* **{{ item.date | date: '%b %Y' }}** — {{ item.content | strip_newlines | strip }}
+* **{{ item.date | date: '%b %Y' }}** — {{ item.content | strip_html | strip_newlines | strip }}
 {% endfor %}
 {% else %}
 *No recent news.*
