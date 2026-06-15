@@ -1,12 +1,12 @@
 ---
 permalink: /
-title: "Ernest (Gang) Pan"
+title: "Gang (Ernest) Pan"
 author_profile: true
 ---
 
 Welcome to my website!
 
-My name is Ernest (Gang) Pan/潘刚. I am an Assistant Professor at the University of Akron, holding a Ph.D. in Accounting from the Olin Business School, Washington University.
+My name is Gang (Ernest) Pan/潘刚. I am an Assistant Professor at the University of Akron, holding a Ph.D. in Accounting from the Olin Business School, Washington University.
 
 My research examines the efficiency implications of corporate tax and accounting practices through the lens of neo-classical economics. I adopt an encouraging approach to teaching, blending real-world practices with academic insights.
 
