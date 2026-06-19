@@ -17,6 +17,8 @@ In my spare time, I spoil my three beautiful cats — **Emma**, a mischievous Ne
 - [The Story of Emma](/about/emma/)
 - [The Story of Malady](/about/malady/)
 - [The Story of Lucian](/about/lucian/)
+- [The Story of Atusa and Clayton](/about/atusa-clayton/)
+- [The Story of Benji](/about/benji/)
 
 ---
 
