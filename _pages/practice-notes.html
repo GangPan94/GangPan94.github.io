@@ -1,0 +1,21 @@
+---
+layout: archive
+title: "Practice Notes"
+permalink: /practice-notes/
+author_profile: true
+---
+
+<div class="wordwrap">Practitioner-journal publications and applied commentary live here, separate from academic research.</div>
+
+{% include base_path %}
+
+{% assign practice_notes = site.publications | where: "category", "practice_notes" | reverse %}
+{% if practice_notes.size == 0 %}
+  <p>No practice notes yet. Practitioner-journal publications and applied commentary will appear here.</p>
+{% else %}
+  {% for post in practice_notes %}
+    {% if post.published != false %}
+      {% include archive-single.html %}
+    {% endif %}
+  {% endfor %}
+{% endif %}

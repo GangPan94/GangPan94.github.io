@@ -90,6 +90,8 @@ publication_category:
     title: 'Manuscripts'    
   working_papers:
     title: 'Working Papers & Work-in-Progress'
+  practice_notes:
+    title: 'Practice Notes'
   conferences:
     title: 'Conference Papers'
 

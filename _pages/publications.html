@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "Publications"
+title: "Academic Research"
 permalink: /publications/
 author_profile: true
 ---
@@ -14,6 +14,9 @@ author_profile: true
 <!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
   {% for category in site.publication_category  %}
+    {% if category[0] == 'practice_notes' %}
+      {% continue %}
+    {% endif %}
     {% assign title_shown = false %}
     {% for post in site.publications reversed %}
       {% if post.category != category[0] %}

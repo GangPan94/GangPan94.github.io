@@ -24,7 +24,7 @@ redirect_from:
 I apply neoclassical economic analysis to the study of corporate taxation, the structure and role of capital information intermediaries, the real effects of accounting, the accounting labor market, and firm strategies.
 
 ## Research
-See the [Publications page](/publications/) for the full list of working papers and publications.
+See the [Academic Research page](/publications/) for the full list of working papers and publications.
 
 ## Talks and Conference Presentations
 See the [Talks page](/talks/) for the full list of talks and presentations.

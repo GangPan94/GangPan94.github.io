@@ -10,8 +10,10 @@
 main:
   - title: "Home"
     url: /
-  - title: "Research"
+  - title: "Academic Research"
     url: /publications/
+  - title: "Practice Notes"
+    url: /practice-notes/
 
   - title: "Talks"
     url: /talks/    
