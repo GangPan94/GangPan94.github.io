@@ -12,8 +12,6 @@ main:
     url: /
   - title: "Academic Research"
     url: /publications/
-  - title: "Practice Notes"
-    url: /practice-notes/
 
   - title: "Talks"
     url: /talks/    
