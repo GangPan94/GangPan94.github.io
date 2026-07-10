@@ -12,7 +12,7 @@ My Chinese name is **刚** (gāng), meaning "tough" or "strong." However, "Gang"
 
 ## Life of "Meowtitasking"
 
-<img src="/images/cats/meowtitasking-six-cats.jpg" alt="Meowtitasking six-cats photo" style="float:right; max-width:300px; margin:0 0 12px 20px; border-radius:8px;" />
+<img src="/images/cats/meowtitasking-six-cats.png" alt="Meowtitasking six-cats photo" style="float:right; max-width:300px; margin:0 0 12px 20px; border-radius:8px;" />
 
 In my spare time, I spoil six cats — **Emma**, **Malady**, **Lucian**, **Atusa**, **Clayton**, and **Benji**. I might be a cat behaviorist in a parallel universe. If you'd like to meet them, their stories are linked just below.
 
