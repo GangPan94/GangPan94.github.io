@@ -12,7 +12,9 @@ My Chinese name is **刚** (gāng), meaning "tough" or "strong." However, "Gang"
 
 ## Life of "Meowtitasking"
 
-In my spare time, I spoil my three beautiful cats — **Emma**, a mischievous Nebelung with a spicy personality; **Malady**, my affectionate Russian blue; and **Lucian**, my big-boned new addition from the Cleveland APL. Emma treats me like her personal cookie dough and automatic feeder, while Malady looks like Emma after a fresh salon visit. Lucian is as heavy as Emma and Malady put together. They're all irresistibly adorable!
+<img src="/images/cats/meowtitasking-six-cats.jpg" alt="Meowtitasking six-cats photo" style="float:right; max-width:300px; margin:0 0 12px 20px; border-radius:8px;" />
+
+In my spare time, I spoil six cats — **Emma**, **Malady**, **Lucian**, **Atusa**, **Clayton**, and **Benji**. I might be a cat behaviorist in a parallel universe. If you'd like to meet them, their stories are linked just below.
 
 - [The Story of Emma](/about/emma/)
 - [The Story of Malady](/about/malady/)
