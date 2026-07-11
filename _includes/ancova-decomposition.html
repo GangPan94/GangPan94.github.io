@@ -3,28 +3,29 @@
 <figure class="ancova-decomposition" id="{{ ancova_id }}" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-caption">
   <h3 class="ancova-decomposition__title" id="{{ ancova_id }}-title">{{ ancova.title }}</h3>
   <p class="ancova-decomposition__instructions" id="{{ ancova_id }}-instructions">
-    Point to, focus, or tap a variable label for its complete one-year definition and exact value. The expandable table below repeats all chart data and definitions.
+    Longer bars account for more of the explained variation. Select a concept for its exact value and definition.
   </p>
 
   <div class="ancova-decomposition__visual">
     <div class="ancova-decomposition__axis" aria-hidden="true">
-      <span>12%</span>
-      <span>6%</span>
       <span>0%</span>
+      <span>6%</span>
+      <span>12%</span>
     </div>
     <ol class="ancova-decomposition__plot" aria-label="Variance-decomposition values" aria-describedby="{{ ancova_id }}-instructions">
       {% assign ancova_items = ancova.items | sort: "source_order" %}
       {% for item in ancova_items %}
         {% assign tooltip_id = ancova_id | append: "-tooltip-" | append: item.source_order %}
         <li class="ancova-decomposition__datum" style="--ancova-size: {{ item.share | times: 100.0 | divided_by: ancova.scale_max }}%;">
+          <button class="ancova-decomposition__label-control" type="button" aria-expanded="false" aria-controls="{{ tooltip_id }}" aria-describedby="{{ tooltip_id }}" aria-label="{{ item.concept_label }}: {{ item.display_percentage }} of explained variation. Variable: {{ item.abbreviation }}. Select for the full definition.">
+            {{ item.concept_label }}
+          </button>
           <span class="ancova-decomposition__bar-track" aria-hidden="true">
             <span class="ancova-decomposition__bar"></span>
           </span>
-          <button class="ancova-decomposition__label-control" type="button" aria-expanded="false" aria-controls="{{ tooltip_id }}" aria-describedby="{{ tooltip_id }}">
-            {{ item.abbreviation }}
-          </button>
           <span class="ancova-decomposition__tooltip" id="{{ tooltip_id }}" role="tooltip">
-            <strong>{{ item.display_percentage }} of explained variation.</strong>
+            <strong>{{ item.concept_label }}: {{ item.display_percentage }} of explained variation</strong>
+            <span class="ancova-decomposition__variable">Variable: {{ item.abbreviation }}</span>
             <span>{{ item.definition }}</span>
           </span>
         </li>
@@ -33,27 +34,28 @@
   </div>
 
   <figcaption id="{{ ancova_id }}-caption">
-    Each bar’s length represents that variable’s partial sum of squares as a share of the variation explained by the model. A longer bar means the variable accounts for a larger share of the model’s explained variation in excess returns; it does not show the direction of the variable’s effect. Values are from column (8), the full one-year specification with year and industry fixed effects and controls for changes in R&amp;D and advertising intensity.
+    Bar length shows each concept’s share of the variation in excess returns explained by the analysis. It shows relative importance, not whether the effect is positive or negative.
   </figcaption>
 
   <details class="ancova-decomposition__data">
     <summary>View exact chart data and definitions</summary>
+    <p class="ancova-decomposition__method"><strong>Method details:</strong> Values are from column (8), the full one-year specification with year and industry fixed effects and controls for changes in R&amp;D and advertising intensity.</p>
     <div class="ancova-decomposition__table-wrap">
       <table>
-        <caption>Exact ANCOVA variance-decomposition values and variable definitions in source order</caption>
+        <caption>Exact values and variable definitions in source order</caption>
         <thead>
           <tr>
+            <th scope="col">Concept</th>
             <th scope="col">Variable</th>
-            <th scope="col">Share</th>
-            <th scope="col">Percentage</th>
+            <th scope="col">Share of explained variation</th>
             <th scope="col">Chart-specific one-year definition</th>
           </tr>
         </thead>
         <tbody>
           {% for item in ancova_items %}
             <tr>
-              <th scope="row">{{ item.abbreviation }}</th>
-              <td>{{ item.share }}</td>
+              <th scope="row">{{ item.concept_label }}</th>
+              <td>{{ item.abbreviation }}</td>
               <td>{{ item.display_percentage }}</td>
               <td>{{ item.definition }}</td>
             </tr>
