@@ -1,0 +1,58 @@
+{% assign ancova = site.data.ancova_decomposition %}
+{% assign ancova_id = "ancova-decomposition-" | append: post.slug %}
+<figure class="ancova-decomposition" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-caption {{ ancova_id }}-note">
+  <h3 class="ancova-decomposition__title" id="{{ ancova_id }}-title">{{ ancova.title }}</h3>
+
+  <div class="ancova-decomposition__visual">
+    <div class="ancova-decomposition__axis" aria-hidden="true">
+      <span>12%</span>
+      <span>6%</span>
+      <span>0%</span>
+    </div>
+    <ol class="ancova-decomposition__plot" aria-label="Variance-decomposition values">
+      {% assign ancova_items = ancova.items | sort: "source_order" %}
+      {% for item in ancova_items %}
+        <li class="ancova-decomposition__datum" tabindex="0" aria-label="{{ item.accessible_label }}" style="--ancova-size: {{ item.share | times: 100.0 | divided_by: ancova.scale_max }}%;">
+          <span class="ancova-decomposition__value" aria-hidden="true">{{ item.display_percentage }}</span>
+          <span class="ancova-decomposition__bar-track" aria-hidden="true">
+            <span class="ancova-decomposition__bar"></span>
+          </span>
+          <span class="ancova-decomposition__label" aria-hidden="true">{{ item.abbreviation }}</span>
+          <span class="ancova-decomposition__tooltip" aria-hidden="true">{{ item.display_percentage }}</span>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+
+  <figcaption id="{{ ancova_id }}-caption">
+    Bar height shows each performance improvement’s partial sum of squares as a share of explained variation. Tax planning (DCETR1) is the smallest share among the plotted improvements.
+  </figcaption>
+  <p class="ancova-decomposition__note" id="{{ ancova_id }}-note">
+    <strong>Note:</strong> Column (8), full specification with year and industry fixed effects, one-year window. Columns 7–9 include changes in R&amp;D and advertising among the controls.
+  </p>
+
+  <details class="ancova-decomposition__data">
+    <summary>View exact chart data</summary>
+    <div class="ancova-decomposition__table-wrap">
+      <table>
+        <caption>Exact ANCOVA variance-decomposition values in source order</caption>
+        <thead>
+          <tr>
+            <th scope="col">Measure</th>
+            <th scope="col">Share</th>
+            <th scope="col">Percentage</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in ancova_items %}
+            <tr>
+              <th scope="row">{{ item.abbreviation }}</th>
+              <td>{{ item.share }}</td>
+              <td>{{ item.display_percentage }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>

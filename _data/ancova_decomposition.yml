@@ -1,0 +1,40 @@
+title: "ANCOVA decomposition of explained variation in excess returns"
+y_axis_label: "Share of explained variation"
+scale_max: 0.12
+source: "Column (8), full specification, one-year window"
+items:
+  - abbreviation: "DCETR1"
+    share: 0.005
+    display_percentage: "0.5%"
+    accessible_label: "DCETR1, tax planning: 0.5 percent of explained variation"
+    source_order: 1
+  - abbreviation: "BTPMn"
+    share: 0.028
+    display_percentage: "2.8%"
+    accessible_label: "BTPMn: 2.8 percent of explained variation"
+    source_order: 2
+  - abbreviation: "Growth"
+    share: 0.093
+    display_percentage: "9.3%"
+    accessible_label: "Growth: 9.3 percent of explained variation"
+    source_order: 3
+  - abbreviation: "ΔINNOV"
+    share: 0.022
+    display_percentage: "2.2%"
+    accessible_label: "Change in INNOV: 2.2 percent of explained variation"
+    source_order: 4
+  - abbreviation: "ΔCOGS"
+    share: 0.107
+    display_percentage: "10.7%"
+    accessible_label: "Change in COGS: 10.7 percent of explained variation"
+    source_order: 5
+  - abbreviation: "ΔSG&A"
+    share: 0.060
+    display_percentage: "6.0%"
+    accessible_label: "Change in S G and A: 6.0 percent of explained variation"
+    source_order: 6
+  - abbreviation: "ΔXINT"
+    share: 0.009
+    display_percentage: "0.9%"
+    accessible_label: "Change in XINT, interest expense: 0.9 percent of explained variation"
+    source_order: 7
