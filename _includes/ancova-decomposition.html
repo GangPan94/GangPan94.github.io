@@ -1,6 +1,6 @@
 {% assign ancova = site.data.ancova_decomposition %}
 {% assign ancova_id = "ancova-decomposition-" | append: post.slug %}
-<figure class="ancova-decomposition" id="{{ ancova_id }}" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-caption {{ ancova_id }}-note">
+<figure class="ancova-decomposition" id="{{ ancova_id }}" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-caption">
   <h3 class="ancova-decomposition__title" id="{{ ancova_id }}-title">{{ ancova.title }}</h3>
   <p class="ancova-decomposition__instructions" id="{{ ancova_id }}-instructions">
     Point to, focus, or tap a variable label for its complete one-year definition and exact value. The expandable table below repeats all chart data and definitions.
@@ -33,11 +33,8 @@
   </div>
 
   <figcaption id="{{ ancova_id }}-caption">
-    Each bar’s length represents that variable’s partial sum of squares as a share of the variation explained by the model. A longer bar means the variable accounts for a larger share of the model’s explained variation in excess returns; it does not show the direction of the variable’s effect.
+    Each bar’s length represents that variable’s partial sum of squares as a share of the variation explained by the model. A longer bar means the variable accounts for a larger share of the model’s explained variation in excess returns; it does not show the direction of the variable’s effect. Values are from column (8), the full one-year specification with year and industry fixed effects and controls for changes in R&amp;D and advertising intensity.
   </figcaption>
-  <p class="ancova-decomposition__note" id="{{ ancova_id }}-note">
-    <strong>Note:</strong> Values are from column (8): the full one-year specification with year and industry fixed effects. Controls include changes in R&amp;D and advertising intensity.
-  </p>
 
   <details class="ancova-decomposition__data">
     <summary>View exact chart data and definitions</summary>
