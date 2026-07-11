@@ -1,7 +1,10 @@
 {% assign ancova = site.data.ancova_decomposition %}
 {% assign ancova_id = "ancova-decomposition-" | append: post.slug %}
-<figure class="ancova-decomposition" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-caption {{ ancova_id }}-note">
+<figure class="ancova-decomposition" id="{{ ancova_id }}" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-caption {{ ancova_id }}-note">
   <h3 class="ancova-decomposition__title" id="{{ ancova_id }}-title">{{ ancova.title }}</h3>
+  <p class="ancova-decomposition__instructions" id="{{ ancova_id }}-instructions">
+    Point to, focus, or tap a variable label for its definition and exact value.
+  </p>
 
   <div class="ancova-decomposition__visual">
     <div class="ancova-decomposition__axis" aria-hidden="true">
@@ -9,38 +12,44 @@
       <span>6%</span>
       <span>0%</span>
     </div>
-    <ol class="ancova-decomposition__plot" aria-label="Variance-decomposition values">
+    <ol class="ancova-decomposition__plot" aria-label="Variance-decomposition values" aria-describedby="{{ ancova_id }}-instructions">
       {% assign ancova_items = ancova.items | sort: "source_order" %}
       {% for item in ancova_items %}
-        <li class="ancova-decomposition__datum" tabindex="0" aria-label="{{ item.accessible_label }}" style="--ancova-size: {{ item.share | times: 100.0 | divided_by: ancova.scale_max }}%;">
-          <span class="ancova-decomposition__value" aria-hidden="true">{{ item.display_percentage }}</span>
+        {% assign tooltip_id = ancova_id | append: "-tooltip-" | append: item.source_order %}
+        <li class="ancova-decomposition__datum" style="--ancova-size: {{ item.share | times: 100.0 | divided_by: ancova.scale_max }}%;">
           <span class="ancova-decomposition__bar-track" aria-hidden="true">
             <span class="ancova-decomposition__bar"></span>
           </span>
-          <span class="ancova-decomposition__label" aria-hidden="true">{{ item.abbreviation }}</span>
-          <span class="ancova-decomposition__tooltip" aria-hidden="true">{{ item.display_percentage }}</span>
+          <button class="ancova-decomposition__label-control" type="button" aria-expanded="false" aria-controls="{{ tooltip_id }}" aria-describedby="{{ tooltip_id }}">
+            {{ item.abbreviation }}
+          </button>
+          <span class="ancova-decomposition__tooltip" id="{{ tooltip_id }}" role="tooltip">
+            <strong>{{ item.display_percentage }} of explained variation.</strong>
+            <span>{{ item.definition }}</span>
+          </span>
         </li>
       {% endfor %}
     </ol>
   </div>
 
   <figcaption id="{{ ancova_id }}-caption">
-    Bar height shows each performance improvement’s partial sum of squares as a share of explained variation. Tax planning (DCETR1) is the smallest share among the plotted improvements.
+    Each bar’s length represents that variable’s partial sum of squares as a share of the variation explained by the model. A longer bar means the variable accounts for a larger share of the model’s explained variation in excess returns; it does not show the direction of the variable’s effect.
   </figcaption>
   <p class="ancova-decomposition__note" id="{{ ancova_id }}-note">
-    <strong>Note:</strong> Column (8), full specification with year and industry fixed effects, one-year window. Columns 7–9 include changes in R&amp;D and advertising among the controls.
+    <strong>Note:</strong> Values are from column (8): the full one-year specification with year and industry fixed effects. Controls include changes in R&amp;D and advertising intensity.
   </p>
 
   <details class="ancova-decomposition__data">
-    <summary>View exact chart data</summary>
+    <summary>View exact chart data and definitions</summary>
     <div class="ancova-decomposition__table-wrap">
       <table>
-        <caption>Exact ANCOVA variance-decomposition values in source order</caption>
+        <caption>Exact ANCOVA variance-decomposition values and variable definitions in source order</caption>
         <thead>
           <tr>
-            <th scope="col">Measure</th>
+            <th scope="col">Variable</th>
             <th scope="col">Share</th>
             <th scope="col">Percentage</th>
+            <th scope="col">Plain-language definition</th>
           </tr>
         </thead>
         <tbody>
@@ -49,6 +58,7 @@
               <th scope="row">{{ item.abbreviation }}</th>
               <td>{{ item.share }}</td>
               <td>{{ item.display_percentage }}</td>
+              <td>{{ item.definition }}</td>
             </tr>
           {% endfor %}
         </tbody>
@@ -56,3 +66,42 @@
     </div>
   </details>
 </figure>
+<script>
+(function () {
+  var figure = document.getElementById("{{ ancova_id }}");
+  if (!figure) return;
+
+  var controls = figure.querySelectorAll(".ancova-decomposition__label-control");
+
+  function closeControl(control) {
+    control.setAttribute("aria-expanded", "false");
+    control.closest(".ancova-decomposition__datum").removeAttribute("data-open");
+  }
+
+  function closeAll(except) {
+    controls.forEach(function (control) {
+      if (control !== except) closeControl(control);
+    });
+  }
+
+  controls.forEach(function (control) {
+    control.addEventListener("click", function () {
+      var willOpen = control.getAttribute("aria-expanded") !== "true";
+      closeAll(control);
+      control.setAttribute("aria-expanded", willOpen ? "true" : "false");
+      control.closest(".ancova-decomposition__datum").toggleAttribute("data-open", willOpen);
+    });
+
+    control.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeControl(control);
+        control.focus();
+      }
+    });
+  });
+
+  document.addEventListener("pointerdown", function (event) {
+    if (!figure.contains(event.target)) closeAll();
+  });
+})();
+</script>

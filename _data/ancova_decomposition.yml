@@ -1,40 +1,47 @@
 title: "ANCOVA decomposition of explained variation in excess returns"
 y_axis_label: "Share of explained variation"
 scale_max: 0.12
-source: "Column (8), full specification, one-year window"
+source: "Column (8), full specification with year and industry fixed effects, one-year window"
 items:
   - abbreviation: "DCETR1"
     share: 0.005
     display_percentage: "0.5%"
-    accessible_label: "DCETR1, tax planning: 0.5 percent of explained variation"
+    definition: "The one-year net decrease in a firm’s cash effective tax rate. A positive value means its cash tax burden fell; the paper uses this as a measure of unexpected tax planning."
+    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, lines 13–18; LatexDraft/subfile/3_var_data_sum.tex, lines 8–13"
     source_order: 1
   - abbreviation: "BTPMn"
     share: 0.028
     display_percentage: "2.8%"
-    accessible_label: "BTPMn: 2.8 percent of explained variation"
+    definition: "Pretax operating profit margin over an n-year window: operating earnings divided by total sales. This chart uses the one-year window (n = 1)."
+    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 26; LatexDraft/subfile/3_var_data_sum.tex, line 19"
     source_order: 2
   - abbreviation: "Growth"
     share: 0.093
     display_percentage: "9.3%"
-    accessible_label: "Growth: 9.3 percent of explained variation"
+    definition: "Sales growth. For this one-year chart, it is the increase in total sales during the year, scaled by total sales in the preceding year."
+    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 30; LatexDraft/subfile/3_var_data_sum.tex, line 19"
     source_order: 3
   - abbreviation: "ΔINNOV"
     share: 0.022
     display_percentage: "2.2%"
-    accessible_label: "Change in INNOV: 2.2 percent of explained variation"
+    definition: "The Δ symbol means change. This is the one-year change in patent-based innovation intensity: the market value of patents granted, inferred from stock-market reactions, scaled by lagged total assets."
+    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 59; LatexDraft/subfile/4_Empirical.tex, line 34"
     source_order: 4
   - abbreviation: "ΔCOGS"
     share: 0.107
     display_percentage: "10.7%"
-    accessible_label: "Change in COGS: 10.7 percent of explained variation"
+    definition: "The Δ symbol means change. This is the one-year change in cost-of-goods-sold intensity, where cost of goods sold is scaled by total sales."
+    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 55"
     source_order: 5
   - abbreviation: "ΔSG&A"
     share: 0.060
     display_percentage: "6.0%"
-    accessible_label: "Change in S G and A: 6.0 percent of explained variation"
+    definition: "The Δ symbol means change. This is the one-year change in selling, general, and administrative expense intensity, where those expenses are scaled by total sales."
+    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 56"
     source_order: 6
   - abbreviation: "ΔXINT"
     share: 0.009
     display_percentage: "0.9%"
-    accessible_label: "Change in XINT, interest expense: 0.9 percent of explained variation"
+    definition: "The Δ symbol means change. This is the one-year change in interest-expense intensity, where interest expense is scaled by total sales."
+    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 57"
     source_order: 7
