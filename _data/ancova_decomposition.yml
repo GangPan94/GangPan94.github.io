@@ -32,23 +32,23 @@ items:
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔINNOVn"
     source_order: 4
   - abbreviation: "ΔCOGS"
-    concept_label: "Cost of goods sold"
+    concept_label: "Additional production-cost savings"
     share: 0.107
     display_percentage: "10.7%"
-    definition: "The change in COGS intensity, calculated using non-overlapping one-year windows. COGS intensity is total cost of goods sold over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1."
+    definition: "The change in COGS intensity, calculated using non-overlapping one-year windows. COGS intensity is total cost of goods sold over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1. In reader-facing terms, this is additional production-cost savings from the one-year change in cost intensity, not a cost or savings level."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔCOGSn"
     source_order: 5
   - abbreviation: "ΔSG&A"
-    concept_label: "Selling & administrative costs"
+    concept_label: "Additional selling & administrative savings"
     share: 0.060
     display_percentage: "6.0%"
-    definition: "The change in SG&A intensity, calculated using non-overlapping one-year windows. SG&A intensity is total selling, general, and administrative expenses over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1."
+    definition: "The change in SG&A intensity, calculated using non-overlapping one-year windows. SG&A intensity is total selling, general, and administrative expenses over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1. In reader-facing terms, this is additional selling and administrative savings from the one-year change in cost intensity, not a cost or savings level."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔSG&An"
     source_order: 6
   - abbreviation: "ΔXINT"
-    concept_label: "Interest expense"
+    concept_label: "Additional interest-expense savings"
     share: 0.009
     display_percentage: "0.9%"
-    definition: "The change in interest expense intensity, calculated using non-overlapping one-year windows. Interest expense intensity is total interest expense over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1."
+    definition: "The change in interest expense intensity, calculated using non-overlapping one-year windows. Interest expense intensity is total interest expense over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1. In reader-facing terms, this is additional interest-expense savings from the one-year change in expense intensity, not an expense or savings level."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔXINTn"
     source_order: 7

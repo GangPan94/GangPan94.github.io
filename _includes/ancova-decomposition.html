@@ -1,9 +1,9 @@
 {% assign ancova = site.data.ancova_decomposition %}
 {% assign ancova_id = "ancova-decomposition-" | append: post.slug %}
-<figure class="ancova-decomposition" id="{{ ancova_id }}" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-caption">
+<figure class="ancova-decomposition" id="{{ ancova_id }}" aria-labelledby="{{ ancova_id }}-title" aria-describedby="{{ ancova_id }}-instructions">
   <h3 class="ancova-decomposition__title" id="{{ ancova_id }}-title">{{ ancova.title }}</h3>
   <p class="ancova-decomposition__instructions" id="{{ ancova_id }}-instructions">
-    Longer bars account for more of the explained variation. Select a concept for its exact value and definition.
+    Longer bars indicate greater relative importance. Select a concept for details.
   </p>
 
   <div class="ancova-decomposition__visual">
@@ -33,13 +33,9 @@
     </ol>
   </div>
 
-  <figcaption id="{{ ancova_id }}-caption">
-    Bar length shows each concept’s share of the variation in excess returns explained by the analysis. It shows relative importance, not whether the effect is positive or negative.
-  </figcaption>
-
   <details class="ancova-decomposition__data">
     <summary>View exact chart data and definitions</summary>
-    <p class="ancova-decomposition__method"><strong>Method details:</strong> Values are from column (8), the full one-year specification with year and industry fixed effects and controls for changes in R&amp;D and advertising intensity.</p>
+    <p class="ancova-decomposition__method"><strong>Method details:</strong> Bar length shows each concept’s share of the variation in excess returns explained by the analysis; it indicates relative importance, not whether an effect is positive or negative. Values are from column (8), the full one-year specification with year and industry fixed effects and controls for changes in R&amp;D and advertising intensity.</p>
     <div class="ancova-decomposition__table-wrap">
       <table>
         <caption>Exact values and variable definitions in source order</caption>
@@ -71,10 +67,63 @@
   if (!figure) return;
 
   var controls = figure.querySelectorAll(".ancova-decomposition__label-control");
+  var activeControl = null;
+  var suppressFocusControl = null;
+
+  function tooltipFor(control) {
+    return document.getElementById(control.getAttribute("aria-controls"));
+  }
+
+  function positionTooltip(control) {
+    var tooltip = tooltipFor(control);
+    if (!tooltip || !tooltip.hasAttribute("data-visible")) return;
+
+    var gutter = 8;
+    var figureRect = figure.getBoundingClientRect();
+    var datumRect = control.closest(".ancova-decomposition__datum").getBoundingClientRect();
+    var barRect = control.closest(".ancova-decomposition__datum").querySelector(".ancova-decomposition__bar-track").getBoundingClientRect();
+    var viewportWidth = document.documentElement.clientWidth;
+    var viewportHeight = document.documentElement.clientHeight;
+    var leftBound = Math.max(gutter, figureRect.left + gutter);
+    var rightBound = Math.min(viewportWidth - gutter, figureRect.right - gutter);
+    var topBound = Math.max(gutter, figureRect.top + gutter);
+    var bottomBound = Math.min(viewportHeight - gutter, figureRect.bottom - gutter);
+    var availableWidth = Math.max(0, rightBound - leftBound);
+    var preferredLeft = Math.max(leftBound, barRect.left);
+    var preferredWidth = Math.max(0, rightBound - preferredLeft);
+
+    tooltip.style.width = Math.min(380, preferredWidth >= 240 ? preferredWidth : availableWidth) + "px";
+    tooltip.style.maxHeight = Math.max(40, bottomBound - topBound) + "px";
+
+    var tooltipRect = tooltip.getBoundingClientRect();
+    var left = preferredWidth >= 240 ? preferredLeft : leftBound;
+    left = Math.min(Math.max(left, leftBound), rightBound - tooltipRect.width);
+    var below = datumRect.bottom + gutter;
+    var above = datumRect.top - tooltipRect.height - gutter;
+    var top = below + tooltipRect.height <= bottomBound ? below : above;
+    top = Math.min(Math.max(top, topBound), bottomBound - tooltipRect.height);
+
+    tooltip.style.left = Math.round(left) + "px";
+    tooltip.style.top = Math.round(top) + "px";
+  }
+
+  function showControl(control) {
+    closeAll(control);
+    var tooltip = tooltipFor(control);
+    control.setAttribute("aria-expanded", "true");
+    control.closest(".ancova-decomposition__datum").setAttribute("data-open", "");
+    tooltip.setAttribute("data-visible", "");
+    activeControl = control;
+    window.requestAnimationFrame(function () { positionTooltip(control); });
+  }
 
   function closeControl(control) {
     control.setAttribute("aria-expanded", "false");
-    control.closest(".ancova-decomposition__datum").removeAttribute("data-open");
+    var datum = control.closest(".ancova-decomposition__datum");
+    datum.removeAttribute("data-open");
+    datum.removeAttribute("data-pinned");
+    tooltipFor(control).removeAttribute("data-visible");
+    if (activeControl === control) activeControl = null;
   }
 
   function closeAll(except) {
@@ -83,24 +132,75 @@
     });
   }
 
+  function closeAndFocus(control) {
+    closeControl(control);
+    if (document.activeElement !== control) {
+      suppressFocusControl = control;
+      control.focus();
+    }
+  }
+
   controls.forEach(function (control) {
+    var datum = control.closest(".ancova-decomposition__datum");
+    var focusFromTouch = false;
+
+    datum.addEventListener("pointerenter", function () {
+      if (window.matchMedia("(hover: hover)").matches) showControl(control);
+    });
+
+    datum.addEventListener("pointerleave", function () {
+      if (window.matchMedia("(hover: hover)").matches && !datum.hasAttribute("data-pinned")) closeControl(control);
+    });
+
+    control.addEventListener("pointerdown", function (event) {
+      focusFromTouch = event.pointerType === "touch";
+    });
+
+    control.addEventListener("focus", function () {
+      if (suppressFocusControl === control) {
+        suppressFocusControl = null;
+        return;
+      }
+      if (!focusFromTouch) showControl(control);
+    });
+    control.addEventListener("blur", function () {
+      focusFromTouch = false;
+      if (!datum.hasAttribute("data-pinned")) closeControl(control);
+    });
+
     control.addEventListener("click", function () {
-      var willOpen = control.getAttribute("aria-expanded") !== "true";
-      closeAll(control);
-      control.setAttribute("aria-expanded", willOpen ? "true" : "false");
-      control.closest(".ancova-decomposition__datum").toggleAttribute("data-open", willOpen);
+      var willPin = !datum.hasAttribute("data-pinned");
+      focusFromTouch = false;
+      if (willPin) {
+        showControl(control);
+        datum.setAttribute("data-pinned", "");
+      } else {
+        closeControl(control);
+      }
     });
 
     control.addEventListener("keydown", function (event) {
       if (event.key === "Escape") {
-        closeControl(control);
-        control.focus();
+        closeAndFocus(control);
       }
     });
   });
 
   document.addEventListener("pointerdown", function (event) {
-    if (!figure.contains(event.target)) closeAll();
+    if (!event.target.closest(".ancova-decomposition__label-control") && !event.target.closest(".ancova-decomposition__tooltip")) closeAll();
   });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && activeControl) {
+      closeAndFocus(activeControl);
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (activeControl) positionTooltip(activeControl);
+  });
+  window.addEventListener("scroll", function () {
+    if (activeControl) positionTooltip(activeControl);
+  }, true);
 })();
 </script>
