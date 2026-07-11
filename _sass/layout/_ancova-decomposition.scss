@@ -114,12 +114,14 @@
   }
 
   &__tooltip {
+    --ancova-tooltip-shift: -50%;
     position: absolute;
     z-index: 3;
     bottom: 3.1rem;
     left: 50%;
     width: max-content;
-    max-width: min(18rem, 80vw);
+    max-width: min(24rem, calc(100vw - 2rem));
+    height: fit-content;
     padding: 0.55rem 0.65rem;
     border: 1px solid var(--global-dark-border-color);
     border-radius: 0.25rem;
@@ -133,7 +135,7 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translate(-50%, 0.25rem);
+    transform: translate(var(--ancova-tooltip-shift), 0.25rem);
     transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
   }
 
@@ -144,6 +146,17 @@
 
   &__tooltip strong {
     margin-bottom: 0.2rem;
+  }
+
+  &__datum:nth-child(-n + 2) &__tooltip {
+    --ancova-tooltip-shift: 0;
+    left: 0;
+  }
+
+  &__datum:nth-last-child(-n + 2) &__tooltip {
+    --ancova-tooltip-shift: 0;
+    right: 0;
+    left: auto;
   }
 
   &__datum:hover &__bar,
@@ -158,7 +171,7 @@
   &__datum[data-open] &__tooltip {
     opacity: 1;
     visibility: visible;
-    transform: translate(-50%, 0);
+    transform: translate(var(--ancova-tooltip-shift), 0);
   }
 
   &__label-control:focus-visible {

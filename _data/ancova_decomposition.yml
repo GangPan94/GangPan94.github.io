@@ -6,42 +6,42 @@ items:
   - abbreviation: "DCETR1"
     share: 0.005
     display_percentage: "0.5%"
-    definition: "The one-year net decrease in a firm’s cash effective tax rate. A positive value means its cash tax burden fell; the paper uses this as a measure of unexpected tax planning."
-    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, lines 13–18; LatexDraft/subfile/3_var_data_sum.tex, lines 8–13"
+    definition: "The one-year net decrease in cash effective tax rates, computed from non-overlapping one-year CETR1 measures: DCETR1 = −(CETR1_t − CETR1_{t−1}). CETR1 is tax cash paid divided by pretax income less special items over the one-year window, capped between 0 and 1. A positive value denotes a net reduction in the cash effective tax rate—that is, a tax planning innovation. DCETR1 is the one-year version of the general DCETRn construct, which measures the net decrease in long-run cash effective tax rates over an n-year window."
+    definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of DCETRn and CETRn"
     source_order: 1
-  - abbreviation: "BTPMn"
+  - abbreviation: "BTPM1"
     share: 0.028
     display_percentage: "2.8%"
-    definition: "Pretax operating profit margin over an n-year window: operating earnings divided by total sales. This chart uses the one-year window (n = 1)."
-    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 26; LatexDraft/subfile/3_var_data_sum.tex, line 19"
+    definition: "Pretax profit margin over the one-year window, based on operating earnings: operating earnings divided by total sales. This is the n = 1 version of BTPMn."
+    definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of BTPMn"
     source_order: 2
-  - abbreviation: "Growth"
+  - abbreviation: "Growth1"
     share: 0.093
     display_percentage: "9.3%"
-    definition: "Sales growth. For this one-year chart, it is the increase in total sales during the year, scaled by total sales in the preceding year."
-    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 30; LatexDraft/subfile/3_var_data_sum.tex, line 19"
+    definition: "The increase in total sales during the one-year window ending at t, scaled by total sales during the non-overlapping one-year window ending at t−1. This is the n = 1 version of Growthn."
+    definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of Growthn"
     source_order: 3
   - abbreviation: "ΔINNOV"
     share: 0.022
     display_percentage: "2.2%"
-    definition: "The Δ symbol means change. This is the one-year change in patent-based innovation intensity: the market value of patents granted, inferred from stock-market reactions, scaled by lagged total assets."
-    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 59; LatexDraft/subfile/4_Empirical.tex, line 34"
+    definition: "The change in patent-based innovation intensity over one fiscal year, calculated using non-overlapping one-year windows. Innovation intensity is the total market value of the patents a firm is granted in a year, inferred from the stock-market reaction to each patent grant, scaled by lagged total assets. The Δ symbol denotes change; this chart uses n = 1."
+    definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔINNOVn"
     source_order: 4
   - abbreviation: "ΔCOGS"
     share: 0.107
     display_percentage: "10.7%"
-    definition: "The Δ symbol means change. This is the one-year change in cost-of-goods-sold intensity, where cost of goods sold is scaled by total sales."
-    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 55"
+    definition: "The change in COGS intensity, calculated using non-overlapping one-year windows. COGS intensity is total cost of goods sold over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1."
+    definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔCOGSn"
     source_order: 5
   - abbreviation: "ΔSG&A"
     share: 0.060
     display_percentage: "6.0%"
-    definition: "The Δ symbol means change. This is the one-year change in selling, general, and administrative expense intensity, where those expenses are scaled by total sales."
-    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 56"
+    definition: "The change in SG&A intensity, calculated using non-overlapping one-year windows. SG&A intensity is total selling, general, and administrative expenses over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1."
+    definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔSG&An"
     source_order: 6
   - abbreviation: "ΔXINT"
     share: 0.009
     display_percentage: "0.9%"
-    definition: "The Δ symbol means change. This is the one-year change in interest-expense intensity, where interest expense is scaled by total sales."
-    definition_source: "TaxALPHA/LatexDraft/Tables/VarDef.tex, line 57"
+    definition: "The change in interest expense intensity, calculated using non-overlapping one-year windows. Interest expense intensity is total interest expense over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1."
+    definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔXINTn"
     source_order: 7
