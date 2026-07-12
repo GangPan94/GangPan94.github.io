@@ -1,54 +1,54 @@
 title: "What explains variation in excess returns?"
 y_axis_label: "Share of explained variation"
 scale_max: 0.12
-source: "Column (8), full specification with year and industry fixed effects, one-year window"
+source: "Full one-year specification with year and industry fixed effects"
 items:
   - abbreviation: "DCETR1"
     concept_label: "Tax planning"
     share: 0.005
     display_percentage: "0.5%"
-    definition: "The one-year net decrease in cash effective tax rates, computed from non-overlapping one-year CETR1 measures: DCETR1 = −(CETR1_t − CETR1_{t−1}). CETR1 is tax cash paid divided by pretax income less special items over the one-year window, capped between 0 and 1. A positive value denotes a net reduction in the cash effective tax rate—that is, a tax planning innovation. DCETR1 is the one-year version of the general DCETRn construct, which measures the net decrease in long-run cash effective tax rates over an n-year window."
+    definition: "Reduction in cash taxes paid relative to pretax income compared with the prior year. A larger reduction represents more tax planning savings."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of DCETRn and CETRn"
     source_order: 1
   - abbreviation: "BTPM1"
     concept_label: "Pretax profitability"
     share: 0.028
     display_percentage: "2.8%"
-    definition: "Pretax profit margin over the one-year window, based on operating earnings: operating earnings divided by total sales. This is the n = 1 version of BTPMn."
+    definition: "Operating profit before taxes as a percentage of sales."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of BTPMn"
     source_order: 2
   - abbreviation: "Growth1"
     concept_label: "Sales growth"
     share: 0.093
     display_percentage: "9.3%"
-    definition: "The increase in total sales during the one-year window ending at t, scaled by total sales during the non-overlapping one-year window ending at t−1. This is the n = 1 version of Growthn."
+    definition: "Percentage increase in sales compared with the prior year."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of Growthn"
     source_order: 3
   - abbreviation: "ΔINNOV"
     concept_label: "Innovation"
     share: 0.022
     display_percentage: "2.2%"
-    definition: "The change in patent-based innovation intensity over one fiscal year, calculated using non-overlapping one-year windows. Innovation intensity is the total market value of the patents a firm is granted in a year, inferred from the stock-market reaction to each patent grant, scaled by lagged total assets. The Δ symbol denotes change; this chart uses n = 1."
+    definition: "Increase in the estimated market value of the firm’s newly granted patents relative to its assets."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔINNOVn"
     source_order: 4
   - abbreviation: "ΔCOGS"
-    concept_label: "Additional production-cost savings"
+    concept_label: "Additional savings in cost of goods sold"
     share: 0.107
     display_percentage: "10.7%"
-    definition: "The change in COGS intensity, calculated using non-overlapping one-year windows. COGS intensity is total cost of goods sold over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1. In reader-facing terms, this is additional production-cost savings from the one-year change in cost intensity, not a cost or savings level."
+    definition: "Additional savings from reducing cost of goods sold as a percentage of sales compared with the prior year."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔCOGSn"
     source_order: 5
   - abbreviation: "ΔSG&A"
     concept_label: "Additional selling & administrative savings"
     share: 0.060
     display_percentage: "6.0%"
-    definition: "The change in SG&A intensity, calculated using non-overlapping one-year windows. SG&A intensity is total selling, general, and administrative expenses over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1. In reader-facing terms, this is additional selling and administrative savings from the one-year change in cost intensity, not a cost or savings level."
+    definition: "Additional savings from reducing selling and administrative expenses as a percentage of sales compared with the prior year."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔSG&An"
     source_order: 6
   - abbreviation: "ΔXINT"
     concept_label: "Additional interest-expense savings"
     share: 0.009
     display_percentage: "0.9%"
-    definition: "The change in interest expense intensity, calculated using non-overlapping one-year windows. Interest expense intensity is total interest expense over the one-year window, scaled by total sales over the same one-year window. The Δ symbol denotes change; this chart uses n = 1. In reader-facing terms, this is additional interest-expense savings from the one-year change in expense intensity, not an expense or savings level."
+    definition: "Additional savings from reducing interest expense as a percentage of sales compared with the prior year."
     definition_source: "Authoritative variable-definition table supplied by Dr. Pan; chart-specific n = 1 rendering of ΔXINTn"
     source_order: 7

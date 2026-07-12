@@ -1,5 +1,5 @@
 ---
-title: "The (Limited) Competitive Advantage of Tax Planning"
+title: "The Competitive Advantage of Tax Planning"
 collection: publications
 category: manuscripts
 ancova_decomposition: true
