@@ -105,27 +105,45 @@
 }
 
 .teaching-section--earlier {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--global-border-color);
 
-  .teaching-section__header h2 {
-    font-size: 1.25em;
+  .teaching-section__header {
+    margin-bottom: 0.8rem;
+    max-width: 40rem;
   }
 
-  .teaching-section__eyebrow,
+  .teaching-section__header h2 {
+    font-size: 1.05em;
+    font-weight: 600;
+  }
+
+  .teaching-section__eyebrow {
+    color: var(--global-text-color);
+    font-size: 0.64em;
+    font-weight: 600;
+  }
+
   .teaching-section__header > p:last-child {
     color: var(--global-text-color);
-    opacity: 0.68;
+    font-size: 0.8em;
+    line-height: 1.45;
   }
 }
 
 .teaching-history {
-  border-top: 1px solid var(--global-border-color);
+  max-width: 42rem;
+  margin-left: 0.75rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--global-border-color);
 }
 
 .teaching-history__item {
-  padding: 0.9rem 0;
-  border-bottom: 1px solid var(--global-border-color);
+  padding: 0.55rem 0;
+
+  & + & {
+    border-top: 1px solid var(--global-border-color);
+  }
 }
 
 .teaching-history__heading {
@@ -136,39 +154,24 @@
 
   h3 {
     margin: 0;
-    font-size: 0.96em;
-    font-weight: 600;
+    font-size: 0.88em;
+    font-weight: 500;
     line-height: 1.4;
-  }
-}
-
-.archive .teaching-history__heading a {
-  color: var(--global-text-color);
-  text-decoration-color: var(--global-border-color);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.15em;
-
-  &:hover,
-  &:focus {
-    color: var(--global-link-color-hover);
-    text-decoration-color: currentColor;
   }
 }
 
 .teaching-history__year {
   flex: 0 0 auto;
   color: var(--global-text-color);
-  font-size: 0.76em;
+  font-size: 0.72em;
   font-variant-numeric: tabular-nums;
-  opacity: 0.6;
 }
 
 .teaching-history__meta,
 .teaching-history__detail {
   color: var(--global-text-color);
-  font-size: 0.78em;
-  line-height: 1.5;
-  opacity: 0.72;
+  font-size: 0.76em;
+  line-height: 1.45;
 }
 
 .teaching-history__meta {
@@ -200,5 +203,10 @@
   .teaching-history__year {
     display: block;
     margin-top: 0.15rem;
+  }
+
+  .teaching-history {
+    margin-left: 0.35rem;
+    padding-left: 0.75rem;
   }
 }

@@ -43,7 +43,7 @@ author_profile: true
       {% unless post.venue contains 'University of Akron' %}
         <article class="teaching-history__item">
           <div class="teaching-history__heading">
-            <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+            <h3>{{ post.title }}</h3>
             <span class="teaching-history__year">{{ post.date | default: "1900-01-01" | date: "%Y" }}</span>
           </div>
           <p class="teaching-history__meta">{{ post.type }} <span aria-hidden="true">·</span> {{ post.venue }}</p>
