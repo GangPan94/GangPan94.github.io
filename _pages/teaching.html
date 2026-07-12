@@ -19,9 +19,11 @@ author_profile: true
     {% for post in site.teaching reversed %}
       {% if post.venue contains 'University of Akron' %}
         <article class="teaching-card">
-          <p class="teaching-card__meta">{{ post.type }} <span aria-hidden="true">·</span> {{ post.date | default: "1900-01-01" | date: "%Y" }}</p>
-          <h3 class="teaching-card__title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
-          <p class="teaching-card__venue">{{ post.venue }}</p>
+          <div class="teaching-card__summary">
+            <p class="teaching-card__meta">{{ post.type }}</p>
+            <h3 class="teaching-card__title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+            <p class="teaching-card__venue">{{ post.venue }}</p>
+          </div>
           {% if post.excerpt %}
             <div class="teaching-card__detail">{{ post.excerpt | markdownify }}</div>
           {% endif %}

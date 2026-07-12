@@ -40,15 +40,15 @@
 
 .teaching-featured-grid {
   display: grid;
-  gap: 1rem;
-
-  @include breakpoint($medium) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.15rem;
 }
 
 .teaching-card {
   position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
   padding: 1.25rem 1.35rem 1.15rem;
   overflow: hidden;
   background: rgba(47, 127, 147, 0.08);
@@ -60,6 +60,17 @@
   p {
     margin-top: 0;
   }
+
+  @include breakpoint($medium) {
+    grid-template-columns: minmax(12.5rem, 0.72fr) minmax(0, 1.55fr);
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.4rem 1.55rem;
+  }
+}
+
+.teaching-card__summary {
+  min-width: 0;
 }
 
 .archive .teaching-card__title {
@@ -94,13 +105,20 @@
 }
 
 .teaching-card__detail {
-  padding-top: 0.75rem;
+  min-width: 0;
+  padding-top: 0.85rem;
   border-top: 1px solid var(--global-border-color);
-  font-size: 0.86em;
-  line-height: 1.5;
+  font-size: 0.88em;
+  line-height: 1.58;
 
   p:last-child {
     margin-bottom: 0;
+  }
+
+  @include breakpoint($medium) {
+    padding: 0 0 0 1.5rem;
+    border-top: 0;
+    border-left: 1px solid var(--global-border-color);
   }
 }
 
@@ -194,6 +212,15 @@
 
   .teaching-card {
     padding: 1.1rem 1rem;
+  }
+
+  .archive .teaching-card__title {
+    font-size: 1.08em;
+  }
+
+  .teaching-card__detail {
+    font-size: 0.84em;
+    line-height: 1.55;
   }
 
   .teaching-history__heading {

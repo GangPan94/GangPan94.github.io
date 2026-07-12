@@ -6,6 +6,7 @@ permalink: /teaching/2023-managerial-accounting
 venue: "Washington University, Olin Business School"
 date: 2023-08-01
 location: "St. Louis, MO"
+sitemap: false
 ---
 
 Assistant lecturer with Zachary Kaplan.
