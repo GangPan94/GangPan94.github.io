@@ -7,6 +7,51 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+<p class="teaching-intro">My teaching spans financial reporting, analysis, and managerial accounting. Courses taught at the University of Akron are featured first, followed by earlier teaching experience.</p>
+
+<section class="teaching-section teaching-section--akron" aria-labelledby="akron-courses-heading">
+  <header class="teaching-section__header">
+    <p class="teaching-section__eyebrow">Featured courses</p>
+    <h2 id="akron-courses-heading">University of Akron</h2>
+  </header>
+
+  <div class="teaching-featured-grid">
+    {% for post in site.teaching reversed %}
+      {% if post.venue contains 'University of Akron' %}
+        <article class="teaching-card">
+          <p class="teaching-card__meta">{{ post.type }} <span aria-hidden="true">·</span> {{ post.date | default: "1900-01-01" | date: "%Y" }}</p>
+          <h3 class="teaching-card__title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+          <p class="teaching-card__venue">{{ post.venue }}</p>
+          {% if post.excerpt %}
+            <div class="teaching-card__detail">{{ post.excerpt | markdownify }}</div>
+          {% endif %}
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="teaching-section teaching-section--earlier" aria-labelledby="earlier-teaching-heading">
+  <header class="teaching-section__header">
+    <p class="teaching-section__eyebrow">Previous roles</p>
+    <h2 id="earlier-teaching-heading">Earlier teaching experience</h2>
+    <p>Assistant lecturer and teaching assistant roles at Washington University and Xiamen University.</p>
+  </header>
+
+  <div class="teaching-history">
+    {% for post in site.teaching reversed %}
+      {% unless post.venue contains 'University of Akron' %}
+        <article class="teaching-history__item">
+          <div class="teaching-history__heading">
+            <h3><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+            <span class="teaching-history__year">{{ post.date | default: "1900-01-01" | date: "%Y" }}</span>
+          </div>
+          <p class="teaching-history__meta">{{ post.type }} <span aria-hidden="true">·</span> {{ post.venue }}</p>
+          {% if post.excerpt %}
+            <div class="teaching-history__detail">{{ post.excerpt | markdownify }}</div>
+          {% endif %}
+        </article>
+      {% endunless %}
+    {% endfor %}
+  </div>
+</section>
