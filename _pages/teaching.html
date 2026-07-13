@@ -18,11 +18,18 @@ author_profile: true
   <div class="teaching-featured-grid">
     {% for post in site.teaching reversed %}
       {% if post.venue contains 'University of Akron' %}
+        {% assign course_url = base_path | append: post.url %}
+        {% if post.materials %}
+          {% assign course_url = course_url | append: '#class-materials' %}
+        {% endif %}
         <article class="teaching-card">
           <div class="teaching-card__summary">
             <p class="teaching-card__meta">{{ post.type }}</p>
-            <h3 class="teaching-card__title"><a href="{{ base_path }}{{ post.url }}">{{ post.title }}</a></h3>
+            <h3 class="teaching-card__title"><a href="{{ course_url }}">{{ post.title }}</a></h3>
             <p class="teaching-card__venue">{{ post.venue }}</p>
+            {% if post.materials %}
+              <a class="teaching-card__materials-link" href="{{ course_url }}">Class materials <span aria-hidden="true">→</span></a>
+            {% endif %}
           </div>
           {% if post.excerpt %}
             <div class="teaching-card__detail">{{ post.excerpt | markdownify }}</div>

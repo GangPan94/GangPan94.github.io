@@ -104,6 +104,18 @@
   line-height: 1.45;
 }
 
+.teaching-card__materials-link {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 700;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
 .teaching-card__detail {
   min-width: 0;
   padding-top: 0.85rem;
