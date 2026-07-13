@@ -1,20 +1,21 @@
 /* ==========================================================================
-    DEFAULT THEME - LIGHT VERSION
-    ========================================================================== */
-/* Color codes used for the theme */
-$primary-color              : #2f7f93;
-$gray                       : #7a8288;
-$dark-gray                  : mix(#000, $gray, 40%);
-$darker-gray                : mix(#000, $gray, 60%);
-$light-gray                 : mix(#fff, $gray, 50%);
-$lighter-gray               : mix(#fff, $gray, 90%);
+   DEFAULT THEME - LIGHT VERSION
+   ========================================================================== */
+
+/* International Klein Blue palette */
+$primary-color              : #002fa7;
+$gray                       : #4b5563;
+$dark-gray                  : #1f2937;
+$darker-gray                : #1f2937;
+$light-gray                 : #4b5563;
+$lighter-gray               : #f5f7fb;
 
 /* Color codes used for the site */
 $danger-color               : #ee5f5b;
-$info-color                 : #2f7f93;
-$notice-color               : #7a8288;
+$info-color                 : #002fa7;
+$notice-color               : #4b5563;
 $success-color              : #62c462;
-$warning-color              : #f89406;
+$warning-color              : #b45309;
 
 /* Other basic settings for the template */
 $border-radius              : 4px;
@@ -28,21 +29,32 @@ $sidebar-screen-min-width   : 1024px;
 
 /* Default light theme for the site */
 :root {
-    --global-base-color                 : #{$primary-color};
-    --global-bg-color                   : #fff;
-    --global-footer-bg-color            : #f2f3f3;
-    --global-border-color               : #{$lighter-gray};
-    --global-dark-border-color          : #bdc1c4;
-    --global-code-background-color      : #fafafa;
-    --global-code-text-color            : #{$darker-gray};
-    --global-fig-caption-color          : mix(#fff,  #{$dark-gray}, 25%);
-    --global-link-color                 : #52adc8;
-    --global-link-color-hover           : mix(#000, #2f7f93, 25%);
-    --global-link-color-visited         : mix(#fff, #2f7f93, 25%);  
-    --global-masthead-link-color        : #{$dark-gray};
-    --global-masthead-link-color-hover  : mix(#000, #{$gray}, 25%);    
-    --global-text-color                 : #{$dark-gray};
-    --global-text-color-light           : #{$light-gray};
-    --global-thead-color                : #{$lighter-gray};
+    --global-base-color                 : #002fa7;
+    --global-brand-color                : #002fa7;
+    --global-bg-color                   : #ffffff;
+    --global-raised-bg-color            : #eef3ff;
+    --global-subtle-bg-color            : #f5f7fb;
+    --global-footer-bg-color            : #f5f7fb;
+    --global-border-color               : #cbd5e1;
+    --global-dark-border-color          : #64748b;
+    --global-code-background-color      : #f5f7fb;
+    --global-code-text-color            : #1f2937;
+    --global-fig-caption-color          : #4b5563;
+    --global-link-color                 : #002fa7;
+    --global-link-color-hover           : #001f73;
+    --global-link-color-visited         : #4c3f91;
+    --global-focus-color                : #b45309;
+    --global-masthead-link-color        : #1f2937;
+    --global-masthead-link-color-hover  : #001f73;
+    --global-text-color                 : #1f2937;
+    --global-text-color-light           : #4b5563;
+    --global-thead-color                : #eef3ff;
 }
 
+:root a:visited {
+    color: var(--global-link-color-visited);
+}
+
+:root a:hover {
+    color: var(--global-link-color-hover);
+}

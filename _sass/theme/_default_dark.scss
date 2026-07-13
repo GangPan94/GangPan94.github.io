@@ -1,28 +1,28 @@
 /* ==========================================================================
-    DEFAULT THEME - DARK VERSION
-    ========================================================================== */
+   DEFAULT THEME - DARK VERSION
+   ========================================================================== */
 
-/* Color codes used for the theme */
-$primary-color              : #0ea1c5;
-$gray                       : #7a8288;
-$dark-gray                  : mix(#000, $gray, 40%);
-$darker-gray                : mix(#000, $gray, 60%);
-$light-gray                 : mix(#fff, $gray, 50%);
+/* International Klein Blue palette */
+$primary-color              : #8fb3ff;
+$gray                       : #c7d0df;
+$dark-gray                  : #c7d0df;
+$darker-gray                : #f8fafc;
+$light-gray                 : #c7d0df;
 
-$background                 : #474747;
-$background-light           : mix(#fff, $background, 80%);
-$background-lighter         : mix(#fff, $background, 90%);
-$text                       : #ffffff;
-$link                       : #0ea1c5;
-$link-dark                  : mix(#000, $link, 25%);
-$link-light                 : mix(#fff, $link, 25%);
+$background                 : #0d1321;
+$background-light           : #151d2e;
+$background-lighter         : #1d2940;
+$text                       : #f8fafc;
+$link                       : #8fb3ff;
+$link-dark                  : #bcd1ff;
+$link-light                 : #c4b5fd;
 
 /* Color codes used for the site */
 $danger-color               : #ee5f5b;
-$info-color                 : #2f7f93;
-$notice-color               : #7a8288;
+$info-color                 : #8fb3ff;
+$notice-color               : #c7d0df;
 $success-color              : #62c462;
-$warning-color              : #f89406;
+$warning-color              : #ffd166;
 
 /* Other basic settings for the template */
 $border-radius              : 4px;
@@ -36,21 +36,32 @@ $sidebar-screen-min-width   : 1024px;
 
 /* Dark theme for the site */
 html[data-theme="dark"] {
-    --global-base-color                 : #{$primary-color};
-    --global-bg-color                   : #{$background};
-    --global-footer-bg-color            : #{$background};
-    --global-border-color               : #{$light-gray};
-    --global-dark-border-color          : #{$background-light};
-    --global-code-background-color      : #fafafa;
-    --global-code-text-color            : #{$darker-gray};
-    --global-fig-caption-color          : #{$light-gray};
-    --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-dark};
-    --global-link-color-visited         : #{$link-light};
-    --global-masthead-link-color        : #{$text};
-    --global-masthead-link-color-hover  : #{$primary-color};
-    --global-text-color                 : #{$text};
-    --global-text-color-light           : #f3f3f3;
-    --global-thead-color                : #{$background-lighter};
+    --global-base-color                 : #8fb3ff;
+    --global-brand-color                : #002fa7;
+    --global-bg-color                   : #0d1321;
+    --global-raised-bg-color            : #151d2e;
+    --global-subtle-bg-color            : #1d2940;
+    --global-footer-bg-color            : #151d2e;
+    --global-border-color               : #3a4761;
+    --global-dark-border-color          : #64748b;
+    --global-code-background-color      : #151d2e;
+    --global-code-text-color            : #f8fafc;
+    --global-fig-caption-color          : #c7d0df;
+    --global-link-color                 : #8fb3ff;
+    --global-link-color-hover           : #bcd1ff;
+    --global-link-color-visited         : #c4b5fd;
+    --global-focus-color                : #ffd166;
+    --global-masthead-link-color        : #f8fafc;
+    --global-masthead-link-color-hover  : #bcd1ff;
+    --global-text-color                 : #f8fafc;
+    --global-text-color-light           : #c7d0df;
+    --global-thead-color                : #1d2940;
 }
 
+html[data-theme="dark"] a:visited {
+    color: var(--global-link-color-visited);
+}
+
+html[data-theme="dark"] a:hover {
+    color: var(--global-link-color-hover);
+}
