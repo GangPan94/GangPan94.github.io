@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gang (Ernest) Pan, Ph.D.">
+
+<title>ACCT 321: Financial Reporting and Analysis I</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="ACCT321-syllabus_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ACCT321-syllabus_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="ACCT321-syllabus_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="ACCT321-syllabus_files/libs/quarto-html/popper.min.js"></script>
+<script src="ACCT321-syllabus_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ACCT321-syllabus_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ACCT321-syllabus_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ACCT321-syllabus_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ACCT321-syllabus_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ACCT321-syllabus_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ACCT321-syllabus_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#instructor-course-information" id="toc-instructor-course-information" class="nav-link active" data-scroll-target="#instructor-course-information"><span class="header-section-number">1</span> Instructor &amp; Course Information</a></li>
+  <li><a href="#pre-requisites" id="toc-pre-requisites" class="nav-link" data-scroll-target="#pre-requisites"><span class="header-section-number">2</span> Pre-requisites</a></li>
+  <li><a href="#tutoring-services" id="toc-tutoring-services" class="nav-link" data-scroll-target="#tutoring-services"><span class="header-section-number">3</span> Tutoring Services</a></li>
+  <li><a href="#course-text" id="toc-course-text" class="nav-link" data-scroll-target="#course-text"><span class="header-section-number">4</span> Course Text</a></li>
+  <li><a href="#course-objectives-and-learning-goals" id="toc-course-objectives-and-learning-goals" class="nav-link" data-scroll-target="#course-objectives-and-learning-goals"><span class="header-section-number">5</span> Course Objectives and Learning Goals</a>
+  <ul class="collapse">
+  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics"><span class="header-section-number">5.1</span> Topics</a></li>
+  <li><a href="#connections-to-other-courses-and-cpa-exam" id="toc-connections-to-other-courses-and-cpa-exam" class="nav-link" data-scroll-target="#connections-to-other-courses-and-cpa-exam"><span class="header-section-number">5.2</span> Connections to Other Courses and CPA Exam</a></li>
+  <li><a href="#professionalism" id="toc-professionalism" class="nav-link" data-scroll-target="#professionalism"><span class="header-section-number">5.3</span> Professionalism</a></li>
+  <li><a href="#ai-proficiency" id="toc-ai-proficiency" class="nav-link" data-scroll-target="#ai-proficiency"><span class="header-section-number">5.4</span> AI Proficiency</a></li>
+  <li><a href="#coverage-of-international-financial-reporting-standards-ifrs" id="toc-coverage-of-international-financial-reporting-standards-ifrs" class="nav-link" data-scroll-target="#coverage-of-international-financial-reporting-standards-ifrs"><span class="header-section-number">5.5</span> Coverage of International Financial Reporting Standards (IFRS)</a></li>
+  </ul></li>
+  <li><a href="#mission-statement-of-the-daverio-school-of-accountancy" id="toc-mission-statement-of-the-daverio-school-of-accountancy" class="nav-link" data-scroll-target="#mission-statement-of-the-daverio-school-of-accountancy"><span class="header-section-number">6</span> Mission Statement of the Daverio School of Accountancy</a></li>
+  <li><a href="#class-format-and-activities" id="toc-class-format-and-activities" class="nav-link" data-scroll-target="#class-format-and-activities"><span class="header-section-number">7</span> Class Format and Activities</a></li>
+  <li><a href="#attendance-policy" id="toc-attendance-policy" class="nav-link" data-scroll-target="#attendance-policy"><span class="header-section-number">8</span> Attendance Policy</a></li>
+  <li><a href="#grading-policy" id="toc-grading-policy" class="nav-link" data-scroll-target="#grading-policy"><span class="header-section-number">9</span> Grading Policy</a>
+  <ul class="collapse">
+  <li><a href="#important-notes-on-letter-grade-assignment" id="toc-important-notes-on-letter-grade-assignment" class="nav-link" data-scroll-target="#important-notes-on-letter-grade-assignment"><span class="header-section-number">9.1</span> Important Notes on Letter Grade Assignment</a></li>
+  <li><a href="#explanation-of-grading-items" id="toc-explanation-of-grading-items" class="nav-link" data-scroll-target="#explanation-of-grading-items"><span class="header-section-number">9.2</span> Explanation of Grading Items</a></li>
+  <li><a href="#late-submission-and-make-up-policy" id="toc-late-submission-and-make-up-policy" class="nav-link" data-scroll-target="#late-submission-and-make-up-policy"><span class="header-section-number">9.3</span> Late Submission and Make-Up Policy</a></li>
+  </ul></li>
+  <li><a href="#generative-ai-genai-policy" id="toc-generative-ai-genai-policy" class="nav-link" data-scroll-target="#generative-ai-genai-policy"><span class="header-section-number">10</span> Generative AI (GenAI) Policy</a></li>
+  <li><a href="#tips-for-success" id="toc-tips-for-success" class="nav-link" data-scroll-target="#tips-for-success"><span class="header-section-number">11</span> Tips for Success</a></li>
+  <li><a href="#course-schedule" id="toc-course-schedule" class="nav-link" data-scroll-target="#course-schedule"><span class="header-section-number">12</span> Course Schedule</a></li>
+  <li><a href="#university-policies-and-student-resources" id="toc-university-policies-and-student-resources" class="nav-link" data-scroll-target="#university-policies-and-student-resources"><span class="header-section-number">13</span> University Policies and Student Resources</a>
+  <ul class="collapse">
+  <li><a href="#student-code-of-conduct-academic-misconduct" id="toc-student-code-of-conduct-academic-misconduct" class="nav-link" data-scroll-target="#student-code-of-conduct-academic-misconduct"><span class="header-section-number">13.1</span> Student Code of Conduct &amp; Academic Misconduct</a></li>
+  <li><a href="#add-drop-withdrawal-and-refund-policies" id="toc-add-drop-withdrawal-and-refund-policies" class="nav-link" data-scroll-target="#add-drop-withdrawal-and-refund-policies"><span class="header-section-number">13.2</span> Add, Drop, Withdrawal, and Refund Policies</a></li>
+  <li><a href="#title-ix-sexual-misconduct" id="toc-title-ix-sexual-misconduct" class="nav-link" data-scroll-target="#title-ix-sexual-misconduct"><span class="header-section-number">13.3</span> Title IX &amp; Sexual Misconduct</a></li>
+  <li><a href="#students-with-disabilities-office-of-accessibility" id="toc-students-with-disabilities-office-of-accessibility" class="nav-link" data-scroll-target="#students-with-disabilities-office-of-accessibility"><span class="header-section-number">13.4</span> Students with Disabilities (Office of Accessibility)</a></li>
+  <li><a href="#religious-accommodations" id="toc-religious-accommodations" class="nav-link" data-scroll-target="#religious-accommodations"><span class="header-section-number">13.5</span> Religious Accommodations</a></li>
+  <li><a href="#zipassist" id="toc-zipassist" class="nav-link" data-scroll-target="#zipassist"><span class="header-section-number">13.6</span> ZipAssist</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ACCT321-syllabus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ACCT 321: Financial Reporting and Analysis I</h1>
+<p class="subtitle lead">Fall 2026 Syllabus</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Gang (Ernest) Pan, Ph.D. </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            The University of Akron, G. W. Daverio School of Accountancy
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="instructor-course-information" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="instructor-course-information"><span class="header-section-number">1</span> Instructor &amp; Course Information</h2>
+<ul>
+<li><strong>Instructor:</strong> Gang (Ernest) Pan, Ph.D., Assistant Professor of Accounting</li>
+<li><strong>Office &amp; Hours:</strong> College of Accountancy 241 | Tue &amp; Thu 03:30 PM – 04:45 PM (By appointment only: <a href="https://outlook.office.com/bookwithme/user/8d08a7c3902f42c991d55851bd077660@uakron.edu/meetingtype/5cS6k6Ike0KEKw99UNpTVg2?anonymous&amp;ep=mLinkFromTile">Appointment Link</a>)</li>
+<li><strong>Contact:</strong> Email: gpan@uakron.edu (Please include “#AcctFun” in subject) | Phone: 314-778-0609</li>
+<li><strong>Class Time &amp; Location:</strong>
+<ul>
+<li>Section 001: Tue &amp; Thu 10:45 AM – 12:00 PM at COB 139</li>
+<li>Section 002: Tue &amp; Thu 02:00 PM – 03:15 PM at COB 139</li>
+<li><em>(Note: You are welcome to attend either session if you have a scheduling conflict.)</em></li>
+</ul></li>
+</ul>
+</section>
+<section id="pre-requisites" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="pre-requisites"><span class="header-section-number">2</span> Pre-requisites</h2>
+<p>ACCT 201 or permission.</p>
+</section>
+<section id="tutoring-services" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="tutoring-services"><span class="header-section-number">3</span> Tutoring Services</h2>
+<p>To support your learning outside regular business hours, you have complimentary access to <strong>Tutor.com</strong>, an online, on-demand tutoring service. Our class is fully supported by this platform. You can access on-demand tutoring at any time by navigating to the “My Tools” tab on the course page in Brightspace.</p>
+</section>
+<section id="course-text" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="course-text"><span class="header-section-number">4</span> Course Text</h2>
+<p>Spiceland, J. David, Mark W. Nelson, Wayne B. Thomas, and Jennifer Winchel. <em>Intermediate Accounting</em>. 2025 Release. New York: McGraw-Hill Irwin, 2025.</p>
+<ul>
+<li>You will need the corresponding <strong>McGraw-Hill Education Connect® access to this textbook</strong> for all homework, assignments, and exams.</li>
+<li>A print text is optional since <strong>Connect®</strong> contains the full reading experience.</li>
+</ul>
+<p>*This course is part of our course material delivery program, Akron ALL-IN Book Bundle. The bookstore will provide each student with a convenient package containing all required physical materials, and all digitally delivered materials for this course will be integrated into Brightspace. You should have received an email from the bookstore confirming the materials provided for each of your courses and asking you to select how you would like to receive any printed components (in-store pickup or home delivery). If you have not done so already, please confirm your fulfillment preference so the bookstore can prepare your materials. For more information about Akron ALL-IN Book Bundle, please go to <a href="http://uakron.edu/bookbundle">uakron.edu/bookbundle</a>.</p>
+<p>**I may assign additional reading materials as the course progresses.</p>
+</section>
+<section id="course-objectives-and-learning-goals" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="course-objectives-and-learning-goals"><span class="header-section-number">5</span> Course Objectives and Learning Goals</h2>
+<p>In this course, you will continue your study of accounting. Accounting is often called the language of business <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. To truly master a new language, one must practice it within the specific scenarios where it is spoken—just as learning vocabulary for dining requires engaging in the setting of a restaurant. Similarly, to learn the language of business, you must immerse yourself in the background of business itself. This course will therefore delve into the real-world business activities, practices, and transactions that financial accounting describes. We will explore the key concepts, theories, and mechanics of financial accounting, with a focus on the financial accounting of publicly traded firms, building on what you have learned in ACCT 201. The material will be covered in depth, providing necessary knowledge for those interested in pursuing professional accounting certifications. By the end of this course, you will be expected to be well-versed in the major accounting principles applied by companies in their external financial reporting.</p>
+<section id="topics" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="topics"><span class="header-section-number">5.1</span> Topics</h3>
+<ul>
+<li>In this course, you will learn <strong>Generally Accepted Accounting Principles (GAAP)</strong>.</li>
+<li>The content of this course goes <strong>much deeper</strong> than ACCT 201 (Accounting Principles I) to cover the detailed and nuanced accounting standards used in the professional business world.</li>
+<li>As we progress, we will review the accounting process, study the presentation of the balance sheet and the income statement, and introduce key measurement concepts such as the time value of money.</li>
+<li>We will then study specific balance sheet accounts in depth, including cash, receivables, inventories, property, plant, and equipment (PP&amp;E), intangible assets, current liabilities, and bonds.</li>
+<li>Understanding these areas will prepare you for the more complex transactions and rules covered in ACCT 322.</li>
+</ul>
+</section>
+<section id="connections-to-other-courses-and-cpa-exam" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="connections-to-other-courses-and-cpa-exam"><span class="header-section-number">5.2</span> Connections to Other Courses and CPA Exam</h3>
+<ul>
+<li><strong>For Accounting Majors:</strong> This course builds upon the knowledge you acquired in ACCT 201 and serves as the direct prerequisite for ACCT 322. Note that ACCT 322 requires a minimum grade of C in ACCT 321 (otherwise, instructor permission is required). A weak foundation in ACCT 321 will severely hinder your learning experience and performance in ACCT 322. The concepts of asset recognition, measurement, liability classification, and time value of money introduced here are also crucial for Advanced Financial Reporting (ACCT 420) and International Financial Reporting (ACCT 408).</li>
+<li><strong>For Finance Majors (Financial Management BS):</strong> ACCT 321 and ACCT 322 are core requirements that serve as the foundation for upper-level finance coursework.
+<ul>
+<li>According to the University of Akron Financial Management recommended sequence, finance majors are expected to take <strong>ACCT 321</strong> alongside <strong>FIN 301</strong> (Principles of Finance) in the Fall of their Junior (3rd) year.</li>
+<li>The recommended sequence continues with <strong>ACCT 322</strong> in the Spring of their Junior year, alongside <strong>FIN 302</strong> (Intermediate Corporate Finance) and <strong>FIN 338</strong> (Financial Markets &amp; Institutions).</li>
+<li>To stay on track with this sequence and avoid potential graduation delays, finance majors should aim to complete <strong>ACCT 322</strong> before their senior year.</li>
+</ul></li>
+<li><strong>CPA Exam:</strong> All the topics covered in this class are heavily tested in the Financial Accounting and Reporting (FAR) section of the Certified Public Accountant (CPA) exam.</li>
+<li>Although the topics covered in this class are relevant to professional careers, it is important to note that this class is not an alternative to your exam preparation courses. Achieving CPA-level proficiency requires subsequent dedicated study, but this course will build the comprehensive knowledge base necessary for your future success.</li>
+</ul>
+</section>
+<section id="professionalism" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="professionalism"><span class="header-section-number">5.3</span> Professionalism</h3>
+<p>Success in this course depends heavily on the active effort and dedication you invest beyond class hours. As future business leaders, you are expected to demonstrate professional manners and diligence.</p>
+<p>To maintain a productive learning environment:</p>
+<ul>
+<li><strong>Classroom Decorum:</strong> Please limit the use of electronic devices to class-related activities and minimize irrelevant chatter. To facilitate an engaging environment, the instructor reserves the right to assign seats.</li>
+<li><strong>Active Engagement:</strong> Listening, observing, participating, and writing are keys to internalizing the material. During each class, we will solve practice questions together, and you are responsible for taking proper notes. Experience shows that students who attend and actively engage in lectures achieve significantly better grades.</li>
+<li><strong>Course Policies:</strong> You must adhere strictly to all course policies, attend classes regularly, and complete all out-of-class assignments and readings with care and integrity.</li>
+</ul>
+<p>Please note that students with limited exposure to or interest in the technical aspects of financial accounting will find the depth of this course highly challenging. Diligent preparation and professional commitment are necessary to successfully navigate this material.</p>
+</section>
+<section id="ai-proficiency" class="level3" data-number="5.4">
+<h3 data-number="5.4" class="anchored" data-anchor-id="ai-proficiency"><span class="header-section-number">5.4</span> AI Proficiency</h3>
+<p>As the world embraces the Generative AI (GenAI) era, this class explores the potential of GenAI to enhance the capabilities of accountants and financial analysts. While GenAI can assist professionals in various tasks, it cannot replace critical thinking and professional judgment. Crucially, as a future business leader, you must develop the ability to <strong>verify AI outcomes</strong>. Doing so requires a solid grasp of underlying accounting principles and a deep understanding of edge cases where AI tools are prone to errors or “hallucinations.” This course goes beyond mere bookkeeping; it prepares you for long-term career success by emphasizing critical thinking through in-class discussions. By the end of the course, you’ll gain a comprehensive understanding of fundamental accounting principles used in external financial reporting, learn how to effectively and ethically utilize AI tools, and develop your verification, critical thinking, and leadership abilities.</p>
+</section>
+<section id="coverage-of-international-financial-reporting-standards-ifrs" class="level3" data-number="5.5">
+<h3 data-number="5.5" class="anchored" data-anchor-id="coverage-of-international-financial-reporting-standards-ifrs"><span class="header-section-number">5.5</span> Coverage of International Financial Reporting Standards (IFRS)</h3>
+<p>Each chapter in the text makes appropriate references to IFRS and its relevance to the chapter material. You should review the green-colored IFRS boxes in each chapter. While US GAAP will be the basis for our discussions of financial reporting in this class, knowledge of IFRS is necessary for professional accounting competency. It is important to be aware of the concepts surrounding IFRS, and the relevant differences between US GAAP and IFRS.</p>
+</section>
+</section>
+<section id="mission-statement-of-the-daverio-school-of-accountancy" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="mission-statement-of-the-daverio-school-of-accountancy"><span class="header-section-number">6</span> Mission Statement of the Daverio School of Accountancy</h2>
+<p>The George W. Daverio School of Accountancy provides students with the educational background to become competent and responsible accounting professionals. With a rich history of (i) accounting education that serves both traditional and non-traditional students and (ii) close relationships with the professional community in Northern Ohio, we emphasize undergraduate and masters-level education with an applied focus. The School offers a Bachelor of Science degree in Accountancy, a Master of Science in Accountancy, and a Master of Taxation.</p>
+<p>The School stresses a learning environment that places primary importance on student success through effective teaching, complemented by faculty scholarship, interaction with the professional community, and service.</p>
+</section>
+<section id="class-format-and-activities" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="class-format-and-activities"><span class="header-section-number">7</span> Class Format and Activities</h2>
+<ul>
+<li>This class is entirely in-person. Regular attendance and active participation are expected, as we do not offer recorded lecture videos or an asynchronous format.</li>
+<li>Out of our class time, 40 percent is dedicated to lectures, 30 percent to in-class exercises, and the remaining 30 percent is allocated to discussions. During these discussions, you’ll practice Feynman’s method of learning, which aims to enhance your critical thinking and business communication skills.</li>
+</ul>
+</section>
+<section id="attendance-policy" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="attendance-policy"><span class="header-section-number">8</span> Attendance Policy</h2>
+<p>According to the undergraduate bulletin of the University of Akron, a student is expected to attend all class meetings for which the student is registered. A student may be dropped from a course in the current term by the dean if absence is repeated and the instructor recommends this action; a student can gain re-admission only with permission of both the instructor and the dean. A student dropped from a course receives an “F” which counts as work attempted whenever grade-point ratio calculations are made.</p>
+<p>In this course:</p>
+<ul>
+<li>You will be fully responsible for your own actions. Your instructor does not take responsibility for addressing the increased chronic absenteeism that occurred after the COVID-19 pandemic.</li>
+<li>Your attendance will not be directly factored into your point grade, but attendance will be recorded and noticed.</li>
+<li>To align with the university’s policy, your instructor may call students to answer questions if no one volunteers.</li>
+<li>If multiple absences are detected, along with other evidence indicating that the learning goals will not be achieved, enforcement action in accordance with the policy described above will be taken.</li>
+</ul>
+</section>
+<section id="grading-policy" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="grading-policy"><span class="header-section-number">9</span> Grading Policy</h2>
+<p>A total of 1,000 points is available to be earned in this course. While points are the primary basis for course grading, final letter grades are also subject to exam performance caps, the straight ‘A’ grade cap, and discretionary grade bump policies. The point-earning activities are summarized in the table below:</p>
+<p><strong>Table 1</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th style="text-align: right;">Number</th>
+<th style="text-align: right;">Individual Points</th>
+<th style="text-align: right;">Total Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pre-Class Assignments</td>
+<td style="text-align: right;">11*</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">110</td>
+</tr>
+<tr class="even">
+<td>Post-Class Assignments</td>
+<td style="text-align: right;">11*</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">165</td>
+</tr>
+<tr class="odd">
+<td>AI Projects</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">150</td>
+</tr>
+<tr class="even">
+<td>Mid-term Exams</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">150</td>
+<td style="text-align: right;">300</td>
+</tr>
+<tr class="odd">
+<td>Comprehensive Final Exam &amp; Ethics Case</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">275</td>
+<td style="text-align: right;">275</td>
+</tr>
+<tr class="even">
+<td>Total Possible Points</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">1000</td>
+</tr>
+</tbody>
+</table>
+<p>*Reflects the 11 highest scores out of 12 total Pre-Class and Post-Class assignments.</p>
+<p>To receive a particular letter grade, students must earn the minimum number of points required for that grade (refer to the grading scale below).</p>
+<p><strong>Table 2</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 20%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Letter Grade</th>
+<th style="text-align: right;">% Range</th>
+<th>Point Range</th>
+<th>Letter Grade</th>
+<th style="text-align: right;">% Range</th>
+<th>Point Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: right;">92 to 100</td>
+<td>920 – 1000</td>
+<td>C</td>
+<td style="text-align: right;">72 to 77.9</td>
+<td>720 – 779.9</td>
+</tr>
+<tr class="even">
+<td>A-</td>
+<td style="text-align: right;">90 to 91.9</td>
+<td>900– 919.9</td>
+<td>C-</td>
+<td style="text-align: right;">70 to 71.9</td>
+<td>700 – 719.9</td>
+</tr>
+<tr class="odd">
+<td>B+</td>
+<td style="text-align: right;">88 to 89.9</td>
+<td>880 – 899.9</td>
+<td>D+</td>
+<td style="text-align: right;">68 to 69.9</td>
+<td>680 – 699.9</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: right;">82 to 87.9</td>
+<td>820 – 879.9</td>
+<td>D</td>
+<td style="text-align: right;">62 to 67.9</td>
+<td>620 – 679.9</td>
+</tr>
+<tr class="odd">
+<td>B-</td>
+<td style="text-align: right;">80 to 81.9</td>
+<td>800 – 819.9</td>
+<td>D-</td>
+<td style="text-align: right;">60 to 61.9</td>
+<td>600 – 619.9</td>
+</tr>
+<tr class="even">
+<td>C+</td>
+<td style="text-align: right;">78 to 79.9</td>
+<td>780 – 799.9</td>
+<td>F</td>
+<td style="text-align: right;">Below 60 %</td>
+<td>Below 600</td>
+</tr>
+</tbody>
+</table>
+<p>*I reserve the right to adjust the evaluation and to relax these cut-off points depending on the overall class performance.</p>
+<section id="important-notes-on-letter-grade-assignment" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="important-notes-on-letter-grade-assignment"><span class="header-section-number">9.1</span> Important Notes on Letter Grade Assignment</h3>
+<p>Meeting the minimum point thresholds listed in Table 2 is a necessary condition but does not guarantee the corresponding letter grade. The following additional rules apply:</p>
+<ol type="1">
+<li><strong>Exam Performance Caps:</strong> To ensure core competency, obtaining a score below 60% on any of the three exams is considered failing that exam. If you fail one or more exams, your final course letter grade will be restricted (capped) as follows, regardless of how many total points you accumulate in the course:
+<ul>
+<li><strong>Failing 1 exam</strong> (scoring &lt; 90 points on Midterm 1 or 2, or &lt; 153 points on the Final Exam): Your final letter grade is capped at a maximum of <strong>A-</strong>.</li>
+<li><strong>Failing 2 exams:</strong> Your final letter grade is capped at a maximum of <strong>B-</strong>.</li>
+<li><strong>Failing 3 exams:</strong> Your final letter grade is capped at a maximum of <strong>C-</strong>.</li>
+</ul></li>
+<li><strong>‘A’ Grade Cap &amp; Allocation:</strong> The maximum number of straight ‘A’ grades awarded in this course is capped at 25% of the total registered student enrollment plus 4, rounded down (e.g., if there are 30 enrolled students, <span class="math inline">\(30 \times 25\% + 4 = 11.5 \rightarrow 11\)</span> straight ‘A’s maximum). Since earning <span class="math inline">\(\ge 920\)</span> points does not guarantee a straight ’A’, the available ‘A’ slots will be allocated using the following priority hierarchy (within each tier, students are ranked based on their total points):
+<ul>
+<li><strong>Priority Tier 1 (Qualitative Excellence + Point Excellence):</strong> Slots are first allocated to students who already meet the point threshold for a straight ‘A’ (<span class="math inline">\(\ge 920\)</span> points), have never failed an exam, <strong>and</strong> also receive a discretionary grade bump.</li>
+<li><strong>Priority Tier 2 (Qualitative Grade Bumps to ‘A’):</strong> Next, slots are allocated to students who earned an ‘A-’ through points (<span class="math inline">\(900\)</span> to <span class="math inline">\(919.9\)</span> points) and receive a discretionary grade bump that raises them to a straight ‘A’.</li>
+<li><strong>Priority Tier 3 (Points Ranking / No Grade Bump):</strong> Next, slots are allocated to students who met the point threshold for a straight ‘A’ (<span class="math inline">\(\ge 920\)</span> points) and have never failed an exam, but <strong>did not</strong> receive any grade bump, provided they maintained satisfactory class participation. These students will be ranked in descending order of their total points.</li>
+<li><strong>Priority Tier 4 (Poor Participation / Lowest Priority):</strong> Lastly, slots are allocated to students who met the point threshold for a straight ‘A’ (<span class="math inline">\(\ge 920\)</span> points) and have never failed an exam, but had poor class participation. These students are the most likely to be restricted to an <strong>A-</strong> if the straight ‘A’ cap is exceeded.</li>
+<li><em>Note:</em> Students who meet the points requirement for an ‘A’ (<span class="math inline">\(\ge 920\)</span> points) but are not allocated a straight ‘A’ due to the cap will receive an <strong>A-</strong>.</li>
+</ul></li>
+</ol>
+<p><em>Discretionary Grade Bumps:</em> At the professor’s discretion, students may receive a grade bump (e.g., moving up one grade step, such as B to B+ or D- to D) to reward outstanding qualitative performance. This includes:</p>
+<ul>
+<li>Exceeding expectations on challenging assignments.</li>
+<li>Expressing consistently insightful ideas during class discussions.</li>
+<li>Making notable contributions that facilitate the learning experience for everyone.</li>
+</ul>
+<p><strong>Important constraints on Grade Bumps:</strong> 1. <strong>Exam Cap Override:</strong> A grade bump <strong>cannot</strong> bypass the grade limits established by the Exam Performance Caps (e.g., if a student fails one exam, a grade bump cannot raise their grade past the A- maximum cap). 2. <strong>‘A’ Grade Cap Interaction:</strong> If a discretionary grade bump raises a student’s grade from an A- to a straight A, this will occupy one of the available straight ‘A’ slots under the 25% + 4 cap.</p>
+</section>
+<section id="explanation-of-grading-items" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="explanation-of-grading-items"><span class="header-section-number">9.2</span> Explanation of Grading Items</h3>
+<ul>
+<li><p><strong>Pre-Class Assignments:</strong> For each chapter, you will complete a Pre-Class Assignment before the lecture. These assignments require you to watch the designated videos and complete the corresponding exercises on the <strong>Sharpen</strong> study app. However, please note that a more comprehensive and thorough preparation before each lecture requires reading the corresponding book chapter. Each Pre-Class Assignment is worth 10 points. The eleven highest scores of the twelve Pre-Class Assignments will be counted into your final grade and the lowest grade will be dropped.</p></li>
+<li><p><strong>Post-Class Assignments:</strong> For each chapter, you will complete a Post-Class Assignment. Each Post-Class Assignment is worth 15 points and is open book. Students are expected to finish the Post-Class Assignment independently. Post-class assignments have unlimited attempts and I take the highest score. The solutions are provided after the due date, and I will not answer specific questions from the assignment until after the due date. The eleven highest scores of the twelve Post-Class Assignments will be counted into your final grade and the lowest grade will be dropped.</p></li>
+<li><p><strong>AI Projects:</strong> There are three AI Projects during the term, each worth 50 points. These projects are designed to give you practical experience in using generative AI tools to assist with accounting and financial analysis tasks.</p></li>
+<li><p><strong>Practice Exams:</strong> There are three practice exams provided before Midterm 1, Midterm 2, and the Final Exam, which are designed to help you prepare for the format and types of questions on the actual exams. Although these exams carry 0 base points, a small amount of bonus points will be awarded for each practice exam if you complete it early.</p></li>
+<li><p><strong>Midterm exams:</strong> Two 2-hour-long midterm exams will be given during the term, each worth 150 points. Additionally, a 3-hour-long comprehensive final exam &amp; ethics case will be given at the end of the term, worth 275 points (255 points for the exam and 20 points for the ethics case).</p></li>
+<li><p><strong>Exam rules:</strong></p>
+<ul>
+<li>All exams are closed book: You are NOT allowed to refer to your notes, textbook, or other printed materials, use the internet to search for answers, or discuss the exam with others.</li>
+<li>Take-home exams: You must log into Brightspace/Connect to complete the exams. Consistent with the course late submission policy, exams submitted after the 11:59 PM deadline will be discounted by 1% for every hour that passes. Make-up exams are not offered.</li>
+<li>Exam availability: Exams will be available on exam days from 8:00 AM to 11:59 PM. You may start the exam at any time during these hours but must complete it by 11:59 PM.</li>
+<li>Platform: Exams will be completed through the <strong>Connect®</strong> platform and will function identically to the out-of-class assignments in <strong>Connect®</strong>.</li>
+<li>Proctoring: Proctoring functions are enabled for the exams. If you have concerns about the recording function, please inform the instructor <strong>in advance</strong>, and an alternative in-person exam may be arranged.</li>
+<li>A practice exam will be provided before each exam to allow time for using the study mode, which enables you to practice using different sets of numbers for supported questions.</li>
+</ul></li>
+<li><p><strong>Bonus points:</strong> You will have several opportunities to earn bonus points:</p>
+<ul>
+<li>Bonus points for early completion of Practice Exams.</li>
+<li>Bonus assignments may be assigned during the semester. These assignments require you to go beyond the classroom to investigate firms’ real-life disclosures. They aim to connect our class discussions with practical applications. The points assigned to each bonus assignment vary. However, completing a bonus assignment is not a viable solution to compensate for unsatisfactory performance in exams and routine assignments.</li>
+</ul></li>
+</ul>
+<p>*I reserve the right to provide extra bonus points.</p>
+</section>
+<section id="late-submission-and-make-up-policy" class="level3" data-number="9.3">
+<h3 data-number="9.3" class="anchored" data-anchor-id="late-submission-and-make-up-policy"><span class="header-section-number">9.3</span> Late Submission and Make-Up Policy</h3>
+<p>These policies apply across the board to all assignments and evaluations (including exams) in this course:</p>
+<ul>
+<li><strong>Due Date Responsibility:</strong> You are responsible for monitoring the due dates for all assignments on the course calendar.</li>
+<li><strong>No Make-ups or Individual Extensions:</strong> There are <strong>NO make-ups</strong> for graded assignments or exams, and the instructor does not offer individual extensions for any due dates.</li>
+<li><strong>Late Submission Penalty:</strong> If an assignment or exam due date has passed, you can still submit it. However, your grade will be discounted for late submission by <strong>1% for every hour</strong> that passes after the due time. Consequently, you will lose all points for the assignment/exam after 100 hours.</li>
+<li><strong>Dropped Grade Policy:</strong> The purpose of dropping the lowest score(s) on routine assignments (e.g., Pre-Class and Post-Class Assignments) is to accommodate unanticipated emergency situations, personal illnesses, or schedule conflicts that you may encounter during the semester. Additional accommodations should adhere to the guidelines provided by the accessibility office.</li>
+</ul>
+</section>
+</section>
+<section id="generative-ai-genai-policy" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="generative-ai-genai-policy"><span class="header-section-number">10</span> Generative AI (GenAI) Policy</h2>
+<ul>
+<li>GenAI is changing the professional landscape rapidly. AI tools are powerful in enhancing the learning process and automating mechanical tasks. It is increasingly expected that finance and accounting professionals know how to utilize AI to boost productivity.</li>
+<li>In this class, you will use AI as a learning aid, complete specific post-class assignment questions that require the use of GenAI, and gain practical experience in how GenAI can assist with financial reporting and analysis through a series of AI Projects.</li>
+<li>These projects will also require you to critically evaluate the limitations of GenAI, including the risks of “hallucinations” and “AI slop.”</li>
+<li>Crucially, you must develop the ability to <strong>verify AI outcomes</strong>. Verifying these outputs requires a solid grasp of underlying accounting principles and a deep understanding of complex edge cases where AI tools are prone to errors.</li>
+<li>To prevent complete outsourcing of your learning to AI, your response to the last question of each AI Project must be handwritten and submitted in person within a week after the project’s due date. Failure to comply will result in a score of zero for that project.</li>
+<li>The inappropriate or unethical use of such technologies will violate the Code of Student Conduct, which includes cheating, plagiarism, fabrication, unauthorized collaboration, misrepresentation, and gaining an unfair advantage. For instance, it is not permitted to use any GenAI assistance during exams.</li>
+</ul>
+</section>
+<section id="tips-for-success" class="level2" data-number="11">
+<h2 data-number="11" class="anchored" data-anchor-id="tips-for-success"><span class="header-section-number">11</span> Tips for Success</h2>
+<p>You will succeed in this class by carefully following the instructions and policies. However, intrinsic motivation will benefit you in the long run. There are numerous books and people you can seek advice from; therefore, I will cover what I deem most essential below:</p>
+<ol type="1">
+<li><strong>Your identity</strong> will shape the approaches you take and the outcomes you achieve. Clearly identify who you are or who you want to be, and find a strong connection between that vision and the subject you are learning (in our case, financial accounting). However, setting an identity that is too difficult to achieve may harm your mental wellness.</li>
+<li>Be <strong>monomaniacal</strong> about the things that align with your identity. Monomania is defined as “a condition in which someone is extremely interested in one thing, in a way that is not normal” (Cambridge Dictionary). I argue that it can be a perfectly normal state where you enjoy the “flow state” and achieve professionalism.</li>
+<li>Do not be afraid of <strong>failing</strong> when seeking help. Steve Jobs testified to this point (watch it <a href="https://www.youtube.com/watch?v=zkTf0LmDqKI">here</a>). If you know a strong classmate or friend who can help you understand financial accounting better than I can, seek their help and return the favor by helping others. If I do not reply to you quickly enough, reach out again and remind me. Nothing will happen if you sit back and do not ask at all.</li>
+</ol>
+<p>Additionally, it is important to note that the contents of this class are interconnected through the fundamental accounting equation (i.e., Assets = Liabilities + Equity; also known as the ALE equation). Therefore, please find answers to your questions before we move on to the next topics to prevent confusion from snowballing.</p>
+</section>
+<section id="course-schedule" class="level2" data-number="12">
+<h2 data-number="12" class="anchored" data-anchor-id="course-schedule"><span class="header-section-number">12</span> Course Schedule</h2>
+<p><strong>Table 3</strong> — Fall 2026 (Tuesdays &amp; Thursdays)</p>
+<div data-tbl-colwidths="[5,15,50,30]">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 15%">
+<col style="width: 50%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th style="text-align: right;">Date</th>
+<th>In Class</th>
+<th>Assignments</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: right;">Tue. 08/25</td>
+<td>Course Introduction</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: right;">Thu. 08/27</td>
+<td>Ch. 2: Review of Accounting Process (Session 1)</td>
+<td>Pre Ch. 2 (due 08/27) <br>AI Project 1 (due 08/30)</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: right;">Tue. 09/01</td>
+<td>Ch. 2: Review of Accounting Process (Session 2)</td>
+<td>Post Ch. 2 (due 09/06)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td style="text-align: right;">Thu. 09/03</td>
+<td>Ch. 3: The Balance Sheet and Disclosures (Session 1)</td>
+<td>Pre Ch. 3 (due 09/03)</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td style="text-align: right;">Tue. 09/08</td>
+<td>Ch. 3: The Balance Sheet and Disclosures (Session 2)</td>
+<td>Post Ch. 3 (due 09/13)</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: right;">Thu. 09/10</td>
+<td>Ch. 1: Environment and Theoretical Structure (Session 1)</td>
+<td>Pre Ch. 1 (due 09/10)</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: right;">Tue. 09/15</td>
+<td>Ch. 1: Environment and Theoretical Structure (Session 2)</td>
+<td>Post Ch. 1 (due 09/20)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td style="text-align: right;">Thu. 09/17</td>
+<td>Ch. 4: The Income Statement (Session 1)</td>
+<td>Pre Ch. 4 (due 09/17)</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td style="text-align: right;">Tue. 09/22</td>
+<td>Ch. 4: The Income Statement (Session 2)</td>
+<td>Practice Exam 1 (due 09/21)</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td style="text-align: right;">Thu. 09/24</td>
+<td><strong>Exam 1 At home</strong></td>
+<td>Post Ch. 4 (due 09/27)</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td style="text-align: right;">Tue. 09/29</td>
+<td>Ch. 5: Time Value of Money Concepts (Session 1)</td>
+<td>Pre Ch. 5 (due 09/29)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td style="text-align: right;">Thu. 10/01</td>
+<td>Ch. 5: Time Value of Money Concepts (Session 2)</td>
+<td>Post Ch. 5 (due 10/04)</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td style="text-align: right;">Tue. 10/06</td>
+<td>Ch. 7: Cash and Receivables (Session 1)</td>
+<td>Pre Ch. 7 (due 10/06)</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td style="text-align: right;">Thu. 10/08</td>
+<td>Ch. 7: Cash and Receivables (Session 2)</td>
+<td>Post Ch. 7 (due 10/11)</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td style="text-align: right;">Tue. 10/13</td>
+<td>Ch. 8: Inventories: Measurement (Session 1)</td>
+<td>Pre Ch. 8 (due 10/13)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td style="text-align: right;">Thu. 10/15</td>
+<td>Ch. 8: Inventories: Measurement (Session 2)</td>
+<td>Post Ch. 8 (due 10/18)</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td style="text-align: right;">Tue. 10/20</td>
+<td>Ch. 9: Inventories: Additional Issues (Session 1)</td>
+<td>Pre Ch. 9 (due 10/20)</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td style="text-align: right;">Thu. 10/22</td>
+<td>Ch. 9: Inventories: Additional Issues (Session 2)</td>
+<td>Post Ch. 9 (due 10/25)</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td style="text-align: right;">Tue. 10/27</td>
+<td>Flexible Session</td>
+<td>Practice Exam 2 (due 10/26)</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td style="text-align: right;">Thu. 10/29</td>
+<td><strong>Exam 2 At home</strong></td>
+<td>AI Project 2 (due 11/01)</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td style="text-align: right;">Tue. 11/03</td>
+<td>Ch. 10: PP&amp;E and Intangible Assets: Acquisition (Session 1)</td>
+<td>Pre Ch. 10 (due 11/03)</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td style="text-align: right;">Thu. 11/05</td>
+<td>Ch. 10: PP&amp;E and Intangible Assets: Acquisition (Session 2)</td>
+<td>Post Ch. 10 (due 11/08)</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td style="text-align: right;">Tue. 11/10</td>
+<td>Ch. 11: PP&amp;E and Intangible Assets: Utilization &amp; Disposition (Session 1)</td>
+<td>Pre Ch. 11 (due 11/10)</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td style="text-align: right;">Thu. 11/12</td>
+<td>Ch. 11: PP&amp;E and Intangible Assets: Utilization &amp; Disposition (Session 2)</td>
+<td>Post Ch. 11 (due 11/15)</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td style="text-align: right;">Tue. 11/17</td>
+<td>Ch. 13: Current Liabilities and Contingencies (Session 1)</td>
+<td>Pre Ch. 13 (due 11/17)</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td style="text-align: right;">Thu. 11/19</td>
+<td>Ch. 13: Current Liabilities and Contingencies (Session 2)</td>
+<td>Post Ch. 13 (due 11/22)</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td style="text-align: right;">Tue. 11/24</td>
+<td><em>Thanksgiving Week — No Class</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td style="text-align: right;">Thu. 11/26</td>
+<td><em>Thanksgiving Recess — No Class</em></td>
+<td>AI Project 3 (due 11/29)</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td style="text-align: right;">Tue. 12/01</td>
+<td>Ch. 14: Bonds and Long-Term Notes (Session 1)</td>
+<td>Pre Ch. 14 (due 12/01)</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td style="text-align: right;">Thu. 12/03</td>
+<td>Ch. 14: Bonds and Long-Term Notes (Session 2)</td>
+<td>Post Ch. 14 (due 12/06) <br>Practice Final (due 12/07)</td>
+</tr>
+<tr class="odd">
+<td>Exam Week</td>
+<td style="text-align: right;">Tue. 12/08</td>
+<td>Final Comprehensive Exam At home</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>*The above schedule, policies, procedures, and assignments in this course are subject to change in the event of extenuating circumstances, by mutual agreement, and/or to ensure better student learning.</p>
+<p>**This syllabus was prepared with the generous help of Li Wang and Yuxiang Zheng.</p>
+</section>
+<section id="university-policies-and-student-resources" class="level2" data-number="13">
+<h2 data-number="13" class="anchored" data-anchor-id="university-policies-and-student-resources"><span class="header-section-number">13</span> University Policies and Student Resources</h2>
+<section id="student-code-of-conduct-academic-misconduct" class="level3" data-number="13.1">
+<h3 data-number="13.1" class="anchored" data-anchor-id="student-code-of-conduct-academic-misconduct"><span class="header-section-number">13.1</span> Student Code of Conduct &amp; Academic Misconduct</h3>
+<ul>
+<li><strong>Code of Student Conduct:</strong> The University of Akron stresses the importance of proper conduct inside and outside of the classroom. To foster an atmosphere conducive to learning, it is the responsibility of every student to know and follow the <a href="https://www.uakron.edu/ogc/UniversityRules/pdf/41-01.pdf">Code of Student Conduct</a> and to conduct themselves in a manner that is appropriate for a collegiate educational environment. Behavior that is disruptive to teaching or learning or in violation of the Code of Student Conduct will be referred to the <a href="https://www.uakron.edu/studentconduct/">Department of Student Conduct and Community Standards</a>.</li>
+<li><strong>Academic Misconduct:</strong> It is each student’s responsibility to know what constitutes academic misconduct. The Code of Student Conduct defines academic misconduct as any activity that compromises the academic integrity of the student and university, and undermines the educational process. Academic misconduct includes, but is not limited to, cheating, plagiarism, and/or engaging in any behavior specifically prohibited by a faculty member in the course syllabus or during class discussion. Allegations of academic misconduct will be resolved following the <a href="https://www.uakron.edu/studentconduct/academic-misconduct-procedure.dot">academic misconduct procedure</a> outlined in the Code of Student Conduct. For additional information or resources concerning academic misconduct, contact the Department of Student Conduct and Community Standards by phone at (330) 972-6380, by email at studentconduct@uakron.edu, or online at <a href="https://www.uakron.edu/studentconduct/">www.uakron.edu/studentconduct</a>.</li>
+<li><strong>Course policy on Academic Dishonesty:</strong> Any form of academic dishonesty on exams, projects, or homework assignments will result in zero points for that assignment or exam, and/or an “F” in the course, and will be formally referred to the University for disciplinary action.</li>
+</ul>
+</section>
+<section id="add-drop-withdrawal-and-refund-policies" class="level3" data-number="13.2">
+<h3 data-number="13.2" class="anchored" data-anchor-id="add-drop-withdrawal-and-refund-policies"><span class="header-section-number">13.2</span> Add, Drop, Withdrawal, and Refund Policies</h3>
+<p>All students must adhere to the University’s policies on adding, dropping, and withdrawing from courses. The policies and important dates can be found at: - <a href="https://www.uakron.edu/registrar/dates/">Adding or dropping courses</a> - <a href="https://www.uakron.edu/oaa/faculty-affairs/docs/student-withdrawl-policy.pdf">Withdrawal Policy</a></p>
+<p>Please be aware that the date of a drop or withdrawal affects the amount of the refund. <a href="https://www.uakron.edu/student-accounts/refunds">See the University refund policy</a>.</p>
+</section>
+<section id="title-ix-sexual-misconduct" class="level3" data-number="13.3">
+<h3 data-number="13.3" class="anchored" data-anchor-id="title-ix-sexual-misconduct"><span class="header-section-number">13.3</span> Title IX &amp; Sexual Misconduct</h3>
+<ul>
+<li><strong>Title IX Statement:</strong> Title IX of the Education Amendments of 1972 prohibits sex discrimination against students, guests, and employees of educational institutions. The regulations implementing Title IX prohibit discrimination, exclusion, denial, limitation, or separation based on gender in all areas of education. More information is available on the <a href="https://www.uakron.edu/title-ix/">Title IX site</a>.</li>
+<li><strong>Sexual Harassment and Sexual Violence:</strong> The University of Akron is committed to providing an environment free of all forms of discrimination, including sexual violence and sexual harassment. If you (or someone you know) has experienced sexual violence or sexual harassment, help is available. Confidential help can be found at:
+<ul>
+<li><strong>Hope and Healing Survivor Center and Rape Crisis Center:</strong> 24-hour Hotline: 330-434-7273 (Office located in the Student Recreation and Wellness Center 246; Campus Office: 330-972-6328). <a href="https://www.uakron.edu/title-ix/get-help/">Help for victims of sexual misconduct</a>.</li>
+<li><strong>University Counseling and Testing Center:</strong> 330-972-7082</li>
+<li><strong>Student Health Services:</strong> 330-972-7808</li>
+</ul></li>
+<li><strong>Reporting Requirement:</strong> Please note that the majority of University of Akron employees, including faculty members, are considered “responsible employees” under the law and are required to report incidents of sexual harassment and sexual violence to the Title IX Coordinator and possibly the police.</li>
+</ul>
+</section>
+<section id="students-with-disabilities-office-of-accessibility" class="level3" data-number="13.4">
+<h3 data-number="13.4" class="anchored" data-anchor-id="students-with-disabilities-office-of-accessibility"><span class="header-section-number">13.4</span> Students with Disabilities (Office of Accessibility)</h3>
+<p>The University will make reasonable accommodations for persons with documented disabilities in order to promote student success and provide full access to the academic environment. If you have a documented disability, you are encouraged to contact the Office of Accessibility to register for services. You can reach the Office by email at access@uakron.edu, stop by Simmons Hall 105, or call 330-972-7928 or 330-972-5764 (TDD). More details can be found at <a href="https://www.uakron.edu/access/">Office of Accessibility</a>.</p>
+</section>
+<section id="religious-accommodations" class="level3" data-number="13.5">
+<h3 data-number="13.5" class="anchored" data-anchor-id="religious-accommodations"><span class="header-section-number">13.5</span> Religious Accommodations</h3>
+<p>Pursuant to Ohio Revised Code Section 3345.026 (the “Testing Your Faith Act”), you may request a religious accommodation to be excused from class up to three (3) days per semester for reasons of faith or religious/spiritual belief systems to participate in organized activities. You will not be penalized for these excused absences. - The request must be made in writing during the first fourteen (14) days of the semester and include the date(s) of each proposed absence and the desired accommodation (e.g., alternate examination date). - An alternative examination date may be established, which may be before or after the original date. - For more information, contact the EEO Office (Administrative Services Building, 185 East Mill Street, Room 138, phone: 330-972-7300, email: EEOcompliance@uakron.edu) or visit <a href="https://www.uakron.edu/hr/eeoaa/religious-accommodations">UA Religious Accommodations Policy</a>.</p>
+</section>
+<section id="zipassist" class="level3" data-number="13.6">
+<h3 data-number="13.6" class="anchored" data-anchor-id="zipassist"><span class="header-section-number">13.6</span> ZipAssist</h3>
+<p>The University provides a variety of support programs and resources to ensure students are successful in and outside of the classroom. If you have trouble meeting basic needs like safe shelter, sleep, and food, or if you are seeking support related to tutoring, mental health, or navigating campus, please reach out to <strong>ZipAssist</strong> via the Help-A-Zip Referral Form at <a href="https://www.uakron.edu/referral">www.uakron.edu/referral</a> or visit <a href="https://www.uakron.edu/zipassist/">ZipAssist</a>.</p>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Watch Jamie Dimon’s statement that you should learn accounting at <a href="https://www.youtube.com/watch?v=mwnAGlNX9sk&amp;t=652s">here</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
