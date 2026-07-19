@@ -46,6 +46,10 @@
          <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Date:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
         {% endif %}
 
+    {% if post.paper_authors %}
+    <p class="archive__item-authors"><strong>Authors:</strong> {{ post.paper_authors | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+    {% endif %}
+
     {% if post.ancova_decomposition %}
     <div class="archive__item-feature">
       <section class="archive__item-feature-abstract" aria-labelledby="{{ post.slug }}-abstract-title">
