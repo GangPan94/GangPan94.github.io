@@ -61,7 +61,7 @@
 
 <figure class="event-study" id="{{ es_id }}" aria-labelledby="{{ es_id }}-title" aria-describedby="{{ es_id }}-instructions">
   <h3 class="event-study__title" id="{{ es_id }}-title">{{ es.title }}</h3>
-  <p class="event-study__instructions" id="{{ es_id }}-instructions">Each dot shows how much firm-level productivity changed in that year, as a percentage, relative to the launch of sports betting. Bars show 95% confidence intervals. Hover a dot for the exact number; click to pin it open.</p>
+  <p class="event-study__instructions" id="{{ es_id }}-instructions">The x-axis counts years relative to a state's online sports-betting launch: 0 is the launch year, −1 the year before. The y-axis shows the estimated change in employee productivity, in percent. Dots are point estimates; bars show 95% confidence intervals. Hover a dot for the exact number; click to pin it open.</p>
 
   <div class="event-study__visual">
     <svg class="event-study__svg" viewBox="0 0 600 420" role="img" aria-label="{{ es.alt_text | escape }}">

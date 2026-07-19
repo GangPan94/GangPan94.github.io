@@ -7,7 +7,7 @@ y_domain: [-0.08, 0.025]
 reference_event_time: -1
 zero_line: true
 series_color: "navy"
-caption: "Each dot shows how much firm-level productivity changed in that year, as a percentage, after sports betting launched. Bars show 95% confidence intervals. Hover or tap a dot for the exact number."
+caption: "The x-axis counts years relative to a state's online sports-betting launch: 0 is the launch year, −1 the year before. The y-axis shows the estimated change in employee productivity, in percent. Dots are point estimates; bars show 95% confidence intervals. Hover a dot for the exact number; click to pin it open."
 alt_text: "Line chart of the percentage change in firm-level productivity by year relative to sports-betting launch; flat near zero for years −3 to −1, dropping to about −4% at launch and holding near −3% through year +3."
 method_note: "Dynamic effect of sports-betting legalization on employee productivity. The figure plots the Treat × relative-time coefficients from the dynamic version of equation (1), with the year before launch (t = −1) omitted as the base period. Vertical bars are 95% confidence intervals. The pre-launch coefficients are statistically indistinguishable from zero, supporting parallel trends; productivity falls after launch."
 manuscript_caption: ""
