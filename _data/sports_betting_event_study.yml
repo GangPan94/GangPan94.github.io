@@ -1,0 +1,71 @@
+title: "What happens to worker productivity when a state launches online sports betting?"
+x_axis_label: "Years relative to online sports-betting launch"
+y_axis_label: "Change in employee productivity (%)"
+x_ticks: [-3, -2, -1, 0, 1, 2, 3]
+y_ticks: [-0.06, -0.04, -0.02, 0, 0.02]
+y_domain: [-0.08, 0.025]
+reference_event_time: -1
+zero_line: true
+series_color: "navy"
+caption: "Each dot shows how much firm-level productivity changed in that year, as a percentage, after sports betting launched. Bars show 95% confidence intervals. Hover or tap a dot for the exact number."
+alt_text: "Line chart of the percentage change in firm-level productivity by year relative to sports-betting launch; flat near zero for years −3 to −1, dropping to about −4% at launch and holding near −3% through year +3."
+method_note: "Estimator: reghdfe (OLS with high-dimensional fixed effects). N = 34,345. Clusters: 6,081 firm-cohorts. Fixed effects: firm-cohort, year-cohort, treat-cohort. Standard errors clustered on gvkey_cohort. Event window: −3 to +3 years relative to launch. Design: cohort-stacked DiD; treatment = launch of online sports betting in the firm's HQ state. Base period t = −1 omitted. CIs are normal-based (b ± 1.959964 × SE)."
+manuscript_caption: "Dynamic effect of sports-betting legalization on employee productivity. The figure plots the Treat × relative-time coefficients from the dynamic version of equation (1), with t = −1 omitted as the base period. Vertical bars are 95% confidence intervals. The pre-launch coefficients are statistically indistinguishable from zero, supporting parallel trends; productivity falls significantly in the launch year and in years +2 and +3."
+one_liner: "Firms in states that launched online sports betting produce about 3–4 percent less per employee after launch, with no divergence beforehand."
+items:
+  - event_time: -3
+    estimate: 0.0000426
+    se: 0.0107298
+    ci_lower: -0.020987
+    ci_upper: 0.021073
+    base: false
+    label: "t = −3"
+    tooltip: "Change: +0.0%<br>Std. error: 1.1%<br>95% CI: [−2.1%, +2.1%]"
+  - event_time: -2
+    estimate: -0.0069523
+    se: 0.0098632
+    ci_lower: -0.026284
+    ci_upper: 0.012379
+    base: false
+    label: "t = −2"
+    tooltip: "Change: −0.7%<br>Std. error: 1.0%<br>95% CI: [−2.6%, +1.2%]"
+  - event_time: -1
+    estimate: 0.0
+    se: 0.0
+    ci_lower: 0.0
+    ci_upper: 0.0
+    base: true
+    label: "t = −1 (base)"
+    tooltip: "Reference period (the year before launch). Set to zero by construction — not an estimate of no effect."
+  - event_time: 0
+    estimate: -0.0435301
+    se: 0.0111861
+    ci_lower: -0.065454
+    ci_upper: -0.021606
+    base: false
+    label: "t = 0"
+    tooltip: "Change: −4.4%<br>Std. error: 1.1%<br>95% CI: [−6.5%, −2.2%]"
+  - event_time: 1
+    estimate: -0.0195898
+    se: 0.0131183
+    ci_lower: -0.045301
+    ci_upper: 0.006122
+    base: false
+    label: "t = +1"
+    tooltip: "Change: −2.0%<br>Std. error: 1.3%<br>95% CI: [−4.5%, +0.6%]"
+  - event_time: 2
+    estimate: -0.0328533
+    se: 0.0125780
+    ci_lower: -0.057506
+    ci_upper: -0.008201
+    base: false
+    label: "t = +2"
+    tooltip: "Change: −3.3%<br>Std. error: 1.3%<br>95% CI: [−5.8%, −0.8%]"
+  - event_time: 3
+    estimate: -0.0328254
+    se: 0.0133898
+    ci_lower: -0.059069
+    ci_upper: -0.006582
+    base: false
+    label: "t = +3"
+    tooltip: "Change: −3.3%<br>Std. error: 1.3%<br>95% CI: [−5.9%, −0.7%]"

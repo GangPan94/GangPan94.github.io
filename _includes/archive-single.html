@@ -12,7 +12,7 @@
   {% assign title = post.title %}
 {% endif %}
 
-<div class="{{ include.type | default: "list" }}__item{% if post.ancova_decomposition %} list__item--ancova-featured{% endif %}">
+<div class="{{ include.type | default: "list" }}__item{% if post.ancova_decomposition %} list__item--ancova-featured{% elsif post.event_study %} list__item--event-study-featured{% endif %}">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     {% if include.type == "grid" and teaser %}
       <div class="archive__item-teaser">
@@ -50,7 +50,7 @@
     <p class="archive__item-authors"><strong>Authors:</strong> {{ post.paper_authors | markdownify | remove: "<p>" | remove: "</p>" }}</p>
     {% endif %}
 
-    {% if post.ancova_decomposition %}
+    {% if post.ancova_decomposition or post.event_study %}
     <div class="archive__item-feature">
       <section class="archive__item-feature-abstract" aria-labelledby="{{ post.slug }}-abstract-title">
         <h3 id="{{ post.slug }}-abstract-title">Abstract</h3>
@@ -62,10 +62,14 @@
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
 
-    {% if post.ancova_decomposition %}
+    {% if post.ancova_decomposition or post.event_study %}
       </section>
       <div class="archive__item-feature-chart">
-        {% include ancova-decomposition.html %}
+        {% if post.ancova_decomposition %}
+          {% include ancova-decomposition.html %}
+        {% elsif post.event_study %}
+          {% include sports-betting-event-study.html %}
+        {% endif %}
       </div>
     </div>
     {% endif %}

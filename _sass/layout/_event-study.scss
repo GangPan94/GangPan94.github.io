@@ -1,0 +1,202 @@
+// Event-study chart — sports-betting productivity.
+// Scoped under .event-study so it never leaks into other figures.
+// Uses site --global-* tokens for borders/text, but keeps the plot
+// area background white to match the published academic figure.
+
+.event-study {
+  --es-accent: var(--global-base-color);   // theme-aware series color (navy in light, light-blue in dark)
+  --es-accent-dim: var(--global-text-color-light); // dimmed base-period marker
+  --es-zero: var(--danger-color);           // red zero reference line (theme-aware)
+  --es-base: var(--global-dark-border-color); // gray base-period vertical line
+  --es-surface: var(--global-bg-color);
+  --es-text: var(--global-text-color);
+  --es-border: var(--global-dark-border-color);
+  --es-caption: var(--global-fig-caption-color);
+
+  display: block;
+  min-width: 0;
+  margin: 0;
+  padding: 0.85rem;
+  border: 1px solid var(--es-border);
+  border-radius: 0.35rem;
+  color: var(--es-text);
+  background: var(--es-surface);
+
+  &__title {
+    margin: 0;
+    font-size: 1.1em;
+  }
+
+  &__instructions {
+    margin: 0.35rem 0 0.75rem;
+    color: var(--es-caption);
+    font-size: 0.82em;
+    line-height: 1.5;
+  }
+
+  &__visual {
+    position: relative;
+    display: block;
+    min-width: 0;
+    min-height: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  &__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    overflow: visible;
+    background: var(--es-surface);
+    border: 1px solid var(--es-border);
+    border-radius: 0.2rem;
+    color: var(--es-text);
+
+    // Theme-aware SVG element colors via currentColor.
+    // The series (navy) and zero line (red) stay fixed — they're meaningful.
+    // Axes, gridlines, and labels adapt to the theme.
+    line, text {
+      transition: stroke 200ms ease, fill 200ms ease;
+    }
+  }
+
+  /* Tooltip overlay */
+  &__tooltip {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    box-sizing: border-box;
+    width: 17.5rem;
+    max-width: calc(100vw - 1rem);
+    min-width: 0;
+    max-height: calc(100vh - 1rem);
+    height: fit-content;
+    margin: 0;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--es-border);
+    border-radius: 0.25rem;
+    color: var(--global-bg-color);
+    background: var(--es-text);
+    box-shadow: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    font-size: 0.78em;
+    font-weight: 400;
+    line-height: 1.4;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    pointer-events: auto;
+    overscroll-behavior: contain;
+
+    strong {
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    span {
+      display: block;
+    }
+    &-note {
+      margin-top: 0.2rem;
+      font-style: italic;
+      opacity: 0.92;
+    }
+
+    &[data-visible] {
+      display: block;
+    }
+  }
+
+  /* Interactive point hit areas */
+  &__point-btn {
+    cursor: pointer;
+    outline: none;
+  }
+
+  &__point-btn:focus-visible {
+    outline: none;
+  }
+
+  &__point-btn:focus-visible circle {
+    stroke: var(--global-link-color);
+    stroke-width: 3;
+  }
+
+  /* Data disclosure */
+  &__data {
+    margin-top: 0.9rem;
+    font-size: 0.85em;
+  }
+
+  &__data summary {
+    width: fit-content;
+    color: var(--global-link-color);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__data summary:focus-visible {
+    border-radius: 0.15rem;
+    outline: 3px solid var(--global-link-color);
+    outline-offset: 3px;
+  }
+
+  &__method {
+    margin: 0.65rem 0 0;
+    color: var(--es-caption);
+    font-size: 0.9em;
+    line-height: 1.45;
+  }
+
+  &__table-wrap {
+    max-width: 100%;
+    margin-top: 0.6rem;
+    overflow-x: auto;
+  }
+
+  &__table-wrap table {
+    min-width: 28rem;
+    margin-bottom: 0;
+  }
+
+  &__table-wrap caption {
+    color: var(--es-text);
+    text-align: left;
+  }
+
+  &__row--base {
+    td, th {
+      color: var(--es-caption);
+      font-style: italic;
+    }
+  }
+
+  &__manuscript-caption {
+    margin: 0.6rem 0 0;
+    color: var(--es-caption);
+    font-size: 0.88em;
+    line-height: 1.45;
+  }
+}
+
+/* Two-column layout for event-study featured items (shared with ancova) */
+@media (min-width: 68rem) {
+  .archive__item-feature-chart .event-study {
+    width: 100%;
+  }
+}
+
+@media (max-width: $small) {
+  .event-study {
+    padding: 0.8rem;
+
+    &__svg {
+      min-height: 240px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-study__point-btn {
+    transition: none;
+  }
+}

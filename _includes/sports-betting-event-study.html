@@ -1,0 +1,374 @@
+{% assign es = site.data.sports_betting_event_study %}
+{% assign es_id = "event-study-" | append: post.slug %}
+
+{% comment %}
+  SVG coordinate system: viewBox "0 0 600 420"
+  Plot area: x from 80 to 580 (width 500), y from 20 to 350 (height 330)
+  y domain: [-0.08, 0.025], range = 0.105
+  x domain: [-3, 3], range = 6
+  Mapping:
+    sx(t) = 80 + (t + 3) * 500 / 6
+    sy(v) = 20 + (0.025 - v) * 330 / 0.105
+{% endcomment %}
+
+{% assign x_scale = 500.0 | divided_by: 6.0 %}
+{% assign y_scale = 330.0 | divided_by: 0.105 %}
+
+{% comment %}Zero line y position: sy(0) = 20 + 0.025 * y_scale{% endcomment %}
+{% assign zero_y_offset = 0.025 | times: y_scale %}
+{% assign zero_y = 20.0 | plus: zero_y_offset %}
+
+{% comment %}Reference line x position (t=-1): sx(-1) = 80 + 2 * x_scale{% endcomment %}
+{% assign ref_x = 2.0 | times: x_scale | plus: 80.0 %}
+
+{% comment %}Build y-axis tick lines{% endcomment %}
+{% capture y_tick_lines %}
+  {% for yt in es.y_ticks %}
+    {% assign yt_offset = 0.025 | minus: yt | times: y_scale %}
+    {% assign yt_pos = 20.0 | plus: yt_offset %}
+    <line x1="80" y1="{{ yt_pos }}" x2="580" y2="{{ yt_pos }}" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+    <text x="72" y="{{ yt_pos | plus: 4 }}" text-anchor="end" font-size="11" font-family="sans-serif" fill="currentColor" opacity="0.75">
+          {%- assign yt_pct = yt | times: 100.0 | round: 0 -%}
+          {%- if yt == 0.0 -%}0%{%- elsif yt < 0 -%}−{{ yt_pct | times: -1 }}%{%- else -%}+{{ yt_pct }}%{%- endif -%}
+        </text>
+  {% endfor %}
+{% endcapture %}
+
+{% comment %}Build x-axis tick lines{% endcomment %}
+{% capture x_tick_lines %}
+  {% for xt in es.x_ticks %}
+    {% assign xt_offset = xt | plus: 3 | times: x_scale %}
+    {% assign xt_pos = 80.0 | plus: xt_offset %}
+    <line x1="{{ xt_pos }}" y1="20" x2="{{ xt_pos }}" y2="350" stroke="currentColor" stroke-width="0.5" opacity="0.2"/>
+    <text x="{{ xt_pos }}" y="370" text-anchor="middle" font-size="11" font-family="sans-serif" fill="currentColor" opacity="0.75">{{ xt }}</text>
+  {% endfor %}
+{% endcapture %}
+
+{% comment %}Build polyline points string{% endcomment %}
+{% capture polyline_points %}
+  {% for item in es.items %}
+    {% assign cx_offset = item.event_time | plus: 3 | times: x_scale %}
+    {% assign cx = 80.0 | plus: cx_offset %}
+    {% if item.base %}
+      {% assign cy = zero_y %}
+    {% else %}
+      {% assign cy_offset = 0.025 | minus: item.estimate | times: y_scale %}
+      {% assign cy = 20.0 | plus: cy_offset %}
+    {% endif %}
+    {{ cx }},{{ cy }}{% unless forloop.last %} {% endunless %}
+  {% endfor %}
+{% endcapture %}
+
+<figure class="event-study" id="{{ es_id }}" aria-labelledby="{{ es_id }}-title" aria-describedby="{{ es_id }}-instructions">
+  <h3 class="event-study__title" id="{{ es_id }}-title">{{ es.title }}</h3>
+  <p class="event-study__instructions" id="{{ es_id }}-instructions">Each dot shows how much firm-level productivity changed in that year, as a percentage, relative to the launch of sports betting. Bars show 95% confidence intervals. Hover or tap a dot for the exact number.</p>
+
+  <div class="event-study__visual">
+    <svg class="event-study__svg" viewBox="0 0 600 420" role="img" aria-label="{{ es.alt_text | escape }}">
+      <!-- Y axis label -->
+      <text x="18" y="185" text-anchor="middle" font-size="12" font-family="sans-serif" fill="currentColor" transform="rotate(-90, 18, 185)">{{ es.y_axis_label }}</text>
+
+      <!-- Y axis -->
+      <line x1="80" y1="20" x2="80" y2="350" stroke="currentColor" stroke-width="1"/>
+
+      <!-- Y axis ticks and gridlines -->
+      {{ y_tick_lines }}
+
+      <!-- X axis -->
+      <line x1="80" y1="350" x2="580" y2="350" stroke="currentColor" stroke-width="1"/>
+
+      <!-- X axis ticks and gridlines -->
+      {{ x_tick_lines }}
+
+      <!-- X axis label -->
+      <text x="330" y="400" text-anchor="middle" font-size="12" font-family="sans-serif" fill="currentColor">{{ es.x_axis_label }}</text>
+
+      <!-- Zero line (y=0) - red dashed -->
+      <line x1="80" y1="{{ zero_y }}" x2="580" y2="{{ zero_y }}" stroke="var(--es-zero)" stroke-width="1.2" stroke-dasharray="6,3" aria-label="Zero line"/>
+
+      <!-- Reference period line (t=-1) - light gray dotted -->
+      <line x1="{{ ref_x }}" y1="20" x2="{{ ref_x }}" y2="350" stroke="var(--es-base)" stroke-width="1" stroke-dasharray="3,3" aria-label="Reference period t = −1"/>
+
+      <!-- CI whiskers (drawn first so they're behind points) -->
+      {% for item in es.items %}
+        {% unless item.base %}
+          {% assign cx_offset = item.event_time | plus: 3 | times: x_scale %}
+          {% assign cx = 80.0 | plus: cx_offset %}
+          {% assign ci_lo_offset = 0.025 | minus: item.ci_lower | times: y_scale %}
+          {% assign ci_lo_y = 20.0 | plus: ci_lo_offset %}
+          {% assign ci_hi_offset = 0.025 | minus: item.ci_upper | times: y_scale %}
+          {% assign ci_hi_y = 20.0 | plus: ci_hi_offset %}
+          <!-- CI line -->
+          <line x1="{{ cx }}" y1="{{ ci_hi_y }}" x2="{{ cx }}" y2="{{ ci_lo_y }}" stroke="var(--es-accent)" stroke-width="1.5"/>
+          <!-- CI caps -->
+          <line x1="{{ cx | minus: 5 }}" y1="{{ ci_hi_y }}" x2="{{ cx | plus: 5 }}" y2="{{ ci_hi_y }}" stroke="var(--es-accent)" stroke-width="1.5"/>
+          <line x1="{{ cx | minus: 5 }}" y1="{{ ci_lo_y }}" x2="{{ cx | plus: 5 }}" y2="{{ ci_lo_y }}" stroke="var(--es-accent)" stroke-width="1.5"/>
+        {% endunless %}
+      {% endfor %}
+
+      <!-- Connecting polyline -->
+      <polyline points="{{ polyline_points }}" fill="none" stroke="var(--es-accent)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+
+      <!-- Point markers -->
+      {% for item in es.items %}
+        {% assign cx_offset = item.event_time | plus: 3 | times: x_scale %}
+        {% assign cx = 80.0 | plus: cx_offset %}
+        {% if item.base %}
+          {% assign cy = zero_y %}
+        {% else %}
+          {% assign cy_offset = 0.025 | minus: item.estimate | times: y_scale %}
+          {% assign cy = 20.0 | plus: cy_offset %}
+        {% endif %}
+
+        {% if item.base %}
+          <!-- Base period: dimmed marker, no whiskers -->
+          <circle cx="{{ cx }}" cy="{{ cy }}" r="5" fill="var(--es-accent)" opacity="0.35" stroke="var(--es-accent)" stroke-width="1"/>
+          <circle cx="{{ cx }}" cy="{{ cy }}" r="8" fill="none" stroke="var(--es-accent)" stroke-width="1.5" opacity="0.35" class="event-study__marker-ring"/>
+        {% else %}
+          <circle cx="{{ cx }}" cy="{{ cy }}" r="5" fill="var(--es-accent)" stroke="var(--es-surface)" stroke-width="1.5"/>
+          <circle cx="{{ cx }}" cy="{{ cy }}" r="8" fill="none" stroke="var(--es-accent)" stroke-width="1.5" class="event-study__marker-ring"/>
+        {% endif %}
+      {% endfor %}
+
+      <!-- Invisible hit areas for each point (focusable) -->
+      {% for item in es.items %}
+        {% assign cx_offset = item.event_time | plus: 3 | times: x_scale %}
+        {% assign cx = 80.0 | plus: cx_offset %}
+        {% if item.base %}
+          {% assign cy = zero_y %}
+        {% else %}
+          {% assign cy_offset = 0.025 | minus: item.estimate | times: y_scale %}
+          {% assign cy = 20.0 | plus: cy_offset %}
+        {% endif %}
+        <g class="event-study__point-hitarea" data-index="{{ forloop.index0 }}"
+           data-event-time="{{ item.event_time }}"
+           data-estimate="{{ item.estimate }}"
+           data-se="{{ item.se }}"
+           data-ci-lower="{{ item.ci_lower }}"
+           data-ci-upper="{{ item.ci_upper }}"
+           data-base="{{ item.base }}"
+           data-tooltip="{{ item.tooltip | escape }}"
+           data-label="{{ item.label | escape }}">
+          <circle cx="{{ cx }}" cy="{{ cy }}" r="14" fill="transparent" class="event-study__point-btn" tabindex="0" role="button"
+            aria-label="{{ item.label | escape }}: {{ item.tooltip | strip_html | escape }}"/>
+        </g>
+      {% endfor %}
+    </svg>
+  </div>
+
+  <details class="event-study__data">
+    <summary>View exact data and method details</summary>
+    <p class="event-study__method"><strong>Method details:</strong> {{ es.method_note }}</p>
+    <p class="event-study__method"><strong>Manuscript caption:</strong> {{ es.manuscript_caption }}</p>
+    <div class="event-study__table-wrap">
+      <table>
+        <caption>Exact coefficient estimates and confidence intervals</caption>
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Coefficient (b)</th>
+            <th scope="col">Std. Error</th>
+            <th scope="col">95% CI lower</th>
+            <th scope="col">95% CI upper</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in es.items %}
+            <tr>
+              <th scope="row">{{ item.label }}</th>
+              <td>{{ item.estimate | round: 6 }}</td>
+              <td>{{ item.se | round: 6 }}</td>
+              <td>{{ item.ci_lower | round: 6 }}</td>
+              <td>{{ item.ci_upper | round: 6 }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </details>
+</figure>
+
+<script>
+(function () {
+  var figure = document.getElementById("{{ es_id }}");
+  if (!figure) return;
+
+  var hitAreas = figure.querySelectorAll(".event-study__point-hitarea");
+  var activeIndex = null;
+  var tooltipEl = null;
+
+  // Create tooltip element
+  tooltipEl = document.createElement("div");
+  tooltipEl.className = "event-study__tooltip";
+  tooltipEl.setAttribute("role", "tooltip");
+  tooltipEl.id = "{{ es_id }}-tooltip";
+  document.body.appendChild(tooltipEl);
+
+  function getTooltipContent(hitArea) {
+    var base = hitArea.getAttribute("data-base") === "true";
+    if (base) {
+      return "<strong>" + hitArea.getAttribute("data-label") + "</strong><span>" + hitArea.getAttribute("data-tooltip") + "</span>";
+    }
+    // Use the pre-formatted tooltip from the data file (already in % terms)
+    return "<strong>" + hitArea.getAttribute("data-label") + "</strong><span>" + hitArea.getAttribute("data-tooltip") + "</span>";
+  }
+
+  function positionTooltip(hitArea) {
+    var gutter = 8;
+    var figureRect = figure.getBoundingClientRect();
+    var svgEl = figure.querySelector("svg");
+    var svgRect = svgEl.getBoundingClientRect();
+    var viewportWidth = document.documentElement.clientWidth;
+    var viewportHeight = document.documentElement.clientHeight;
+    var leftBound = Math.max(gutter, figureRect.left + gutter);
+    var rightBound = Math.min(viewportWidth - gutter, figureRect.right - gutter);
+    var topBound = Math.max(gutter, figureRect.top + gutter);
+    var bottomBound = Math.min(viewportHeight - gutter, figureRect.bottom - gutter);
+
+    // Use getScreenCTM to map SVG viewBox coords to viewport coords accurately.
+    // This handles any viewBox / preserveAspectRatio combination correctly.
+    var circle = hitArea.querySelector("circle");
+    var svgX = parseFloat(circle.getAttribute("cx"));
+    var svgY = parseFloat(circle.getAttribute("cy"));
+    var pt = svgEl.createSVGPoint();
+    pt.x = svgX;
+    pt.y = svgY;
+    var ctm = svgEl.getScreenCTM();
+    var screenPt = pt.matrixTransform(ctm);
+    var pointX = screenPt.x;
+    var pointY = screenPt.y;
+
+    tooltipEl.style.width = Math.min(320, rightBound - leftBound) + "px";
+    tooltipEl.style.maxHeight = Math.max(40, bottomBound - topBound) + "px";
+
+    var tooltipRect = tooltipEl.getBoundingClientRect();
+    var left = pointX + 12;
+    left = Math.min(Math.max(left, leftBound), rightBound - tooltipRect.width);
+    var below = pointY + 12;
+    var above = pointY - tooltipRect.height - 8;
+    var top = below + tooltipRect.height <= bottomBound ? below : above;
+    top = Math.min(Math.max(top, topBound), bottomBound - tooltipRect.height);
+
+    tooltipEl.style.left = Math.round(left) + "px";
+    tooltipEl.style.top = Math.round(top) + "px";
+  }
+
+  function showTooltip(hitArea) {
+    closeTooltip();
+    tooltipEl.innerHTML = getTooltipContent(hitArea);
+    tooltipEl.setAttribute("data-visible", "");
+    activeIndex = parseInt(hitArea.getAttribute("data-index"));
+    window.requestAnimationFrame(function () { positionTooltip(hitArea); });
+  }
+
+  function closeTooltip() {
+    tooltipEl.removeAttribute("data-visible");
+    tooltipEl.innerHTML = "";
+    activeIndex = null;
+  }
+
+  function getHitArea(index) {
+    return figure.querySelector('.event-study__point-hitarea[data-index="' + index + '"]');
+  }
+
+  function focusHitArea(index) {
+    var ha = getHitArea(index);
+    if (ha) {
+      var btn = ha.querySelector(".event-study__point-btn");
+      if (btn) btn.focus();
+    }
+  }
+
+  hitAreas.forEach(function (ha) {
+    var index = parseInt(ha.getAttribute("data-index"));
+    var btn = ha.querySelector(".event-study__point-btn");
+    var pinned = false;
+
+    ha.addEventListener("pointerenter", function () {
+      if (window.matchMedia("(hover: hover)").matches && !pinned) {
+        showTooltip(ha);
+      }
+    });
+
+    ha.addEventListener("pointerleave", function () {
+      if (window.matchMedia("(hover: hover)").matches && !pinned) {
+        closeTooltip();
+      }
+    });
+
+    btn.addEventListener("focus", function () {
+      showTooltip(ha);
+    });
+
+    btn.addEventListener("blur", function () {
+      if (!pinned) {
+        closeTooltip();
+      }
+    });
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      pinned = !pinned;
+      if (pinned) {
+        showTooltip(ha);
+      } else {
+        closeTooltip();
+      }
+    });
+
+    btn.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        pinned = false;
+        closeTooltip();
+        btn.blur();
+      } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        e.preventDefault();
+        var next = index + 1;
+        if (next < hitAreas.length) {
+          pinned = false;
+          closeTooltip();
+          focusHitArea(next);
+        }
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        e.preventDefault();
+        var prev = index - 1;
+        if (prev >= 0) {
+          pinned = false;
+          closeTooltip();
+          focusHitArea(prev);
+        }
+      }
+    });
+  });
+
+  document.addEventListener("pointerdown", function (e) {
+    if (!e.target.closest(".event-study") && !e.target.closest(".event-study__tooltip")) {
+      closeTooltip();
+    }
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && activeIndex !== null) {
+      var ha = getHitArea(activeIndex);
+      if (ha) {
+        var btn = ha.querySelector(".event-study__point-btn");
+        if (btn) btn.blur();
+      }
+      closeTooltip();
+    }
+  });
+
+  window.addEventListener("resize", function () {
+    if (activeIndex !== null) {
+      var ha = getHitArea(activeIndex);
+      if (ha) positionTooltip(ha);
+    }
+  });
+  window.addEventListener("scroll", function () {
+    if (activeIndex !== null) {
+      var ha = getHitArea(activeIndex);
+      if (ha) positionTooltip(ha);
+    }
+  }, true);
+})();
+</script>

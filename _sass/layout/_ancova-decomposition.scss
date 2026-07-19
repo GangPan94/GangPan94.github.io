@@ -262,7 +262,8 @@
 }
 
 @media (min-width: 68rem) {
-  .list__item--ancova-featured {
+  .list__item--ancova-featured,
+  .list__item--event-study-featured {
     padding-right: 0;
   }
 
@@ -277,7 +278,8 @@
     display: flex;
   }
 
-  .archive__item-feature-chart .ancova-decomposition {
+  .archive__item-feature-chart .ancova-decomposition,
+  .archive__item-feature-chart .event-study {
     width: 100%;
   }
 }
