@@ -197,7 +197,7 @@
   var activeIndex = null;
   var tooltipEl = null;
 
-  // Create tooltip element
+  /* Create tooltip element */
   tooltipEl = document.createElement("div");
   tooltipEl.className = "event-study__tooltip";
   tooltipEl.setAttribute("role", "tooltip");
@@ -209,7 +209,7 @@
     if (base) {
       return "<strong>" + hitArea.getAttribute("data-label") + "</strong><span>" + hitArea.getAttribute("data-tooltip") + "</span>";
     }
-    // Use the pre-formatted tooltip from the data file (already in % terms)
+    /* Use the pre-formatted tooltip from the data file (already in % terms) */
     return "<strong>" + hitArea.getAttribute("data-label") + "</strong><span>" + hitArea.getAttribute("data-tooltip") + "</span>";
   }
 
@@ -225,8 +225,8 @@
     var topBound = Math.max(gutter, figureRect.top + gutter);
     var bottomBound = Math.min(viewportHeight - gutter, figureRect.bottom - gutter);
 
-    // Use getScreenCTM to map SVG viewBox coords to viewport coords accurately.
-    // This handles any viewBox / preserveAspectRatio combination correctly.
+    /* Use getScreenCTM to map SVG viewBox coords to viewport coords accurately.
+       This handles any viewBox / preserveAspectRatio combination correctly. */
     var circle = hitArea.querySelector("circle");
     var svgX = parseFloat(circle.getAttribute("cx"));
     var svgY = parseFloat(circle.getAttribute("cy"));
@@ -284,7 +284,7 @@
     var btn = ha.querySelector(".event-study__point-btn");
     var pinned = false;
 
-    // Use both pointer and mouse events for cross-browser SVG hover reliability.
+    /* Use both pointer and mouse events for cross-browser SVG hover reliability. */
     function enter() {
       if (window.matchMedia("(hover: hover)").matches && !pinned) {
         showTooltip(ha);
