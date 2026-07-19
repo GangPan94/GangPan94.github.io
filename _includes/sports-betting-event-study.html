@@ -61,7 +61,7 @@
 
 <figure class="event-study" id="{{ es_id }}" aria-labelledby="{{ es_id }}-title" aria-describedby="{{ es_id }}-instructions">
   <h3 class="event-study__title" id="{{ es_id }}-title">{{ es.title }}</h3>
-  <p class="event-study__instructions" id="{{ es_id }}-instructions">Each dot shows how much firm-level productivity changed in that year, as a percentage, relative to the launch of sports betting. Bars show 95% confidence intervals. Hover or tap a dot for the exact number.</p>
+  <p class="event-study__instructions" id="{{ es_id }}-instructions">Each dot shows how much firm-level productivity changed in that year, as a percentage, relative to the launch of sports betting. Bars show 95% confidence intervals. Hover a dot for the exact number; click to pin it open.</p>
 
   <div class="event-study__visual">
     <svg class="event-study__svg" viewBox="0 0 600 420" role="img" aria-label="{{ es.alt_text | escape }}">
@@ -149,8 +149,8 @@
            data-base="{{ item.base }}"
            data-tooltip="{{ item.tooltip | escape }}"
            data-label="{{ item.label | escape }}">
-          <title>{{ item.label | escape }}: {{ item.tooltip | strip_html | escape }}</title>
           <circle cx="{{ cx }}" cy="{{ cy }}" r="20" fill="white" fill-opacity="0" stroke="none" class="event-study__point-btn" tabindex="0" role="button"
+            aria-pressed="false"
             aria-label="{{ item.label | escape }}: {{ item.tooltip | strip_html | escape }}"/>
         </g>
       {% endfor %}
@@ -254,14 +254,45 @@
   }
 
   function showTooltip(hitArea) {
-    closeTooltip();
     tooltipEl.innerHTML = getTooltipContent(hitArea);
     tooltipEl.setAttribute("data-visible", "");
     activeIndex = parseInt(hitArea.getAttribute("data-index"));
     window.requestAnimationFrame(function () { positionTooltip(hitArea); });
   }
 
-  function closeTooltip() {
+  function showAndPin(hitArea) {
+    /* Close any other open hit area, then show this one and pin it. */
+    var thisIndex = parseInt(hitArea.getAttribute("data-index"));
+    hitAreas.forEach(function (other) {
+      if (other !== hitArea) {
+        var otherBtn = other.querySelector(".event-study__point-btn");
+        if (other.hasAttribute("data-pinned")) {
+          other.removeAttribute("data-pinned");
+          if (otherBtn) otherBtn.setAttribute("aria-pressed", "false");
+        }
+      }
+    });
+    showTooltip(hitArea);
+    hitArea.setAttribute("data-pinned", "");
+    var btn = hitArea.querySelector(".event-study__point-btn");
+    if (btn) btn.setAttribute("aria-pressed", "true");
+  }
+
+  function unpinHitArea(hitArea) {
+    hitArea.removeAttribute("data-pinned");
+    var btn = hitArea.querySelector(".event-study__point-btn");
+    if (btn) btn.setAttribute("aria-pressed", "false");
+    /* If the pointer is still over this hit area, keep the tooltip visible
+       (hover state). Otherwise close it. */
+    if (!hitArea.hasAttribute("data-hovered")) {
+      closeTooltip();
+    }
+  }
+
+  function closeTooltip(exceptHitArea) {
+    /* Don't close if the passed hit area is pinned. */
+    if (exceptHitArea && exceptHitArea.hasAttribute("data-pinned")) return;
+    if (exceptHitArea === false) return; /* explicit "do not close" */
     tooltipEl.removeAttribute("data-visible");
     tooltipEl.innerHTML = "";
     activeIndex = null;
@@ -282,16 +313,22 @@
   hitAreas.forEach(function (ha) {
     var index = parseInt(ha.getAttribute("data-index"));
     var btn = ha.querySelector(".event-study__point-btn");
-    var pinned = false;
 
     /* Use both pointer and mouse events for cross-browser SVG hover reliability. */
     function enter() {
-      if (window.matchMedia("(hover: hover)").matches && !pinned) {
-        showTooltip(ha);
+      if (window.matchMedia("(hover: hover)").matches && !ha.hasAttribute("data-pinned")) {
+        /* If another hit area is pinned, don't hijack it — only show on hover
+           if nothing is pinned, or this one is pinned. */
+        var anyPinned = Array.prototype.some.call(hitAreas, function (h) { return h.hasAttribute("data-pinned"); });
+        if (!anyPinned) {
+          ha.setAttribute("data-hovered", "");
+          showTooltip(ha);
+        }
       }
     }
     function leave() {
-      if (window.matchMedia("(hover: hover)").matches && !pinned) {
+      ha.removeAttribute("data-hovered");
+      if (window.matchMedia("(hover: hover)").matches && !ha.hasAttribute("data-pinned")) {
         closeTooltip();
       }
     }
@@ -308,44 +345,38 @@
     }
 
     btn.addEventListener("focus", function () {
-      showTooltip(ha);
+      if (!ha.hasAttribute("data-pinned")) showTooltip(ha);
     });
 
     btn.addEventListener("blur", function () {
-      if (!pinned) {
-        closeTooltip();
-      }
+      if (!ha.hasAttribute("data-pinned")) closeTooltip();
     });
 
     btn.addEventListener("click", function (e) {
       e.stopPropagation();
-      pinned = !pinned;
-      if (pinned) {
-        showTooltip(ha);
+      if (ha.hasAttribute("data-pinned")) {
+        unpinHitArea(ha);
       } else {
-        closeTooltip();
+        showAndPin(ha);
       }
     });
 
     btn.addEventListener("keydown", function (e) {
       if (e.key === "Escape") {
-        pinned = false;
-        closeTooltip();
+        unpinHitArea(ha);
         btn.blur();
       } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         e.preventDefault();
         var next = index + 1;
         if (next < hitAreas.length) {
-          pinned = false;
-          closeTooltip();
+          unpinHitArea(ha);
           focusHitArea(next);
         }
       } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         e.preventDefault();
         var prev = index - 1;
         if (prev >= 0) {
-          pinned = false;
-          closeTooltip();
+          unpinHitArea(ha);
           focusHitArea(prev);
         }
       }
@@ -354,6 +385,8 @@
 
   document.addEventListener("pointerdown", function (e) {
     if (!e.target.closest(".event-study") && !e.target.closest(".event-study__tooltip")) {
+      /* Close and unpin everything */
+      hitAreas.forEach(function (ha) { unpinHitArea(ha); });
       closeTooltip();
     }
   });
@@ -362,10 +395,12 @@
     if (e.key === "Escape" && activeIndex !== null) {
       var ha = getHitArea(activeIndex);
       if (ha) {
+        unpinHitArea(ha);
         var btn = ha.querySelector(".event-study__point-btn");
         if (btn) btn.blur();
+      } else {
+        closeTooltip();
       }
-      closeTooltip();
     }
   });
 

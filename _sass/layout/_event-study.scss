@@ -57,7 +57,7 @@
     // The series (navy) and zero line (red) stay fixed — they're meaningful.
     // Axes, gridlines, and labels adapt to the theme.
     line, text {
-      transition: stroke 200ms ease, fill 200ms ease;
+      /* No hover transitions — must feel instant like the ancova template */
     }
   }
 
@@ -124,6 +124,23 @@
   &__point-btn:focus-visible circle {
     stroke: var(--global-link-color);
     stroke-width: 3;
+  }
+
+  /* Hover state: enlarge the marker ring slightly for instant feedback */
+  &__point-hitarea:hover &__marker-ring {
+    stroke-width: 2.5;
+    opacity: 0.8;
+  }
+
+  /* Pinned state: ring stays enlarged + accent stroke */
+  &__point-hitarea[data-pinned] &__marker-ring {
+    stroke: var(--global-link-color);
+    stroke-width: 3;
+    opacity: 1;
+  }
+
+  &__point-hitarea[data-pinned] &__point-btn {
+    cursor: pointer;
   }
 
   /* Data disclosure */
