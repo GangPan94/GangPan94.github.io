@@ -110,6 +110,11 @@
   &__point-btn {
     cursor: pointer;
     outline: none;
+    pointer-events: all;
+  }
+
+  &__point-hitarea {
+    pointer-events: all;
   }
 
   &__point-btn:focus-visible {

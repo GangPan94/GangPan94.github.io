@@ -149,7 +149,8 @@
            data-base="{{ item.base }}"
            data-tooltip="{{ item.tooltip | escape }}"
            data-label="{{ item.label | escape }}">
-          <circle cx="{{ cx }}" cy="{{ cy }}" r="14" fill="transparent" class="event-study__point-btn" tabindex="0" role="button"
+          <title>{{ item.label | escape }}: {{ item.tooltip | strip_html | escape }}</title>
+          <circle cx="{{ cx }}" cy="{{ cy }}" r="20" fill="white" fill-opacity="0" stroke="none" class="event-study__point-btn" tabindex="0" role="button"
             aria-label="{{ item.label | escape }}: {{ item.tooltip | strip_html | escape }}"/>
         </g>
       {% endfor %}
@@ -158,8 +159,7 @@
 
   <details class="event-study__data">
     <summary>View exact data and method details</summary>
-    <p class="event-study__method"><strong>Method details:</strong> {{ es.method_note }}</p>
-    <p class="event-study__method"><strong>Manuscript caption:</strong> {{ es.manuscript_caption }}</p>
+    <p class="event-study__method">{{ es.method_note }}</p>
     <div class="event-study__table-wrap">
       <table>
         <caption>Exact coefficient estimates and confidence intervals</caption>
@@ -284,17 +284,28 @@
     var btn = ha.querySelector(".event-study__point-btn");
     var pinned = false;
 
-    ha.addEventListener("pointerenter", function () {
+    // Use both pointer and mouse events for cross-browser SVG hover reliability.
+    function enter() {
       if (window.matchMedia("(hover: hover)").matches && !pinned) {
         showTooltip(ha);
       }
-    });
-
-    ha.addEventListener("pointerleave", function () {
+    }
+    function leave() {
       if (window.matchMedia("(hover: hover)").matches && !pinned) {
         closeTooltip();
       }
-    });
+    }
+
+    ha.addEventListener("pointerenter", enter);
+    ha.addEventListener("pointerleave", leave);
+    ha.addEventListener("mouseenter", enter);
+    ha.addEventListener("mouseleave", leave);
+    if (btn && btn !== ha) {
+      btn.addEventListener("pointerenter", enter);
+      btn.addEventListener("pointerleave", leave);
+      btn.addEventListener("mouseenter", enter);
+      btn.addEventListener("mouseleave", leave);
+    }
 
     btn.addEventListener("focus", function () {
       showTooltip(ha);
