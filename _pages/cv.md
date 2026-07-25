@@ -9,6 +9,35 @@ redirect_from:
 
 {% include base_path %}
 
+<style>
+  .cv-formal-download {
+    margin-bottom: 1.5em;
+    font-size: 0.875em;
+  }
+  .cv-formal-download a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    color: var(--global-text-color-light, #494e62);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--global-text-color-light, #494e62);
+    transition: color 0.2s, border-bottom-style 0.2s;
+  }
+  .cv-formal-download a:hover {
+    color: var(--global-brand-color, #1E40AF);
+    border-bottom-style: solid;
+  }
+  .cv-formal-download .fa-file-pdf {
+    color: var(--global-brand-color, #7a8288);
+  }
+</style>
+
+<div class="cv-formal-download">
+  <a href="https://drive.google.com/file/d/10l7CPU-Fk5GhuHQjzHt6aUe6olGVTkeO/view?usp=sharing" target="_blank" rel="noopener">
+    <i class="fas fa-file-pdf"></i> Request formal CV
+  </a>
+</div>
+
 ## Education
 * **Ph.D. in Accounting**, Washington University in St. Louis, 2024
 * **M.S. in Business Administration, Accounting**, Washington University in St. Louis, 2023
