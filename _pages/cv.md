@@ -30,6 +30,22 @@ redirect_from:
   .cv-formal-download .fa-file-pdf {
     color: var(--global-brand-color, #7a8288);
   }
+  .cv-section-pointer {
+    font-size: 0.9em;
+    color: var(--global-text-color-light, #494e62);
+    margin-top: -0.5em;
+    margin-bottom: 1em;
+  }
+  .cv-section-pointer a {
+    color: var(--global-link-color, inherit);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--global-text-color-light, #494e62);
+    transition: color 0.2s, border-bottom-style 0.2s;
+  }
+  .cv-section-pointer a:hover {
+    color: var(--global-link-color-hover, var(--global-brand-color, #1E40AF));
+    border-bottom-style: solid;
+  }
 </style>
 
 <div class="cv-formal-download">
@@ -53,24 +69,19 @@ redirect_from:
 I apply neoclassical economic analysis to the study of corporate taxation, the structure and role of capital information intermediaries, the real effects of accounting, the accounting labor market, and firm strategies.
 
 ## Research
-See the [Academic Research page](/publications/) for the full list of working papers and publications.
+<p class="cv-section-pointer">
+  See the <a href="/publications/">Academic Research page</a> for the full list of working papers and publications.
+</p>
 
-## Talks and Conference Presentations
-See the [Talks page](/talks/) for the full list of talks and presentations.
-
-## Conference Participation
-* **Nicholas Dopuch Accounting Research Conference**: 2019, 2021, 2022, 2024, 2025
-* **AAA Annual meeting**: 2023
-* **Fox and Haskayne Accounting Conference**: 2024
-* **Annual Ohio State and Local Tax Conference**: 2024
-* **Accounting and Economics Society Summer Camp**: 2020, 2022
-* **Labor and Accounting Group Conference**: 2022
-* **CAPANA Research Conference**: 2018
-* **AAA New Faculty Consortium**: 2026
-* **IAS PhD/New Faculty Consortium**: 2026
+## Talks, Presentations, and Conference Participation
+<p class="cv-section-pointer">
+  See the <a href="/talks/">Talks page</a> for the full list of talks, presentations, and conference participation.
+</p>
 
 ## Teaching
-See the [Teaching page](/teaching/) for the full list of courses taught.
+<p class="cv-section-pointer">
+  See the <a href="/teaching/">Teaching page</a> for the full list of courses taught.
+</p>
 
 ## Service and Leadership
 * **Ad Hoc Referee**, Business Horizons (2025)
