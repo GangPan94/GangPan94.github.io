@@ -91,11 +91,12 @@ I apply neoclassical economic analysis to the study of corporate taxation, the s
 * **Ad Hoc Referee**, Annual Conference of the Accounting and Economics Society (2025)
 * **Research committee member**, The University of Akron (2024-present)
 * **Hiring committee member**, The University of Akron (2025)
-* **Student professional development committee member**, The University of Akron (2024-present)
+* **Student professional development committee member**, The University of Akron (2024-2025)
 * **Ph.D. Student Committee member**, Washington University (2022-2023)
 * **Simon Hall Student Seminar organizer**, Washington University (2022-2023)
 
 ## Honors and Scholarships
+* **Bernat Family Endowed Fellowship**, The University of Akron (2026)
 * **Buchan Prize**, Olin Business School, Washington University (2023)
 * **Doctoral Fellowship**, Olin Business School, Washington University (2019)
 * **Faculty Development Program Endowment**, Xiamen University (2016)
@@ -105,12 +106,14 @@ I apply neoclassical economic analysis to the study of corporate taxation, the s
 * **Audit Intern**, Ernst & Young, Assurance Department, Beijing, China (Spring 2016)
 * **Campus Recruitment Assistant**, Ernst & Young, HR Department, Xiamen, China (2015-2016)
 
-## Skills
+## Skills and Certifications
+* **Certifications**: Gemini Certified Faculty
 * **Programming**: LaTeX, Matlab, Mathematica, Python, SAS, STATA
 * **Languages**: English, Mandarin Chinese
 
 ## Professional Memberships
 * **American Accounting Association** (2023 -- Present)
 * **American Taxation Association** (2023 -- Present)
+* **The Ohio Society of CPAs** (2024 -- Present)
 * **AAA International Accounting Section** (2025 -- Present)
 * **Accounting and Economics Society** (2024 -- Present)
