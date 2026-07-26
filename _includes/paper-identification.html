@@ -1,0 +1,11 @@
+{% comment %}
+  Identification summary — sticky, 3-4 sentences.
+  Reads from page frontmatter: identification.
+{% endcomment %}
+
+{% if page.identification %}
+  <aside class="paper__identification" aria-label="Identification strategy">
+    <h2 class="paper__section-title">Identification</h2>
+    <p itemprop="text">{{ page.identification }}</p>
+  </aside>
+{% endif %}

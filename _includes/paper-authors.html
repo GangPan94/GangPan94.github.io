@@ -1,0 +1,16 @@
+{% comment %}
+  Authors block — full author list with affiliations and email links.
+  Reads from page frontmatter: paper_authors (rendered markdown string).
+{% endcomment %}
+
+{% if page.paper_authors %}
+  <section class="paper__authors-block" aria-label="Authors">
+    <h2 class="paper__section-title">Authors</h2>
+    <p class="paper__authors-full">{{ page.paper_authors | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+    {% if page.email and page.email != blank and page.email != '' %}
+      <p class="paper__authors-full" style="margin-top: 0.3rem; font-size: 0.85rem;">
+        <a href="mailto:{{ page.email }}">{{ page.email }}</a>
+      </p>
+    {% endif %}
+  </section>
+{% endif %}

@@ -1,0 +1,23 @@
+{% comment %}
+  Key findings — bullets with economic magnitude.
+  Reads from page frontmatter: key_findings (array of strings).
+  Falls back to page excerpt bullets if not provided.
+{% endcomment %}
+
+{% if page.key_findings %}
+  <section class="paper__findings">
+    <h2 class="paper__section-title">Key findings</h2>
+    <ul class="paper__findings-list">
+      {% for finding in page.key_findings %}
+        <li itemprop="result">{{ finding | markdownify | remove: "<p>" | remove: "</p>" }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% elsif page.main_figure == 'ancova_decomposition' %}
+  {%- comment -%} ANCOVA papers surface findings in the chart itself; skip {%- endcomment -%}
+{% elsif page.excerpt and page.excerpt != blank %}
+  <section class="paper__findings">
+    <h2 class="paper__section-title">Summary</h2>
+    <p>{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+  </section>
+{% endif %}

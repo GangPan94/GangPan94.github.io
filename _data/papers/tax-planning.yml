@@ -1,0 +1,68 @@
+main_table:
+  caption: "Variance decomposition — share of explained variation in excess returns (Table 4, Column 8)"
+  columns:
+    - header: "Strategy"
+      align: left
+    - header: "Variable"
+      align: center
+    - header: "Share"
+      align: center
+    - header: "Definition"
+      align: left
+  rows:
+    - ["Tax planning", "DCETR1", "0.5%", "Reduction in cash taxes paid relative to pretax income"]
+    - ["Pretax profitability", "BTPM1", "2.8%", "Operating profit before taxes as % of sales"]
+    - ["Sales growth", "Growth1", "9.3%", "Percentage increase in sales vs. prior year"]
+    - ["Innovation", "ΔINNOV", "2.2%", "Increase in market value of newly granted patents relative to assets"]
+    - ["COGS savings", "ΔCOGS", "10.7%", "Additional savings from reducing COGS as % of sales"]
+    - ["SG&A savings", "ΔSG&A", "6.0%", "Additional savings from reducing SG&A as % of sales"]
+    - ["Interest savings", "ΔXINT", "0.9%", "Additional savings from reducing interest expense as % of sales"]
+  notes: >
+    Full one-year specification with year and industry fixed effects. Share indicates
+    relative importance (share of explained variation), not direction of effect.
+
+summary_stats:
+  caption: "Summary statistics — key variables across measurement windows"
+  columns:
+    - header: "Variable"
+      align: left
+    - header: "1-year"
+      align: center
+    - header: "3-year"
+      align: center
+    - header: "5-year"
+      align: center
+    - header: "N"
+      align: center
+  rows:
+    - ["Alpha (excess return)", "0.012", "0.038", "0.061", "42,289"]
+    - ["DCETR (tax planning)", "−0.004", "−0.011", "−0.018", "42,289"]
+    - ["Cash ETR", "0.247", "0.241", "0.238", "42,289"]
+    - ["Sales growth", "0.071", "0.219", "0.374", "42,289"]
+    - ["BT/PM (pretax margin)", "0.143", "0.142", "0.140", "42,289"]
+    - ["Interest expense / sales", "0.019", "0.018", "0.017", "42,289"]
+  notes: >
+    Sample: U.S. public firms, FY 1993–2022. Alpha is annualized excess return over
+    cost of capital. DCETR is the net decrease in cash effective tax rate.
+
+horserace:
+  caption: "Horserace regression — standardized coefficients (Table 3)"
+  columns:
+    - header: "Strategy"
+      align: left
+    - header: "Std. coefficient"
+      align: center
+    - header: "Rank"
+      align: center
+  rows:
+    - ["COGS savings (ΔCOGS)", "0.154", "1"]
+    - ["Sales growth (Growth1)", "0.121", "2"]
+    - ["SG&A savings (ΔSG&A)", "0.087", "3"]
+    - ["Innovation (ΔINNOV)", "0.041", "4"]
+    - ["Pretax profitability (BTPM1)", "0.039", "5"]
+    - ["Interest savings (ΔXINT)", "0.018", "6"]
+    - ["Tax planning (DCETR1)", "0.011", "7"]
+  notes: >
+    All variables standardized to unit variance. Coefficients are directly comparable.
+    Tax planning has the smallest factor loading — last place among the seven strategies
+    compared.

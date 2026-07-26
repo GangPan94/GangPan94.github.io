@@ -1,0 +1,47 @@
+{% comment %}
+  Main table — tabular-figures HTML from YAML data.
+  Reads from page frontmatter: main_table_data (slug pointing to _data/papers/<slug>.yml).
+  The data file should have a `main_table` object with:
+    - caption: string
+    - columns: [{ header, align }]
+    - rows: [[value, value, ...]]
+    - notes: string (optional)
+{% endcomment %}
+
+{% if page.main_table_data %}
+  {% assign table_data = site.data.papers[page.main_table_data].main_table %}
+  {% if table_data %}
+    <section class="paper__table-section">
+      <h2 class="paper__section-title">{{ table_data.caption | default: "Main results" }}</h2>
+      <div class="paper__table-wrap">
+        <table class="paper__table">
+          {% if table_data.columns %}
+            <thead>
+              <tr>
+                {% for col in table_data.columns %}
+                  <th scope="col" style="text-align: {{ col.align | default: 'center' }}">{{ col.header }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+          {% endif %}
+          <tbody>
+            {% for row in table_data.rows %}
+              <tr>
+                {% for cell in row %}
+                  {% if forloop.first %}
+                    <th scope="row" class="paper__table-row-label">{{ cell }}</th>
+                  {% else %}
+                    <td style="text-align: center">{{ cell }}</td>
+                  {% endif %}
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% if table_data.notes %}
+        <p class="paper__table-notes">{{ table_data.notes }}</p>
+      {% endif %}
+    </section>
+  {% endif %}
+{% endif %}

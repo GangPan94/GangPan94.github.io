@@ -1,0 +1,55 @@
+# Mind map data for "The Competitive Advantage of Tax Planning"
+# Used by _includes/paper-mindmap.html
+# Structure: center node + branches with children (up to 2 levels deep)
+
+center:
+  label: "Does corporate tax planning create a substantial competitive advantage?"
+  type: question
+
+branches:
+  - label: "Three Questions"
+    icon: "question"
+    color: "primary"
+    children:
+      - label: "Does it EXIST?"
+        detail: "Tax planning innovations → excess returns"
+      - label: "What is its MAGNITUDE?"
+        detail: "How large are the excess returns?"
+      - label: "Does it PERSIST?"
+        detail: "Or do market forces erode the advantage?"
+
+  - label: "Empirical Approach"
+    icon: "chart"
+    color: "method"
+    children:
+      - label: "DCETR × Alpha"
+        detail: "Cross-sectional regressions, firm & year FE"
+
+  - label: "Causal Identification"
+    icon: "scale"
+    color: "id"
+    children:
+      - label: "TCJA Event Study"
+        detail: "Market reactions to 2017 legislation events"
+      - label: "DiD: Cross-border relocation"
+        detail: "Relation erodes post-2017 for exposed firms"
+
+  - label: "Key Findings"
+    icon: "results"
+    color: "finding"
+    children:
+      - label: "Advantage EXISTS but is MODEST"
+        detail: "0.5% of variation vs 9.3% for sales growth"
+      - label: "Does NOT persist"
+        detail: "Cash ETRs converge in the long run"
+      - label: "Ranks LAST in horserace"
+        detail: "Even interest-expense cuts (0.9%) outperform"
+
+  - label: "Implications"
+    icon: "lightbulb"
+    color: "implication"
+    children:
+      - label: "Essential but not significant"
+        detail: "Tax planning is part of strategy, not a major edge"
+      - label: "Market forces limit benefits"
+        detail: "Little need for complex anti-avoidance codes"

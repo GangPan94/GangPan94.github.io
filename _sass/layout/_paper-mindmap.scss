@@ -1,0 +1,254 @@
+// ==========================================================================
+//   Paper mind map — visual abstract of the paper's argument flow
+//   Scoped under .paper--detail .paper__mindmap
+//   Uses site --global-* tokens for theme-aware colors.
+//   IKB blue (#002fa7 / #8fb3ff) as primary accent.
+// ==========================================================================
+
+.paper--detail .paper__mindmap {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--global-raised-bg-color);
+  border: 1px solid var(--global-border-color);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+  .paper__section-title {
+    margin-top: 0;
+  }
+
+  // ── Hint text ────────────────────────────────────────────────────────
+  .paper__mindmap-hint {
+    margin: -0.4rem 0 1rem;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--global-text-color-light);
+  }
+
+  // ── Canvas ───────────────────────────────────────────────────────────
+  .paper__mindmap-canvas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  // ── Center node (research question) ──────────────────────────────────
+  .paper__mindmap-center {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.85rem 1rem;
+    background: var(--global-subtle-bg-color);
+    border: 2px solid var(--global-base-color);
+    border-radius: 0.6rem;
+    box-shadow: 0 2px 8px rgba(0, 47, 167, 0.15);
+  }
+
+  .paper__mindmap-center-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: var(--global-base-color);
+    color: var(--global-bg-color);
+    font-size: 0.85rem;
+
+    i { line-height: 1; }
+  }
+
+  .paper__mindmap-center-text {
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--global-text-color);
+  }
+
+  // ── Branches container ───────────────────────────────────────────────
+  .paper__mindmap-branches {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+
+    @media (min-width: 640px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  // ── Branch card ──────────────────────────────────────────────────────
+  .paper__mindmap-branch {
+    --mm-accent: var(--global-base-color);
+    --mm-accent-soft: var(--global-subtle-bg-color);
+
+    position: relative;
+    padding: 0.6rem 0.8rem;
+    background: var(--global-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-left: 3px solid var(--mm-accent);
+    border-radius: 0.35rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--mm-accent);
+      box-shadow: 0 2px 6px rgba(0, 47, 167, 0.12);
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px var(--mm-accent);
+    }
+
+    // ── Color variants per branch type ──────────────────────────────
+    &--primary { --mm-accent: var(--global-base-color); }
+    &--method { --mm-accent: #6d28d9; }   // purple — methodology
+    &--id { --mm-accent: #b45309; }        // amber — identification
+    &--finding { --mm-accent: #047857; }   // green — findings
+    &--implication { --mm-accent: #be123c; } // rose — implications
+    &--setting { --mm-accent: #6d28d9; }   // purple — setting
+    &--mechanism { --mm-accent: #b45309; } // amber — mechanism
+
+    // Dark-mode color adjustments for better contrast
+    html[data-theme="dark"] & {
+      &--method { --mm-accent: #c4b5fd; }
+      &--id { --mm-accent: #fcd34d; }
+      &--finding { --mm-accent: #6ee7b7; }
+      &--implication { --mm-accent: #fda4af; }
+      &--setting { --mm-accent: #c4b5fd; }
+      &--mechanism { --mm-accent: #fcd34d; }
+    }
+  }
+
+  .paper__mindmap-branch-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .paper__mindmap-branch-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.3rem;
+    background: var(--mm-accent);
+    color: var(--global-bg-color);
+    font-size: 0.75rem;
+
+    i { line-height: 1; }
+
+    // Dark mode: use a darker text color for contrast on light icons
+    html[data-theme="dark"] & {
+      color: #0d1321;
+    }
+  }
+
+  .paper__mindmap-branch-label {
+    flex: 1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--global-text-color);
+  }
+
+  .paper__mindmap-branch-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    color: var(--global-text-color-light);
+    font-size: 0.7rem;
+    transition: transform 0.25s ease;
+  }
+
+  // ── Expanded state ───────────────────────────────────────────────────
+  .paper__mindmap-branch[aria-expanded="true"] {
+    .paper__mindmap-branch-toggle {
+      transform: rotate(90deg);
+    }
+  }
+
+  // ── Children (detail nodes) ──────────────────────────────────────────
+  .paper__mindmap-children {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, margin-top 0.3s ease;
+  }
+
+  .paper__mindmap-branch[aria-expanded="true"] .paper__mindmap-children {
+    max-height: 500px;
+    margin-top: 0.5rem;
+  }
+
+  .paper__mindmap-child {
+    position: relative;
+    margin-bottom: 0.35rem;
+    padding: 0.35rem 0 0.35rem 0.85rem;
+    border-top: 1px solid var(--global-border-color);
+
+    &:first-child {
+      border-top: none;
+      padding-top: 0.35rem;
+    }
+
+    // Connector line
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.7rem;
+      width: 0.4rem;
+      height: 1px;
+      background: var(--mm-accent);
+      opacity: 0.6;
+    }
+
+    // Dot marker
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0.4rem;
+      top: 0.6rem;
+      width: 0.25rem;
+      height: 0.25rem;
+      border-radius: 50%;
+      background: var(--mm-accent);
+      opacity: 0.7;
+    }
+  }
+
+  .paper__mindmap-child-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--global-text-color);
+  }
+
+  .paper__mindmap-child-detail {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.76rem;
+    line-height: 1.45;
+    color: var(--global-text-color-light);
+  }
+
+  // ── Mobile: single column always ─────────────────────────────────────
+  @media (max-width: 639px) {
+    .paper__mindmap-branches {
+      grid-template-columns: 1fr;
+    }
+  }
+}

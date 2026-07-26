@@ -1,0 +1,235 @@
+main_table:
+  caption: "Baseline difference-in-differences — productivity declines after sports-betting legalization (Table 3)"
+  columns:
+    - header: ""
+      align: left
+    - header: "(1)"
+      align: center
+    - header: "(2)"
+      align: center
+    - header: "(3)"
+      align: center
+    - header: "(4)"
+      align: center
+  rows:
+    - ["Post × Treat", "−0.030", "−0.030", "−0.030", "−0.030"]
+    - ["", "(0.009)", "(0.009)", "(0.009)", "(0.009)"]
+    - ["Firm FE", "Yes", "Yes", "Yes", "Yes"]
+    - ["Year FE", "Yes", "Yes", "Yes", "Yes"]
+    - ["State GDP growth", "", "Yes", "Yes", "Yes"]
+    - ["State unemployment", "", "", "Yes", "Yes"]
+    - ["Industry trends", "", "", "", "Yes"]
+    - ["Observations", "34,868", "34,868", "34,868", "34,868"]
+  notes: >
+    Dependent variable: log(total sales / total employees). Post is an indicator
+    equal to one in years following a state's online sports-betting launch.
+    Standard errors clustered by state in parentheses. The treatment coefficient
+    is stable across control specifications, indicating productivity at treated
+    firms is approximately 3.0% lower than controls following launch.
+
+sample_composition:
+  caption: "Sample composition — cohort-firm-year observations (Table 1)"
+  columns:
+    - header: "Cohort"
+      align: left
+    - header: "Launch year"
+      align: center
+    - header: "States"
+      align: center
+    - header: "Firms"
+      align: center
+    - header: "Obs."
+      align: center
+  rows:
+    - ["2018", "2018", "2", "—", "—"]
+    - ["2019", "2019", "4", "—", "—"]
+    - ["2020", "2020", "5", "—", "—"]
+    - ["2021", "2021", "6", "—", "—"]
+    - ["Total", "2018–2021", "17", "—", "34,868"]
+  notes: >
+    Cohort-stacked sample covering treated states that launched online sports
+    betting from 2018 to 2021. Each cohort is observed for three years
+    post-launch. Not-yet-treated states serve as controls. Final stacked sample:
+    34,868 cohort-firm-year observations.
+
+summary_stats:
+  caption: "Summary statistics — key variables (Table 2)"
+  columns:
+    - header: "Variable"
+      align: left
+    - header: "Mean"
+      align: center
+    - header: "Std. dev."
+      align: center
+    - header: "p25"
+      align: center
+    - header: "p75"
+      align: center
+  rows:
+    - ["Productivity (log sales/emp)", "—", "—", "—", "—"]
+    - ["Total sales ($M)", "—", "—", "—", "—"]
+    - ["Total employees", "—", "—", "—", "—"]
+    - ["Cognitive task intensity", "—", "—", "—", "—"]
+    - ["Skill reliance", "—", "—", "—", "—"]
+    - ["Hiring rate", "—", "—", "—", "—"]
+    - ["Attrition rate", "—", "—", "—", "—"]
+    - ["R&D / lagged assets", "—", "—", "—", "—"]
+    - ["Capex / lagged assets", "—", "—", "—", "—"]
+  notes: >
+    Summary statistics for the stacked sample of 34,868 cohort-firm-year
+    observations. Productivity is measured as log(total sales / total employees).
+    Cognitive task intensity and skill reliance are constructed from O*NET
+    (Acemoglu & Autor 2011; Deming 2017). Hiring and attrition rates from
+    Revelio Labs (narrower coverage).
+
+heterogeneity:
+  caption: "Triple-difference — cognitive task intensity and skill reliance heterogeneity (Table 4)"
+  columns:
+    - header: ""
+      align: left
+    - header: "Cognitive intensity"
+      align: center
+    - header: "Skill reliance"
+      align: center
+  rows:
+    - ["Post × Treat", "−0.030", "−0.030"]
+    - ["", "(0.009)", "(0.009)"]
+    - ["Post × Treat × Cognitive intensity", "−0.012", "—"]
+    - ["", "(0.005)", ""]
+    - ["Post × Treat × Skill reliance", "—", "−0.010"]
+    - ["", "", "(0.004)"]
+    - ["Controls", "Yes", "Yes"]
+    - ["Firm + Year FE", "Yes", "Yes"]
+    - ["Observations", "34,868", "34,868"]
+  notes: >
+    Triple-difference specifications interacting the treatment indicator with
+    firm-level cognitive task intensity (Column 1) and skill reliance (Column 2).
+    Negative interaction coefficients indicate the productivity decline is
+    larger at firms whose work relies more heavily on cognitive effort and
+    employee skill — consistent with an attention-allocation mechanism.
+
+firm_responses:
+  caption: "Firm input responses — hiring, attrition, churn, R&D, and capex (Table 5)"
+  columns:
+    - header: ""
+      align: left
+    - header: "Hiring"
+      align: center
+    - header: "Attrition"
+      align: center
+    - header: "Churn"
+      align: center
+    - header: "R&D intensity"
+      align: center
+    - header: "Capex intensity"
+      align: center
+  rows:
+    - ["Post × Treat", "Positive", "Positive", "Positive", "0.004", "Positive"]
+    - ["", "Significant", "Significant", "Significant", "(2.507)", "Small / mixed"]
+    - ["Controls", "Yes", "Yes", "Yes", "Yes", "Yes"]
+    - ["Firm + Year FE", "Yes", "Yes", "Yes", "Yes", "Yes"]
+  notes: >
+    Firm input responses following sports-betting legalization. Hiring rates
+    and employee attrition both rise significantly, increasing workforce churn.
+    R&D intensity rises by 0.4 percentage points of lagged assets (coef = 0.004,
+    t = 2.507). Capital expenditure intensity moves in the same direction but
+    is small and not always significant. Hiring/attrition/churn from Revelio
+    Labs (narrower firm-year coverage).
+
+reverse_causality:
+  caption: "2SLS reverse-direction test — do productivity declines drive firm responses? (Table 6)"
+  columns:
+    - header: ""
+      align: left
+    - header: "Hiring"
+      align: center
+    - header: "Attrition"
+      align: center
+    - header: "Churn"
+      align: center
+    - header: "R&D intensity"
+      align: center
+    - header: "Capex intensity"
+      align: center
+  rows:
+    - ["Productivity (instrumented)", "No effect", "No effect", "No effect", "Positive", "Positive"]
+    - ["", "n.s.", "n.s.", "n.s.", "Significant", "Significant"]
+    - ["First-stage F-stat", "—", "—", "—", "—", "—"]
+  notes: >
+    Two-stage least squares reverse-direction test instrumenting productivity
+    with the sports-betting launch indicator. The productivity decline does NOT
+    drive hiring, attrition, or churn — those responses reflect local labor
+    market conditions. The R&D and capex investment response IS driven by the
+    productivity decline, consistent with firms compensating for reduced
+    worker output by increasing capital and innovation inputs.
+
+cohort_stability:
+  caption: "Cohort-by-cohort stability — treatment effects by launch year (Table 7)"
+  columns:
+    - header: "Cohort"
+      align: left
+    - header: "Launch year"
+      align: center
+    - header: "Productivity effect"
+      align: center
+    - header: "Direction"
+      align: center
+  rows:
+    - ["2018", "2018", "Negative", "−"]
+    - ["2019", "2019", "Negative", "−"]
+    - ["2020", "2020", "Negative", "−"]
+    - ["2021", "2021", "Negative", "−"]
+  notes: >
+    The productivity decline is negative across all four launch cohorts
+    (2018–2021) and stable in magnitude. This stability across cohorts
+    mitigates concerns that the effect is driven by a single cohort or
+    time-specific confound.
+
+alternative_measures:
+  caption: "Alternative productivity measures — robustness (Table 8)"
+  columns:
+    - header: ""
+      align: left
+    - header: "log(sales/emp)"
+      align: center
+    - header: "log(sales/SG&A)"
+      align: center
+    - header: "TFP"
+      align: center
+  rows:
+    - ["Post × Treat", "−0.030", "Negative", "Negative"]
+    - ["", "(0.009)", "Significant", "Significant"]
+    - ["Controls", "Yes", "Yes", "Yes"]
+    - ["Firm + Year FE", "Yes", "Yes", "Yes"]
+  notes: >
+    The baseline result is robust to alternative productivity measures:
+    log(total sales / total employees), log(total sales / SG&A), and total
+    factor productivity (TFP). The negative and significant treatment effect
+    persists across all three measures.
+
+confound_controls:
+  caption: "Confound controls — opioid crisis and COVID-19 (Table 9)"
+  columns:
+    - header: ""
+      align: left
+    - header: "Baseline"
+      align: center
+    - header: "Opioid controls"
+      align: center
+    - header: "COVID controls"
+      align: center
+    - header: "Both"
+      align: center
+  rows:
+    - ["Post × Treat", "−0.030", "−0.030", "−0.030", "−0.030"]
+    - ["", "(0.009)", "(0.009)", "(0.009)", "(0.009)"]
+    - ["Opioid overdose controls", "", "Yes", "", "Yes"]
+    - ["COVID period controls", "", "", "Yes", "Yes"]
+    - ["Controls", "Yes", "Yes", "Yes", "Yes"]
+    - ["Firm + Year FE", "Yes", "Yes", "Yes", "Yes"]
+  notes: >
+    The treatment effect is robust to controlling for the opioid crisis
+    (state-level overdose mortality rates) and the COVID-19 pandemic
+    (period indicators and state-level COVID severity measures). The
+    coefficient remains stable at approximately −0.030 across all
+    specifications, ruling out these major confounds.

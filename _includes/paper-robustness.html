@@ -1,0 +1,24 @@
+{% comment %}
+  Robustness — collapsible sections.
+  Reads from page frontmatter: robustness (array of strings or { title, description }).
+{% endcomment %}
+
+{% if page.robustness %}
+  <section class="paper__robustness">
+    <h2 class="paper__section-title">Robustness</h2>
+    <details class="paper__robustness-details">
+      <summary>Show robustness checks</summary>
+      <ul class="paper__robustness-list">
+        {% for item in page.robustness %}
+          <li>
+            {% if item.title %}
+              <strong>{{ item.title }}</strong> — {{ item.description }}
+            {% else %}
+              {{ item }}
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </details>
+  </section>
+{% endif %}

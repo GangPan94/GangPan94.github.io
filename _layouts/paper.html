@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+{% include base_path %}
+
+<div id="main" role="main">
+  {% include sidebar.html %}
+
+  <article class="page paper paper--detail" itemscope itemtype="http://schema.org/ScholarlyArticle">
+    {% include paper-hero.html %}
+
+    {% include paper-identification.html %}
+
+    {% include paper-mindmap.html %}
+
+    {% include paper-abstract.html %}
+
+    {% include paper-findings.html %}
+
+    {% if page.main_figure == 'event_study' %}
+      {% include sports-betting-event-study.html %}
+    {% elsif page.main_figure == 'ancova_decomposition' %}
+      {% include ancova-decomposition.html %}
+    {% elsif page.main_figure %}
+      {% include {{ page.main_figure }}.html %}
+    {% endif %}
+
+    {% include paper-table.html %}
+
+    {% include paper-extra-tables.html %}
+
+    {% include paper-background.html %}
+
+    {% include paper-data.html %}
+
+    {% include paper-robustness.html %}
+
+    {% include paper-authors.html %}
+
+    {% include paper-citation.html %}
+  </article>
+
+  <nav class="paper__back-nav" aria-label="Publication navigation">
+    <a href="{{ base_path }}/publications/" rel="up">← All publications</a>
+  </nav>
+
+  {% unless page.collection == 'teaching' %}
+    {% include post_pagination.html %}
+  {% endunless %}
+</div>

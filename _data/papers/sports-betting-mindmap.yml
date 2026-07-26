@@ -1,0 +1,54 @@
+# Mind map data for "Labor Productivity and Firm Strategic Response"
+# Used by _includes/paper-mindmap.html
+
+center:
+  label: "What happens to worker productivity when a state legalizes online sports betting?"
+  type: question
+
+branches:
+  - label: "Setting"
+    icon: "gavel"
+    color: "setting"
+    children:
+      - label: "Murphy v. NCAA (2018)"
+        detail: "Supreme Court strikes down PASPA"
+      - label: "Staggered legalization"
+        detail: "State-by-state rollout, 2018–2021"
+
+  - label: "Mechanism"
+    icon: "brain"
+    color: "mechanism"
+    children:
+      - label: "Attention allocation"
+        detail: "Betting diverts cognitive resources from work"
+      - label: "Three channels"
+        detail: "Time consumption · Emotional volatility · Financial stress & mental health"
+
+  - label: "Identification"
+    icon: "scale"
+    color: "id"
+    children:
+      - label: "Cohort-stacked DiD"
+        detail: "Treated vs not-yet-treated controls, t=−1 base"
+      - label: "Parallel trends"
+        detail: "Pre-launch coefficients jointly insignificant"
+
+  - label: "Key Findings"
+    icon: "results"
+    color: "finding"
+    children:
+      - label: "Productivity −3.0%"
+        detail: "Stronger at cognitively intensive firms"
+      - label: "Hiring & attrition rise"
+        detail: "Increased workforce churn"
+      - label: "R&D +0.4pp"
+        detail: "Firms invest more in response to productivity loss"
+
+  - label: "Implications"
+    icon: "lightbulb"
+    color: "implication"
+    children:
+      - label: "Costs extend beyond bettors"
+        detail: "Firms bear productivity costs through worker attention"
+      - label: "Speculative market liberalization"
+        detail: "Real economic consequences for firms and labor"

@@ -1,0 +1,30 @@
+{% comment %}
+  Data sources — named sources, sample period, unit of observation.
+  Reads from page frontmatter: data_sources (array of { source, period, unit }).
+{% endcomment %}
+
+{% if page.data_sources %}
+  <section class="paper__data">
+    <h2 class="paper__section-title">Data</h2>
+    <div class="paper__table-wrap">
+      <table class="paper__table paper__table--data">
+        <thead>
+          <tr>
+            <th scope="col">Source</th>
+            <th scope="col">Sample period</th>
+            <th scope="col">Unit of observation</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ds in page.data_sources %}
+            <tr>
+              <th scope="row">{{ ds.source }}</th>
+              <td>{{ ds.period }}</td>
+              <td>{{ ds.unit }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{% endif %}

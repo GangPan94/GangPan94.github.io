@@ -1,0 +1,11 @@
+{% comment %}
+  Institutional background — renders the markdown body of the publication file.
+  Falls back gracefully if no body content.
+{% endcomment %}
+
+{% assign body_content = content | strip %}
+{% if body_content != blank %}
+  <section class="paper__background" itemprop="text">
+    {{ content }}
+  </section>
+{% endif %}

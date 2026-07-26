@@ -1,0 +1,542 @@
+// ==========================================================================
+//   Paper detail pages — academic conservative styling
+//   Scoped under .paper--detail so it never leaks into other layouts.
+//   Uses site --global-* tokens for theme-aware colors.
+//   Serif headings, muted palette, tabular figures for tables.
+// ==========================================================================
+
+// .page class from _page.scss handles layout: span(10 of 12 last) + prefix/suffix
+// on large screens, which pushes content right of the fixed sidebar.
+// We only add paper-specific typography and section styling here.
+.paper--detail {
+  padding: 0 1rem 2rem;
+  font-size: 1rem;
+  line-height: 1.7;
+
+  // ── Section titles ──────────────────────────────────────────────────
+  .paper__section-title {
+    margin: 2rem 0 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--global-border-color);
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--global-text-color);
+    letter-spacing: 0.01em;
+  }
+
+  // ── Hero ────────────────────────────────────────────────────────────
+  .paper__hero {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--global-raised-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-left: 4px solid var(--global-base-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+  }
+
+  .paper__category {
+    margin: 0 0 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--global-text-color-light);
+  }
+
+  .paper__title {
+    margin: 0 0 0.75rem;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--global-text-color);
+  }
+
+  .paper__question {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--global-text-color-light);
+  }
+
+  .paper__authors {
+    margin: 0 0 0.4rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--global-text-color);
+
+    strong, b {
+      color: var(--global-base-color);
+    }
+  }
+
+  .paper__date {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    color: var(--global-text-color-light);
+  }
+
+  .paper__quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .paper__quick-link {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--global-border-color);
+    border-radius: 0.25rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--global-link-color);
+    background: var(--global-raised-bg-color);
+    transition: background 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      background: var(--global-subtle-bg-color);
+      border-color: var(--global-link-color);
+      color: var(--global-link-color-hover);
+      text-decoration: none;
+    }
+
+    // Replication link — acfin skill: "prominent"
+    &[href*="replication"],
+    &.paper__quick-link--replication {
+      border-color: var(--global-base-color);
+      font-weight: 600;
+    }
+  }
+
+  // ── Identification (sticky on desktop) ──────────────────────────────
+  .paper__identification {
+    position: sticky;
+    top: 1rem;
+    z-index: 5;
+    margin: 0 -0.5rem 1.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--global-raised-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-left: 3px solid var(--global-base-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+    .paper__section-title {
+      margin: 0 0 0.4rem;
+      padding: 0;
+      border: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--global-text-color);
+    }
+
+    @media (max-width: 768px) {
+      position: static;
+      margin: 0 0 1.5rem;
+    }
+  }
+
+  // ── Key findings ────────────────────────────────────────────────────
+  .paper__findings {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--global-raised-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-left: 3px solid var(--global-base-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+    .paper__section-title {
+      margin-top: 0;
+    }
+
+    .paper__findings-list {
+      margin: 0;
+      padding-left: 1.2rem;
+      list-style: none;
+
+      li {
+        position: relative;
+        margin-bottom: 0.5rem;
+        padding-left: 0.3rem;
+        font-size: 0.96rem;
+        line-height: 1.6;
+
+        &::before {
+          content: "▸";
+          position: absolute;
+          left: -1.1rem;
+          color: var(--global-base-color);
+          font-size: 0.85em;
+        }
+      }
+    }
+  }
+
+  // ── Abstract (collapsible) ─────────────────────────────────────────
+  .paper__abstract {
+    margin-bottom: 1.5rem;
+
+    .paper__abstract-details {
+      border: 1px solid var(--global-border-color);
+      border-radius: 0.5rem;
+      background: var(--global-raised-bg-color);
+      box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+      summary {
+        @extend .paper__section-title;
+        margin: 0;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        list-style: none;
+        border: none;
+
+        &::-webkit-details-marker { display: none; }
+        &::marker { display: none; }
+      }
+
+      &[open] summary {
+        border-bottom: 1px solid var(--global-border-color);
+      }
+    }
+
+    .paper__abstract-text {
+      margin: 0.75rem 1rem;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--global-text-color);
+    }
+
+    .paper__abstract-keywords {
+      margin: 0 1rem 0.75rem;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--global-text-color-light);
+
+      strong { font-style: normal; color: var(--global-text-color); }
+    }
+  }
+
+  // ── Back navigation ────────────────────────────────────────────────
+  .paper__back-nav {
+    margin: 0 0 2rem;
+    text-align: left;
+
+    a {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--global-link-color);
+      text-decoration: none;
+      padding: 0.3rem 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+
+      &:hover {
+        border-color: var(--global-link-color);
+        text-decoration: none;
+      }
+    }
+  }
+
+  // ── Tables (main results + data sources) ───────────────────────────
+  .paper__table-section,
+  .paper__data {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--global-raised-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+    .paper__section-title {
+      margin-top: 0;
+    }
+  }
+
+  .paper__table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .paper__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+
+    thead {
+      th {
+        padding: 0.5rem 0.75rem;
+        background: var(--global-thead-color);
+        border-bottom: 2px solid var(--global-border-color);
+        font-weight: 600;
+        font-size: 0.82rem;
+        color: var(--global-text-color);
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid var(--global-border-color);
+
+        &:nth-child(even) {
+          background: var(--global-raised-bg-color);
+        }
+
+        &:hover {
+          background: var(--global-subtle-bg-color);
+        }
+      }
+
+      td, th {
+        padding: 0.4rem 0.75rem;
+        font-variant-numeric: tabular-nums;
+      }
+    }
+
+    .paper__table-row-label {
+      text-align: left;
+      font-weight: 500;
+      white-space: normal;
+      max-width: 200px;
+    }
+
+    &--data {
+      font-size: 0.85rem;
+
+      tbody td {
+        white-space: normal;
+      }
+    }
+  }
+
+  .paper__table-notes {
+    margin: 0.5rem 0 0;
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--global-text-color-light);
+    line-height: 1.5;
+  }
+
+  // ── Institutional background (markdown body) ────────────────────────
+  .paper__background {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--global-raised-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+    color: var(--global-text-color);
+
+    h2 {
+      margin-top: 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--global-border-color);
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    h3 {
+      margin: 1rem 0 0.5rem;
+      font-family: "Georgia", "Times New Roman", serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--global-text-color);
+    }
+
+    p {
+      margin: 0 0 0.75rem;
+      line-height: 1.7;
+    }
+
+    ul, ol {
+      margin: 0 0 0.75rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.3rem;
+      line-height: 1.6;
+    }
+  }
+
+  // ── Robustness (collapsible) ────────────────────────────────────────
+  .paper__robustness {
+    margin-bottom: 1.5rem;
+
+    .paper__robustness-details {
+      border: 1px solid var(--global-border-color);
+      border-radius: 0.5rem;
+      background: var(--global-raised-bg-color);
+      box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+      summary {
+        padding: 0.6rem 1rem;
+        cursor: pointer;
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--global-link-color);
+        user-select: none;
+
+        &:hover {
+          background: var(--global-subtle-bg-color);
+          border-radius: 0.25rem;
+        }
+      }
+
+      &[open] summary {
+        border-bottom: 1px solid var(--global-border-color);
+      }
+    }
+
+    .paper__robustness-list {
+      margin: 0;
+      padding: 0.75rem 1rem 0.75rem 2.2rem;
+      list-style: disc;
+
+      li {
+        margin-bottom: 0.4rem;
+        font-size: 0.88rem;
+        line-height: 1.5;
+
+        strong {
+          color: var(--global-base-color);
+        }
+      }
+    }
+  }
+
+  // ── Authors block ───────────────────────────────────────────────────
+  .paper__authors-block {
+    margin-bottom: 1.5rem;
+
+    .paper__authors-full {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--global-text-color);
+
+      strong, b {
+        color: var(--global-base-color);
+      }
+
+      a {
+        color: var(--global-link-color);
+      }
+    }
+  }
+
+  // ── Citation ────────────────────────────────────────────────────────
+  .paper__citation {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--global-raised-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+    .paper__section-title {
+      margin: 0 0 0.5rem;
+      padding: 0;
+      border: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .paper__citation-text {
+      margin: 0 0 0.6rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--global-text-color);
+    }
+
+    .paper__citation-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+
+      a {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--global-link-color);
+        text-decoration: none;
+        padding: 0.2rem 0.5rem;
+        border: 1px solid var(--global-border-color);
+        border-radius: 0.2rem;
+
+        &:hover {
+          background: var(--global-subtle-bg-color);
+          border-color: var(--global-link-color);
+          color: var(--global-link-color-hover);
+          text-decoration: none;
+        }
+      }
+    }
+
+    .paper__bibtex-details {
+      margin: 0.5rem 0 0.75rem;
+
+      summary {
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--global-link-color);
+        user-select: none;
+      }
+
+      &[open] summary {
+        margin-bottom: 0.4rem;
+      }
+    }
+
+    .paper__bibtex-code {
+      margin: 0;
+      padding: 0.75rem;
+      background: var(--global-code-background-color);
+      border: 1px solid var(--global-border-color);
+      border-radius: 0.25rem;
+      overflow-x: auto;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+
+      code {
+        font-family: inherit;
+        color: var(--global-text-color);
+      }
+    }
+
+    .paper__data-availability {
+      margin: 0.75rem 0 0;
+      font-size: 0.8rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--global-text-color-light);
+    }
+  }
+
+  // ── Figures (event-study, ANCOVA) — already have their own SCSS ─────
+  // Ensure they have consistent spacing within the paper layout
+  .event-study,
+  .ancova-decomposition {
+    margin: 0 0 1.5rem;
+  }
+}

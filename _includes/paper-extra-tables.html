@@ -1,0 +1,81 @@
+{% comment %}
+  Additional tables — renders supplementary tables from _data/papers/<slug>.yml
+  beyond the main_table. Dynamically discovers all table keys in the data file
+  (any top-level key other than main_table, summary_stats, horserace that has
+  a table structure with caption/columns/rows). Also renders summary_stats and
+  horserace for backward compatibility with the tax-planning page.
+  Each table object should have: caption, columns [{header, align}], rows [[...]], notes.
+{% endcomment %}
+
+{% if page.main_table_data %}
+  {% assign paper_data = site.data.papers[page.main_table_data] %}
+
+  {% comment %} Collect all table keys to render {% endcomment %}
+  {% assign skip_keys = "main_table" | split: "," %}
+  {% assign has_extra = false %}
+
+  {% comment %} Check for any extra tables {% endcomment %}
+  {% for item in paper_data %}
+    {% assign key = item[0] %}
+    {% assign val = item[1] %}
+    {% assign is_skip = false %}
+    {% for sk in skip_keys %}
+      {% if key == sk %}{% assign is_skip = true %}{% endif %}
+    {% endfor %}
+    {% unless is_skip %}
+      {% if val.caption and val.columns and val.rows %}
+        {% assign has_extra = true %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+
+  {% if has_extra %}
+    <h2 class="paper__section-title">Supplementary tables</h2>
+  {% endif %}
+
+  {% comment %} Iterate data file keys, render each table that has the right structure {% endcomment %}
+  {% for item in paper_data %}
+    {% assign key = item[0] %}
+    {% assign tbl = item[1] %}
+    {% assign is_skip = false %}
+    {% for sk in skip_keys %}
+      {% if key == sk %}{% assign is_skip = true %}{% endif %}
+    {% endfor %}
+    {% unless is_skip %}
+      {% if tbl.caption and tbl.columns and tbl.rows %}
+        <section class="paper__table-section">
+          <h2 class="paper__section-title">{{ tbl.caption }}</h2>
+          <div class="paper__table-wrap">
+            <table class="paper__table">
+              {% if tbl.columns %}
+                <thead>
+                  <tr>
+                    {% for col in tbl.columns %}
+                      <th scope="col" style="text-align: {{ col.align | default: 'center' }}">{{ col.header }}</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+              {% endif %}
+              <tbody>
+                {% for row in tbl.rows %}
+                  <tr>
+                    {% for cell in row %}
+                      {% if forloop.first %}
+                        <th scope="row" class="paper__table-row-label">{{ cell }}</th>
+                      {% else %}
+                        <td style="text-align: center">{{ cell }}</td>
+                      {% endif %}
+                    {% endfor %}
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% if tbl.notes %}
+            <p class="paper__table-notes">{{ tbl.notes }}</p>
+          {% endif %}
+        </section>
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+{% endif %}

@@ -1,0 +1,20 @@
+{% comment %}
+  Abstract — collapsible full abstract + keywords.
+  Reads from page frontmatter: abstract (string), keywords (string).
+  Falls back to page excerpt if abstract is not set.
+  The acfin skill recommends the identification summary serve the hero role;
+  the full abstract should be accessible but not dominant — collapsible is ideal.
+{% endcomment %}
+
+{% assign abstract_text = page.abstract | default: page.excerpt %}
+{% if abstract_text %}
+  <section class="paper__abstract">
+    <details class="paper__abstract-details" open>
+      <summary class="paper__section-title">Abstract</summary>
+      <p class="paper__abstract-text" itemprop="abstract">{{ abstract_text | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+      {% if page.keywords %}
+        <p class="paper__abstract-keywords"><strong>Keywords:</strong> {{ page.keywords }}</p>
+      {% endif %}
+    </details>
+  </section>
+{% endif %}

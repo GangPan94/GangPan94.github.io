@@ -11,7 +11,7 @@ caption: "The x-axis counts years relative to a state's online sports-betting la
 alt_text: "Line chart of the percentage change in firm-level productivity by year relative to sports-betting launch; flat near zero for years −3 to −1, dropping to about −4% at launch and holding near −3% through year +3."
 method_note: "Dynamic effect of sports-betting legalization on employee productivity. The figure plots the Treat × relative-time coefficients from the dynamic version of equation (1), with the year before launch (t = −1) omitted as the base period. Vertical bars are 95% confidence intervals. The pre-launch coefficients are statistically indistinguishable from zero, supporting parallel trends; productivity falls after launch."
 manuscript_caption: ""
-one_liner: "Firms in states that launched online sports betting produce about 3–4 percent less per employee after launch, with no divergence beforehand."
+one_liner: "Firms in states that launched online sports betting produce about 3 percent less per employee after launch, with no divergence beforehand."
 items:
   - event_time: -3
     estimate: 0.0000426
