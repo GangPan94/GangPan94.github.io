@@ -1,6 +1,6 @@
 {% comment %}
   Paper hero — title, one-line research question, authors, inline links.
-  Reads from page frontmatter: title, research_question, paper_authors, date, ssrn_url, doi, replication_url.
+  Reads from page frontmatter: title, research_question, paper_authors, date, ssrn_url, doi.
 {% endcomment %}
 
 <header class="paper__hero">
@@ -21,12 +21,11 @@
     <p class="paper__date"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %Y" }}</time></p>
   {% endif %}
 
-  {% if page.ssrn_url or page.doi or page.replication_url or page.paperurl %}
+  {% if page.ssrn_url or page.doi or page.paperurl %}
     <nav class="paper__quick-links" aria-label="Paper links">
       {% if page.paperurl %}<a href="{{ page.paperurl }}" class="paper__quick-link" rel="noopener">PDF</a>{% endif %}
       {% if page.ssrn_url and page.ssrn_url != blank and page.ssrn_url != '' %}<a href="{{ page.ssrn_url }}" class="paper__quick-link" rel="noopener">SSRN</a>{% endif %}
       {% if page.doi and page.doi != blank and page.doi != '' %}<a href="https://doi.org/{{ page.doi }}" class="paper__quick-link" rel="noopener">DOI</a>{% endif %}
-      {% if page.replication_url and page.replication_url != blank and page.replication_url != '' %}<a href="{{ page.replication_url }}" class="paper__quick-link" rel="noopener">Replication</a>{% endif %}
       {% if page.slidesurl %}<a href="{{ page.slidesurl }}" class="paper__quick-link" rel="noopener">Slides</a>{% endif %}
       {% if page.bibtexurl %}<a href="{{ page.bibtexurl }}" class="paper__quick-link" rel="noopener">BibTeX</a>{% endif %}
     </nav>

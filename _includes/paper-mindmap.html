@@ -13,7 +13,7 @@
 {% if mm %}
 <section class="paper__mindmap" aria-label="Paper mind map — conceptual framework">
   <h2 class="paper__section-title">Mind Map</h2>
-  <p class="paper__mindmap-hint">Click any branch to expand details</p>
+  <p class="paper__mindmap-hint">Click branches to expand or collapse</p>
 
   <div class="paper__mindmap-canvas" role="tree" aria-label="{{ mm.center.label | escape }}">
 
@@ -30,7 +30,7 @@
       {% for branch in mm.branches %}
         <div class="paper__mindmap-branch paper__mindmap-branch--{{ branch.color }}"
              role="treeitem"
-             aria-expanded="false"
+             aria-expanded="true"
              tabindex="0"
              data-mindmap-branch>
 
@@ -97,11 +97,7 @@
     });
   });
 
-  {% comment %} Auto-expand first branch on load for immediate visual feedback {% endcomment %}
-  var firstBranch = document.querySelector('[data-mindmap-branch]');
-  if (firstBranch) {
-    firstBranch.setAttribute('aria-expanded', 'true');
-  }
+  {% comment %} All branches start expanded — no auto-expand needed {% endcomment %}
 })();
 </script>
 {% endif %}
