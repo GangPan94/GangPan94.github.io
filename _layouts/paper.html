@@ -48,7 +48,14 @@ layout: default
 
   <script>
     (function () {
-      /* Sticky hero collapse — desktop only */
+      /* Sticky hero collapse — desktop only.
+         Uses scroll-based detection with hysteresis to prevent oscillation.
+         The previous IntersectionObserver approach could oscillate at the
+         exact threshold: collapse shrinks the hero, the layout shift nudges
+         the sentinel back into the intersection zone, expand grows it back,
+         sentinel exits again — infinite wobble loop. Hysteresis creates a
+         dead zone between the collapse and expand trigger points so a single
+         layout shift can never re-trigger the opposite action. */
       var hero = document.querySelector('.paper__hero');
       var sentinel = document.querySelector('.paper__hero-sentinel');
       if (!hero || !sentinel) return;
@@ -57,42 +64,35 @@ layout: default
          Synchronized with CSS: sticky kicks in at 1024px, so skip below 1024px. */
       if (window.matchMedia('(max-width: 1023px)').matches) return;
 
-      /* IntersectionObserver: when sentinel scrolls out of view (downward),
-         hero is past its natural position → collapse.
-         When sentinel re-enters view → expand. */
-      if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              hero.classList.remove('is-collapsed');
-            } else {
-              hero.classList.add('is-collapsed');
-            }
-          });
-        }, {
-          root: null,
-          threshold: 0,
-          rootMargin: '-70px 0px 0px 0px' /* offset for fixed masthead */
-        });
-        observer.observe(sentinel);
-      } else {
-        /* Fallback: scroll listener for older browsers */
-        var sentinelTop = sentinel.offsetTop;
-        var ticking = false;
-        window.addEventListener('scroll', function () {
-          if (!ticking) {
-            window.requestAnimationFrame(function () {
-              if (window.scrollY > sentinelTop - 70) {
-                hero.classList.add('is-collapsed');
-              } else {
-                hero.classList.remove('is-collapsed');
-              }
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }, { passive: true });
+      var MASTHEAD_H = 70;           /* fixed masthead height in px */
+      var HYSTERESIS = 60;           /* dead zone: must scroll back this far past
+                                        the collapse point to re-expand */
+      var COLLAPSE_AT = -MASTHEAD_H;  /* sentinel.top < this → collapse */
+      var EXPAND_AT = -(MASTHEAD_H + HYSTERESIS); /* sentinel.top > this → expand */
+      var isCollapsed = false;
+      var ticking = false;
+
+      function check() {
+        var top = sentinel.getBoundingClientRect().top;
+        if (!isCollapsed && top < COLLAPSE_AT) {
+          hero.classList.add('is-collapsed');
+          isCollapsed = true;
+        } else if (isCollapsed && top > EXPAND_AT) {
+          hero.classList.remove('is-collapsed');
+          isCollapsed = false;
+        }
+        ticking = false;
       }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(check);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      /* Initial check in case the page loads already scrolled past the hero */
+      check();
     })();
   </script>
 </div>
