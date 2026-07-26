@@ -9,7 +9,7 @@
 // on large screens, which pushes content right of the fixed sidebar.
 // We only add paper-specific typography and section styling here.
 .paper--detail {
-  padding: 0 1rem 2rem;
+  padding: 0 0 2rem;
   font-size: 1rem;
   line-height: 1.7;
 
@@ -40,12 +40,19 @@
       position: sticky;
       top: 70px;
       z-index: 10;
-      transition: padding 0.3s ease, box-shadow 0.3s ease;
+      /* Single container-level transition for collapse — avoids
+         multi-element transition jitter when several children animate
+         simultaneously with different timings. */
+      max-height: 32rem;
+      overflow: hidden;
+      overflow-anchor: none;
+      transition: max-height 0.35s ease, padding 0.3s ease, box-shadow 0.3s ease;
     }
 
     // Collapsed state — toggled via JS (.is-collapsed)
     &.is-collapsed {
       @media (min-width: 769px) {
+        max-height: 3.5rem;
         padding: 0.5rem 1.25rem;
         box-shadow: 0 2px 8px rgba(0, 47, 167, 0.12);
 
@@ -63,15 +70,8 @@
           text-overflow: ellipsis;
         }
 
-        .paper__question,
-        .paper__authors,
-        .paper__date,
-        .paper__quick-links {
-          max-height: 0;
-          opacity: 0;
-          margin: 0;
-          overflow: hidden;
-        }
+        /* Children are hidden by the container's overflow:hidden +
+           max-height: 3.5rem — no individual transitions needed. */
       }
     }
   }
@@ -85,6 +85,10 @@
   }
 
   // ── Hero child transitions — desktop only ───────────────────────────
+  // Children no longer have individual max-height transitions.
+  // The hero container itself handles the collapse via overflow:hidden +
+  // max-height. Only font-size and margin transitions remain for title
+  // and category to smooth their size changes.
   @media (min-width: 769px) {
     .paper__category {
       transition: margin 0.3s ease, font-size 0.3s ease;
@@ -92,26 +96,6 @@
 
     .paper__title {
       transition: margin 0.3s ease, font-size 0.3s ease;
-    }
-
-    .paper__question {
-      max-height: 20rem;
-      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
-    }
-
-    .paper__authors {
-      max-height: 10rem;
-      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
-    }
-
-    .paper__date {
-      max-height: 5rem;
-      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
-    }
-
-    .paper__quick-links {
-      max-height: 10rem;
-      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
     }
   }
 
