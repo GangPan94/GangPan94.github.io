@@ -22,7 +22,6 @@
     {% if page.doi and page.doi != blank and page.doi != '' %}<a href="https://doi.org/{{ page.doi }}" rel="noopener">DOI</a>{% endif %}
     {% if page.bibtex_url %}<a href="{{ page.bibtex_url }}" rel="noopener">BibTeX file</a>{% endif %}
     {% if page.bibtexurl %}<a href="{{ page.bibtexurl }}" rel="noopener">BibTeX file</a>{% endif %}
-    {% if page.replication_url and page.replication_url != blank and page.replication_url != '' %}<a href="{{ page.replication_url }}" rel="noopener">Replication code</a>{% endif %}
   </nav>
 
   {% if page.data_availability %}

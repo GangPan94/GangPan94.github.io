@@ -25,7 +25,11 @@
     letter-spacing: 0.01em;
   }
 
-  // ── Hero (sticky on desktop, collapses on scroll) ───────────────────
+  // ── Hero (normal block — no sticky, no height transitions) ──────────
+  // The hero is always at its natural height. A separate mini-header
+  // (below) handles the sticky collapsed state using opacity + transform
+  // only, which avoids reflow entirely and eliminates the wobble feedback
+  // loop that max-height transitions caused.
   .paper__hero {
     margin-bottom: 1.5rem;
     padding: 1.5rem 1.75rem;
@@ -34,72 +38,70 @@
     border-left: 4px solid var(--global-base-color);
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+  }
 
-    // Sticky on desktop — collapses when scrolled past natural position.
-    // Synchronized with sidebar fixed breakpoint ($sidebar-screen-min-width: 1024px)
-    // so hero sticky and sidebar fixed kick in at the same viewport width.
+  // ── Sticky mini-header (appears when hero scrolls out of view) ──────
+  // The wrapper is position:sticky with height:0 so it occupies no space
+  // in the layout. The mini-header inside it uses opacity + translateY
+  // for show/hide — no height change, no reflow, no wobble.
+  // IntersectionObserver watches the hero (which never changes size),
+  // so there is no feedback loop.
+  .paper__hero-mini-wrap {
+    @media (max-width: 1023px) {
+      display: none;
+    }
+
     @media (min-width: 1024px) {
       position: sticky;
       top: 70px;
       z-index: 10;
-      /* Single container-level transition for collapse — avoids
-         multi-element transition jitter when several children animate
-         simultaneously with different timings. */
-      max-height: 32rem;
-      overflow: hidden;
-      overflow-anchor: none;
-      will-change: max-height, padding;
-      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+      height: 0;
+      overflow: visible;
     }
+  }
 
-    // Collapsed state — toggled via JS (.is-collapsed)
-    &.is-collapsed {
-      @media (min-width: 1024px) {
-        max-height: 3.5rem;
-        padding: 0.5rem 1.25rem;
-        box-shadow: 0 2px 8px rgba(0, 47, 167, 0.12);
+  .paper__hero-mini {
+    padding: 0.5rem 1.25rem;
+    background: var(--global-raised-bg-color);
+    border: 1px solid var(--global-border-color);
+    border-left: 4px solid var(--global-base-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 47, 167, 0.12);
 
-        .paper__category {
-          margin: 0;
-          font-size: 0.68rem;
-        }
+    @media (min-width: 1024px) {
+      opacity: 0;
+      transform: translateY(-12px);
+      pointer-events: none;
+      will-change: opacity, transform;
+      transition: opacity 0.3s ease, transform 0.3s ease;
 
-        .paper__title {
-          margin: 0;
-          font-size: 1.1rem;
-          line-height: 1.4;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        /* Children are hidden by the container's overflow:hidden +
-           max-height: 3.5rem — no individual transitions needed. */
+      &.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
       }
     }
   }
 
-  // ── Hero sentinel (invisible trigger for IntersectionObserver) ───────
-  .paper__hero-sentinel {
-    height: 0;
+  .paper__mini-category {
     margin: 0;
-    padding: 0;
-    border: none;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--global-text-color-light);
   }
 
-  // ── Hero child transitions — desktop only (synchronized with 1024px) ─
-  // Children no longer have individual max-height transitions.
-  // The hero container itself handles the collapse via overflow:hidden +
-  // max-height. Only font-size and margin transitions remain for title
-  // and category to smooth their size changes.
-  @media (min-width: 1024px) {
-    .paper__category {
-      transition: margin 0.3s ease, font-size 0.3s ease;
-    }
-
-    .paper__title {
-      transition: margin 0.3s ease, font-size 0.3s ease;
-    }
+  .paper__mini-title {
+    margin: 0;
+    font-family: "Georgia", "Times New Roman", serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--global-text-color);
   }
 
   .paper__category {
