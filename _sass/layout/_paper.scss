@@ -118,7 +118,7 @@
     position: sticky;
     top: 1rem;
     z-index: 5;
-    margin: 0 -0.5rem 1.5rem;
+    margin-bottom: 1.5rem;
     padding: 0.75rem 1rem;
     background: var(--global-raised-bg-color);
     border: 1px solid var(--global-border-color);
@@ -227,28 +227,6 @@
       color: var(--global-text-color-light);
 
       strong { font-style: normal; color: var(--global-text-color); }
-    }
-  }
-
-  // ── Back navigation ────────────────────────────────────────────────
-  .paper__back-nav {
-    margin: 0 0 2rem;
-    text-align: left;
-
-    a {
-      display: inline-block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--global-link-color);
-      text-decoration: none;
-      padding: 0.3rem 0;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.15s ease;
-
-      &:hover {
-        border-color: var(--global-link-color);
-        text-decoration: none;
-      }
     }
   }
 

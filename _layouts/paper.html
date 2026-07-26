@@ -41,10 +41,6 @@ layout: default
     {% include paper-citation.html %}
   </article>
 
-  <nav class="paper__back-nav" aria-label="Publication navigation">
-    <a href="{{ base_path }}/publications/" rel="up">← All publications</a>
-  </nav>
-
   {% unless page.collection == 'teaching' %}
     {% include post_pagination.html %}
   {% endunless %}
