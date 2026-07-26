@@ -25,7 +25,7 @@
     letter-spacing: 0.01em;
   }
 
-  // ── Hero ────────────────────────────────────────────────────────────
+  // ── Hero (sticky on desktop, collapses on scroll) ───────────────────
   .paper__hero {
     margin-bottom: 1.5rem;
     padding: 1.5rem 1.75rem;
@@ -34,6 +34,85 @@
     border-left: 4px solid var(--global-base-color);
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+    // Sticky on desktop — collapses when scrolled past natural position
+    @media (min-width: 769px) {
+      position: sticky;
+      top: 70px;
+      z-index: 10;
+      transition: padding 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    // Collapsed state — toggled via JS (.is-collapsed)
+    &.is-collapsed {
+      @media (min-width: 769px) {
+        padding: 0.5rem 1.25rem;
+        box-shadow: 0 2px 8px rgba(0, 47, 167, 0.12);
+
+        .paper__category {
+          margin: 0;
+          font-size: 0.68rem;
+        }
+
+        .paper__title {
+          margin: 0;
+          font-size: 1.1rem;
+          line-height: 1.4;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .paper__question,
+        .paper__authors,
+        .paper__date,
+        .paper__quick-links {
+          max-height: 0;
+          opacity: 0;
+          margin: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+  // ── Hero sentinel (invisible trigger for IntersectionObserver) ───────
+  .paper__hero-sentinel {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  // ── Hero child transitions — desktop only ───────────────────────────
+  @media (min-width: 769px) {
+    .paper__category {
+      transition: margin 0.3s ease, font-size 0.3s ease;
+    }
+
+    .paper__title {
+      transition: margin 0.3s ease, font-size 0.3s ease;
+    }
+
+    .paper__question {
+      max-height: 20rem;
+      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
+    }
+
+    .paper__authors {
+      max-height: 10rem;
+      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
+    }
+
+    .paper__date {
+      max-height: 5rem;
+      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
+    }
+
+    .paper__quick-links {
+      max-height: 10rem;
+      transition: max-height 0.3s ease, opacity 0.2s ease, margin 0.3s ease;
+    }
   }
 
   .paper__category {
@@ -113,11 +192,8 @@
     }
   }
 
-  // ── Identification (sticky on desktop) ──────────────────────────────
+  // ── Identification (normal section, no longer sticky) ───────────────
   .paper__identification {
-    position: sticky;
-    top: 1rem;
-    z-index: 5;
     margin-bottom: 1.5rem;
     padding: 0.75rem 1rem;
     background: var(--global-raised-bg-color);
@@ -141,11 +217,6 @@
       font-size: 0.92rem;
       line-height: 1.6;
       color: var(--global-text-color);
-    }
-
-    @media (max-width: 768px) {
-      position: static;
-      margin: 0 0 1.5rem;
     }
   }
 

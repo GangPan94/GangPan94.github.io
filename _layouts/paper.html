@@ -8,15 +8,16 @@ layout: default
   {% include sidebar.html %}
 
   <article class="page paper paper--detail" itemscope itemtype="http://schema.org/ScholarlyArticle">
+    <div class="paper__hero-sentinel" aria-hidden="true"></div>
     {% include paper-hero.html %}
-
-    {% include paper-identification.html %}
-
-    {% include paper-mindmap.html %}
 
     {% include paper-abstract.html %}
 
     {% include paper-findings.html %}
+
+    {% include paper-mindmap.html %}
+
+    {% include paper-identification.html %}
 
     {% if page.main_figure == 'event_study' %}
       {% include sports-betting-event-study.html %}
@@ -44,4 +45,53 @@ layout: default
   {% unless page.collection == 'teaching' %}
     {% include post_pagination.html %}
   {% endunless %}
+
+  <script>
+    (function () {
+      /* Sticky hero collapse — desktop only */
+      var hero = document.querySelector('.paper__hero');
+      var sentinel = document.querySelector('.paper__hero-sentinel');
+      if (!hero || !sentinel) return;
+
+      /* Skip on mobile — sticky is disabled via CSS @media */
+      if (window.matchMedia('(max-width: 768px)').matches) return;
+
+      /* IntersectionObserver: when sentinel scrolls out of view (downward),
+         hero is past its natural position → collapse.
+         When sentinel re-enters view → expand. */
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              hero.classList.remove('is-collapsed');
+            } else {
+              hero.classList.add('is-collapsed');
+            }
+          });
+        }, {
+          root: null,
+          threshold: 0,
+          rootMargin: '-70px 0px 0px 0px' /* offset for fixed masthead */
+        });
+        observer.observe(sentinel);
+      } else {
+        /* Fallback: scroll listener for older browsers */
+        var sentinelTop = sentinel.offsetTop;
+        var ticking = false;
+        window.addEventListener('scroll', function () {
+          if (!ticking) {
+            window.requestAnimationFrame(function () {
+              if (window.scrollY > sentinelTop - 70) {
+                hero.classList.add('is-collapsed');
+              } else {
+                hero.classList.remove('is-collapsed');
+              }
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+    })();
+  </script>
 </div>
