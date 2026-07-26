@@ -224,11 +224,11 @@
   .paper__findings {
     margin-bottom: 1.5rem;
     padding: 1.25rem 1.5rem;
-    background: var(--global-raised-bg-color);
+    background: var(--global-bg-color);
     border: 1px solid var(--global-border-color);
     border-left: 3px solid var(--global-base-color);
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 47, 167, 0.05);
 
     .paper__section-title {
       margin-top: 0;
@@ -264,8 +264,8 @@
     .paper__abstract-details {
       border: 1px solid var(--global-border-color);
       border-radius: 0.5rem;
-      background: var(--global-raised-bg-color);
-      box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+      background: var(--global-bg-color);
+      box-shadow: 0 1px 3px rgba(0, 47, 167, 0.05);
 
       summary {
         @extend .paper__section-title;
@@ -306,10 +306,10 @@
   .paper__data {
     margin-bottom: 1.5rem;
     padding: 1.25rem 1.5rem;
-    background: var(--global-raised-bg-color);
+    background: var(--global-bg-color);
     border: 1px solid var(--global-border-color);
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 47, 167, 0.05);
 
     .paper__section-title {
       margin-top: 0;
@@ -344,7 +344,7 @@
         border-bottom: 1px solid var(--global-border-color);
 
         &:nth-child(even) {
-          background: var(--global-raised-bg-color);
+          background: var(--global-subtle-bg-color);
         }
 
         &:hover {
@@ -386,10 +386,10 @@
   .paper__background {
     margin-bottom: 1.5rem;
     padding: 1.5rem 1.75rem;
-    background: var(--global-raised-bg-color);
+    background: var(--global-bg-color);
     border: 1px solid var(--global-border-color);
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 47, 167, 0.05);
     color: var(--global-text-color);
 
     h2 {
@@ -432,8 +432,8 @@
     .paper__robustness-details {
       border: 1px solid var(--global-border-color);
       border-radius: 0.5rem;
-      background: var(--global-raised-bg-color);
-      box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+      background: var(--global-bg-color);
+      box-shadow: 0 1px 3px rgba(0, 47, 167, 0.05);
 
       summary {
         padding: 0.6rem 1rem;
@@ -495,10 +495,10 @@
   .paper__citation {
     margin-bottom: 1.5rem;
     padding: 1.25rem 1.5rem;
-    background: var(--global-raised-bg-color);
+    background: var(--global-bg-color);
     border: 1px solid var(--global-border-color);
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 47, 167, 0.05);
 
     .paper__section-title {
       margin: 0 0 0.5rem;
