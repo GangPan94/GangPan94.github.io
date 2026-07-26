@@ -46,7 +46,8 @@
       max-height: 32rem;
       overflow: hidden;
       overflow-anchor: none;
-      transition: max-height 0.35s ease, padding 0.3s ease, box-shadow 0.3s ease;
+      will-change: max-height, padding;
+      transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
     }
 
     // Collapsed state — toggled via JS (.is-collapsed)

@@ -40,6 +40,14 @@
     padding-right: 0;
   }
 
+  /* Fixed sidebar width override — MUST come after $large breakpoint rules
+     so it overrides the Susy span(2 of 12) percentage width.
+     When position: fixed, percentage width is viewport-relative, causing
+     overlap with the floated .page content. Use fixed pixel width instead. */
+  @media screen and (min-width: $sidebar-screen-min-width) {
+    width: 200px;
+  }
+
   h2, h3, h4, h5, h6 {
     margin-bottom: 0;
     font-family: $sans-serif-narrow;
