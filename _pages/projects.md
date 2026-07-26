@@ -10,10 +10,10 @@ author_profile: true
 <div class="project-cards">
 
   <div class="project-card" style="margin-bottom: 2rem; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
-    <h2><a href="/projects/antigravity-workflow/">Agentic Workflows for Accounting Academics</a></h2>
+    <h2><a href="/_pages/antigravity_workflow.html">Agentic Workflows for Accounting Academics</a></h2>
     <p style="color: #666; font-size: 1.1em; margin-top: -0.5em;">Google Antigravity as an Example</p>
     <p>A comprehensive guide to agentic AI workflows for academic research — covering setup, specialized agents (proofreading, visual audit, pedagogy review), adversarial QA loops, quality scoring, research organization, reproducibility compliance, and ecosystem extensions. Uses Google Antigravity as the example platform, with patterns that transfer across agentic coding tools.</p>
-    <p><a href="/projects/antigravity-workflow/" class="btn btn--primary">Read more &rarr;</a></p>
+    <p><a href="/_pages/antigravity_workflow.html" class="btn btn--primary">Read more &rarr;</a></p>
   </div>
 
   <!-- To add a new project, copy the div above, update title, link, subtitle, description -->
