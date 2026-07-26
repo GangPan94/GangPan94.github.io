@@ -1,5 +1,5 @@
 // ==========================================================================
-//   Paper mind map — visual abstract of the paper's argument flow
+//   Paper mind map — static visual abstract of the paper's argument flow
 //   Scoped under .paper--detail .paper__mindmap
 //   Uses site --global-* tokens for theme-aware colors.
 //   IKB blue (#002fa7 / #8fb3ff) as primary accent.
@@ -15,17 +15,6 @@
 
   .paper__section-title {
     margin-top: 0;
-  }
-
-  // ── Hint text ────────────────────────────────────────────────────────
-  .paper__mindmap-hint {
-    margin: -0.4rem 0 1rem;
-    font-size: 0.72rem;
-    font-style: normal;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-    color: var(--global-text-color-light);
-    opacity: 0.7;
   }
 
   // ── Canvas ───────────────────────────────────────────────────────────
@@ -96,18 +85,11 @@
     border: 1px solid var(--global-border-color);
     border-left: 3px solid var(--mm-accent);
     border-radius: 0.35rem;
-    cursor: pointer;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    outline: none;
 
-    &:hover,
-    &:focus-visible {
+    &:hover {
       border-color: var(--mm-accent);
       box-shadow: 0 2px 6px rgba(0, 47, 167, 0.12);
-    }
-
-    &:focus-visible {
-      box-shadow: 0 0 0 2px var(--mm-accent);
     }
 
     // ── Color variants per branch type ──────────────────────────────
@@ -164,34 +146,11 @@
     color: var(--global-text-color);
   }
 
-  .paper__mindmap-branch-toggle {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    color: var(--global-text-color-light);
-    font-size: 0.7rem;
-    transition: transform 0.25s ease;
-  }
-
-  // ── Expanded state ───────────────────────────────────────────────────
-  .paper__mindmap-branch[aria-expanded="true"] {
-    .paper__mindmap-branch-toggle {
-      transform: rotate(90deg);
-    }
-  }
-
-  // ── Children (detail nodes) ──────────────────────────────────────────
+  // ── Children (detail nodes) — always visible ─────────────────────────
   .paper__mindmap-children {
     margin: 0;
     padding: 0;
     list-style: none;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease, margin-top 0.3s ease;
-  }
-
-  .paper__mindmap-branch[aria-expanded="true"] .paper__mindmap-children {
-    max-height: 500px;
     margin-top: 0.5rem;
   }
 

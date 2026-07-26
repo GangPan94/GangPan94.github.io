@@ -1,8 +1,7 @@
 {% comment %}
-  Paper mind map — visual abstract of the paper's argument flow.
+  Paper mind map — static visual abstract of the paper's argument flow.
   Reads from: page.mindmap_data (string key → site.data.papers.<key>-mindmap.yml)
-  Interactive: click a branch to expand/collapse its child nodes.
-  Dark-mode compatible via --global-* CSS variables.
+  Fully expanded, non-interactive. Dark-mode compatible via --global-* CSS variables.
 {% endcomment %}
 
 {% if page.mindmap_data %}
@@ -13,12 +12,11 @@
 {% if mm %}
 <section class="paper__mindmap" aria-label="Paper mind map — conceptual framework">
   <h2 class="paper__section-title">Mind Map</h2>
-  <p class="paper__mindmap-hint">Click branches to expand or collapse</p>
 
-  <div class="paper__mindmap-canvas" role="tree" aria-label="{{ mm.center.label | escape }}">
+  <div class="paper__mindmap-canvas">
 
     {% comment %} ── Center node ── {% endcomment %}
-    <div class="paper__mindmap-center" role="treeitem" aria-level="1">
+    <div class="paper__mindmap-center">
       <span class="paper__mindmap-center-icon" aria-hidden="true">
         <i class="fas fa-circle-question"></i>
       </span>
@@ -28,11 +26,7 @@
     {% comment %} ── Branches ── {% endcomment %}
     <div class="paper__mindmap-branches">
       {% for branch in mm.branches %}
-        <div class="paper__mindmap-branch paper__mindmap-branch--{{ branch.color }}"
-             role="treeitem"
-             aria-expanded="true"
-             tabindex="0"
-             data-mindmap-branch>
+        <div class="paper__mindmap-branch paper__mindmap-branch--{{ branch.color }}">
 
           <div class="paper__mindmap-branch-header">
             <span class="paper__mindmap-branch-icon" aria-hidden="true">
@@ -50,15 +44,12 @@
               {% endcase %}
             </span>
             <span class="paper__mindmap-branch-label">{{ branch.label }}</span>
-            <span class="paper__mindmap-branch-toggle" aria-hidden="true">
-              <i class="fas fa-chevron-right"></i>
-            </span>
           </div>
 
           {% if branch.children and branch.children.size > 0 %}
-            <ul class="paper__mindmap-children" role="group">
+            <ul class="paper__mindmap-children">
               {% for child in branch.children %}
-                <li class="paper__mindmap-child" role="treeitem">
+                <li class="paper__mindmap-child">
                   <span class="paper__mindmap-child-label">{{ child.label }}</span>
                   {% if child.detail %}
                     <span class="paper__mindmap-child-detail">{{ child.detail }}</span>
@@ -72,32 +63,4 @@
     </div>
   </div>
 </section>
-
-<script>
-(function() {
-  'use strict';
-
-  document.querySelectorAll('[data-mindmap-branch]').forEach(function(branch) {
-    var toggle = function() {
-      var expanded = branch.getAttribute('aria-expanded') === 'true';
-      branch.setAttribute('aria-expanded', !expanded);
-    };
-
-    branch.addEventListener('click', function(e) {
-      e.stopPropagation();
-      toggle();
-    });
-
-    branch.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        e.stopPropagation();
-        toggle();
-      }
-    });
-  });
-
-  {% comment %} All branches start expanded — no auto-expand needed {% endcomment %}
-})();
-</script>
 {% endif %}
