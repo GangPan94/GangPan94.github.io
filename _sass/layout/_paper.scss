@@ -35,8 +35,10 @@
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
 
-    // Sticky on desktop — collapses when scrolled past natural position
-    @media (min-width: 769px) {
+    // Sticky on desktop — collapses when scrolled past natural position.
+    // Synchronized with sidebar fixed breakpoint ($sidebar-screen-min-width: 1024px)
+    // so hero sticky and sidebar fixed kick in at the same viewport width.
+    @media (min-width: 1024px) {
       position: sticky;
       top: 70px;
       z-index: 10;
@@ -52,7 +54,7 @@
 
     // Collapsed state — toggled via JS (.is-collapsed)
     &.is-collapsed {
-      @media (min-width: 769px) {
+      @media (min-width: 1024px) {
         max-height: 3.5rem;
         padding: 0.5rem 1.25rem;
         box-shadow: 0 2px 8px rgba(0, 47, 167, 0.12);
@@ -85,12 +87,12 @@
     border: none;
   }
 
-  // ── Hero child transitions — desktop only ───────────────────────────
+  // ── Hero child transitions — desktop only (synchronized with 1024px) ─
   // Children no longer have individual max-height transitions.
   // The hero container itself handles the collapse via overflow:hidden +
   // max-height. Only font-size and margin transitions remain for title
   // and category to smooth their size changes.
-  @media (min-width: 769px) {
+  @media (min-width: 1024px) {
     .paper__category {
       transition: margin 0.3s ease, font-size 0.3s ease;
     }

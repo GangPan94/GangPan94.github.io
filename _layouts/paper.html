@@ -53,8 +53,9 @@ layout: default
       var sentinel = document.querySelector('.paper__hero-sentinel');
       if (!hero || !sentinel) return;
 
-      /* Skip on mobile — sticky is disabled via CSS @media */
-      if (window.matchMedia('(max-width: 768px)').matches) return;
+      /* Skip on mobile/tablet — sticky is disabled via CSS @media.
+         Synchronized with CSS: sticky kicks in at 1024px, so skip below 1024px. */
+      if (window.matchMedia('(max-width: 1023px)').matches) return;
 
       /* IntersectionObserver: when sentinel scrolls out of view (downward),
          hero is past its natural position → collapse.

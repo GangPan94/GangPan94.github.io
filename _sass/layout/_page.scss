@@ -23,11 +23,17 @@
     @include suffix(2 of 12);
   }
 
-  /* When sidebar is fixed (min-width: 1024px), the Susy span(10 of 12 last)
-     float-right positioning doesn't account for the sidebar's actual pixel
-     width. Add explicit margin-left to create a proper gutter. */
+  /* When sidebar is fixed (min-width: 1024px), override the Susy
+     span(10 of 12 last) float-right + percentage width — these fight
+     the fixed sidebar's pixel width and cause overlap at intermediate
+     sizes. Switch to a simple block layout with margin-left to create
+     a proper, stable gutter that never overlaps the fixed sidebar. */
   @media screen and (min-width: 1024px) {
-    margin-left: 230px;
+    float: none;
+    width: auto;
+    margin-left: 230px;   /* sidebar 200px + 30px gutter */
+    margin-right: 0;
+    padding-right: 1em;
   }
 
   .page__inner-wrap {
