@@ -23,11 +23,11 @@ identification: >
   anticipation, and it did not directly change firms' underlying operations.
 key_findings:
   - "Tax planning innovations generate excess returns, confirming the competitive advantage **exists** — but the magnitude is **modest**, far smaller than nominal tax savings."
-  - "Sales growth explains **9.3%** of variation in excess returns; tax planning explains only **0.5%** — a **7x gap**."
+  - "Sales growth explains **9.3%** of variation in excess returns; tax planning explains only **0.5%**."
   - "Even interest-expense reductions (**0.9%**) outperform tax planning in explanatory power."
   - "Tax planning has the **smallest factor loading** among compared strategies in the horserace regression."
   - "The advantage **does not persist** — firms' cash effective tax rates converge in the long run."
-  - "Stronger pre-TCJA DCETR-Alpha relations predicted **more negative market reactions** to TCJA legislation events."
+  - "Firms that benefited most from tax planning saw the **biggest stock-price drops** when the 2017 tax law (TCJA) was being debated — the market recognized their edge was at risk."
   - "DiD: the excess-return-to-tax-planning relation **erodes post-2017** for firms exposed to cross-border relocation."
 data_sources:
   - source: "Compustat"
