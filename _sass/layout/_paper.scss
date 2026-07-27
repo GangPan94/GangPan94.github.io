@@ -25,11 +25,23 @@
     letter-spacing: 0.01em;
   }
 
-  // ── Hero (normal block — no sticky, no height transitions) ──────────
-  // The hero is always at its natural height. A separate mini-header
-  // (below) handles the sticky collapsed state using opacity + transform
-  // only, which avoids reflow entirely and eliminates the wobble feedback
-  // loop that max-height transitions caused.
+  // ── Hero zone: height-locked wrapper (anti-wobble) ───────────────────
+  // The zone's height is set via JS to the hero's natural height and
+  // never changes.  The hero is position:sticky inside the zone, so
+  // when it shrinks the zone absorbs the height difference — the rest
+  // of the page never reflows, eliminating the wobble feedback loop.
+  .paper__hero-zone {
+    @media (max-width: 1023px) {
+      /* On mobile, no sticky/shrink — just a normal container */
+      height: auto !important;
+    }
+  }
+
+  // ── Hero: sticky + collapsible ───────────────────────────────────────
+  // On desktop the hero sticks under the masthead and collapses to a
+  // compact bar as the user scrolls.  The collapse uses max-height +
+  // padding transitions with overflow:hidden; non-essential content
+  // fades out via opacity.  The zone wrapper prevents any reflow.
   .paper__hero {
     margin-bottom: 1.5rem;
     padding: 1.5rem 1.75rem;
@@ -38,6 +50,66 @@
     border-left: 4px solid var(--global-base-color);
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 47, 167, 0.08);
+
+    @media (min-width: 1024px) {
+      position: sticky;
+      top: 70px;
+      z-index: 9;
+      margin-bottom: 0;
+      max-height: 500px;
+      overflow: hidden;
+      will-change: max-height, padding;
+      transition:
+        max-height  0.35s ease,
+        padding    0.35s ease,
+        box-shadow  0.35s ease;
+
+      /* Collapsed state — triggered by JS .is-collapsed */
+      &.is-collapsed {
+        max-height: 72px;
+        padding: 0.5rem 1.25rem;
+        box-shadow: 0 2px 8px rgba(0, 47, 167, 0.14);
+
+        .paper__title {
+          font-size: 1.1rem;
+          margin-bottom: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .paper__category {
+          margin-bottom: 0;
+          font-size: 0.68rem;
+        }
+        .paper__question,
+        .paper__authors,
+        .paper__date,
+        .paper__quick-links {
+          opacity: 0;
+          margin: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: opacity 0.2s ease, max-height 0.35s ease;
+        }
+      }
+    }
+  }
+
+  /* Collapsible hero children — opacity transitions (desktop only) */
+  @media (min-width: 1024px) {
+    .paper__hero .paper__question,
+    .paper__hero .paper__authors,
+    .paper__hero .paper__date,
+    .paper__hero .paper__quick-links {
+      transition: opacity 0.25s ease, max-height 0.35s ease;
+      max-height: 200px;
+    }
+    .paper__hero .paper__title {
+      transition: font-size 0.3s ease, margin 0.3s ease;
+    }
+    .paper__hero .paper__category {
+      transition: margin 0.3s ease, font-size 0.3s ease;
+    }
   }
 
   // ── Sticky mini-header (appears when hero scrolls out of view) ──────

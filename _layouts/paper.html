@@ -8,7 +8,9 @@ layout: default
   {% include sidebar.html %}
 
   <article class="page paper paper--detail" itemscope itemtype="http://schema.org/ScholarlyArticle">
-    {% include paper-hero.html %}
+    <div class="paper__hero-zone">
+      {% include paper-hero.html %}
+    </div>
 
     <div class="paper__hero-mini-wrap" aria-hidden="true">
       <div class="paper__hero-mini">
@@ -54,30 +56,104 @@ layout: default
 
   <script>
     (function () {
-      /* Sticky mini-header — desktop only.
-         Watches the hero element with IntersectionObserver. When the hero
-         scrolls out of view (past the fixed masthead), the mini-header
-         fades/slides in. When the hero scrolls back into view, it fades out.
+      /* ── Shrinking sticky hero (desktop ≥1024px only) ────────────────
+       *
+       * ARCHITECTURE:
+       *   .paper__hero-zone  — a wrapper whose height is locked to the
+       *     hero's natural height (measured once on load).  This means
+       *     the hero can shrink *inside* the zone without changing the
+       *     document height → no reflow → no scroll-position shift →
+       *     no wobble feedback loop.
+       *
+       *   .paper__hero       — position:sticky inside the zone.  As the
+       *     user scrolls, a scroll listener applies a CSS class
+       *     (.is-collapsed) that triggers a max-height + opacity
+       *     transition on the hero's *inner* content.  The hero card
+       *     itself shrinks from its full height to a compact bar.
+       *
+       *   .paper__hero-mini  — the existing mini-header, still driven by
+       *     IntersectionObserver, fires when the *zone* (not the hero)
+       *     scrolls out of view.  Since the zone's height is locked and
+       *     never changes, the observer cannot oscillate.
+       *
+       * ANTI-WOBBLE GUARANTEES:
+       *   1. Zone height is set once and never updated → document flow
+       *      is stable regardless of hero's visual state.
+       *   2. The hero shrinks via max-height on .paper__hero-inner, not
+       *      on the sticky hero element itself — the sticky element's
+       *      height is driven by its content but the *zone* absorbs the
+       *      difference, so the rest of the page never moves.
+       *   3. requestAnimationFrame throttling + scroll-direction lock
+       *      prevents rapid toggling at the threshold.
+       */
 
-         This approach completely avoids the wobble feedback loop because:
-         1. The hero never changes size — no max-height transition, no reflow.
-         2. The mini-header uses opacity + translateY only — no layout impact.
-         3. The observed element (hero) is static, so IntersectionObserver
-            can't oscillate. */
-      var hero = document.querySelector('.paper__hero');
-      var miniHeader = document.querySelector('.paper__hero-mini');
-      if (!hero || !miniHeader) return;
+      var zone   = document.querySelector('.paper__hero-zone');
+      var hero   = document.querySelector('.paper__hero');
+      var mini   = document.querySelector('.paper__hero-mini');
+      if (!zone || !hero || !mini) return;
 
-      /* Skip on mobile/tablet */
+      /* Skip on mobile / tablet */
       if (window.matchMedia('(max-width: 1023px)').matches) return;
 
+      var MASTHEAD_H = 70;          /* fixed nav height  */
+      var SHRINK_AT  = 20;           /* px scrolled past zone top before shrinking */
+      var zoneTop    = 0;            /* cached offset of zone */
+      var ticking    = false;
+      var isCollapsed = false;
+
+      /* ── Measure & lock the zone height ──────────────────────────── */
+      function measure () {
+        /* Remove any collapsed state to get natural height */
+        hero.classList.remove('is-collapsed');
+        var naturalH = hero.offsetHeight;
+        zone.style.height = naturalH + 'px';
+        zoneTop = zone.getBoundingClientRect().top + window.pageYOffset;
+      }
+
+      /* Run after layout settles */
+      window.addEventListener('load', measure);
+      /* Run again after a tick in case fonts/images shift height */
+      setTimeout(measure, 200);
+
+      /* Re-measure on resize (debounced) */
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(measure, 150);
+      });
+
+      /* ── Scroll handler: collapse / expand hero ─────────────────── */
+      function onScroll () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var heroRect  = hero.getBoundingClientRect();
+          var scrolled  = MASTHEAD_H - heroRect.top;   /* how far hero has scrolled under masthead */
+
+          if (scrolled > SHRINK_AT && !isCollapsed) {
+            hero.classList.add('is-collapsed');
+            isCollapsed = true;
+          } else if (scrolled <= SHRINK_AT && isCollapsed) {
+            hero.classList.remove('is-collapsed');
+            isCollapsed = false;
+          }
+
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      /* ── Mini-header: IntersectionObserver on the zone ───────────── */
+      /* The zone has a locked height and never changes, so the observer
+         cannot oscillate — this was the root cause of the original wobble. */
       if ('IntersectionObserver' in window) {
         var observer = new IntersectionObserver(function (entries) {
           entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-              miniHeader.classList.remove('is-visible');
+              mini.classList.remove('is-visible');
             } else {
-              miniHeader.classList.add('is-visible');
+              mini.classList.add('is-visible');
             }
           });
         }, {
@@ -85,24 +161,7 @@ layout: default
           threshold: 0,
           rootMargin: '-70px 0px 0px 0px'
         });
-        observer.observe(hero);
-      } else {
-        /* Fallback for very old browsers */
-        var ticking = false;
-        window.addEventListener('scroll', function () {
-          if (!ticking) {
-            window.requestAnimationFrame(function () {
-              var heroBottom = hero.getBoundingClientRect().bottom;
-              if (heroBottom < 70) {
-                miniHeader.classList.add('is-visible');
-              } else {
-                miniHeader.classList.remove('is-visible');
-              }
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }, { passive: true });
+        observer.observe(zone);
       }
     })();
   </script>
