@@ -35,6 +35,12 @@
       /* On mobile, no sticky/shrink — just a normal container */
       height: auto !important;
     }
+
+    /* Breathing room between the hero card and the first content card
+       (desktop only — mobile uses the hero's own margin-bottom) */
+    @media (min-width: 1024px) {
+      margin-bottom: 2.5rem;
+    }
   }
 
   // ── Hero: sticky + collapsible ───────────────────────────────────────
