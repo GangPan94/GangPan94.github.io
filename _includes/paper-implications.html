@@ -1,0 +1,58 @@
+{% comment %}
+  Managerial Implications — Myth Busters
+  Reads from page frontmatter: myth_busters (array of {myth, reality, implication}).
+  Renders Myth vs. Reality card pairs with practitioner implications.
+  Falls back silently if myth_busters is not defined.
+{% endcomment %}
+
+{% if page.myth_busters %}
+  <section class="paper__implications">
+    <h2 class="paper__section-title">Managerial Implications — Myth Busters</h2>
+    <p class="paper__implications-intro">
+      Five common beliefs about corporate tax planning — what the evidence shows, and what it means for practitioners.
+    </p>
+
+    <div class="paper__myth-grid">
+      {% for item in page.myth_busters %}
+        <div class="paper__myth-card">
+          <div class="paper__myth-card-number">{{ forloop.index }}</div>
+          <div class="paper__myth-card-body">
+            <div class="paper__myth-card-myth">
+              <span class="paper__myth-label">
+                <svg class="paper__myth-icon" viewBox="0 0 512 512" aria-hidden="true">
+                  <circle cx="256" cy="256" r="224" fill="none" stroke="currentColor" stroke-width="32"/>
+                  <line x1="112" y1="112" x2="400" y2="400" stroke="currentColor" stroke-width="32" stroke-linecap="round"/>
+                </svg>
+                Myth
+              </span>
+              <span class="paper__myth-text">{{ item.myth | markdownify | remove: "<p>" | remove: "</p>" }}</span>
+            </div>
+            <div class="paper__myth-card-reality">
+              <span class="paper__reality-label">
+                <svg class="paper__reality-icon" viewBox="0 0 512 512" aria-hidden="true">
+                  <circle cx="256" cy="256" r="224" fill="none" stroke="currentColor" stroke-width="32"/>
+                  <polyline points="160,264 224,328 352,184" fill="none" stroke="currentColor" stroke-width="32" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Reality
+              </span>
+              <span class="paper__reality-text">{{ item.reality | markdownify | remove: "<p>" | remove: "</p>" }}</span>
+            </div>
+            {% if item.implication %}
+            <div class="paper__myth-card-implication">
+              <span class="paper__implication-label">
+                <svg class="paper__implication-icon" viewBox="0 0 512 512" aria-hidden="true">
+                  <path d="M256 32C132.3 32 32 132.3 32 256s100.3 224 224 224 224-100.3 224-224S379.7 32 256 32zm0 384c-88.2 0-160-71.8-160-160S167.8 96 256 96s160 71.8 160 160-71.8 160-160 160z" fill="none" stroke="currentColor" stroke-width="28"/>
+                  <path d="M256 160c-8.8 0-16 7.2-16 16v112c0 8.8 7.2 16 16 16s16-7.2 16-16V176c0-8.8-7.2-16-16-16z" fill="currentColor"/>
+                  <circle cx="256" cy="336" r="20" fill="currentColor"/>
+                </svg>
+                Implication
+              </span>
+              <span class="paper__implication-text">{{ item.implication | markdownify | remove: "<p>" | remove: "</p>" }}</span>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
