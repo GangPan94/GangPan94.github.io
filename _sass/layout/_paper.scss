@@ -376,9 +376,7 @@
     .paper__myth-card-myth,
     .paper__myth-card-reality,
     .paper__myth-card-implication {
-      display: flex;
-      gap: 0.5rem;
-      align-items: flex-start;
+      display: block;
     }
 
     .paper__myth-card-implication {
@@ -388,17 +386,14 @@
     .paper__myth-label,
     .paper__reality-label,
     .paper__implication-label {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
+      display: inline-block;
       padding: 0.1rem 0.4rem;
+      margin-bottom: 0.25rem;
       font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       border-radius: 0.25rem;
-      white-space: nowrap;
       line-height: 1.4;
     }
 
@@ -428,36 +423,14 @@
     .paper__myth-text,
     .paper__reality-text,
     .paper__implication-text {
-      font-size: 0.92rem;
+      font-size: 0.96rem;
+      font-weight: 400;
+      font-style: normal;
       line-height: 1.6;
       color: var(--global-text-color);
 
       strong, b {
         color: var(--global-base-color);
-      }
-    }
-
-    .paper__implication-text {
-      font-size: 0.85rem;
-      font-weight: 500;
-      font-style: italic;
-    }
-
-    .paper__myth-text {
-      color: var(--global-text-color-light);
-    }
-
-    .paper__reality-text {
-      font-weight: 500;
-    }
-
-    /* Mobile: stack label above text */
-    @media (max-width: 640px) {
-      .paper__myth-card-myth,
-      .paper__myth-card-reality,
-      .paper__myth-card-implication {
-        flex-direction: column;
-        gap: 0.3rem;
       }
     }
   }
