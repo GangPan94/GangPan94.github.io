@@ -24,10 +24,10 @@ identification: >
 myth_busters:
   - myth: "Tax planning creates a large competitive advantage."
     reality: "It exists — but the magnitude is economically modest."
-    implication: "Tax planning remains an essential part of corporate strategy. The paper does not argue it is unimportant — rather, its contribution to competitive advantage is smaller than commonly assumed."
+    implication: "The nominal tax saving from a strategy and the competitive advantage it creates can differ dramatically. Managers should not equate the dollar amount sheltered through a tax strategy with the economic edge it generates. A firm-specific production line — backed by proprietary knowledge that is rival, excludable, and hard to imitate — creates a durable moat that generic tax strategies, built on non-rival and easily disseminated knowledge, cannot match."
   - myth: "Tax planning is a substantial source of shareholder value."
     reality: "Other business strategies explain far more of the variation in excess returns."
-    implication: "The evidence contextualizes, not dismisses, tax planning's role. Other business strategies contribute more to excess returns, but tax planning still generates a statistically significant positive effect."
+    implication: "The paper does not argue tax planning is unimportant — it explicitly calls tax planning an essential part of corporate strategy. The evidence contextualizes its role: other business strategies contribute more to excess returns, but tax planning still generates a statistically significant positive effect."
   - myth: "Tax planning advantages persist over time."
     reality: "Tax positions converge — the advantage erodes through competition and imitation."
     implication: "The paper documents that tax positions converge, not that firms should abandon tax planning. This reflects market competition — imitation erodes the edge, as with any competitive advantage."
