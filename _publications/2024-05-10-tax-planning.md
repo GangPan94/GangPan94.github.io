@@ -23,13 +23,13 @@ identification: >
   anticipation, and it did not directly change firms' underlying operations.
 myth_busters:
   - myth: "Tax planning creates a large competitive advantage."
-    reality: "The advantage exists but is modest — a 1pp decrease in cash ETR correlates with only 14–17 basis points of annualized excess returns, far smaller than nominal tax savings."
+    reality: "It exists — but the magnitude is economically modest."
     implication: "Tax planning remains an essential part of corporate strategy. The paper does not argue it is unimportant — rather, its contribution to competitive advantage is smaller than commonly assumed."
   - myth: "Tax planning is a substantial source of shareholder value."
-    reality: "Sales growth explains 9.3% of variation in excess returns; tax planning explains only 0.5% — over 7× less. Even interest expense reductions (0.9%) outperform it."
+    reality: "Other business strategies explain far more of the variation in excess returns."
     implication: "The evidence contextualizes, not dismisses, tax planning's role. Other business strategies contribute more to excess returns, but tax planning still generates a statistically significant positive effect."
   - myth: "Tax planning advantages persist over time."
-    reality: "Firms' cash effective tax rates converge in the long run — the advantage does not persist. Mean reversion is strong."
+    reality: "Tax positions converge — the advantage erodes through competition and imitation."
     implication: "The paper documents that tax positions converge, not that firms should abandon tax planning. This reflects market competition — imitation erodes the edge, as with any competitive advantage."
   - myth: "Generic tax strategies (tax havens, buying auditor tax services) create excess returns."
     reality: "No evidence that commonly known tax planning activities affect the DCETR–Alpha relation. Generic, widely-known strategies don't generate excess economic returns."
