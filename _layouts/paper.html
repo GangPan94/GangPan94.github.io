@@ -27,8 +27,11 @@ layout: default
 
     {% include paper-mindmap.html %}
 
+    {% unless page.inline_content %}
     {% include paper-identification.html %}
+    {% endunless %}
 
+    {% unless page.inline_content %}
     {% if page.main_figure == 'event_study' %}
       {% include sports-betting-event-study.html %}
     {% elsif page.main_figure == 'ancova_decomposition' %}
@@ -36,16 +39,23 @@ layout: default
     {% elsif page.main_figure %}
       {% include {{ page.main_figure }}.html %}
     {% endif %}
+    {% endunless %}
 
+    {% unless page.inline_content %}
     {% include paper-table.html %}
+    {% endunless %}
 
+    {% unless page.inline_content %}
     {% include paper-extra-tables.html %}
+    {% endunless %}
 
     {% include paper-background.html %}
 
     {% include paper-data.html %}
 
+    {% unless page.inline_content %}
     {% include paper-robustness.html %}
+    {% endunless %}
 
     {% include paper-authors.html %}
 

@@ -601,6 +601,40 @@
       margin-bottom: 0.3rem;
       line-height: 1.6;
     }
+
+    // ── Inline tables/figures (blended into background body) ──────────
+    // No card wrapper, border, or shadow — just thin horizontal rules
+    // separating the table/figure from the surrounding prose.
+    .paper__inline-table {
+      margin: 1.25rem 0;
+    }
+
+    .paper__inline-separator {
+      border: none;
+      border-top: 1px solid var(--global-border-color);
+      margin: 0;
+
+      &:first-child {
+        margin-bottom: 0.5rem;
+      }
+
+      &:last-child {
+        margin-top: 0.5rem;
+      }
+    }
+
+    .paper__inline-caption {
+      margin: 0 0 0.5rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--global-text-color-light);
+      line-height: 1.4;
+    }
+
+    // Inline figures (ANCOVA, event study) — no card, just spacing + hr
+    .paper__inline-figure {
+      margin: 1.25rem 0;
+    }
   }
 
   // ── Robustness (collapsible) ────────────────────────────────────────

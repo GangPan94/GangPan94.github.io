@@ -1,0 +1,53 @@
+{% comment %}
+  Inline table — renders a table from YAML data without a card wrapper.
+  Usage: {% include paper-inline-table.html table_key="main_table" %}
+  Reads from page frontmatter: main_table_data (slug pointing to _data/papers/<slug>.yml).
+  The table_key parameter selects which table object to render (e.g., "main_table",
+  "summary_stats", "horserace").
+  Renders with thin hr separators instead of card border/shadow for seamless
+  blending into the background body.
+
+  IMPORTANT: All HTML output must start at column 0 (no indentation) because
+  kramdown treats 4+ spaces as a code block.
+{% endcomment %}
+{% if page.main_table_data and include.table_key %}
+{% assign table_data = site.data.papers[page.main_table_data][include.table_key] %}
+{% if table_data %}
+<div class="paper__inline-table">
+<hr class="paper__inline-separator">
+{% if table_data.caption %}
+<p class="paper__inline-caption">{{ table_data.caption }}</p>
+{% endif %}
+<div class="paper__table-wrap">
+<table class="paper__table">
+{% if table_data.columns %}
+<thead>
+<tr>
+{% for col in table_data.columns %}
+<th scope="col" style="text-align: {{ col.align | default: 'center' }}">{{ col.header }}</th>
+{% endfor %}
+</tr>
+</thead>
+{% endif %}
+<tbody>
+{% for row in table_data.rows %}
+<tr>
+{% for cell in row %}
+{% if forloop.first %}
+<th scope="row" class="paper__table-row-label">{{ cell }}</th>
+{% else %}
+<td style="text-align: center">{{ cell }}</td>
+{% endif %}
+{% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% if table_data.notes %}
+<p class="paper__table-notes">{{ table_data.notes }}</p>
+{% endif %}
+<hr class="paper__inline-separator">
+</div>
+{% endif %}
+{% endif %}
