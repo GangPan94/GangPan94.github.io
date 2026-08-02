@@ -3,6 +3,7 @@ title: "Labor Productivity and Firm Strategic Response: Evidence from Sports Bet
 collection: publications
 category: working_papers
 layout: paper
+inline_content: true
 event_study: true
 main_figure: event_study
 main_table_data: sports-betting-productivity
@@ -93,8 +94,6 @@ Second, sports betting can distract attention through emotional volatility and f
 
 Third, expanded access to sports betting may exacerbate mental health risks, including problem gambling, anxiety, and stress, which are closely linked to impaired attentional control, absenteeism, and reduced job functioning.
 
-Behavioral economics emphasizes that agents do not process information or allocate attention frictionlessly. A large literature on limited attention and cognitive constraints primarily studies how attention frictions affect the behavior of investors and shareholders and, in turn, asset prices and corporate outcomes. In contrast, large-sample causal evidence linking attention or distraction directly to labor productivity is scarce. Unlike episodic firm-specific events (e.g., takeover rumors) or idiosyncratic personal shocks (e.g., wealth changes), the launch of legal sports betting lowers participation barriers and increases exposure to persistent, low-intensity demands on attention that can overlap with work hours, affecting a broad segment of the population on an ongoing basis.
-
 ## Why the Effect Is Not Obvious Ex Ante
 
 The effect of sports betting on employee productivity is not obvious ex ante. Participation may be limited to a subset of individuals, muting any aggregate productivity impact. At the same time, the launch of sports betting can boost the local economy and generate tax revenue often used to fund education and other public services, which could improve local households' financial conditions and workforce quality and offset potential productivity losses. Accordingly, whether the launch of sports betting affects employee productivity is ultimately an empirical question.
@@ -105,20 +104,40 @@ The study exploits the staggered state-level launch of legal online sports betti
 
 The primary dependent variable is employee productivity, measured as the logarithm of total sales divided by total employees — a proxy for the revenue-generating efficiency of a firm's human capital relative to its total workforce. Treatment is assigned by the state of a firm's headquarters, and the legal status of sports betting in each state is determined from the American Gaming Association's data. Geolocation technologies that licensed operators use to verify users' real-time locations mitigate concerns about cross-state spillover.
 
+The identification strategy uses a cohort-stacked difference-in-differences design exploiting the staggered state-level launch of legal online sports betting, comparing treated firms (in states that launched betting) vs. not-yet-treated controls, with the year before launch (t = −1) as the base period. The Supreme Court's 2018 Murphy v. NCAA decision struck down PASPA, letting states legalize betting — this staggered timing provides the identifying variation from state-level policy shocks. Pre-launch coefficients (t = −3, t = −2) are jointly insignificant, supporting the parallel trends assumption.
+
 To test the attention-allocation mechanism, the paper uses cognitive task intensity and skill reliance (from O*NET) to capture the attentional demands placed on a firm's workforce. If the productivity decline is driven by attention distraction, it should be stronger among firms whose work relies more heavily on cognitive effort and employee skill.
+
+{% include paper-inline-table.html table_key="summary_stats" %}
 
 ## Key Findings
 
 The paper documents a statistically and economically significant decline in employee productivity following the launch. Treated firms — those headquartered in states that launched sports betting — exhibit employee-level productivity that is 3.0 percent lower than control firms. After controlling for fixed effects, local economic conditions, and firm characteristics including employment size, this decline is incremental to shifts in labor demand or supply and other changes in local economic conditions.
 
+<hr class="paper__inline-separator">
+{% include sports-betting-event-study.html %}
+<hr class="paper__inline-separator">
+
+{% include paper-inline-table.html table_key="main_table" %}
+
 The attention-allocation mechanism is confirmed: the productivity decline is stronger among firms with higher cognitive task intensity and greater reliance on employee skill, consistent with the prediction that expanded access to sports betting increases at-work distraction, diverting cognitive resources away from productive tasks.
+
+{% include paper-inline-table.html table_key="heterogeneity" %}
 
 The paper also finds that firm hiring rates and employee attrition both rise significantly following the launch, resulting in increased workforce churn. R&D intensity increases as well, with some evidence that this investment response is driven by the productivity decline. A two-stage least squares approach reveals an important distinction: predicted productivity is significantly related to R&D and capital expenditure intensity (particularly in the year after the productivity drop), consistent with these increases representing a firm response to the productivity loss. In contrast, predicted productivity is not significantly related to hiring, attrition, or churn, suggesting that labor market changes more plausibly reflect broader shifts in local labor markets following the launch rather than a direct response to the productivity decline. A reverse-direction test confirms that the productivity decline precedes rather than follows changes in firm inputs.
 
+{% include paper-inline-table.html table_key="firm_responses" %}
+
+The productivity decline is negative across all four launch cohorts (2018–2021) and stable in magnitude, mitigating concerns that the effect is driven by a single cohort or time-specific confound.
+
+### Robustness
+
+The baseline result is robust to alternative productivity measures — log(sales/SG&A) and total factor productivity (TFP) — and to controlling for the opioid crisis (state-level overdose mortality) and COVID-19 pandemic (period indicators, state COVID severity). The treatment coefficient remains stable at approximately −0.030 across all specifications.
+
 ## Contributions
 
-The study contributes to three strands of literature. First, it extends the behavioral economics literature on limited attention and cognitive constraints by linking attention frictions to real workplace performance and firm labor costs — while prior research examines how limited attention affects investors and shareholders, evidence on how attention constraints operate in employees' day-to-day work activities remains scarce. Second, it contributes to the growing literature on the real effects of sports betting legalization by providing novel evidence on workplace outcomes, showing that the costs of speculative market liberalization extend beyond bettors themselves. Third, it contributes to the productivity and labor economics literature by identifying a novel, policy-induced distraction shock that operates through attention diversion and increased cognitive load rather than through wages, employment conditions, or physical characteristics — highlighting a behavioral channel through which policy changes can influence workplace efficiency.
+The study contributes to three strands of literature. First, it extends the behavioral economics literature on limited attention and cognitive constraints by linking attention frictions to real workplace performance and firm labor costs. Second, it contributes to the growing literature on the real effects of sports betting legalization by providing novel evidence on workplace outcomes, showing that the costs of speculative market liberalization extend beyond bettors themselves. Third, it contributes to the productivity and labor economics literature by identifying a novel, policy-induced distraction shock that operates through attention diversion and increased cognitive load rather than through wages, employment conditions, or physical characteristics — highlighting a behavioral channel through which policy changes can influence workplace efficiency.
 
 ## Institutional Context
 
-For more than two decades, the Professional and Amateur Sports Protection Act (PASPA) effectively prohibited sports betting in most U.S. states. This regulatory regime ended on May 14, 2018, when the Supreme Court struck down PASPA, returning authority over sports betting regulation to individual states. States rapidly moved to legalize and regulate through legislative action or ballot initiatives. Licensed operators rely on geolocation technologies to verify users' real-time locations and prevent access from outside the state, mitigating concerns that legalization in one state mechanically spills over into neighboring states. The U.S. sports betting market has expanded rapidly: in 2024, commercial sports betting revenue reached $13.78 billion driven by $149.9 billion in wagers. Sports betting activity has also extended into prediction markets, with platforms like Crypto.com and Kalshi offering sports-related contracts beginning in late 2024 and early 2025.
+For more than two decades, the Professional and Amateur Sports Protection Act (PASPA) effectively prohibited sports betting in most U.S. states. This regulatory regime ended on May 14, 2018, when the Supreme Court struck down PASPA, returning authority over sports betting regulation to individual states. States rapidly moved to legalize and regulate through legislative action or ballot initiatives. Licensed operators rely on geolocation technologies to verify users' real-time locations and prevent access from outside the state, mitigating concerns that legalization in one state mechanically spills over into neighboring states.
