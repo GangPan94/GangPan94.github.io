@@ -35,8 +35,8 @@ myth_busters:
     reality: "No evidence that commonly known tax planning activities affect the link between tax planning and excess returns. Generic, widely-known strategies don't generate excess economic returns."
     implication: "The finding highlights that it is novel, firm-specific tax innovations — not commoditized strategies — that are associated with excess returns. Tax planning still matters; the distinction is between generic and innovative approaches."
   - myth: "Tax planning is just corporate greed benefiting shareholders unfairly."
-    reality: "Market forces inherently limit shareholder benefits — the moat is narrow because tax knowledge is non-rival, non-excludable, and easily imitated. Policymakers may not need complex codes to prevent unjust wealth retention."
-    implication: "The paper does not take a normative stance on corporate tax planning. For policymakers, the evidence suggests market forces already constrain shareholder benefits, and complex anti-avoidance codes may create unintended consequences."
+    reality: "Market forces inherently limit shareholder benefits — the moat is narrow because tax knowledge is non-rival, non-excludable, and easily imitated."
+    implication: "The paper does not take a normative stance on corporate tax planning. Market forces already constrain shareholder benefits; policymakers may not need complex codes to prevent unjust wealth retention, and complex anti-avoidance codes may create unintended consequences."
 key_findings:
   - "Tax planning innovations generate excess returns, confirming the competitive advantage **exists** — but the magnitude is **modest**, far smaller than nominal tax savings."
   - "Sales growth explains **9.3%** of variation in excess returns; tax planning explains only **0.5%**."
