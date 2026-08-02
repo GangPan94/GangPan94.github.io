@@ -24,10 +24,10 @@ identification: >
 myth_busters:
   - myth: "Tax planning creates a large competitive advantage."
     reality: "It exists — but the magnitude is economically modest."
-    implication: "The nominal tax saving from a strategy and the competitive advantage it creates can differ dramatically. Managers should not equate the dollar amount sheltered through a tax strategy with the economic edge it generates. A firm-specific production line — backed by proprietary knowledge that is rival, excludable, and hard to imitate — creates a durable moat that generic tax strategies, built on non-rival and easily disseminated knowledge, cannot match."
-  - myth: "Tax planning is a substantial source of shareholder value."
+    implication: "The nominal tax saving from a strategy and the competitive advantage it creates can differ dramatically. Managers should not equate the dollar amount sheltered through a tax strategy with the economic edge it generates. Nor should the manager compare the nominal tax saving with savings from other strategies."
+  - myth: "Tax planning is a substantial source of competitive advantage."
     reality: "Other business strategies explain far more of the variation in excess returns."
-    implication: "The paper does not argue tax planning is unimportant — it explicitly calls tax planning an essential part of corporate strategy. The evidence contextualizes its role: other business strategies contribute more to excess returns, but tax planning still generates a statistically significant positive effect."
+    implication: "The paper documents that tax planning matters even when it creates no competitive advantage. Not engaging in tax planning is a competitive disadvantage — firms that neglect it fall behind competitors. Tax planning is a necessary cost of staying competitive, not a source of advantage."
   - myth: "Tax planning advantages persist over time."
     reality: "Tax positions converge — the advantage erodes through competition and imitation."
     implication: "The paper documents that tax positions converge, not that firms should abandon tax planning. This reflects market competition — imitation erodes the edge, as with any competitive advantage."
