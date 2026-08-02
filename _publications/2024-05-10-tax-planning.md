@@ -32,7 +32,7 @@ myth_busters:
     reality: "Tax positions converge — the advantage erodes through competition and imitation."
     implication: "The paper documents that tax positions converge, not that firms should abandon tax planning. This reflects market competition — imitation erodes the edge, as with any competitive advantage."
   - myth: "Generic tax strategies (tax havens, buying auditor tax services) create excess returns."
-    reality: "No evidence that commonly known tax planning activities affect the DCETR–Alpha relation. Generic, widely-known strategies don't generate excess economic returns."
+    reality: "No evidence that commonly known tax planning activities affect the link between tax planning and excess returns. Generic, widely-known strategies don't generate excess economic returns."
     implication: "The finding highlights that it is novel, firm-specific tax innovations — not commoditized strategies — that are associated with excess returns. Tax planning still matters; the distinction is between generic and innovative approaches."
   - myth: "Tax planning is just corporate greed benefiting shareholders unfairly."
     reality: "Market forces inherently limit shareholder benefits — the moat is narrow because tax knowledge is non-rival, non-excludable, and easily imitated. Policymakers may not need complex codes to prevent unjust wealth retention."
