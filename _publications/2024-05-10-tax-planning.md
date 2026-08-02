@@ -27,7 +27,7 @@ myth_busters:
     implication: "The nominal tax saving from a strategy and the competitive advantage it creates can differ dramatically. Managers should not equate the dollar amount sheltered through a tax strategy with the economic edge it generates. Nor should the manager compare the nominal tax saving with savings from other strategies."
   - myth: "Tax planning is a relatively substitutional source of competitive advantage."
     reality: "Tax planning has the smallest factor loading among compared strategies."
-    implication: "Managers should avoid overinvesting attention in tax planning relative to innovations in the firm's core business — however, tax planning remains a necessary cost of staying competitive; firms that neglect it fall behind even when its contribution is modest relative to other corporate strategies."
+    implication: "Managers should avoid overinvesting attention in tax planning relative to innovations in the firm's core business; however, tax planning remains a necessary cost of staying competitive, and firms that neglect it fall behind even when its contribution is modest relative to other corporate strategies."
   - myth: "Tax planning advantages persist over time."
     reality: "Tax positions converge — the advantage erodes through competition and imitation."
     implication: "The paper documents that tax positions converge, not that firms should abandon tax planning. This reflects market competition — imitation erodes the edge, as with any competitive advantage."
