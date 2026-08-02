@@ -10,6 +10,20 @@ My Chinese name is **刚** (gāng), meaning "tough" or "strong." However, "Gang"
 
 ---
 
+## From Qingdao, with Beer — and ALE
+
+<img src="/images/qingdao-beer-plastic-bag.png" alt="Tsingtao beer in a plastic bag — a Qingdao street tradition" style="float:right; max-width:300px; margin:0 0 12px 20px; border-radius:8px;" />
+
+I grew up in Qingdao (青岛), a Chinese coastal city famous for beer — thanks to its German colonial heritage, German brewing traditions still run deep there. Locals drink fresh unpasteurized beer poured straight into a plastic bag, sipped with a straw on the street. It's a way of life.
+
+Then I moved to Saint Louis, MO — another proud beer city, home of Anheuser-Busch. Tsingtao to Budweiser. I can't escape living where beer is a personality trait.
+
+These days, I spend more time with a different kind of ALE — not ale the beer, but ALE the accounting identity: Assets = Liabilities + Equity. Same three letters, very different buzz.
+
+Want to see where I grew up? [Watch scenes from my hometown →](https://youtu.be/dJu-Va04JMQ)
+
+---
+
 ## Life of "Meowtitasking"
 
 <img src="/images/cats/meowtitasking-six-cats.png" alt="Meowtitasking six-cats photo" style="float:right; max-width:300px; margin:0 0 12px 20px; border-radius:8px;" />
