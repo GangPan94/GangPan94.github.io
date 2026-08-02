@@ -36,6 +36,8 @@ In my spare time, I spoil six cats — **Emma**, **Malady**, **Lucian**, **Atusa
 - [The Story of Atusa and Clayton](/about/atusa-clayton/)
 - [The Story of Benji](/about/benji/)
 
+If you're statistically inclined toward feline companionship, consider adopting during "kitten season" — roughly April through October, peaking June–August — when millions of kittens enter shelters nationwide. Most need weeks or months of care before they're adoptable. In Ohio, shelters cut adoption fees significantly in July and August — so the likelihood that the expected value is strictly positive is higher during kitten season.
+
 ---
 
 <!--
