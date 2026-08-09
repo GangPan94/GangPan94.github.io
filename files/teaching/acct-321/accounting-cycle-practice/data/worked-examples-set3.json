@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "title": "ACCT 321 — Worked Example Set 3: Merchandising Corporation — Month 3",
+    "description": "A merchandising corporation buying and selling inventory. Introduces perpetual inventory system, cost of goods sold, sales revenue, and merchandising-specific transactions. Students practice distinguishing between service and merchandising entries.",
+    "entity_type": "Corporation",
+    "business_type": "Merchandising",
+    "difficulty": "intermediate",
+    "learning_objectives": [
+      "Record purchase of inventory for cash and on account",
+      "Record sale of inventory for cash and on account",
+      "Record cost of goods sold at time of sale (perpetual system)",
+      "Record payment of freight costs on inventory purchases",
+      "Record sales discounts and purchase discounts",
+      "Record return of inventory"
+    ]
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "description": "On April 1, RetailMart Corp. purchased $15,000 of merchandise inventory on account from a supplier, terms 2/10, n/30.",
+      "entries": [
+        { "account": "Inventory", "debit": 15000, "credit": 0 },
+        { "account": "Accounts Payable", "debit": 0, "credit": 15000 }
+      ],
+      "explanation": "Under the perpetual inventory system, Inventory is debited at the full purchase price when goods are received. Accounts Payable is credited because payment is due later. The terms '2/10, n/30' mean a 2% discount if paid within 10 days, otherwise full payment due in 30 days.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Inventory", "type": "Asset", "change": "increase", "amount": 15000 },
+          { "account": "Accounts Payable", "type": "Liability", "change": "increase", "amount": 15000 }
+        ],
+        "equation_impact": "Assets +$15,000 = Liabilities +$15,000"
+      }
+    },
+    {
+      "id": 2,
+      "description": "On April 3, paid $300 cash for freight charges on the inventory purchased April 1 (FOB shipping point).",
+      "entries": [
+        { "account": "Inventory", "debit": 300, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 300 }
+      ],
+      "explanation": "Under FOB shipping point, the buyer pays freight. In a perpetual inventory system, freight costs are added to the Inventory account because they are a cost of acquiring the inventory. Inventory increases (debit) and Cash decreases (credit). The inventory now has a total cost of $15,300.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Inventory", "type": "Asset", "change": "increase", "amount": 300 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 300 }
+        ],
+        "equation_impact": "Assets +$300 (Inventory) − $300 (Cash) = No net change"
+      }
+    },
+    {
+      "id": 3,
+      "description": "On April 5, sold merchandise inventory costing $4,000 to a customer for $7,000 cash.",
+      "entries": [
+        { "account": "Cash", "debit": 7000, "credit": 0 },
+        { "account": "Sales Revenue", "debit": 0, "credit": 7000 },
+        { "account": "Cost of Goods Sold", "debit": 4000, "credit": 0 },
+        { "account": "Inventory", "debit": 0, "credit": 4000 }
+      ],
+      "explanation": "A merchandising sale requires TWO entries. First: record the revenue — Cash increases (debit) and Sales Revenue increases (credit) for the selling price. Second: record the expense — Cost of Goods Sold increases (debit) and Inventory decreases (credit) for the cost. This is the matching principle: the expense (COGS) is recorded in the same period as the revenue it generated. Note: This is a compound entry (2 debits, 2 credits) — the webapp should handle this as two separate 2-account entries or as a single compound entry depending on the scope setting.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 7000 },
+          { "account": "Inventory", "type": "Asset", "change": "decrease", "amount": 4000 },
+          { "account": "Sales Revenue", "type": "Revenue", "change": "increase", "amount": 7000 },
+          { "account": "Cost of Goods Sold", "type": "Expense", "change": "increase", "amount": 4000 }
+        ],
+        "equation_impact": "Assets +$7,000 (Cash) − $4,000 (Inventory) = Equity +$3,000 (Revenue $7,000 − Expense $4,000)"
+      }
+    },
+    {
+      "id": 4,
+      "description": "On April 8, returned $1,000 of defective inventory to the supplier from the April 1 purchase.",
+      "entries": [
+        { "account": "Accounts Payable", "debit": 1000, "credit": 0 },
+        { "account": "Inventory", "debit": 0, "credit": 1000 }
+      ],
+      "explanation": "Returning inventory reduces both the liability and the asset. Accounts Payable decreases (debit) because the business owes less, and Inventory decreases (credit) because the goods are no longer on hand. The cost of the returned inventory is removed from the Inventory account.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Accounts Payable", "type": "Liability", "change": "decrease", "amount": 1000 },
+          { "account": "Inventory", "type": "Asset", "change": "decrease", "amount": 1000 }
+        ],
+        "equation_impact": "Assets −$1,000 = Liabilities −$1,000"
+      }
+    },
+    {
+      "id": 5,
+      "description": "On April 10, paid the supplier the amount due for the April 1 purchase (after return), taking the 2% discount.",
+      "entries": [
+        { "account": "Accounts Payable", "debit": 14000, "credit": 0 },
+        { "account": "Inventory", "debit": 0, "credit": 280 },
+        { "account": "Cash", "debit": 0, "credit": 13720 }
+      ],
+      "explanation": "The original purchase was $15,000. After the $1,000 return, the balance is $14,000. Paying within 10 days earns a 2% discount: $14,000 × 2% = $280. Accounts Payable is reduced by the full $14,000 (debit). Cash is credited for the actual payment of $13,720. The $280 discount reduces the cost of inventory (credit to Inventory). The inventory cost is now $15,000 + $300 - $1,000 - $280 = $14,020.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Accounts Payable", "type": "Liability", "change": "decrease", "amount": 14000 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 13720 },
+          { "account": "Inventory", "type": "Asset", "change": "decrease", "amount": 280 }
+        ],
+        "equation_impact": "Assets −$13,720 (Cash) − $280 (Inventory) = Liabilities −$14,000"
+      }
+    },
+    {
+      "id": 6,
+      "description": "On April 15, sold merchandise inventory costing $6,000 to a customer for $10,000 on account, terms 2/10, n/30.",
+      "entries": [
+        { "account": "Accounts Receivable", "debit": 10000, "credit": 0 },
+        { "account": "Sales Revenue", "debit": 0, "credit": 10000 },
+        { "account": "Cost of Goods Sold", "debit": 6000, "credit": 0 },
+        { "account": "Inventory", "debit": 0, "credit": 6000 }
+      ],
+      "explanation": "Same two-entry pattern as transaction 3, but on account instead of cash. Accounts Receivable increases (debit) and Sales Revenue increases (credit) for the selling price. Cost of Goods Sold increases (debit) and Inventory decreases (credit) for the cost. The revenue is earned even though cash hasn't been collected.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Accounts Receivable", "type": "Asset", "change": "increase", "amount": 10000 },
+          { "account": "Inventory", "type": "Asset", "change": "decrease", "amount": 6000 },
+          { "account": "Sales Revenue", "type": "Revenue", "change": "increase", "amount": 10000 },
+          { "account": "Cost of Goods Sold", "type": "Expense", "change": "increase", "amount": 6000 }
+        ],
+        "equation_impact": "Assets +$10,000 (Accounts Receivable) − $6,000 (Inventory) = Equity +$4,000 (Revenue $10,000 − Expense $6,000)"
+      }
+    },
+    {
+      "id": 7,
+      "description": "On April 18, paid $1,500 cash for advertising in local newspapers.",
+      "entries": [
+        { "account": "Advertising Expense", "debit": 1500, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 1500 }
+      ],
+      "explanation": "Advertising is an operating expense. Advertising Expense increases with a debit, and Cash decreases with a credit. This is a period cost — it is expensed immediately, not added to inventory.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Advertising Expense", "type": "Expense", "change": "increase", "amount": 1500 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 1500 }
+        ],
+        "equation_impact": "Assets −$1,500 = Equity −$1,500 (via Expense)"
+      }
+    },
+    {
+      "id": 8,
+      "description": "On April 22, received payment from the customer for the April 15 sale (within the discount period).",
+      "entries": [
+        { "account": "Cash", "debit": 9800, "credit": 0 },
+        { "account": "Sales Discounts", "debit": 200, "credit": 0 },
+        { "account": "Accounts Receivable", "debit": 0, "credit": 10000 }
+      ],
+      "explanation": "The customer pays $10,000 less 2% = $9,800. Cash increases by $9,800 (debit). Sales Discounts is a contra-revenue account (normal debit balance) that reduces total revenue — it increases with a debit of $200. Accounts Receivable is reduced by the full $10,000 (credit). Sales Discounts will be subtracted from Sales Revenue on the income statement.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 9800 },
+          { "account": "Accounts Receivable", "type": "Asset", "change": "decrease", "amount": 10000 },
+          { "account": "Sales Discounts", "type": "Revenue (Contra)", "change": "increase", "amount": 200 }
+        ],
+        "equation_impact": "Assets +$9,800 (Cash) − $10,000 (Accounts Receivable) = Equity −$200 (via Sales Discounts)"
+      }
+    },
+    {
+      "id": 9,
+      "description": "On April 25, paid $2,500 cash for employee salaries.",
+      "entries": [
+        { "account": "Salaries Expense", "debit": 2500, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 2500 }
+      ],
+      "explanation": "Salaries Expense increases with a debit, and Cash decreases with a credit. This is the same pattern as in service businesses — salaries are an operating expense regardless of business type.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Salaries Expense", "type": "Expense", "change": "increase", "amount": 2500 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 2500 }
+        ],
+        "equation_impact": "Assets −$2,500 = Equity −$2,500 (via Expense)"
+      }
+    },
+    {
+      "id": 10,
+      "description": "On April 28, purchased $8,000 of merchandise inventory for cash.",
+      "entries": [
+        { "account": "Inventory", "debit": 8000, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 8000 }
+      ],
+      "explanation": "Cash purchase of inventory. Inventory increases (debit) and Cash decreases (credit). Unlike a purchase on account, there is no liability recorded because payment is immediate.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Inventory", "type": "Asset", "change": "increase", "amount": 8000 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 8000 }
+        ],
+        "equation_impact": "Assets +$8,000 (Inventory) − $8,000 (Cash) = No net change"
+      }
+    }
+  ],
+  "summary": {
+    "total_debits": 70500,
+    "total_credits": 70500,
+    "key_takeaways": [
+      "Merchandising requires TWO entries per sale: one for revenue, one for cost of goods sold",
+      "Cost of Goods Sold is an expense representing the cost of inventory sold",
+      "Inventory is debited when purchased (including freight) and credited when sold or returned",
+      "Purchase discounts reduce the cost of inventory (credit to Inventory)",
+      "Sales discounts are contra-revenue (debit balance), reducing total revenue",
+      "FOB shipping point means buyer pays freight — added to inventory cost",
+      "The matching principle requires recording COGS in the same period as the related revenue"
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+Transaction bank
+Exercise 2-1 (Static) Transaction analysis [LO2-1]
+The following transactions occurred during March 2027. The company operates a wholesale warehouse.
+1. Issued 30,000 shares of no-par common stock in exchange for $300,000 in cash.
+2. Purchased equipment at a cost of $40,000. Cash of $10,000 was paid and a note payable to the seller was signed for the balance owed.
+3. Purchased inventory on account at a cost of $90,000. The company uses the perpetual inventory system.
+4. Sold goods to customers on account for $120,000. The cost of the goods sold was $70,000.
+5. Paid $5,000 in rent on the warehouse building for the month of March.
+6. Paid $6,000 to an insurance company for fire and liability insurance for a one-year period beginning April 1, 2027.
+7. Paid $70,000 on account for the inventory purchased in transaction 3.
+8. Collected $55,000 from customers on account.
+
+Exercise 2-4 (Static) Journal entries [LO2-3]
+The following transactions occurred during the month of June.
+1. Obtained a loan of $70,000 from the bank by signing a note.
+2. Issued common stock in exchange for cash of $40,000.
+3. Purchased equipment for $75,000 cash.
+4. Purchased supplies of $8,000 on account.
+5. Provided services of $5,000 to customers. All customers paid cash.
+6. Paid employees $900 for work performed.
+7. Paid for advertising in a local newspaper, costing $500.
+8. Provided services of $6,000 to customers on account.
+9. Paid a utility bill of $1,400 for the current month.
+10. Paid dividends of $600 to shareholders.
+
+Exercise 2-8 (Static) Adjusting entries [LO2-6]
+The following transactions occurred for the Fierro Company.
+1. A three-year fire insurance policy was purchased on July 1, 2027, for $12,000. The company debited prepaid insurance for the entire amount at the time of payment.
+2. Depreciation on equipment totaled $15,000 for the year.
+3. Employee salaries of $18,000 for the month of December will be paid in early January 2028.
+4. On November 1, 2027, the company borrowed $200,000 from a bank. The note requires principal and interest at 12% to be paid on April 30, 2028.
+5. On December 1, 2027, the company received $3,000 in cash from another company that is renting office space in Fierro's building. The payment, representing rent for December, January, and February was credited to deferred rent revenue at the time cash was received.
+
+Exercise 2-9 (Static) Adjusting entries [LO2-6]
+The following transactions occurred for the Microchip Company.
+1. On October 1, 2027, Microchip lent $90,000 to another company. A note was signed with principal and 8% interest to be received on September 30, 2028.
+2. On November 1, 2027, the company paid its landlord $6,000 representing rent for the months of November through January. Prepaid rent was debited at the time of payment.
+3. On August 1, 2027, collected $12,000 in advance rent from another company that is renting a portion of Microchip's factory. The $12,000 represents one year's rent and the entire amount was credited to deferred rent revenue at the time cash was received.
+4. Depreciation on office equipment is $4,500 for the year.
+5. Vacation pay for the year that had been earned by employees but not paid to them or recorded is $8,000. The company records vacation pay as salaries expense.
+6. Microchip began the year with $2,000 in its asset account, supplies. During the year, $6,500 in supplies were purchased and debited to supplies. At year-end, supplies costing $3,250 remain on hand.
+
+Exercise 2-11 (Static) Adjusting entries; alternative approach [LO2-6]
+The Mazzanti Wholesale Food Company's fiscal year-end is June 30, 2027, for the following situations.
+1. On December 1, 2026, the company paid its annual fire insurance premium of $6,000 for the year beginning December 1 and debited insurance expense at the time of payment.
+2. On November 1, 2026, Mazzanti purchased an advertising campaign to occur evenly over the next year. The company paid $9,600 and debited advertising expense at the time of payment.
+3. Mazzanti owns a warehouse that it rents to another company. On January 1, 2027, Mazzanti collected $24,000 representing rent for the 2027 calendar year and credited rent revenue at the time cash was received.
+4. On February 17, 2027, Mazzanti purchased $7,200 of office supplies and debited supplies expense. By June 30, 2027, only $4,100 of the supplies have been used.
+5. Mazzanti provides delivery services to its customers and offers special pricing to those customers who pay for these services in advance. Suppose Mazzanti receives $3,000 from a customer on April 22, 2027, for future delivery services and credits delivery revenue at that time. By June 30, 2027, Mazzanti has provided delivery services of $1,800 to this customer.
+
+Problem 2-1 (Static) Accounting cycle through unadjusted trial balance [LO2-3, 2-4]
+Halogen Laminated Products Company began business on January 1, 2027. During January, the following transactions occurred:
+January 1 - Issued common stock in exchange for $100,000 cash.
+January 2 - Purchased inventory on account for $35,000 (the perpetual inventory system is used).
+January 4 - Paid an insurance company $2,400 for a one-year insurance policy. Prepaid insurance was debited for the entire amount.
+January 10 - Sold inventory on account for $12,000. The cost of the inventory was $7,000.
+January 15 - Borrowed $30,000 from a local bank and signed a note. Principal and interest at 10% will be repaid in six months.
+January 20 - Paid employees $6,000 for salaries for the first half of the month.
+January 22 - Sold inventory for $10,000 cash. The cost of the inventory was $6,000.
+January 24 - Paid $15,000 to suppliers for the inventory purchased on January 2.
+January 26 - Collected $6,000 on account from customers.
+January 28 - Paid $1,000 to the local utility company for January gas and electricity.
+January 30 - Paid $4,000 rent for the building. $2,000 was for January rent, and $2,000 for February rent. Prepaid rent and rent expense were debited for their appropriate amounts.
+
+Problem 2-2 (Static) Accounting cycle through unadjusted trial balance [LO2-3, 2-4]
+The following is the post-closing trial balance for the Whitlow Manufacturing Corporation as of December 31, 2026.
+Cash $5,000 | Accounts receivable $2,000 | Inventory $5,000 | Equipment $11,000 | Accumulated depreciation $3,500 | Accounts payable $3,000 | Common stock $10,000 | Retained earnings $6,500
+The following transactions occurred during January 2027:
+January 1 - Sold inventory for cash, $3,500. The cost of the inventory was $2,000. The company uses the perpetual inventory system.
+January 2 - Purchased equipment on account for $5,500 from the Strong Company. The full amount is due in 15 days.
+January 4 - Received a $150 invoice from the local newspaper requesting payment for an advertisement that Whitlow placed in the paper on January 2.
+January 8 - Sold inventory on account for $5,000. The cost of the inventory was $2,800.
+January 10 - Purchased inventory on account for $9,500.
+January 13 - Purchased equipment for cash, $800.
+January 16 - Paid the entire amount due to the Strong Company.
+January 18 - Received $4,000 from customers on account.
+January 20 - Paid $800 to the owner of the building for January's rent.
+January 30 - Paid employees $3,000 for salaries for the month of January.
+January 31 - Paid a cash dividend of $1,000 to shareholders.
+
+P2-3 and P2-4 (Static) Adjusting entries, Accounting cycle; adjusting entries through post-closing trial balance [LO2-4, 2-6, 2-7, 2-8]
+Pastina Company sells various types of pasta to grocery chains as private label brands. The company's reporting year-end is December 31.
+Unadjusted trial balance as of December 31, 2027:
+Cash $30,000 | Accounts receivable $40,000 | Supplies $1,500 | Inventory $60,000 | Notes receivable $20,000 | Prepaid rent $2,000 | Prepaid insurance $6,000 | Office equipment $80,000 | Accumulated depreciation $30,000 | Accounts payable $31,000 | Notes payable $50,000 | Deferred sales revenue $2,000 | Common stock $60,000 | Retained earnings $28,500 | Dividends $4,000 | Sales revenue $146,000 | Cost of goods sold $70,000 | Salaries expense $18,900 | Rent expense $11,000 | Supplies expense $1,100 | Advertising expense $3,000
+Adjusting entries information:
+1. Depreciation on the office equipment for the year is $10,000.
+2. Employee salaries are paid twice a month. Salaries earned from December 16 through December 31, 2027, were $1,500.
+3. On October 1, 2027, Pastina borrowed $50,000 from a local bank and signed a note. The note requires interest to be paid annually on September 30 at 12%. The principal is due in 10 years.
+4. On March 1, 2027, the company lent a supplier $20,000, and a note was signed requiring principal and interest at 8% to be paid on February 28, 2028.
+5. On April 1, 2027, the company paid an insurance company $6,000 for a one-year fire insurance policy. The entire $6,000 was debited to prepaid insurance at the time of the payment.
+6. $800 of supplies remained on hand on December 31, 2027.
+7. The company received $2,000 from a customer in December for 1,500 pounds of spaghetti to be delivered in January 2028. Pastina credited deferred sales revenue at the time cash was received.
+8. On December 1, 2027, $2,000 rent was paid to the owner of the building. The payment represented rent for December 2027 and January 2028 at $1,000 per month. The entire amount was debited to prepaid rent at the time of the payment.
+
+Problem 2-6 (Static) Accounting cycle [LO2-3, 2-4, 2-5, 2-6, 2-7, 2-8]
+The general ledger of the Karlin Company, a consulting company, at January 1, 2027, contained the following account balances:
+Cash $30,000 | Accounts receivable $15,000 | Equipment $20,000 | Accumulated depreciation $6,000 | Salaries payable $9,000 | Common stock $40,500 | Retained earnings $9,500
+Transactions for the year:
+1. Provided services, $100,000, of which $30,000 was on account and the balance was received in cash.
+2. Collected on accounts receivable, $27,300.
+3. Issued shares of common stock in exchange for $10,000 in cash.
+4. Paid salaries, $50,000 (of which $9,000 was for salaries payable at the end of the prior year).
+5. Paid miscellaneous expense for various items, $24,000.
+6. Purchased equipment for $15,000 in cash.
+7. Paid $2,500 in cash dividends to shareholders.
+Additional information:
+1. Accrued salaries at year-end amounted to $1,000.
+2. Depreciation for the year on the equipment is $2,000.
+
+Problem 2-7 (Static) Adjusting entries and income effects [LO2-5, 2-6]
+The information necessary for preparing the December 31, 2027, year-end adjusting entries for Vito's Pizza Parlor appears below.
+1. On July 1, 2027, purchased $10,000 of IBM Corporation bonds at face value. The bonds pay interest twice a year on January 1 and July 1. The annual interest rate is 12%.
+2. Vito's depreciable equipment has a cost of $30,000, a five-year life, and no salvage value. The equipment was purchased in 2025. The straight-line depreciation method is used.
+3. On November 1, 2027, the bar area was leased to Jack Donaldson for one year. Vito's received $6,000 representing the first six months' rent and credited deferred rent revenue at the time cash was received.
+4. On April 1, 2027, the company paid $2,400 for a two-year fire insurance policy and debited prepaid insurance at the time of the payment.
+5. On October 1, 2027, the company borrowed $20,000 from a local bank and signed a note. Principal and interest at 12% will be paid on September 30, 2028.
+6. At year-end, there is a $1,800 debit balance in the supplies (asset) account. Only $700 of supplies remain on hand.

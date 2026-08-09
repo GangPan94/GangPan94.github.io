@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "ACCT 321 — Scope Configuration",
+    "description": "Scope decisions for the Accounting Cycle Practice Tool. These control what the webapp presents and validates.",
+    "version": "1.0.0"
+  },
+  "scope": {
+    "entry_types": {
+      "journal_entries": true,
+      "trial_balance": false,
+      "adjusting_entries": false,
+      "closing_entries": false,
+      "financial_statements": false
+    },
+    "compound_entries": {
+      "allowed": false,
+      "note": "Start with simple 2-account entries only. Each transaction has exactly one debit and one credit."
+    },
+    "answer_checking": {
+      "method": "exact_match",
+      "rules": [
+        "Account names must match exactly (case-insensitive, whitespace-trimmed)",
+        "Debit and credit amounts must match exactly",
+        "Total debits must equal total credits for each entry",
+        "Partial credit is not awarded — the entry is either correct or incorrect"
+      ],
+      "note": "Exact match on accounts + amounts. No partial credit in v1."
+    },
+    "business_types": {
+      "service_business": true,
+      "merchandising_business": true,
+      "note": "Both service and merchandising transactions are included. Students should be told which type they are practicing."
+    },
+    "entity_types": {
+      "corporation": true,
+      "sole_proprietorship": true,
+      "note": "Both entity types included. Worked examples specify the entity type."
+    },
+    "difficulty_levels": {
+      "beginner": { "label": "Beginner", "description": "Basic cash transactions, simple services, single-step" },
+      "intermediate": { "label": "Intermediate", "description": "Credit transactions, purchases, prepaids" },
+      "advanced": { "label": "Advanced", "description": "Depreciation, bad debts, notes, compound entries (future)" }
+    },
+    "default_difficulty": "beginner",
+    "max_transactions_per_set": 10,
+    "min_transactions_per_set": 5
+  }
+}

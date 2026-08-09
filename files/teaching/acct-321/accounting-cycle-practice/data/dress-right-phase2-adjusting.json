@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "title": "Dress Right Clothing Corp. \u2014 Phase 2: Adjusting Entries",
+    "description": "July 31, 2027 period-end adjusting journal entries for Dress Right Clothing Corporation. Covers supplies used, expired rent, equipment depreciation, earned rent revenue, accrued salaries, and accrued interest.",
+    "entity_type": "corporation",
+    "business_type": "merchandising",
+    "difficulty": "intermediate",
+    "phase": 2,
+    "phase_name": "Adjusting Entries",
+    "learning_objectives": [
+      "Record supplies used as an expense (asset-to-expense adjustment)",
+      "Record expired prepaid rent (asset-to-expense adjustment)",
+      "Record monthly depreciation on equipment (asset-to-expense adjustment)",
+      "Record earned portion of deferred revenue (liability-to-revenue adjustment)",
+      "Record accrued salaries at period-end (accrued expense adjustment)",
+      "Record accrued interest on notes payable (accrued expense adjustment)",
+      "Understand that AJEs NEVER involve the Cash account"
+    ],
+    "trial_balance": [
+      {
+        "account": "Cash",
+        "debit": 68500,
+        "credit": 0
+      },
+      {
+        "account": "Accounts Receivable",
+        "debit": 2000,
+        "credit": 0
+      },
+      {
+        "account": "Supplies",
+        "debit": 1200,
+        "credit": 0
+      },
+      {
+        "account": "Prepaid Rent",
+        "debit": 22000,
+        "credit": 0
+      },
+      {
+        "account": "Office Equipment",
+        "debit": 12000,
+        "credit": 0
+      },
+      {
+        "account": "Accumulated Depreciation \u2014 Office Equipment",
+        "debit": 0,
+        "credit": 200
+      },
+      {
+        "account": "Inventory",
+        "debit": 38000,
+        "credit": 0
+      },
+      {
+        "account": "Accounts Payable",
+        "debit": 0,
+        "credit": 35000
+      },
+      {
+        "account": "Notes Payable",
+        "debit": 0,
+        "credit": 40000
+      },
+      {
+        "account": "Deferred Rent Revenue",
+        "debit": 0,
+        "credit": 750
+      },
+      {
+        "account": "Salaries Payable",
+        "debit": 0,
+        "credit": 5500
+      },
+      {
+        "account": "Interest Payable",
+        "debit": 0,
+        "credit": 333
+      },
+      {
+        "account": "Common Stock",
+        "debit": 0,
+        "credit": 60000
+      },
+      {
+        "account": "Retained Earnings",
+        "debit": 0,
+        "credit": 0
+      },
+      {
+        "account": "Dividends",
+        "debit": 1000,
+        "credit": 0
+      },
+      {
+        "account": "Sales Revenue",
+        "debit": 0,
+        "credit": 38500
+      },
+      {
+        "account": "Rent Revenue",
+        "debit": 0,
+        "credit": 250
+      },
+      {
+        "account": "Cost of Goods Sold",
+        "debit": 22000,
+        "credit": 0
+      },
+      {
+        "account": "Salaries Expense",
+        "debit": 10500,
+        "credit": 0
+      },
+      {
+        "account": "Rent Expense",
+        "debit": 2000,
+        "credit": 0
+      },
+      {
+        "account": "Supplies Expense",
+        "debit": 800,
+        "credit": 0
+      },
+      {
+        "account": "Depreciation Expense",
+        "debit": 200,
+        "credit": 0
+      },
+      {
+        "account": "Interest Expense",
+        "debit": 333,
+        "credit": 0
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "ref": "A1",
+      "date": "July 31",
+      "description": "Purchased $2,000 of supplies in July. Physical count on July 31 reveals $1,200 of supplies remain on hand. Supplies used = $2,000 \u2212 $1,200 = $800.",
+      "entries": [
+        {
+          "account": "Supplies Expense",
+          "debit": 800,
+          "credit": 0
+        },
+        {
+          "account": "Supplies",
+          "debit": 0,
+          "credit": 800
+        }
+      ],
+      "explanation": "This is an asset-to-expense adjustment. Supplies (Asset) decreases \u2192 credit. Supplies Expense (Expense) increases \u2192 debit. The $800 of supplies consumed during July is recognized as an expense. The remaining $1,200 stays in the Supplies asset account for future periods.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Supplies Expense",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 800
+          },
+          {
+            "account": "Supplies",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 800
+          }
+        ],
+        "equation_impact": "Assets \u2212$800 = Equity \u2212$800 (via Expense)"
+      }
+    },
+    {
+      "id": 2,
+      "ref": "A2",
+      "date": "July 31",
+      "description": "Paid $24,000 on July 1 for 1 year rent. Monthly rent cost = $24,000 \u00f7 12 = $2,000/month. One month expired in July.",
+      "entries": [
+        {
+          "account": "Rent Expense",
+          "debit": 2000,
+          "credit": 0
+        },
+        {
+          "account": "Prepaid Rent",
+          "debit": 0,
+          "credit": 2000
+        }
+      ],
+      "explanation": "This is an asset-to-expense adjustment. Prepaid Rent (Asset) decreases \u2192 credit. Rent Expense (Expense) increases \u2192 debit. One month of the prepaid rent has expired and is now recognized as an expense. The remaining $22,000 in Prepaid Rent covers 11 future months.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Rent Expense",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 2000
+          },
+          {
+            "account": "Prepaid Rent",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 2000
+          }
+        ],
+        "equation_impact": "Assets \u2212$2,000 = Equity \u2212$2,000 (via Expense)"
+      }
+    },
+    {
+      "id": 3,
+      "ref": "A3",
+      "date": "July 31",
+      "description": "Office equipment cost $12,000 with a 5-year (60 months) useful life and zero residual value. Monthly straight-line depreciation = $12,000 \u00f7 60 = $200/month.",
+      "entries": [
+        {
+          "account": "Depreciation Expense",
+          "debit": 200,
+          "credit": 0
+        },
+        {
+          "account": "Accumulated Depreciation \u2014 Office Equipment",
+          "debit": 0,
+          "credit": 200
+        }
+      ],
+      "explanation": "This is an asset-to-expense adjustment using a contra-asset account. Depreciation Expense (Expense) increases \u2192 debit. Accumulated Depreciation (Contra-Asset) increases \u2192 credit. The contra-asset account reduces the book value of Office Equipment on the balance sheet without directly reducing the Equipment account.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Depreciation Expense",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 200
+          },
+          {
+            "account": "Accumulated Depreciation \u2014 Office Equipment",
+            "type": "Asset (Contra)",
+            "change": "decrease",
+            "amount": 200
+          }
+        ],
+        "equation_impact": "Assets \u2212$200 (via Accumulated Depreciation) = Equity \u2212$200 (via Expense)"
+      }
+    },
+    {
+      "id": 4,
+      "ref": "A4",
+      "date": "July 31",
+      "description": "Subleased space on July 16 for $500/month, collecting $1,000 advance for 2 months. By July 31, half of one month (0.5 month = $250) of service has been provided.",
+      "entries": [
+        {
+          "account": "Deferred Rent Revenue",
+          "debit": 250,
+          "credit": 0
+        },
+        {
+          "account": "Rent Revenue",
+          "debit": 0,
+          "credit": 250
+        }
+      ],
+      "explanation": "This is a liability-to-revenue adjustment. Deferred Rent Revenue (Liability) decreases \u2192 debit. Rent Revenue (Revenue) increases \u2192 credit. As the rental space is used, the liability is reduced and revenue is recognized. The remaining $750 in Deferred Rent Revenue represents 1.5 months of unearned rent.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Deferred Rent Revenue",
+            "type": "Liability",
+            "change": "decrease",
+            "amount": 250
+          },
+          {
+            "account": "Rent Revenue",
+            "type": "Revenue",
+            "change": "increase",
+            "amount": 250
+          }
+        ],
+        "equation_impact": "Liabilities \u2212$250 = Equity +$250 (via Revenue)"
+      }
+    },
+    {
+      "id": 5,
+      "ref": "A5",
+      "date": "July 31",
+      "description": "Paid $5,000 on July 20 for the first half of July. Unpaid salaries earned by employees for the second half of July total $5,500 (to be paid in early August).",
+      "entries": [
+        {
+          "account": "Salaries Expense",
+          "debit": 5500,
+          "credit": 0
+        },
+        {
+          "account": "Salaries Payable",
+          "debit": 0,
+          "credit": 5500
+        }
+      ],
+      "explanation": "This is an accrued expense adjustment (liability-to-expense). Salaries Expense (Expense) increases \u2192 debit. Salaries Payable (Liability) increases \u2192 credit. The salaries earned by employees in the second half of July must be recognized as an expense in July even though payment will occur in August. Total July salaries = $5,000 (paid) + $5,500 (accrued) = $10,500.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Salaries Expense",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 5500
+          },
+          {
+            "account": "Salaries Payable",
+            "type": "Liability",
+            "change": "increase",
+            "amount": 5500
+          }
+        ],
+        "equation_impact": "Liabilities +$5,500 = Equity \u2212$5,500 (via Expense)"
+      }
+    },
+    {
+      "id": 6,
+      "ref": "A6",
+      "date": "July 31",
+      "description": "Interest on the $40,000, 10% notes payable issued on July 1 for the month of July: Interest = $40,000 \u00d7 10% \u00d7 1/12 = $333 (rounded).",
+      "entries": [
+        {
+          "account": "Interest Expense",
+          "debit": 333,
+          "credit": 0
+        },
+        {
+          "account": "Interest Payable",
+          "debit": 0,
+          "credit": 333
+        }
+      ],
+      "explanation": "This is an accrued expense adjustment. Interest Expense (Expense) increases \u2192 debit. Interest Payable (Liability) increases \u2192 credit. The interest cost of borrowing $40,000 at 10% for one month must be recognized in July even though interest will be paid later (at note maturity).",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Interest Expense",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 333
+          },
+          {
+            "account": "Interest Payable",
+            "type": "Liability",
+            "change": "increase",
+            "amount": 333
+          }
+        ],
+        "equation_impact": "Liabilities +$333 = Equity \u2212$333 (via Expense)"
+      }
+    }
+  ]
+}

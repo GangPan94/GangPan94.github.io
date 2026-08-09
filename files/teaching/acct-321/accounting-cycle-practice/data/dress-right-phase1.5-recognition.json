@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "phase": 1.5,
+    "phase_name": "Adjustment Recognition",
+    "title": "Dress Right Clothing Corp. — Phase 1.5: Adjustment Recognition",
+    "description": "Review the unadjusted trial balance from Phase 1. Flag accounts that need adjusting entries and identify the adjustment type before recording them in Phase 2.",
+    "entity_type": "Corporation",
+    "business_type": "Merchandising",
+    "difficulty": "intermediate",
+    "learning_objectives": [
+      "Scan an unadjusted trial balance to identify accounts that need adjustment",
+      "Classify each adjustment by type (asset-to-expense, liability-to-revenue, accrued expense, depreciation)",
+      "Explain why each adjustment is needed before recording it"
+    ],
+    "trial_balance": [
+      {"account": "Cash", "debit": 68500, "credit": 0},
+      {"account": "Accounts Receivable", "debit": 2000, "credit": 0},
+      {"account": "Supplies", "debit": 2000, "credit": 0},
+      {"account": "Prepaid Rent", "debit": 24000, "credit": 0},
+      {"account": "Office Equipment", "debit": 12000, "credit": 0},
+      {"account": "Inventory", "debit": 38000, "credit": 0},
+      {"account": "Accounts Payable", "debit": 0, "credit": 35000},
+      {"account": "Notes Payable", "debit": 0, "credit": 40000},
+      {"account": "Deferred Rent Revenue", "debit": 0, "credit": 1000},
+      {"account": "Common Stock", "debit": 0, "credit": 60000},
+      {"account": "Dividends", "debit": 1000, "credit": 0},
+      {"account": "Sales Revenue", "debit": 0, "credit": 38500},
+      {"account": "Cost of Goods Sold", "debit": 22000, "credit": 0},
+      {"account": "Salaries Expense", "debit": 5000, "credit": 0}
+    ],
+    "signals": [
+      {
+        "account": "Supplies",
+        "balance": 2000,
+        "adjustment_type": "asset_to_expense",
+        "type_label": "Asset → Expense (consumption)",
+        "reason": "Supplies were purchased but some have been consumed during the period. A physical count shows $1,200 remaining, so $800 has been used.",
+        "hint": "Physical count on July 31 reveals $1,200 remaining"
+      },
+      {
+        "account": "Prepaid Rent",
+        "balance": 24000,
+        "adjustment_type": "asset_to_expense",
+        "type_label": "Asset → Expense (time passage)",
+        "reason": "Rent was prepaid for 12 months on July 1. One month has expired, so $2,000 must be recognized as rent expense.",
+        "hint": "$24,000 ÷ 12 = $2,000 per month"
+      },
+      {
+        "account": "Office Equipment",
+        "balance": 12000,
+        "adjustment_type": "depreciation",
+        "type_label": "Depreciation (cost allocation)",
+        "reason": "Long-term assets must be depreciated over their useful life. Monthly depreciation = $12,000 ÷ 60 months = $200.",
+        "hint": "5-year useful life, zero residual value"
+      },
+      {
+        "account": "Deferred Rent Revenue",
+        "balance": 1000,
+        "adjustment_type": "liability_to_revenue",
+        "type_label": "Liability → Revenue (earned)",
+        "reason": "Cash was received in advance for 2 months of sublease. By July 31, half a month of service has been provided, so $250 has been earned.",
+        "hint": "$500/month, 0.5 month earned by July 31"
+      },
+      {
+        "account": "Notes Payable",
+        "balance": 40000,
+        "adjustment_type": "accrued_expense",
+        "type_label": "Accrued Expense (unpaid)",
+        "reason": "Interest has accrued on the $40,000 notes payable since July 1. One month of interest at 10% = $333.",
+        "hint": "10% annual rate, 1 month accrued"
+      },
+      {
+        "account": "Salaries Expense",
+        "balance": 5000,
+        "adjustment_type": "accrued_expense",
+        "type_label": "Accrued Expense (unpaid)",
+        "reason": "Employees earned salaries in the second half of July that have not yet been paid. Accrued salaries = $5,500.",
+        "hint": "Second half of July salaries unpaid"
+      }
+    ]
+  },
+  "transactions": []
+}

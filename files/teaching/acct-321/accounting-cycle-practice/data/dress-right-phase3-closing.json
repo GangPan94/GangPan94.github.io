@@ -1,0 +1,267 @@
+{
+  "meta": {
+    "title": "Dress Right Clothing Corp. \u2014 Phase 3: Closing Entries",
+    "description": "July 31, 2027 closing journal entries for Dress Right Clothing Corporation. Closes all temporary accounts (revenues, expenses, dividends) to zero balance so they can accumulate performance data for the next period.",
+    "entity_type": "corporation",
+    "business_type": "merchandising",
+    "difficulty": "intermediate",
+    "phase": 3,
+    "phase_name": "Closing Entries",
+    "learning_objectives": [
+      "Close revenue accounts to Income Summary (Step 1)",
+      "Close expense accounts to Income Summary (Step 2)",
+      "Close Income Summary (Net Income) to Retained Earnings (Step 3)",
+      "Close Dividends to Retained Earnings (Step 4)",
+      "Understand that closing entries NEVER involve Cash",
+      "Verify that temporary accounts are zeroed after closing"
+    ],
+    "trial_balance": [
+      {
+        "account": "Cash",
+        "debit": 68500,
+        "credit": 0
+      },
+      {
+        "account": "Accounts Receivable",
+        "debit": 2000,
+        "credit": 0
+      },
+      {
+        "account": "Supplies",
+        "debit": 1200,
+        "credit": 0
+      },
+      {
+        "account": "Prepaid Rent",
+        "debit": 22000,
+        "credit": 0
+      },
+      {
+        "account": "Office Equipment",
+        "debit": 12000,
+        "credit": 0
+      },
+      {
+        "account": "Accumulated Depreciation \u2014 Office Equipment",
+        "debit": 0,
+        "credit": 200
+      },
+      {
+        "account": "Inventory",
+        "debit": 38000,
+        "credit": 0
+      },
+      {
+        "account": "Accounts Payable",
+        "debit": 0,
+        "credit": 35000
+      },
+      {
+        "account": "Notes Payable",
+        "debit": 0,
+        "credit": 40000
+      },
+      {
+        "account": "Deferred Rent Revenue",
+        "debit": 0,
+        "credit": 750
+      },
+      {
+        "account": "Salaries Payable",
+        "debit": 0,
+        "credit": 5500
+      },
+      {
+        "account": "Interest Payable",
+        "debit": 0,
+        "credit": 333
+      },
+      {
+        "account": "Common Stock",
+        "debit": 0,
+        "credit": 60000
+      },
+      {
+        "account": "Retained Earnings",
+        "debit": 0,
+        "credit": 1917
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "ref": "C1",
+      "date": "July 31",
+      "description": "Close all revenue accounts to Retained Earnings. Sales Revenue = $38,500; Rent Revenue = $250. Total Revenue = $38,750.",
+      "entries": [
+        {
+          "account": "Sales Revenue",
+          "debit": 38500,
+          "credit": 0
+        },
+        {
+          "account": "Rent Revenue",
+          "debit": 250,
+          "credit": 0
+        },
+        {
+          "account": "Retained Earnings",
+          "debit": 0,
+          "credit": 38750
+        }
+      ],
+      "explanation": "Closing revenue accounts means debiting them to zero (they normally have credit balances) and crediting the total to Retained Earnings. This increases equity by the total revenue earned during the period.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Sales Revenue",
+            "type": "Revenue",
+            "change": "decrease",
+            "amount": 38500
+          },
+          {
+            "account": "Rent Revenue",
+            "type": "Revenue",
+            "change": "decrease",
+            "amount": 250
+          },
+          {
+            "account": "Retained Earnings",
+            "type": "Equity",
+            "change": "increase",
+            "amount": 38750
+          }
+        ],
+        "equation_impact": "Revenue accounts close to zero. Equity (Retained Earnings) increases by $38,750."
+      }
+    },
+    {
+      "id": 2,
+      "ref": "C2",
+      "date": "July 31",
+      "description": "Close all expense accounts to Retained Earnings. COGS = $22,000; Salaries Expense = $10,500; Rent Expense = $2,000; Supplies Expense = $800; Interest Expense = $333; Depreciation Expense = $200. Total Expenses = $35,833.",
+      "entries": [
+        {
+          "account": "Retained Earnings",
+          "debit": 35833,
+          "credit": 0
+        },
+        {
+          "account": "Cost of Goods Sold",
+          "debit": 0,
+          "credit": 22000
+        },
+        {
+          "account": "Salaries Expense",
+          "debit": 0,
+          "credit": 10500
+        },
+        {
+          "account": "Rent Expense",
+          "debit": 0,
+          "credit": 2000
+        },
+        {
+          "account": "Supplies Expense",
+          "debit": 0,
+          "credit": 800
+        },
+        {
+          "account": "Interest Expense",
+          "debit": 0,
+          "credit": 333
+        },
+        {
+          "account": "Depreciation Expense",
+          "debit": 0,
+          "credit": 200
+        }
+      ],
+      "explanation": "Closing expense accounts means crediting them to zero (they normally have debit balances) and debiting Retained Earnings. This decreases equity by the total expenses incurred during the period.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Retained Earnings",
+            "type": "Equity",
+            "change": "decrease",
+            "amount": 35833
+          },
+          {
+            "account": "Cost of Goods Sold",
+            "type": "Expense",
+            "change": "decrease",
+            "amount": 22000
+          },
+          {
+            "account": "Salaries Expense",
+            "type": "Expense",
+            "change": "decrease",
+            "amount": 10500
+          },
+          {
+            "account": "Rent Expense",
+            "type": "Expense",
+            "change": "decrease",
+            "amount": 2000
+          },
+          {
+            "account": "Supplies Expense",
+            "type": "Expense",
+            "change": "decrease",
+            "amount": 800
+          },
+          {
+            "account": "Interest Expense",
+            "type": "Expense",
+            "change": "decrease",
+            "amount": 333
+          },
+          {
+            "account": "Depreciation Expense",
+            "type": "Expense",
+            "change": "decrease",
+            "amount": 200
+          }
+        ],
+        "equation_impact": "Expense accounts close to zero. Equity (Retained Earnings) decreases by $35,833."
+      }
+    },
+    {
+      "id": 3,
+      "ref": "C3",
+      "date": "July 31",
+      "description": "Close Dividends account to Retained Earnings. Dividends = $1,000.",
+      "entries": [
+        {
+          "account": "Retained Earnings",
+          "debit": 1000,
+          "credit": 0
+        },
+        {
+          "account": "Dividends",
+          "debit": 0,
+          "credit": 1000
+        }
+      ],
+      "explanation": "Dividends is a contra-equity account with a normal debit balance. Closing it means crediting Dividends to zero and debiting Retained Earnings. This reduces Retained Earnings by the dividends distributed during the period.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Retained Earnings",
+            "type": "Equity",
+            "change": "decrease",
+            "amount": 1000
+          },
+          {
+            "account": "Dividends",
+            "type": "Equity (Contra)",
+            "change": "increase",
+            "amount": 1000
+          }
+        ],
+        "equation_impact": "Dividends closes to zero. Equity (Retained Earnings) decreases by $1,000."
+      }
+    }
+  ]
+}

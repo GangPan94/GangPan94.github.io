@@ -1,0 +1,86 @@
+{
+  "meta": {
+    "phase": 2.5,
+    "phase_name": "Financial Statement Flow",
+    "title": "Dress Right Clothing Corp. — Phase 2.5: Financial Statement Flow",
+    "description": "Watch how the adjusted trial balance numbers flow to the Income Statement and Balance Sheet.",
+    "entity_type": "Corporation",
+    "business_type": "Merchandising",
+    "difficulty": "intermediate",
+    "learning_objectives": [
+      "Identify which accounts are temporary (Income Statement) vs. permanent (Balance Sheet)",
+      "Understand that Net Income bridges the Income Statement to Retained Earnings",
+      "See why temporary accounts must be closed in Phase 3"
+    ],
+    "trial_balance": [
+      {"account": "Cash", "debit": 68500, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Accounts Receivable", "debit": 2000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Supplies", "debit": 1200, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Prepaid Rent", "debit": 22000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Office Equipment", "debit": 12000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Accumulated Depreciation — Office Equipment", "debit": 0, "credit": 200, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Inventory", "debit": 38000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Accounts Payable", "debit": 0, "credit": 35000, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Notes Payable", "debit": 0, "credit": 40000, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Deferred Rent Revenue", "debit": 0, "credit": 750, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Salaries Payable", "debit": 0, "credit": 5500, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Interest Payable", "debit": 0, "credit": 333, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Common Stock", "debit": 0, "credit": 60000, "statement": "balance_sheet", "section": "equity"},
+      {"account": "Retained Earnings", "debit": 0, "credit": 0, "statement": "balance_sheet", "section": "equity"},
+      {"account": "Dividends", "debit": 1000, "credit": 0, "statement": "balance_sheet", "section": "equity"},
+      {"account": "Sales Revenue", "debit": 0, "credit": 38500, "statement": "income_statement", "section": "revenue"},
+      {"account": "Rent Revenue", "debit": 0, "credit": 250, "statement": "income_statement", "section": "revenue"},
+      {"account": "Cost of Goods Sold", "debit": 22000, "credit": 0, "statement": "income_statement", "section": "expense"},
+      {"account": "Salaries Expense", "debit": 10500, "credit": 0, "statement": "income_statement", "section": "expense"},
+      {"account": "Rent Expense", "debit": 2000, "credit": 0, "statement": "income_statement", "section": "expense"},
+      {"account": "Supplies Expense", "debit": 800, "credit": 0, "statement": "income_statement", "section": "expense"},
+      {"account": "Depreciation Expense", "debit": 200, "credit": 0, "statement": "income_statement", "section": "expense"},
+      {"account": "Interest Expense", "debit": 333, "credit": 0, "statement": "income_statement", "section": "expense"}
+    ],
+    "income_statement": {
+      "revenues": [
+        {"account": "Sales Revenue", "amount": 38500},
+        {"account": "Rent Revenue", "amount": 250}
+      ],
+      "total_revenue": 38750,
+      "expenses": [
+        {"account": "Cost of Goods Sold", "amount": 22000},
+        {"account": "Salaries Expense", "amount": 10500},
+        {"account": "Rent Expense", "amount": 2000},
+        {"account": "Supplies Expense", "amount": 800},
+        {"account": "Depreciation Expense", "amount": 200},
+        {"account": "Interest Expense", "amount": 333}
+      ],
+      "total_expenses": 35833,
+      "net_income": 2917
+    },
+    "balance_sheet": {
+      "assets": [
+        {"account": "Cash", "amount": 68500},
+        {"account": "Accounts Receivable", "amount": 2000},
+        {"account": "Supplies", "amount": 1200},
+        {"account": "Prepaid Rent", "amount": 22000},
+        {"account": "Office Equipment", "amount": 12000},
+        {"account": "Less: Accumulated Depreciation — Office Equipment", "amount": -200},
+        {"account": "Inventory", "amount": 38000}
+      ],
+      "total_assets": 141500,
+      "liabilities": [
+        {"account": "Accounts Payable", "amount": 35000},
+        {"account": "Notes Payable", "amount": 40000},
+        {"account": "Deferred Rent Revenue", "amount": 750},
+        {"account": "Salaries Payable", "amount": 5500},
+        {"account": "Interest Payable", "amount": 333}
+      ],
+      "total_liabilities": 81583,
+      "equity": [
+        {"account": "Common Stock", "amount": 60000},
+        {"account": "Retained Earnings", "amount": 0},
+        {"account": "Less: Dividends", "amount": -1000}
+      ],
+      "total_equity": 59917,
+      "total_liabilities_equity": 141500
+    }
+  },
+  "transactions": []
+}

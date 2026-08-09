@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "phase": 3.5,
+    "phase_name": "Balance Sheet Flow",
+    "title": "Dress Right Clothing Corp. — Phase 3.5: Balance Sheet Flow",
+    "description": "Watch how the post-closing trial balance numbers flow to the Balance Sheet. Beginning balances are zero (first period), so ending balances equal the changes.",
+    "entity_type": "Corporation",
+    "business_type": "Merchandising",
+    "difficulty": "intermediate",
+    "learning_objectives": [
+      "See how permanent accounts from the post-closing trial balance populate the Balance Sheet",
+      "Understand that beginning balances are zero for a new company",
+      "Verify that Assets = Liabilities + Equity"
+    ],
+    "trial_balance": [
+      {"account": "Cash", "debit": 68500, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Accounts Receivable", "debit": 2000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Supplies", "debit": 1200, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Prepaid Rent", "debit": 22000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Office Equipment", "debit": 12000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Accumulated Depreciation — Office Equipment", "debit": 0, "credit": 200, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Inventory", "debit": 38000, "credit": 0, "statement": "balance_sheet", "section": "assets"},
+      {"account": "Accounts Payable", "debit": 0, "credit": 35000, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Notes Payable", "debit": 0, "credit": 40000, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Deferred Rent Revenue", "debit": 0, "credit": 750, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Salaries Payable", "debit": 0, "credit": 5500, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Interest Payable", "debit": 0, "credit": 333, "statement": "balance_sheet", "section": "liabilities"},
+      {"account": "Common Stock", "debit": 0, "credit": 60000, "statement": "balance_sheet", "section": "equity"},
+      {"account": "Retained Earnings", "debit": 0, "credit": 1917, "statement": "balance_sheet", "section": "equity"}
+    ],
+    "balance_sheet": {
+      "assets": [
+        {"account": "Cash", "beginning": 0, "change": 68500, "ending": 68500},
+        {"account": "Accounts Receivable", "beginning": 0, "change": 2000, "ending": 2000},
+        {"account": "Supplies", "beginning": 0, "change": 1200, "ending": 1200},
+        {"account": "Prepaid Rent", "beginning": 0, "change": 22000, "ending": 22000},
+        {"account": "Office Equipment", "beginning": 0, "change": 12000, "ending": 12000},
+        {"account": "Less: Accumulated Depreciation — Office Equipment", "beginning": 0, "change": -200, "ending": -200},
+        {"account": "Inventory", "beginning": 0, "change": 38000, "ending": 38000}
+      ],
+      "total_assets": 143500,
+      "liabilities": [
+        {"account": "Accounts Payable", "beginning": 0, "change": 35000, "ending": 35000},
+        {"account": "Notes Payable", "beginning": 0, "change": 40000, "ending": 40000},
+        {"account": "Deferred Rent Revenue", "beginning": 0, "change": 750, "ending": 750},
+        {"account": "Salaries Payable", "beginning": 0, "change": 5500, "ending": 5500},
+        {"account": "Interest Payable", "beginning": 0, "change": 333, "ending": 333}
+      ],
+      "total_liabilities": 81583,
+      "equity": [
+        {"account": "Common Stock", "beginning": 0, "change": 60000, "ending": 60000},
+        {"account": "Retained Earnings", "beginning": 0, "change": 1917, "ending": 1917}
+      ],
+      "total_equity": 61917,
+      "total_liabilities_equity": 143500
+    }
+  },
+  "transactions": []
+}

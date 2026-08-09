@@ -1,0 +1,193 @@
+{
+  "meta": {
+    "title": "ACCT 321 — Worked Example Set 2: Service Corporation — Month 2",
+    "description": "A corporation providing services. Introduces credit transactions, accounts receivable, accounts payable, unearned revenue, and prepaid expenses. Students practice recording transactions that involve credit rather than immediate cash.",
+    "entity_type": "Corporation",
+    "business_type": "Service",
+    "difficulty": "intermediate",
+    "learning_objectives": [
+      "Record services performed on account (accounts receivable)",
+      "Record purchases on account (accounts payable)",
+      "Record receipt of cash from customers on account",
+      "Record payment of accounts payable",
+      "Record unearned revenue (cash received before service)",
+      "Record prepaid insurance",
+      "Record dividends declared and paid"
+    ]
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "description": "On March 1, TechSolve Inc. issued common stock and received $100,000 cash from investors.",
+      "entries": [
+        { "account": "Cash", "debit": 100000, "credit": 0 },
+        { "account": "Common Stock", "debit": 0, "credit": 100000 }
+      ],
+      "explanation": "For a corporation, owner investments are recorded in Common Stock (and possibly Additional Paid-in Capital if above par value). Cash increases (debit) and Common Stock increases (credit). Unlike a sole proprietorship, the corporation does not use Owner's Capital.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 100000 },
+          { "account": "Common Stock", "type": "Equity", "change": "increase", "amount": 100000 }
+        ],
+        "equation_impact": "Assets +$100,000 = Equity +$100,000"
+      }
+    },
+    {
+      "id": 2,
+      "description": "On March 2, purchased office supplies for $1,500 on account (credit terms: net 30).",
+      "entries": [
+        { "account": "Supplies", "debit": 1500, "credit": 0 },
+        { "account": "Accounts Payable", "debit": 0, "credit": 1500 }
+      ],
+      "explanation": "Purchasing on account means the business receives the supplies now but pays later. Supplies (asset) increases with a debit, and Accounts Payable (liability) increases with a credit. The liability represents the obligation to pay in the future.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Supplies", "type": "Asset", "change": "increase", "amount": 1500 },
+          { "account": "Accounts Payable", "type": "Liability", "change": "increase", "amount": 1500 }
+        ],
+        "equation_impact": "Assets +$1,500 = Liabilities +$1,500"
+      }
+    },
+    {
+      "id": 3,
+      "description": "On March 5, performed services for a client and billed $4,000 on account.",
+      "entries": [
+        { "account": "Accounts Receivable", "debit": 4000, "credit": 0 },
+        { "account": "Service Revenue", "debit": 0, "credit": 4000 }
+      ],
+      "explanation": "When services are performed but cash is not yet received, the business records Accounts Receivable (an asset). Accounts Receivable increases with a debit, and Service Revenue increases with a credit. The revenue is earned even though cash hasn't been collected.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Accounts Receivable", "type": "Asset", "change": "increase", "amount": 4000 },
+          { "account": "Service Revenue", "type": "Revenue", "change": "increase", "amount": 4000 }
+        ],
+        "equation_impact": "Assets +$4,000 = Equity +$4,000 (via Revenue)"
+      }
+    },
+    {
+      "id": 4,
+      "description": "On March 7, received $2,500 cash from a customer for services to be performed in March and April.",
+      "entries": [
+        { "account": "Cash", "debit": 2500, "credit": 0 },
+        { "account": "Unearned Revenue", "debit": 0, "credit": 2500 }
+      ],
+      "explanation": "Cash received before services are performed creates a liability called Unearned Revenue. The business owes the customer future services. Cash increases (debit) and Unearned Revenue increases (credit). Revenue is NOT recorded yet — it will be recorded when the services are actually performed.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 2500 },
+          { "account": "Unearned Revenue", "type": "Liability", "change": "increase", "amount": 2500 }
+        ],
+        "equation_impact": "Assets +$2,500 = Liabilities +$2,500"
+      }
+    },
+    {
+      "id": 5,
+      "description": "On March 10, paid $600 cash for a one-year insurance policy effective March 1.",
+      "entries": [
+        { "account": "Prepaid Insurance", "debit": 600, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 600 }
+      ],
+      "explanation": "Insurance paid in advance is a prepaid expense — an asset because the business will receive future benefit. Prepaid Insurance increases (debit) and Cash decreases (credit). Each month, $50 ($600 ÷ 12) will be moved from Prepaid Insurance to Insurance Expense.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Prepaid Insurance", "type": "Asset", "change": "increase", "amount": 600 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 600 }
+        ],
+        "equation_impact": "Assets +$600 (Prepaid Insurance) − $600 (Cash) = No net change"
+      }
+    },
+    {
+      "id": 6,
+      "description": "On March 12, received $4,000 cash from the client billed on March 5.",
+      "entries": [
+        { "account": "Cash", "debit": 4000, "credit": 0 },
+        { "account": "Accounts Receivable", "debit": 0, "credit": 4000 }
+      ],
+      "explanation": "When the customer pays their account, Cash increases (debit) and Accounts Receivable decreases (credit). Note: No revenue is recorded here — the revenue was already recorded on March 5 when the service was performed. This is just the collection of cash.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 4000 },
+          { "account": "Accounts Receivable", "type": "Asset", "change": "decrease", "amount": 4000 }
+        ],
+        "equation_impact": "Assets +$4,000 (Cash) − $4,000 (Accounts Receivable) = No net change"
+      }
+    },
+    {
+      "id": 7,
+      "description": "On March 15, paid $1,500 cash to the supplier for the supplies purchased on March 2.",
+      "entries": [
+        { "account": "Accounts Payable", "debit": 1500, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 1500 }
+      ],
+      "explanation": "Paying an account payable reduces both the liability and cash. Accounts Payable decreases with a debit, and Cash decreases with a credit. The expense was not recorded at purchase — supplies become an expense when consumed.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Accounts Payable", "type": "Liability", "change": "decrease", "amount": 1500 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 1500 }
+        ],
+        "equation_impact": "Assets −$1,500 = Liabilities −$1,500"
+      }
+    },
+    {
+      "id": 8,
+      "description": "On March 20, performed services for a client and received $3,200 cash immediately.",
+      "entries": [
+        { "account": "Cash", "debit": 3200, "credit": 0 },
+        { "account": "Service Revenue", "debit": 0, "credit": 3200 }
+      ],
+      "explanation": "Cash service revenue — the simplest revenue transaction. Cash increases (debit) and Service Revenue increases (credit). The revenue is earned at the same time cash is received.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 3200 },
+          { "account": "Service Revenue", "type": "Revenue", "change": "increase", "amount": 3200 }
+        ],
+        "equation_impact": "Assets +$3,200 = Equity +$3,200 (via Revenue)"
+      }
+    },
+    {
+      "id": 9,
+      "description": "On March 25, paid $2,000 cash for employee salaries.",
+      "entries": [
+        { "account": "Salaries Expense", "debit": 2000, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 2000 }
+      ],
+      "explanation": "Salaries Expense increases with a debit, and Cash decreases with a credit. Salaries are an operating expense that reduces net income and therefore reduces retained earnings.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Salaries Expense", "type": "Expense", "change": "increase", "amount": 2000 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 2000 }
+        ],
+        "equation_impact": "Assets −$2,000 = Equity −$2,000 (via Expense)"
+      }
+    },
+    {
+      "id": 10,
+      "description": "On March 28, the board declared and paid $2,000 cash dividends to shareholders.",
+      "entries": [
+        { "account": "Dividends", "debit": 2000, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 2000 }
+      ],
+      "explanation": "Dividends are distributions of earnings to shareholders. Dividends is a contra-equity account (normal debit balance) that reduces Retained Earnings. Dividends increase with a debit, and Cash decreases with a credit. Like Owner's Drawings for a sole proprietorship, Dividends are NOT an expense.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Dividends", "type": "Equity (Contra)", "change": "increase", "amount": 2000 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 2000 }
+        ],
+        "equation_impact": "Assets −$2,000 = Equity −$2,000 (via Dividends)"
+      }
+    }
+  ],
+  "summary": {
+    "total_debits": 121300,
+    "total_credits": 121300,
+    "key_takeaways": [
+      "Corporations use Common Stock (not Owner's Capital) and Dividends (not Owner's Drawings)",
+      "Revenue is recorded when earned, not when cash is received (accrual basis)",
+      "Accounts Receivable = revenue earned but cash not yet collected",
+      "Unearned Revenue = cash received but revenue not yet earned (a liability)",
+      "Prepaid expenses are assets, not expenses, until consumed",
+      "Paying an accounts payable reduces both the liability and cash — no expense is recorded",
+      "Collecting accounts receivable swaps one asset (receivable) for another (cash)"
+    ]
+  }
+}

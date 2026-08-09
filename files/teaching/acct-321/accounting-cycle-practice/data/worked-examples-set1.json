@@ -1,0 +1,190 @@
+{
+  "meta": {
+    "title": "ACCT 321 — Worked Example Set 1: Service Business — Month 1",
+    "description": "A new sole proprietorship service business. All transactions are cash-based. Students practice basic journal entries for a service company.",
+    "entity_type": "Sole Proprietorship",
+    "business_type": "Service",
+    "difficulty": "beginner",
+    "learning_objectives": [
+      "Record owner investment in the business",
+      "Record cash purchases of assets and expenses",
+      "Record cash service revenue",
+      "Record cash payment of expenses",
+      "Record owner withdrawal"
+    ]
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "description": "On January 1, John Smith invested $50,000 cash to start a consulting business, Smith Consulting.",
+      "entries": [
+        { "account": "Cash", "debit": 50000, "credit": 0 },
+        { "account": "Owner's Capital", "debit": 0, "credit": 50000 }
+      ],
+      "explanation": "The owner's cash investment increases both the asset Cash (debit) and the equity account Owner's Capital (credit). This is the fundamental accounting equation: Assets = Liabilities + Equity. Cash (asset) increases by $50,000, and Owner's Capital (equity) increases by $50,000.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 50000 },
+          { "account": "Owner's Capital", "type": "Equity", "change": "increase", "amount": 50000 }
+        ],
+        "equation_impact": "Assets +$50,000 = Equity +$50,000"
+      }
+    },
+    {
+      "id": 2,
+      "description": "On January 3, purchased office supplies for $800 cash.",
+      "entries": [
+        { "account": "Supplies", "debit": 800, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 800 }
+      ],
+      "explanation": "Supplies is an asset account. When supplies are purchased, the asset Supplies increases (debit) and Cash decreases (credit). Note: Supplies is not an expense at purchase — it becomes an expense only when consumed.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Supplies", "type": "Asset", "change": "increase", "amount": 800 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 800 }
+        ],
+        "equation_impact": "Assets +$800 (Supplies) − $800 (Cash) = No net change"
+      }
+    },
+    {
+      "id": 3,
+      "description": "On January 5, purchased office equipment for $3,000 cash.",
+      "entries": [
+        { "account": "Equipment", "debit": 3000, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 3000 }
+      ],
+      "explanation": "Equipment is a long-term asset. The purchase increases Equipment (debit) and decreases Cash (credit). Equipment will be depreciated over its useful life, but we record the purchase at cost first.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Equipment", "type": "Asset", "change": "increase", "amount": 3000 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 3000 }
+        ],
+        "equation_impact": "Assets +$3,000 (Equipment) − $3,000 (Cash) = No net change"
+      }
+    },
+    {
+      "id": 4,
+      "description": "On January 10, earned $2,500 cash for consulting services provided to a client.",
+      "entries": [
+        { "account": "Cash", "debit": 2500, "credit": 0 },
+        { "account": "Service Revenue", "debit": 0, "credit": 2500 }
+      ],
+      "explanation": "Revenue increases equity. Cash increases (debit) because the business received cash, and Service Revenue increases (credit). Revenue accounts have a normal credit balance because they increase equity.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 2500 },
+          { "account": "Service Revenue", "type": "Revenue", "change": "increase", "amount": 2500 }
+        ],
+        "equation_impact": "Assets +$2,500 = Equity +$2,500 (via Revenue)"
+      }
+    },
+    {
+      "id": 5,
+      "description": "On January 12, paid $1,200 cash for January office rent.",
+      "entries": [
+        { "account": "Rent Expense", "debit": 1200, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 1200 }
+      ],
+      "explanation": "Rent is an expense of the current period. Expenses decrease equity, so Rent Expense increases with a debit, and Cash decreases with a credit. Expenses always have a normal debit balance.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Rent Expense", "type": "Expense", "change": "increase", "amount": 1200 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 1200 }
+        ],
+        "equation_impact": "Assets −$1,200 = Equity −$1,200 (via Expense)"
+      }
+    },
+    {
+      "id": 6,
+      "description": "On January 15, earned $3,000 cash for consulting services provided to another client.",
+      "entries": [
+        { "account": "Cash", "debit": 3000, "credit": 0 },
+        { "account": "Service Revenue", "debit": 0, "credit": 3000 }
+      ],
+      "explanation": "Same pattern as transaction 4. Cash increases (debit) and Service Revenue increases (credit). Each revenue transaction is recorded separately to maintain a clear audit trail.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 3000 },
+          { "account": "Service Revenue", "type": "Revenue", "change": "increase", "amount": 3000 }
+        ],
+        "equation_impact": "Assets +$3,000 = Equity +$3,000 (via Revenue)"
+      }
+    },
+    {
+      "id": 7,
+      "description": "On January 20, paid $600 cash for employee salaries.",
+      "entries": [
+        { "account": "Salaries Expense", "debit": 600, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 600 }
+      ],
+      "explanation": "Salaries are an operating expense. Salaries Expense increases with a debit, and Cash decreases with a credit. Salaries are recorded when paid, not when earned by employees (cash basis for simplicity in this example).",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Salaries Expense", "type": "Expense", "change": "increase", "amount": 600 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 600 }
+        ],
+        "equation_impact": "Assets −$600 = Equity −$600 (via Expense)"
+      }
+    },
+    {
+      "id": 8,
+      "description": "On January 25, paid $150 cash for utilities (electricity and internet).",
+      "entries": [
+        { "account": "Utilities Expense", "debit": 150, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 150 }
+      ],
+      "explanation": "Utilities Expense increases with a debit, and Cash decreases with a credit. Like all expenses, utilities reduce the owner's equity.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Utilities Expense", "type": "Expense", "change": "increase", "amount": 150 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 150 }
+        ],
+        "equation_impact": "Assets −$150 = Equity −$150 (via Expense)"
+      }
+    },
+    {
+      "id": 9,
+      "description": "On January 28, John Smith withdrew $1,000 cash for personal use.",
+      "entries": [
+        { "account": "Owner's Drawings", "debit": 1000, "credit": 0 },
+        { "account": "Cash", "debit": 0, "credit": 1000 }
+      ],
+      "explanation": "Owner's Drawings is a contra-equity account (normal debit balance). It represents the owner taking assets out of the business for personal use. Drawings decrease equity, so they are recorded with a debit. This is NOT an expense — it is a distribution of profits.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Owner's Drawings", "type": "Equity (Contra)", "change": "increase", "amount": 1000 },
+          { "account": "Cash", "type": "Asset", "change": "decrease", "amount": 1000 }
+        ],
+        "equation_impact": "Assets −$1,000 = Equity −$1,000 (via Drawings)"
+      }
+    },
+    {
+      "id": 10,
+      "description": "On January 31, earned $1,800 cash for consulting services provided to a client.",
+      "entries": [
+        { "account": "Cash", "debit": 1800, "credit": 0 },
+        { "account": "Service Revenue", "debit": 0, "credit": 1800 }
+      ],
+      "explanation": "Final revenue transaction of the month. Cash increases (debit) and Service Revenue increases (credit). Total revenue for the month: $2,500 + $3,000 + $1,800 = $7,300.",
+      "analysis": {
+        "accounts_affected": [
+          { "account": "Cash", "type": "Asset", "change": "increase", "amount": 1800 },
+          { "account": "Service Revenue", "type": "Revenue", "change": "increase", "amount": 1800 }
+        ],
+        "equation_impact": "Assets +$1,800 = Equity +$1,800 (via Revenue)"
+      }
+    }
+  ],
+  "summary": {
+    "total_debits": 63750,
+    "total_credits": 63750,
+    "key_takeaways": [
+      "Every transaction has equal debits and credits",
+      "Assets increase with debits, decrease with credits",
+      "Liabilities and Equity increase with credits, decrease with debits",
+      "Revenue increases equity (credit balance)",
+      "Expenses and Drawings decrease equity (debit balance)",
+      "Owner's Capital is credited for investments, Owner's Drawings is debited for withdrawals"
+    ]
+  }
+}

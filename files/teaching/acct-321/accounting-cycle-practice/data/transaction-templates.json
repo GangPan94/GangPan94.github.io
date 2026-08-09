@@ -1,0 +1,695 @@
+{
+  "meta": {
+    "title": "ACCT 321 — Transaction Template Library",
+    "description": "Template patterns for the random transaction generator. Each template defines a transaction type with account names, debit/credit rules, amount ranges, and difficulty level. The webapp's random generator picks a template, fills in random amounts, and presents the description to the student.",
+    "version": "1.0.0",
+    "generator_notes": [
+      "Amounts are randomly selected within the range, stepping by the specified increment",
+      "For 'on account' templates, the generator may optionally include credit terms in the description",
+      "For merchandising sale templates, the generator produces TWO entries (revenue + COGS)",
+      "Difficulty levels: beginner (cash-only, simple), intermediate (credit, prepaids, inventory), advanced (depreciation, bad debts, notes)"
+    ]
+  },
+  "templates": {
+    "service_business": {
+      "meta": { "business_type": "Service", "description": "Templates for service businesses (both sole proprietorship and corporation)" },
+      "beginner": [
+        {
+          "id": "svc_cash_revenue",
+          "type": "cash_service_revenue",
+          "description": "Performed services for a client and received $[AMOUNT] cash immediately.",
+          "accounts": { "debit": "Cash", "credit": "Service Revenue" },
+          "amountRange": [500, 10000],
+          "step": 100,
+          "explanation": "Cash increases (debit) and Service Revenue increases (credit). Revenue is recorded when earned, and cash is received at the same time.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Service Revenue", "type": "Revenue", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Equity +$[AMOUNT] (via Revenue)"
+          }
+        },
+        {
+          "id": "svc_cash_rent_expense",
+          "type": "cash_rent_expense",
+          "description": "Paid $[AMOUNT] cash for monthly rent.",
+          "accounts": { "debit": "Rent Expense", "credit": "Cash" },
+          "amountRange": [800, 5000],
+          "step": 100,
+          "explanation": "Rent Expense increases (debit) and Cash decreases (credit). Rent is an operating expense of the current period.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Rent Expense", "type": "Expense", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "svc_cash_salary_expense",
+          "type": "cash_salary_expense",
+          "description": "Paid $[AMOUNT] cash for employee salaries.",
+          "accounts": { "debit": "Salaries Expense", "credit": "Cash" },
+          "amountRange": [1000, 15000],
+          "step": 500,
+          "explanation": "Salaries Expense increases (debit) and Cash decreases (credit). Salaries are an operating expense.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Salaries Expense", "type": "Expense", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "svc_cash_utilities_expense",
+          "type": "cash_utilities_expense",
+          "description": "Paid $[AMOUNT] cash for utilities (electricity and internet).",
+          "accounts": { "debit": "Utilities Expense", "credit": "Cash" },
+          "amountRange": [100, 2000],
+          "step": 50,
+          "explanation": "Utilities Expense increases (debit) and Cash decreases (credit).",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Utilities Expense", "type": "Expense", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "svc_cash_advertising_expense",
+          "type": "cash_advertising_expense",
+          "description": "Paid $[AMOUNT] cash for advertising.",
+          "accounts": { "debit": "Advertising Expense", "credit": "Cash" },
+          "amountRange": [200, 5000],
+          "step": 100,
+          "explanation": "Advertising Expense increases (debit) and Cash decreases (credit). Advertising is a period cost.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Advertising Expense", "type": "Expense", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "svc_cash_supplies_purchase",
+          "type": "purchase_supplies_cash",
+          "description": "Purchased $[AMOUNT] of office supplies with cash.",
+          "accounts": { "debit": "Supplies", "credit": "Cash" },
+          "amountRange": [100, 3000],
+          "step": 50,
+          "explanation": "Supplies (asset) increases with a debit, and Cash decreases with a credit. Supplies are not expensed until consumed.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Supplies", "type": "Asset", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Supplies) − $[AMOUNT] (Cash) = No net change"
+          }
+        },
+        {
+          "id": "svc_cash_equipment_purchase",
+          "type": "purchase_equipment_cash",
+          "description": "Purchased office equipment for $[AMOUNT] cash.",
+          "accounts": { "debit": "Equipment", "credit": "Cash" },
+          "amountRange": [500, 20000],
+          "step": 500,
+          "explanation": "Equipment (long-term asset) increases with a debit, and Cash decreases with a credit.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Equipment", "type": "Asset", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Equipment) − $[AMOUNT] (Cash) = No net change"
+          }
+        },
+        {
+          "id": "svc_owner_investment",
+          "type": "owner_investment",
+          "description": "The owner invested $[AMOUNT] cash in the business.",
+          "accounts": { "debit": "Cash", "credit": "Owner's Capital" },
+          "amountRange": [10000, 100000],
+          "step": 1000,
+          "explanation": "Cash increases (debit) and Owner's Capital increases (credit). The owner's investment increases equity.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Owner's Capital", "type": "Equity", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Equity +$[AMOUNT]"
+          }
+        },
+        {
+          "id": "svc_owner_withdrawal",
+          "type": "owner_withdrawal",
+          "description": "The owner withdrew $[AMOUNT] cash for personal use.",
+          "accounts": { "debit": "Owner's Drawings", "credit": "Cash" },
+          "amountRange": [500, 10000],
+          "step": 100,
+          "explanation": "Owner's Drawings (contra-equity) increases with a debit, and Cash decreases with a credit. Drawings reduce equity but are NOT an expense.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Owner's Drawings", "type": "Equity (Contra)", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Drawings)"
+          }
+        },
+        {
+          "id": "svc_corp_stock_issuance",
+          "type": "stock_issuance",
+          "description": "Issued common stock and received $[AMOUNT] cash from investors.",
+          "accounts": { "debit": "Cash", "credit": "Common Stock" },
+          "amountRange": [10000, 200000],
+          "step": 5000,
+          "explanation": "Cash increases (debit) and Common Stock increases (credit). For a corporation, owner investments increase Common Stock.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Common Stock", "type": "Equity", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Equity +$[AMOUNT]"
+          }
+        },
+        {
+          "id": "svc_corp_dividends",
+          "type": "cash_dividends",
+          "description": "Declared and paid $[AMOUNT] cash dividends to shareholders.",
+          "accounts": { "debit": "Dividends", "credit": "Cash" },
+          "amountRange": [500, 10000],
+          "step": 100,
+          "explanation": "Dividends (contra-equity) increases with a debit, and Cash decreases with a credit. Dividends reduce retained earnings but are NOT an expense.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Dividends", "type": "Equity (Contra)", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Dividends)"
+          }
+        }
+      ],
+      "intermediate": [
+        {
+          "id": "svc_credit_revenue",
+          "type": "service_revenue_on_account",
+          "description": "Performed services for a client and billed $[AMOUNT] on account.",
+          "accounts": { "debit": "Accounts Receivable", "credit": "Service Revenue" },
+          "amountRange": [500, 15000],
+          "step": 100,
+          "explanation": "Accounts Receivable increases (debit) and Service Revenue increases (credit). Revenue is earned even though cash hasn't been collected.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Accounts Receivable", "type": "Asset", "change": "increase" },
+              { "account": "Service Revenue", "type": "Revenue", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Equity +$[AMOUNT] (via Revenue)"
+          }
+        },
+        {
+          "id": "svc_collect_receivable",
+          "type": "collect_account_receivable",
+          "description": "Received $[AMOUNT] cash from a customer for services previously billed.",
+          "accounts": { "debit": "Cash", "credit": "Accounts Receivable" },
+          "amountRange": [500, 15000],
+          "step": 100,
+          "explanation": "Cash increases (debit) and Accounts Receivable decreases (credit). No revenue is recorded — it was recorded when the service was performed.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Accounts Receivable", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Cash) − $[AMOUNT] (Accounts Receivable) = No net change"
+          }
+        },
+        {
+          "id": "svc_purchase_supplies_credit",
+          "type": "purchase_supplies_on_account",
+          "description": "Purchased $[AMOUNT] of office supplies on account.",
+          "accounts": { "debit": "Supplies", "credit": "Accounts Payable" },
+          "amountRange": [200, 5000],
+          "step": 100,
+          "explanation": "Supplies (asset) increases with a debit, and Accounts Payable (liability) increases with a credit.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Supplies", "type": "Asset", "change": "increase" },
+              { "account": "Accounts Payable", "type": "Liability", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Liabilities +$[AMOUNT]"
+          }
+        },
+        {
+          "id": "svc_pay_account_payable",
+          "type": "pay_account_payable",
+          "description": "Paid $[AMOUNT] cash to a supplier for supplies previously purchased on account.",
+          "accounts": { "debit": "Accounts Payable", "credit": "Cash" },
+          "amountRange": [200, 5000],
+          "step": 100,
+          "explanation": "Accounts Payable decreases (debit) and Cash decreases (credit). Paying a liability reduces both the obligation and cash.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Accounts Payable", "type": "Liability", "change": "decrease" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Liabilities −$[AMOUNT]"
+          }
+        },
+        {
+          "id": "svc_unearned_revenue",
+          "type": "unearned_revenue_cash",
+          "description": "Received $[AMOUNT] cash from a customer for services to be performed next month.",
+          "accounts": { "debit": "Cash", "credit": "Unearned Revenue" },
+          "amountRange": [500, 10000],
+          "step": 100,
+          "explanation": "Cash increases (debit) and Unearned Revenue (liability) increases (credit). Revenue is NOT recorded yet — it will be recorded when services are performed.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Unearned Revenue", "type": "Liability", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Liabilities +$[AMOUNT]"
+          }
+        },
+        {
+          "id": "svc_prepaid_insurance",
+          "type": "prepaid_insurance_cash",
+          "description": "Paid $[AMOUNT] cash for a one-year insurance policy.",
+          "accounts": { "debit": "Prepaid Insurance", "credit": "Cash" },
+          "amountRange": [600, 6000],
+          "step": 100,
+          "explanation": "Prepaid Insurance (asset) increases with a debit, and Cash decreases with a credit. The cost will be expensed over the policy period.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Prepaid Insurance", "type": "Asset", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Prepaid Insurance) − $[AMOUNT] (Cash) = No net change"
+          }
+        },
+        {
+          "id": "svc_prepaid_rent",
+          "type": "prepaid_rent_cash",
+          "description": "Paid $[AMOUNT] cash for three months' rent in advance.",
+          "accounts": { "debit": "Prepaid Rent", "credit": "Cash" },
+          "amountRange": [1500, 12000],
+          "step": 500,
+          "explanation": "Prepaid Rent (asset) increases with a debit, and Cash decreases with a credit. Rent expense will be recognized monthly as the prepaid amount expires.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Prepaid Rent", "type": "Asset", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Prepaid Rent) − $[AMOUNT] (Cash) = No net change"
+          }
+        },
+        {
+          "id": "svc_earn_unearned",
+          "type": "earn_unearned_revenue",
+          "description": "Performed services for a customer who had previously paid $[AMOUNT] in advance.",
+          "accounts": { "debit": "Unearned Revenue", "credit": "Service Revenue" },
+          "amountRange": [500, 10000],
+          "step": 100,
+          "explanation": "Unearned Revenue (liability) decreases with a debit, and Service Revenue increases (credit). The liability is reduced as the service is performed.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Unearned Revenue", "type": "Liability", "change": "decrease" },
+              { "account": "Service Revenue", "type": "Revenue", "change": "increase" }
+            ],
+            "equation_impact": "Liabilities −$[AMOUNT] = Equity +$[AMOUNT] (via Revenue)"
+          }
+        },
+        {
+          "id": "svc_equipment_note",
+          "type": "purchase_equipment_note",
+          "description": "Purchased equipment for $[AMOUNT], paying $[AMOUNT_2] cash and signing a note payable for the balance.",
+          "accounts": { "debit": "Equipment", "credit": ["Cash", "Notes Payable"] },
+          "amountRange": [5000, 50000],
+          "step": 1000,
+          "note": "Compound entry — split amount between cash and note. Requires special handling in the generator.",
+          "explanation": "Equipment increases (debit) for the full purchase price. Cash decreases (credit) for the down payment, and Notes Payable increases (credit) for the financed portion.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Equipment", "type": "Asset", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" },
+              { "account": "Notes Payable", "type": "Liability", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Equipment) − $[AMOUNT_2] (Cash) = Liabilities +$[AMOUNT] − $[AMOUNT_2] (Notes Payable)"
+          }
+        }
+      ],
+      "advanced": [
+        {
+          "id": "svc_depreciation_equipment",
+          "type": "record_depreciation_equipment",
+          "description": "Recorded monthly depreciation on equipment: $[AMOUNT].",
+          "accounts": { "debit": "Depreciation Expense", "credit": "Accumulated Depreciation — Equipment" },
+          "amountRange": [100, 2000],
+          "step": 50,
+          "explanation": "Depreciation Expense increases (debit) and Accumulated Depreciation (contra-asset) increases (credit). Depreciation allocates the cost of a long-term asset over its useful life.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Depreciation Expense", "type": "Expense", "change": "increase" },
+              { "account": "Accumulated Depreciation — Equipment", "type": "Asset (Contra)", "change": "increase" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] (via Accumulated Depreciation) = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "svc_depreciation_building",
+          "type": "record_depreciation_building",
+          "description": "Recorded monthly depreciation on buildings: $[AMOUNT].",
+          "accounts": { "debit": "Depreciation Expense", "credit": "Accumulated Depreciation — Buildings" },
+          "amountRange": [200, 5000],
+          "step": 100,
+          "explanation": "Depreciation Expense increases (debit) and Accumulated Depreciation — Buildings (contra-asset) increases (credit).",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Depreciation Expense", "type": "Expense", "change": "increase" },
+              { "account": "Accumulated Depreciation — Buildings", "type": "Asset (Contra)", "change": "increase" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] (via Accumulated Depreciation) = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "svc_bad_debt_expense",
+          "type": "record_bad_debt_expense",
+          "description": "Recorded estimated bad debt expense of $[AMOUNT].",
+          "accounts": { "debit": "Bad Debt Expense", "credit": "Allowance for Doubtful Accounts" },
+          "amountRange": [100, 3000],
+          "step": 50,
+          "explanation": "Bad Debt Expense increases (debit) and Allowance for Doubtful Accounts (contra-asset) increases (credit). This estimates uncollectible receivables.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Bad Debt Expense", "type": "Expense", "change": "increase" },
+              { "account": "Allowance for Doubtful Accounts", "type": "Asset (Contra)", "change": "increase" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] (via Allowance for Doubtful Accounts) = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "svc_write_off_receivable",
+          "type": "write_off_receivable",
+          "description": "Wrote off a customer's account of $[AMOUNT] as uncollectible.",
+          "accounts": { "debit": "Allowance for Doubtful Accounts", "credit": "Accounts Receivable" },
+          "amountRange": [100, 2000],
+          "step": 50,
+          "explanation": "Allowance for Doubtful Accounts decreases (debit) and Accounts Receivable decreases (credit). The write-off reduces both the allowance and the receivable.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Allowance for Doubtful Accounts", "type": "Asset (Contra)", "change": "decrease" },
+              { "account": "Accounts Receivable", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] (Accounts Receivable) + $[AMOUNT] (Allowance decrease) = No net change"
+          }
+        },
+        {
+          "id": "svc_interest_revenue",
+          "type": "interest_revenue_cash",
+          "description": "Received $[AMOUNT] cash for interest earned on a note receivable.",
+          "accounts": { "debit": "Cash", "credit": "Interest Revenue" },
+          "amountRange": [50, 2000],
+          "step": 25,
+          "explanation": "Cash increases (debit) and Interest Revenue increases (credit). Interest revenue is earned from lending activities.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Interest Revenue", "type": "Revenue", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Equity +$[AMOUNT] (via Revenue)"
+          }
+        },
+        {
+          "id": "svc_interest_expense",
+          "type": "interest_expense_cash",
+          "description": "Paid $[AMOUNT] cash for interest on a note payable.",
+          "accounts": { "debit": "Interest Expense", "credit": "Cash" },
+          "amountRange": [50, 3000],
+          "step": 25,
+          "explanation": "Interest Expense increases (debit) and Cash decreases (credit). Interest is the cost of borrowing.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Interest Expense", "type": "Expense", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Expense)"
+          }
+        }
+      ]
+    },
+    "merchandising_business": {
+      "meta": { "business_type": "Merchandising", "description": "Templates for merchandising businesses using perpetual inventory system" },
+      "intermediate": [
+        {
+          "id": "mds_inventory_purchase_cash",
+          "type": "purchase_inventory_cash",
+          "description": "Purchased $[AMOUNT] of merchandise inventory for cash.",
+          "accounts": { "debit": "Inventory", "credit": "Cash" },
+          "amountRange": [1000, 50000],
+          "step": 500,
+          "explanation": "Inventory (asset) increases with a debit, and Cash decreases with a credit. Under perpetual inventory, the Inventory account is updated immediately.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Inventory", "type": "Asset", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Inventory) − $[AMOUNT] (Cash) = No net change"
+          }
+        },
+        {
+          "id": "mds_inventory_purchase_credit",
+          "type": "purchase_inventory_on_account",
+          "description": "Purchased $[AMOUNT] of merchandise inventory on account, terms 2/10, n/30.",
+          "accounts": { "debit": "Inventory", "credit": "Accounts Payable" },
+          "amountRange": [1000, 50000],
+          "step": 500,
+          "explanation": "Inventory increases (debit) and Accounts Payable increases (credit). The terms offer a 2% discount if paid within 10 days.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Inventory", "type": "Asset", "change": "increase" },
+              { "account": "Accounts Payable", "type": "Liability", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Liabilities +$[AMOUNT]"
+          }
+        },
+        {
+          "id": "mds_pay_inventory_payable",
+          "type": "pay_inventory_payable",
+          "description": "Paid $[AMOUNT] cash to a supplier for inventory previously purchased on account.",
+          "accounts": { "debit": "Accounts Payable", "credit": "Cash" },
+          "amountRange": [1000, 50000],
+          "step": 500,
+          "explanation": "Accounts Payable decreases (debit) and Cash decreases (credit). Payment reduces both the liability and cash.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Accounts Payable", "type": "Liability", "change": "decrease" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Liabilities −$[AMOUNT]"
+          }
+        },
+        {
+          "id": "mds_inventory_return",
+          "type": "return_inventory_to_supplier",
+          "description": "Returned defective inventory costing $[AMOUNT] to the supplier.",
+          "accounts": { "debit": "Accounts Payable", "credit": "Inventory" },
+          "amountRange": [200, 5000],
+          "step": 100,
+          "explanation": "Accounts Payable decreases (debit) and Inventory decreases (credit). Returning inventory reduces both the liability and the asset.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Accounts Payable", "type": "Liability", "change": "decrease" },
+              { "account": "Inventory", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Liabilities −$[AMOUNT]"
+          }
+        },
+        {
+          "id": "mds_freight_in",
+          "type": "freight_in_cash",
+          "description": "Paid $[AMOUNT] cash for freight charges on inventory purchased (FOB shipping point).",
+          "accounts": { "debit": "Inventory", "credit": "Cash" },
+          "amountRange": [50, 2000],
+          "step": 25,
+          "explanation": "Under FOB shipping point, the buyer pays freight. Freight costs are added to Inventory because they are a cost of acquiring the goods.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Inventory", "type": "Asset", "change": "increase" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Inventory) − $[AMOUNT] (Cash) = No net change"
+          }
+        },
+        {
+          "id": "mds_cash_sale",
+          "type": "cash_sale_merchandise",
+          "description": "Sold merchandise inventory costing $[AMOUNT_2] to a customer for $[AMOUNT] cash.",
+          "accounts": {
+            "entry_1": { "debit": "Cash", "credit": "Sales Revenue" },
+            "entry_2": { "debit": "Cost of Goods Sold", "credit": "Inventory" }
+          },
+          "amountRange": [500, 20000],
+          "step": 100,
+          "amountRange2": [300, 12000],
+          "step2": 100,
+          "note": "Generates TWO entries. Amount 1 = selling price (Cash/Sales Revenue). Amount 2 = cost (COGS/Inventory). Amount 2 should be ≤ Amount 1.",
+          "explanation": "Two entries are required: (1) Cash increases and Sales Revenue increases for the selling price. (2) Cost of Goods Sold increases and Inventory decreases for the cost. This matches the expense to the revenue.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Inventory", "type": "Asset", "change": "decrease" },
+              { "account": "Sales Revenue", "type": "Revenue", "change": "increase" },
+              { "account": "Cost of Goods Sold", "type": "Expense", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Cash) − $[AMOUNT_2] (Inventory) = Equity +$[AMOUNT] − $[AMOUNT_2] (Revenue − COGS)"
+          }
+        },
+        {
+          "id": "mds_credit_sale",
+          "type": "credit_sale_merchandise",
+          "description": "Sold merchandise inventory costing $[AMOUNT_2] to a customer for $[AMOUNT] on account, terms 2/10, n/30.",
+          "accounts": {
+            "entry_1": { "debit": "Accounts Receivable", "credit": "Sales Revenue" },
+            "entry_2": { "debit": "Cost of Goods Sold", "credit": "Inventory" }
+          },
+          "amountRange": [500, 20000],
+          "step": 100,
+          "amountRange2": [300, 12000],
+          "step2": 100,
+          "note": "Generates TWO entries. Same pattern as cash sale but uses Accounts Receivable instead of Cash.",
+          "explanation": "Two entries: (1) Accounts Receivable increases and Sales Revenue increases for the selling price. (2) Cost of Goods Sold increases and Inventory decreases for the cost.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Accounts Receivable", "type": "Asset", "change": "increase" },
+              { "account": "Inventory", "type": "Asset", "change": "decrease" },
+              { "account": "Sales Revenue", "type": "Revenue", "change": "increase" },
+              { "account": "Cost of Goods Sold", "type": "Expense", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Accounts Receivable) − $[AMOUNT_2] (Inventory) = Equity +$[AMOUNT] − $[AMOUNT_2] (Revenue − COGS)"
+          }
+        },
+        {
+          "id": "mds_collect_receivable",
+          "type": "collect_account_receivable_merchandise",
+          "description": "Received $[AMOUNT] cash from a customer for merchandise previously sold on account.",
+          "accounts": { "debit": "Cash", "credit": "Accounts Receivable" },
+          "amountRange": [500, 20000],
+          "step": 100,
+          "explanation": "Cash increases (debit) and Accounts Receivable decreases (credit). No revenue is recorded — it was recorded at the time of sale.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Accounts Receivable", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Cash) − $[AMOUNT] (Accounts Receivable) = No net change"
+          }
+        },
+        {
+          "id": "mds_cash_sale_no_cogs",
+          "type": "cash_sale_merchandise_simple",
+          "description": "Sold merchandise to a customer for $[AMOUNT] cash. (Record revenue only.)",
+          "accounts": { "debit": "Cash", "credit": "Sales Revenue" },
+          "amountRange": [500, 20000],
+          "step": 100,
+          "note": "Simplified version — revenue entry only. Use when COGS is taught separately.",
+          "explanation": "Cash increases (debit) and Sales Revenue increases (credit). This records only the revenue side of the sale.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Sales Revenue", "type": "Revenue", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Equity +$[AMOUNT] (via Revenue)"
+          }
+        },
+        {
+          "id": "mds_credit_sale_no_cogs",
+          "type": "credit_sale_merchandise_simple",
+          "description": "Sold merchandise to a customer for $[AMOUNT] on account. (Record revenue only.)",
+          "accounts": { "debit": "Accounts Receivable", "credit": "Sales Revenue" },
+          "amountRange": [500, 20000],
+          "step": 100,
+          "note": "Simplified version — revenue entry only.",
+          "explanation": "Accounts Receivable increases (debit) and Sales Revenue increases (credit). This records only the revenue side.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Accounts Receivable", "type": "Asset", "change": "increase" },
+              { "account": "Sales Revenue", "type": "Revenue", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] = Equity +$[AMOUNT] (via Revenue)"
+          }
+        },
+        {
+          "id": "mds_purchase_discount",
+          "type": "purchase_discount_taken",
+          "description": "Paid $[AMOUNT] to a supplier within the discount period. Original purchase was $[AMOUNT_2]. The 2% discount is $[AMOUNT_3].",
+          "accounts": { "debit": "Accounts Payable", "credit": ["Cash", "Inventory"] },
+          "amountRange": [1000, 50000],
+          "step": 500,
+          "note": "Compound entry. Accounts Payable debited for full amount. Cash credited for discounted payment. Inventory credited for discount amount.",
+          "explanation": "Accounts Payable is reduced by the full amount (debit). Cash is credited for the actual payment, and Inventory is credited for the discount. The discount reduces the cost of inventory.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Accounts Payable", "type": "Liability", "change": "decrease" },
+              { "account": "Cash", "type": "Asset", "change": "decrease" },
+              { "account": "Inventory", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] (Cash) − $[AMOUNT_3] (Inventory) = Liabilities −$[AMOUNT_2]"
+          }
+        },
+        {
+          "id": "mds_sales_discount",
+          "type": "sales_discount_taken",
+          "description": "Received $[AMOUNT] from a customer within the discount period. Original sale was $[AMOUNT_2]. The 2% discount is $[AMOUNT_3].",
+          "accounts": { "debit": ["Cash", "Sales Discounts"], "credit": "Accounts Receivable" },
+          "amountRange": [1000, 20000],
+          "step": 100,
+          "note": "Compound entry. Cash debited for discounted amount. Sales Discounts debited for discount. Accounts Receivable credited for full amount.",
+          "explanation": "Cash increases by the discounted amount (debit). Sales Discounts (contra-revenue) increases by the discount amount (debit). Accounts Receivable is reduced by the full amount (credit).",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cash", "type": "Asset", "change": "increase" },
+              { "account": "Accounts Receivable", "type": "Asset", "change": "decrease" },
+              { "account": "Sales Discounts", "type": "Revenue (Contra)", "change": "increase" }
+            ],
+            "equation_impact": "Assets +$[AMOUNT] (Cash) − $[AMOUNT_2] (Accounts Receivable) = Equity −$[AMOUNT_3] (via Sales Discounts)"
+          }
+        }
+      ],
+      "advanced": [
+        {
+          "id": "mds_cogs_entry",
+          "type": "record_cogs_separately",
+          "description": "Recorded cost of goods sold of $[AMOUNT] for merchandise sold during the period.",
+          "accounts": { "debit": "Cost of Goods Sold", "credit": "Inventory" },
+          "amountRange": [1000, 30000],
+          "step": 500,
+          "explanation": "Cost of Goods Sold increases (debit) and Inventory decreases (credit). This records the expense of inventory that has been sold.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cost of Goods Sold", "type": "Expense", "change": "increase" },
+              { "account": "Inventory", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Expense)"
+          }
+        },
+        {
+          "id": "mds_inventory_shrinkage",
+          "type": "inventory_shrinkage",
+          "description": "Recorded inventory shrinkage of $[AMOUNT] after a physical count.",
+          "accounts": { "debit": "Cost of Goods Sold", "credit": "Inventory" },
+          "amountRange": [100, 5000],
+          "step": 50,
+          "explanation": "Inventory shrinkage (loss from theft, damage, or error) is recorded as an increase to Cost of Goods Sold and a decrease to Inventory.",
+          "analysis": {
+            "accounts_affected": [
+              { "account": "Cost of Goods Sold", "type": "Expense", "change": "increase" },
+              { "account": "Inventory", "type": "Asset", "change": "decrease" }
+            ],
+            "equation_impact": "Assets −$[AMOUNT] = Equity −$[AMOUNT] (via Expense)"
+          }
+        }
+      ]
+    }
+  }
+}

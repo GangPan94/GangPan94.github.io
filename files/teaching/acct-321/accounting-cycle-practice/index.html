@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ACCT 321 — Accounting Cycle Practice</title>
+    <link rel="stylesheet" href="css/base.css?v=22" />
+    <link rel="stylesheet" href="css/worked-examples.css?v=22" />
+    <link rel="stylesheet" href="css/random-practice.css?v=22" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="app-header" role="banner">
+      <div class="header-title">
+        <h1>ACCT 321 — Accounting Cycle Practice</h1>
+        <div class="subtitle">Journal Entries &middot; Debits &amp; Credits</div>
+      </div>
+      <div class="header-controls">
+        <button class="ref-toggle" id="ref-toggle" aria-label="Open reference panel" title="Reference">
+          &#9432; Reference
+        </button>
+        <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          &#9790; Dark
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="app-main" role="main">
+      <!-- Track Toggle -->
+      <nav class="track-toggle" role="tablist" aria-label="Practice mode">
+        <button class="track-btn active" data-track="worked-examples" role="tab" aria-selected="true" aria-controls="worked-examples-content" id="tab-worked">
+          Demo
+        </button>
+        <button class="track-btn" data-track="random-practice" role="tab" aria-selected="false" aria-controls="random-practice-content" id="tab-random">
+          Random Practice (Beta)
+        </button>
+      </nav>
+
+      <!-- Worked Examples Track -->
+      <section class="track-content active" id="worked-examples-content" role="tabpanel" aria-labelledby="tab-worked">
+        <!-- Populated by worked-examples.js -->
+      </section>
+
+      <!-- Random Practice Track -->
+      <section class="track-content" id="random-practice-content" role="tabpanel" aria-labelledby="tab-random">
+        <!-- Populated by random-practice.js -->
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer" role="contentinfo">
+      Adapted from Pacioli tutorial &mdash; Double-Entry Accounting Since 1494<br>
+      &copy; 2026 Gang Pan. All rights reserved.
+    </footer>
+
+    <!-- Reference Panel Overlay -->
+    <div class="reference-overlay" id="reference-overlay" aria-hidden="true"></div>
+
+    <!-- Reference Panel -->
+    <aside class="reference-panel" id="reference-panel" role="dialog" aria-label="Reference panel" aria-hidden="true">
+      <!-- Populated by app.js -->
+    </aside>
+
+    <!-- Scripts -->
+    <script src="js/utils.js?v=22"></script>
+    <script src="js/checker.js?v=22"></script>
+    <script src="js/generator.js?v=22"></script>
+    <script src="js/exercise-engine.js?v=22"></script>
+    <script src="js/worked-examples.js?v=22"></script>
+    <script src="js/random-practice.js?v=22"></script>
+    <script src="js/celebration.js?v=22"></script>
+    <script src="js/app.js?v=22"></script>
+  </body>
+</html>

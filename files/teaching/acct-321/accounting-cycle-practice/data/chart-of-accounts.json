@@ -1,0 +1,451 @@
+{
+  "meta": {
+    "title": "ACCT 321 \u2014 Standard Chart of Accounts",
+    "course": "ACCT 321",
+    "description": "Standard account list for introductory accounting cycle practice. Students select from these accounts when recording journal entries.",
+    "version": "1.0.0"
+  },
+  "accounts": [
+    {
+      "number": "101",
+      "name": "Cash",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Currency, bank deposits, and cash equivalents"
+    },
+    {
+      "number": "102",
+      "name": "Accounts Receivable",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Amounts owed by customers on account"
+    },
+    {
+      "number": "103",
+      "name": "Allowance for Doubtful Accounts",
+      "type": "Asset (Contra)",
+      "normal_balance": "Credit",
+      "description": "Estimated uncollectible receivables"
+    },
+    {
+      "number": "104",
+      "name": "Notes Receivable",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Promissory notes from customers"
+    },
+    {
+      "number": "105",
+      "name": "Supplies",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Office and operating supplies on hand"
+    },
+    {
+      "number": "106",
+      "name": "Prepaid Insurance",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Insurance premiums paid in advance"
+    },
+    {
+      "number": "107",
+      "name": "Prepaid Rent",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Rent paid in advance"
+    },
+    {
+      "number": "108",
+      "name": "Land",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Land held for business use"
+    },
+    {
+      "number": "109",
+      "name": "Buildings",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Buildings owned and used by the business"
+    },
+    {
+      "number": "110",
+      "name": "Accumulated Depreciation \u2014 Buildings",
+      "type": "Asset (Contra)",
+      "normal_balance": "Credit",
+      "description": "Cumulative depreciation on buildings"
+    },
+    {
+      "number": "111",
+      "name": "Equipment",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Office and operating equipment"
+    },
+    {
+      "number": "112",
+      "name": "Accumulated Depreciation \u2014 Equipment",
+      "type": "Asset (Contra)",
+      "normal_balance": "Credit",
+      "description": "Cumulative depreciation on equipment"
+    },
+    {
+      "number": "113",
+      "name": "Furniture and Fixtures",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Furniture and fixtures for business use"
+    },
+    {
+      "number": "114",
+      "name": "Accumulated Depreciation \u2014 Furniture and Fixtures",
+      "type": "Asset (Contra)",
+      "normal_balance": "Credit",
+      "description": "Cumulative depreciation on furniture and fixtures"
+    },
+    {
+      "number": "115",
+      "name": "Inventory",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Goods held for sale (perpetual system)"
+    },
+    {
+      "number": "116",
+      "name": "Merchandise Inventory",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Goods held for sale (periodic system)"
+    },
+    {
+      "number": "117",
+      "name": "Vehicles",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Vehicles used for business operations"
+    },
+    {
+      "number": "118",
+      "name": "Accumulated Depreciation \u2014 Vehicles",
+      "type": "Asset (Contra)",
+      "normal_balance": "Credit",
+      "description": "Cumulative depreciation on vehicles"
+    },
+    {
+      "number": "119",
+      "name": "Intangible Assets",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Patents, trademarks, copyrights"
+    },
+    {
+      "number": "120",
+      "name": "Accumulated Amortization",
+      "type": "Asset (Contra)",
+      "normal_balance": "Credit",
+      "description": "Cumulative amortization on intangible assets"
+    },
+    {
+      "number": "104.1",
+      "name": "Interest Receivable",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Interest earned but not yet received on notes receivable or investments"
+    },
+    {
+      "number": "201",
+      "name": "Accounts Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Amounts owed to suppliers on account"
+    },
+    {
+      "number": "202",
+      "name": "Notes Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Promissory notes owed to creditors"
+    },
+    {
+      "number": "203",
+      "name": "Unearned Revenue",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Cash received before services are performed"
+    },
+    {
+      "number": "204",
+      "name": "Salaries Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Accrued salaries owed to employees"
+    },
+    {
+      "number": "205",
+      "name": "Interest Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Accrued interest on borrowings"
+    },
+    {
+      "number": "206",
+      "name": "Utilities Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Accrued utility expenses"
+    },
+    {
+      "number": "207",
+      "name": "Rent Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Accrued rent expenses"
+    },
+    {
+      "number": "208",
+      "name": "Taxes Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Accrued tax obligations"
+    },
+    {
+      "number": "209",
+      "name": "Dividends Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Dividends declared but not yet paid"
+    },
+    {
+      "number": "210",
+      "name": "Wages Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Accrued wages owed to employees"
+    },
+    {
+      "number": "211",
+      "name": "Deferred Revenue",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Cash received for future services (long-term)"
+    },
+    {
+      "number": "212",
+      "name": "Bonds Payable",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Long-term debt securities issued"
+    },
+    {
+      "number": "301",
+      "name": "Common Stock",
+      "type": "Equity",
+      "normal_balance": "Credit",
+      "description": "Par value of shares issued"
+    },
+    {
+      "number": "302",
+      "name": "Additional Paid-in Capital",
+      "type": "Equity",
+      "normal_balance": "Credit",
+      "description": "Amount received above par value"
+    },
+    {
+      "number": "303",
+      "name": "Retained Earnings",
+      "type": "Equity",
+      "normal_balance": "Credit",
+      "description": "Cumulative net income less dividends"
+    },
+    {
+      "number": "304",
+      "name": "Dividends",
+      "type": "Equity (Contra)",
+      "normal_balance": "Debit",
+      "description": "Distributions of earnings to shareholders"
+    },
+    {
+      "number": "305",
+      "name": "Owner's Capital",
+      "type": "Equity",
+      "normal_balance": "Credit",
+      "description": "Owner's investment in a sole proprietorship"
+    },
+    {
+      "number": "306",
+      "name": "Owner's Drawings",
+      "type": "Equity (Contra)",
+      "normal_balance": "Debit",
+      "description": "Owner's withdrawals from a sole proprietorship"
+    },
+    {
+      "number": "307",
+      "name": "Income Summary",
+      "type": "Equity (Temporary)",
+      "normal_balance": "Credit",
+      "description": "Temporary account used in closing process"
+    },
+    {
+      "number": "401",
+      "name": "Service Revenue",
+      "type": "Revenue",
+      "normal_balance": "Credit",
+      "description": "Revenue from services performed"
+    },
+    {
+      "number": "402",
+      "name": "Sales Revenue",
+      "type": "Revenue",
+      "normal_balance": "Credit",
+      "description": "Revenue from sale of merchandise"
+    },
+    {
+      "number": "402.1",
+      "name": "Sales Discounts",
+      "type": "Revenue (Contra)",
+      "normal_balance": "Debit",
+      "description": "Cash discounts given to customers for early payment (contra-revenue)"
+    },
+    {
+      "number": "403",
+      "name": "Interest Revenue",
+      "type": "Revenue",
+      "normal_balance": "Credit",
+      "description": "Interest earned on notes receivable or investments"
+    },
+    {
+      "number": "404",
+      "name": "Rent Revenue",
+      "type": "Revenue",
+      "normal_balance": "Credit",
+      "description": "Rental income earned"
+    },
+    {
+      "number": "405",
+      "name": "Gain on Sale of Assets",
+      "type": "Revenue",
+      "normal_balance": "Credit",
+      "description": "Gain from selling assets above book value"
+    },
+    {
+      "number": "501",
+      "name": "Cost of Goods Sold",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Cost of merchandise sold"
+    },
+    {
+      "number": "502",
+      "name": "Salaries Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Employee salaries and wages"
+    },
+    {
+      "number": "503",
+      "name": "Rent Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Cost of rented facilities"
+    },
+    {
+      "number": "504",
+      "name": "Supplies Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Cost of supplies consumed"
+    },
+    {
+      "number": "505",
+      "name": "Utilities Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Electricity, water, gas, internet"
+    },
+    {
+      "number": "506",
+      "name": "Insurance Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Cost of insurance coverage expired"
+    },
+    {
+      "number": "507",
+      "name": "Depreciation Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Allocation of asset cost over useful life"
+    },
+    {
+      "number": "508",
+      "name": "Interest Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Cost of borrowing money"
+    },
+    {
+      "number": "509",
+      "name": "Advertising Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Cost of promotional activities"
+    },
+    {
+      "number": "510",
+      "name": "Repairs and Maintenance Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Cost of repairs and upkeep"
+    },
+    {
+      "number": "511",
+      "name": "Bad Debt Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Estimated uncollectible accounts expense"
+    },
+    {
+      "number": "512",
+      "name": "Miscellaneous Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Small, infrequent expenses"
+    },
+    {
+      "number": "513",
+      "name": "Loss on Sale of Assets",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Loss from selling assets below book value"
+    },
+    {
+      "number": "514",
+      "name": "Income Tax Expense",
+      "type": "Expense",
+      "normal_balance": "Debit",
+      "description": "Corporate income tax"
+    },
+    {
+      "number": "111.1",
+      "name": "Office Equipment",
+      "type": "Asset",
+      "normal_balance": "Debit",
+      "description": "Office furniture and equipment used in operations"
+    },
+    {
+      "number": "112.1",
+      "name": "Accumulated Depreciation \u2014 Office Equipment",
+      "type": "Asset (Contra)",
+      "normal_balance": "Credit",
+      "description": "Accumulated depreciation on office equipment"
+    },
+    {
+      "number": "203.1",
+      "name": "Deferred Rent Revenue",
+      "type": "Liability",
+      "normal_balance": "Credit",
+      "description": "Rent collected in advance that has not yet been earned"
+    }
+  ]
+}

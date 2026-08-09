@@ -1,0 +1,599 @@
+{
+  "meta": {
+    "title": "Dress Right Clothing Corp. \u2014 Phase 1: Daily Operations",
+    "description": "July 2027 daily operation journal entries for Dress Right Clothing Corporation's first month of operations. Covers stock issuance, bank loan, prepaid rent, equipment purchase, inventory purchase, supplies, cash and credit sales (with COGS), deferred revenue, AP payment, salaries, collection on account, and dividends.",
+    "entity_type": "corporation",
+    "business_type": "merchandising",
+    "difficulty": "intermediate",
+    "phase": 1,
+    "phase_name": "Daily Operations",
+    "learning_objectives": [
+      "Record issuance of common stock for cash",
+      "Record borrowing from a bank (notes payable)",
+      "Record prepaid expenses (prepaid rent)",
+      "Record cash purchase of equipment",
+      "Record purchase of inventory on account",
+      "Record cash purchase of supplies",
+      "Record cash sales with cost of goods sold (compound entry)",
+      "Record credit sales with cost of goods sold (compound entry)",
+      "Record deferred revenue (unearned rent revenue)",
+      "Record payment of accounts payable",
+      "Record payment of salaries expense",
+      "Record collection of accounts receivable",
+      "Record payment of cash dividends"
+    ],
+    "trial_balance": [
+      {
+        "account": "Cash",
+        "debit": 68500,
+        "credit": 0
+      },
+      {
+        "account": "Accounts Receivable",
+        "debit": 2000,
+        "credit": 0
+      },
+      {
+        "account": "Supplies",
+        "debit": 2000,
+        "credit": 0
+      },
+      {
+        "account": "Prepaid Rent",
+        "debit": 24000,
+        "credit": 0
+      },
+      {
+        "account": "Office Equipment",
+        "debit": 12000,
+        "credit": 0
+      },
+      {
+        "account": "Inventory",
+        "debit": 38000,
+        "credit": 0
+      },
+      {
+        "account": "Accounts Payable",
+        "debit": 0,
+        "credit": 35000
+      },
+      {
+        "account": "Notes Payable",
+        "debit": 0,
+        "credit": 40000
+      },
+      {
+        "account": "Deferred Rent Revenue",
+        "debit": 0,
+        "credit": 1000
+      },
+      {
+        "account": "Common Stock",
+        "debit": 0,
+        "credit": 60000
+      },
+      {
+        "account": "Dividends",
+        "debit": 1000,
+        "credit": 0
+      },
+      {
+        "account": "Sales Revenue",
+        "debit": 0,
+        "credit": 38500
+      },
+      {
+        "account": "Cost of Goods Sold",
+        "debit": 22000,
+        "credit": 0
+      },
+      {
+        "account": "Salaries Expense",
+        "debit": 5000,
+        "credit": 0
+      }
+    ]
+  },
+  "transactions": [
+    {
+      "id": 1,
+      "date": "July 1",
+      "description": "Received cash of $60,000 from two investors ($30,000 each). Issued 3,000 shares of common stock to each investor (6,000 total shares).",
+      "entries": [
+        {
+          "account": "Cash",
+          "debit": 60000,
+          "credit": 0
+        },
+        {
+          "account": "Common Stock",
+          "debit": 0,
+          "credit": 60000
+        }
+      ],
+      "explanation": "Cash (Asset) increases \u2192 debit. Common Stock (Equity) increases \u2192 credit. The owners' investment grows the business and increases total equity.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 60000
+          },
+          {
+            "account": "Common Stock",
+            "type": "Equity",
+            "change": "increase",
+            "amount": 60000
+          }
+        ],
+        "equation_impact": "Assets +$60,000 = Equity +$60,000"
+      }
+    },
+    {
+      "id": 2,
+      "date": "July 1",
+      "description": "Borrowed $40,000 from a local bank. Signed two notes: Note 1 \u2014 $10,000 principal, 10% interest, due in 6 months. Note 2 \u2014 $30,000 principal, 10% annual interest, due in 2 years.",
+      "entries": [
+        {
+          "account": "Cash",
+          "debit": 40000,
+          "credit": 0
+        },
+        {
+          "account": "Notes Payable",
+          "debit": 0,
+          "credit": 40000
+        }
+      ],
+      "explanation": "Cash (Asset) increases \u2192 debit. Notes Payable (Liability) increases \u2192 credit. Borrowing creates an obligation to repay the principal plus interest.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 40000
+          },
+          {
+            "account": "Notes Payable",
+            "type": "Liability",
+            "change": "increase",
+            "amount": 40000
+          }
+        ],
+        "equation_impact": "Assets +$40,000 = Liabilities +$40,000"
+      }
+    },
+    {
+      "id": 3,
+      "date": "July 1",
+      "description": "Paid $24,000 cash in advance for one year's rent on the store building (July 1, 2027 to June 30, 2028).",
+      "entries": [
+        {
+          "account": "Prepaid Rent",
+          "debit": 24000,
+          "credit": 0
+        },
+        {
+          "account": "Cash",
+          "debit": 0,
+          "credit": 24000
+        }
+      ],
+      "explanation": "Prepaid Rent (Asset) increases \u2192 debit. Cash (Asset) decreases \u2192 credit. Rent paid in advance is an asset because the business will receive future benefit. The expense will be recognized each month as the rent expires.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Prepaid Rent",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 24000
+          },
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 24000
+          }
+        ],
+        "equation_impact": "Assets +$24,000 (Prepaid Rent) \u2212 $24,000 (Cash) = No net change"
+      }
+    },
+    {
+      "id": 4,
+      "date": "July 1",
+      "description": "Purchased office equipment from eTronics for $12,000 cash.",
+      "entries": [
+        {
+          "account": "Office Equipment",
+          "debit": 12000,
+          "credit": 0
+        },
+        {
+          "account": "Cash",
+          "debit": 0,
+          "credit": 12000
+        }
+      ],
+      "explanation": "Office Equipment (Asset) increases \u2192 debit. Cash (Asset) decreases \u2192 credit. Equipment is a long-term asset that will be depreciated over its 5-year useful life.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Office Equipment",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 12000
+          },
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 12000
+          }
+        ],
+        "equation_impact": "Assets +$12,000 (Equipment) \u2212 $12,000 (Cash) = No net change"
+      }
+    },
+    {
+      "id": 5,
+      "date": "July 3",
+      "description": "Purchased $60,000 of clothing inventory on account from Birdwell Wholesale Clothing Company.",
+      "entries": [
+        {
+          "account": "Inventory",
+          "debit": 60000,
+          "credit": 0
+        },
+        {
+          "account": "Accounts Payable",
+          "debit": 0,
+          "credit": 60000
+        }
+      ],
+      "explanation": "Inventory (Asset) increases \u2192 debit. Accounts Payable (Liability) increases \u2192 credit. Under the perpetual inventory system, inventory is recorded at cost when purchased, and the liability is recorded because payment is due later.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Inventory",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 60000
+          },
+          {
+            "account": "Accounts Payable",
+            "type": "Liability",
+            "change": "increase",
+            "amount": 60000
+          }
+        ],
+        "equation_impact": "Assets +$60,000 = Liabilities +$60,000"
+      }
+    },
+    {
+      "id": 6,
+      "date": "July 6",
+      "description": "Purchased $2,000 of office and warehouse supplies for cash.",
+      "entries": [
+        {
+          "account": "Supplies",
+          "debit": 2000,
+          "credit": 0
+        },
+        {
+          "account": "Cash",
+          "debit": 0,
+          "credit": 2000
+        }
+      ],
+      "explanation": "Supplies (Asset) increases \u2192 debit. Cash (Asset) decreases \u2192 credit. Supplies are an asset at purchase \u2014 they become an expense only when consumed during operations.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Supplies",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 2000
+          },
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 2000
+          }
+        ],
+        "equation_impact": "Assets +$2,000 (Supplies) \u2212 $2,000 (Cash) = No net change"
+      }
+    },
+    {
+      "id": 7,
+      "date": "July 4\u201331",
+      "description": "Sold clothing inventory for $35,000 cash. The cost of inventory sold was $20,000 (perpetual inventory system).",
+      "entries": [
+        {
+          "account": "Cash",
+          "debit": 35000,
+          "credit": 0
+        },
+        {
+          "account": "Sales Revenue",
+          "debit": 0,
+          "credit": 35000
+        },
+        {
+          "account": "Cost of Goods Sold",
+          "debit": 20000,
+          "credit": 0
+        },
+        {
+          "account": "Inventory",
+          "debit": 0,
+          "credit": 20000
+        }
+      ],
+      "explanation": "This is a compound entry with two parts. Part 1 \u2014 Record revenue: Cash (Asset) increases \u2192 debit, Sales Revenue (Revenue) increases \u2192 credit. Part 2 \u2014 Record expense: Cost of Goods Sold (Expense) increases \u2192 debit, Inventory (Asset) decreases \u2192 credit. The matching principle requires recording COGS in the same period as the related revenue.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 35000
+          },
+          {
+            "account": "Inventory",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 20000
+          },
+          {
+            "account": "Sales Revenue",
+            "type": "Revenue",
+            "change": "increase",
+            "amount": 35000
+          },
+          {
+            "account": "Cost of Goods Sold",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 20000
+          }
+        ],
+        "equation_impact": "Assets +$35,000 (Cash) \u2212 $20,000 (Inventory) = Equity +$15,000 (Revenue $35,000 \u2212 Expense $20,000)"
+      }
+    },
+    {
+      "id": 8,
+      "date": "July 9",
+      "description": "Sold clothing inventory on account to Briarfield School for $3,500. The cost of inventory sold was $2,000.",
+      "entries": [
+        {
+          "account": "Accounts Receivable",
+          "debit": 3500,
+          "credit": 0
+        },
+        {
+          "account": "Sales Revenue",
+          "debit": 0,
+          "credit": 3500
+        },
+        {
+          "account": "Cost of Goods Sold",
+          "debit": 2000,
+          "credit": 0
+        },
+        {
+          "account": "Inventory",
+          "debit": 0,
+          "credit": 2000
+        }
+      ],
+      "explanation": "Compound entry. Part 1 \u2014 Record revenue on account: Accounts Receivable (Asset) increases \u2192 debit, Sales Revenue (Revenue) increases \u2192 credit. Part 2 \u2014 Record COGS: Cost of Goods Sold (Expense) increases \u2192 debit, Inventory (Asset) decreases \u2192 credit. Revenue is earned even though cash hasn't been collected yet.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Accounts Receivable",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 3500
+          },
+          {
+            "account": "Inventory",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 2000
+          },
+          {
+            "account": "Sales Revenue",
+            "type": "Revenue",
+            "change": "increase",
+            "amount": 3500
+          },
+          {
+            "account": "Cost of Goods Sold",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 2000
+          }
+        ],
+        "equation_impact": "Assets +$3,500 (Accounts Receivable) \u2212 $2,000 (Inventory) = Equity +$1,500 (Revenue $3,500 \u2212 Expense $2,000)"
+      }
+    },
+    {
+      "id": 9,
+      "date": "July 16",
+      "description": "Subleased space to a jewelry store. Received $1,000 in advance for two months' rent beginning July 16.",
+      "entries": [
+        {
+          "account": "Cash",
+          "debit": 1000,
+          "credit": 0
+        },
+        {
+          "account": "Deferred Rent Revenue",
+          "debit": 0,
+          "credit": 1000
+        }
+      ],
+      "explanation": "Cash (Asset) increases \u2192 debit. Deferred Rent Revenue (Liability) increases \u2192 credit. Cash received before the service is provided creates a liability. Revenue will be recognized as the rental space is used over the two-month period.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 1000
+          },
+          {
+            "account": "Deferred Rent Revenue",
+            "type": "Liability",
+            "change": "increase",
+            "amount": 1000
+          }
+        ],
+        "equation_impact": "Assets +$1,000 = Liabilities +$1,000"
+      }
+    },
+    {
+      "id": 10,
+      "date": "July 20",
+      "description": "Paid $25,000 cash to Birdwell Wholesale Clothing Company on account.",
+      "entries": [
+        {
+          "account": "Accounts Payable",
+          "debit": 25000,
+          "credit": 0
+        },
+        {
+          "account": "Cash",
+          "debit": 0,
+          "credit": 25000
+        }
+      ],
+      "explanation": "Accounts Payable (Liability) decreases \u2192 debit. Cash (Asset) decreases \u2192 credit. Paying a creditor reduces both the liability and the cash balance. No expense is recorded \u2014 the expense (COGS) will be recorded when the inventory is sold.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Accounts Payable",
+            "type": "Liability",
+            "change": "decrease",
+            "amount": 25000
+          },
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 25000
+          }
+        ],
+        "equation_impact": "Assets \u2212$25,000 = Liabilities \u2212$25,000"
+      }
+    },
+    {
+      "id": 11,
+      "date": "July 20",
+      "description": "Paid $5,000 cash for employee salaries covering the first half of July.",
+      "entries": [
+        {
+          "account": "Salaries Expense",
+          "debit": 5000,
+          "credit": 0
+        },
+        {
+          "account": "Cash",
+          "debit": 0,
+          "credit": 5000
+        }
+      ],
+      "explanation": "Salaries Expense (Expense) increases \u2192 debit. Cash (Asset) decreases \u2192 credit. Salaries are an operating expense that reduces net income and therefore reduces retained earnings.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Salaries Expense",
+            "type": "Expense",
+            "change": "increase",
+            "amount": 5000
+          },
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 5000
+          }
+        ],
+        "equation_impact": "Assets \u2212$5,000 = Equity \u2212$5,000 (via Expense)"
+      }
+    },
+    {
+      "id": 12,
+      "date": "July 25",
+      "description": "Received $1,500 cash on account from Briarfield School.",
+      "entries": [
+        {
+          "account": "Cash",
+          "debit": 1500,
+          "credit": 0
+        },
+        {
+          "account": "Accounts Receivable",
+          "debit": 0,
+          "credit": 1500
+        }
+      ],
+      "explanation": "Cash (Asset) increases \u2192 debit. Accounts Receivable (Asset) decreases \u2192 credit. This is a collection of cash \u2014 no revenue is recorded because the revenue was already recorded on July 9 when the sale occurred.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "increase",
+            "amount": 1500
+          },
+          {
+            "account": "Accounts Receivable",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 1500
+          }
+        ],
+        "equation_impact": "Assets +$1,500 (Cash) \u2212 $1,500 (Accounts Receivable) = No net change"
+      }
+    },
+    {
+      "id": 13,
+      "date": "July 30",
+      "description": "Paid shareholders a cash dividend of $1,000.",
+      "entries": [
+        {
+          "account": "Dividends",
+          "debit": 1000,
+          "credit": 0
+        },
+        {
+          "account": "Cash",
+          "debit": 0,
+          "credit": 1000
+        }
+      ],
+      "explanation": "Dividends (Contra-Equity) increases \u2192 debit. Cash (Asset) decreases \u2192 credit. Dividends are distributions of earnings to shareholders. They are NOT an expense \u2014 they reduce Retained Earnings and are closed at period-end.",
+      "analysis": {
+        "accounts_affected": [
+          {
+            "account": "Dividends",
+            "type": "Equity (Contra)",
+            "change": "decrease",
+            "amount": 1000
+          },
+          {
+            "account": "Cash",
+            "type": "Asset",
+            "change": "decrease",
+            "amount": 1000
+          }
+        ],
+        "equation_impact": "Assets \u2212$1,000 = Equity \u2212$1,000 (via Dividends)"
+      }
+    }
+  ]
+}
