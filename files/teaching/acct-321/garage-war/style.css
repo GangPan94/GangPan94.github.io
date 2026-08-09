@@ -1,0 +1,727 @@
+/* 80s Retro Route 66 Style & Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #090a0f;
+  font-family: 'Righteous', 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #f0f4f8;
+}
+
+/* MAIN CONTAINER */
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* CANVAS */
+#game-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: radial-gradient(circle at center, #181928 0%, #08090d 100%);
+}
+
+/* TOP HUD OVERLAY */
+#top-hud {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: rgba(14, 16, 24, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 3px solid #ec4899;
+  box-shadow: 0 4px 25px rgba(236, 72, 153, 0.4);
+}
+
+.hud-left, .hud-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #e2e8f0;
+}
+
+.route66-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-color: #f59e0b;
+  color: #fbbf24;
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.4);
+  background: rgba(15, 23, 42, 0.85);
+}
+
+.hud-badge-img {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* CENTER SCOREBOARD (100% FULL DIVISION BAR) */
+.hud-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 48%;
+  max-width: 520px;
+}
+
+.scoreboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.total-junk-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hud-label {
+  font-family: 'Righteous', sans-serif;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+#total-junk-count {
+  font-family: 'Righteous', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fbbf24;
+  line-height: 1;
+}
+
+.mom-text {
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.ernest-text {
+  color: #00d2ff;
+  text-shadow: 0 0 10px rgba(0, 210, 255, 0.6);
+}
+
+.ratio-text {
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+/* 100% FULL DIVISION BAR TRACK (Mom % + Ernest % = 100%) */
+.stacked-bar-track {
+  display: flex;
+  height: 18px;
+  width: 100%;
+  border-radius: 9px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #06b6d4;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+  position: relative;
+}
+
+.mom-bar-segment {
+  height: 100%;
+  background: linear-gradient(90deg, #b45309, #ffd700);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ernest-bar-segment {
+  height: 100%;
+  background: linear-gradient(90deg, #00d2ff, #0284c7);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.8);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* CAR HEALTH BOX */
+.car-health-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.health-bar-track {
+  width: 130px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#car-health-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ef4444, #22c55e);
+  transition: width 0.3s ease;
+}
+
+#car-health-text {
+  font-size: 11px;
+  font-weight: 700;
+  color: #22c55e;
+}
+
+.hud-btn {
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.glow-gold-btn {
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  color: #000;
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+}
+
+.glow-gold-btn:active {
+  transform: scale(0.95);
+}
+
+/* DROP ZONES FOR MULTIPLIER DRAG */
+.drop-zone {
+  position: absolute;
+  z-index: 5;
+  top: 90px;
+  width: 35%;
+  height: 140px;
+  border-radius: 16px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.drop-zone.active {
+  opacity: 0.8;
+  animation: pulse-border 1.5s infinite alternate;
+}
+
+.gold-zone {
+  left: 20px;
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.1);
+  color: #ffd700;
+}
+
+.blue-zone {
+  right: 20px;
+  border-color: #00d2ff;
+  background: rgba(0, 210, 255, 0.1);
+  color: #00d2ff;
+}
+
+.drop-zone span {
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse-border {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.02); opacity: 0.95; }
+}
+
+/* BOTTOM PLAYER STATIONS */
+#player-stations {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 16px 20px 20px 20px;
+  pointer-events: none;
+}
+
+.player-station {
+  pointer-events: auto;
+  width: 46%;
+  max-width: 480px;
+  padding: 16px;
+  border-radius: 20px;
+  backdrop-filter: blur(16px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.station-gold {
+  background: linear-gradient(145deg, rgba(45, 35, 10, 0.9), rgba(20, 16, 8, 0.9));
+  border-color: #ffd700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+}
+
+.station-blue {
+  background: linear-gradient(145deg, rgba(10, 32, 45, 0.9), rgba(8, 16, 24, 0.9));
+  border-color: #00d2ff;
+  box-shadow: 0 0 25px rgba(0, 210, 255, 0.25);
+}
+
+.station-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.mom-avatar {
+  background: rgba(255, 215, 0, 0.2);
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+
+.ernest-avatar {
+  background: rgba(0, 210, 255, 0.2);
+  border: 2px solid #00d2ff;
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.5);
+}
+
+.player-name {
+  font-family: 'Righteous', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.gold-text {
+  color: #ffd700;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+}
+
+.blue-text {
+  color: #00d2ff;
+  text-shadow: 0 0 12px rgba(0, 210, 255, 0.6);
+}
+
+.multiplier-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-top: 2px;
+  background: #ef4444;
+  color: #fff;
+  animation: flash-badge 0.8s infinite alternate;
+}
+
+@keyframes flash-badge {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.05); opacity: 1; }
+}
+
+.action-zone {
+  display: flex;
+  width: 100%;
+}
+
+.dual-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* TOUCH-FRIENDLY ACTION BUTTONS WITH ROUTE 66 CHROME FINISH */
+.action-btn {
+  width: 100%;
+  min-height: 70px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, filter 0.1s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn:active {
+  transform: scale(0.95);
+}
+
+.action-btn.disabled, .action-btn:disabled {
+  opacity: 0.4;
+  filter: grayscale(0.8);
+  pointer-events: none;
+}
+
+.btn-icon {
+  font-size: 22px;
+}
+
+.btn-text {
+  font-family: 'Righteous', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.btn-subtext {
+  font-size: 9px;
+  font-weight: 800;
+  opacity: 0.85;
+  letter-spacing: 0.5px;
+}
+
+.throw-btn-gold {
+  background: linear-gradient(135deg, #ffd700, #b45309);
+  color: #1c1917;
+  border-color: #fef08a;
+  box-shadow: 0 6px 22px rgba(255, 215, 0, 0.5);
+}
+
+.throw-btn-gold:active {
+  box-shadow: 0 2px 10px rgba(255, 215, 0, 0.7);
+}
+
+.throw-btn-blue {
+  background: linear-gradient(135deg, #00d2ff, #0369a1);
+  color: #0f172a;
+  border-color: #bae6fd;
+  box-shadow: 0 6px 22px rgba(0, 210, 255, 0.5);
+}
+
+.throw-btn-blue:active {
+  box-shadow: 0 2px 10px rgba(0, 210, 255, 0.7);
+}
+
+.sweep-btn-blue {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  color: #fff;
+  border-color: #fbcfe8;
+  box-shadow: 0 6px 22px rgba(236, 72, 153, 0.5);
+}
+
+.sweep-btn-blue.holding {
+  background: linear-gradient(135deg, #f43f5e, #9f1239);
+  box-shadow: 0 0 30px rgba(244, 63, 94, 0.9);
+  transform: scale(0.96);
+}
+
+/* 80S RETRO ROUTE 66 MODAL STYLING WITH DESIGNATED ART ASSETS */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  background: rgba(6, 8, 12, 0.93);
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.retro-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(22, 18, 34, 0.96), rgba(10, 12, 20, 0.96));
+  border: 2px solid #ec4899;
+  border-radius: 24px;
+  padding: 24px 28px;
+  width: 92%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 50px rgba(236, 72, 153, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+}
+
+.modal-header-img {
+  width: 100%;
+  max-width: 320px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 2px solid #f59e0b;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+}
+
+.modal-badge-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 14px;
+  border: 2px solid #f8fafc;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.retro-rules {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(236, 72, 153, 0.25);
+}
+
+.rule-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.rule-icon {
+  font-size: 18px;
+}
+
+.level-select-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.level-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #fff;
+}
+
+.level-btn.active {
+  border-color: #ffd700;
+  background: rgba(255, 215, 0, 0.15);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.level-title {
+  font-family: 'Righteous', sans-serif;
+  font-size: 20px;
+  color: #ffd700;
+}
+
+.level-desc {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.level-tag {
+  font-size: 10px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  font-family: 'Righteous', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.retro-glow-btn {
+  background: linear-gradient(135deg, #ec4899, #be185d);
+  color: #fff;
+  box-shadow: 0 6px 25px rgba(236, 72, 153, 0.5);
+}
+
+.retro-glow-btn:active {
+  transform: scale(0.96);
+}
+
+.secondary-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: 'Righteous', sans-serif;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* VICTORY MODAL */
+.winner-badge {
+  font-family: 'Righteous', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+.results-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gold-stat {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.blue-stat {
+  border-color: rgba(0, 210, 255, 0.4);
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #94a3b8;
+  font-weight: 800;
+}
+
+.stat-value {
+  font-family: 'Righteous', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.glowing-hint {
+  font-size: 12px;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.victory-stacked-container {
+  width: 100%;
+  margin-top: 2px;
+}
+
+/* COPYRIGHT FOOTER (subtle retro strip, never blocks gameplay) */
+#copyright-footer {
+  position: fixed;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  text-align: center;
+  font-family: 'Righteous', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: rgba(148, 163, 184, 0.55);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* UTILITY CLASSES */
+.text-right { text-align: right; }
+.hidden { display: none !important; }

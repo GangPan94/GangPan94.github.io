@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Route 66 Garage War - 80s Retro Arcade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Press+Start+2P&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game-container">
+    <!-- Main Render Canvas -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- Top HUD / Scoreboard Overlay -->
+    <header id="top-hud">
+      <!-- Level Indicator & Audio Toggle -->
+      <div class="hud-left">
+        <div id="level-badge" class="badge route66-badge">
+          <img src="route66_badge.jpg" class="hud-badge-img" alt="R66">
+          <span>Clean Garage</span>
+        </div>
+        <button id="audio-toggle" class="icon-btn" title="Toggle Sound">🔊</button>
+      </div>
+
+      <!-- Center Scoreboard (100% Full Split Bar Division) -->
+      <div class="hud-center">
+        <div class="scoreboard-header">
+          <span class="mom-text">LUCIAN: <span id="mom-junk-count">0</span></span>
+          <div class="total-junk-badge">
+            <span class="hud-label">TOTAL JUNK</span>
+            <span id="total-junk-count">0</span>
+          </div>
+          <span class="ratio-text" id="split-ratio">50% / 50%</span>
+          <span class="ernest-text">ERNEST: <span id="ernest-junk-count">0</span></span>
+        </div>
+        
+        <!-- Score Bar (100% Full Forever: Mom % + Ernest % = 100%) -->
+        <div class="stacked-bar-track">
+          <div id="stacked-bar-mom" class="mom-bar-segment" style="width: 50%;"></div>
+          <div id="stacked-bar-ernest" class="ernest-bar-segment" style="width: 50%;"></div>
+        </div>
+      </div>
+
+      <!-- Car Health / Finish Button -->
+      <div class="hud-right">
+        <div class="car-health-box">
+          <span class="hud-label">CAR INTEGRITY</span>
+          <div class="health-bar-track">
+            <div id="car-health-fill" style="width: 100%;"></div>
+          </div>
+          <span id="car-health-text">100% (660 HP)</span>
+        </div>
+        <button id="finish-btn" class="hud-btn glow-gold-btn">FINISH WAR 🏁</button>
+      </div>
+    </header>
+
+    <!-- Floating 3x Powerup Drag Zone Target Indicators -->
+    <div id="drop-zone-mom" class="drop-zone gold-zone">
+      <span>DRAG 3X MULTIPLIER HERE (LUCIAN)</span>
+    </div>
+    <div id="drop-zone-ernest" class="drop-zone blue-zone">
+      <span>DRAG 3X MULTIPLIER HERE (ERNEST)</span>
+    </div>
+
+    <!-- Bottom Player Control Stations -->
+    <div id="player-stations">
+      <!-- LUCIAN'S STATION (LEFT SIDE / GOLD) -->
+      <div id="station-mom" class="player-station station-gold">
+        <div class="station-header">
+          <div class="player-avatar mom-avatar">👑</div>
+          <div class="player-info">
+            <div class="player-name gold-text">LUCIAN</div>
+            <div id="mom-multiplier-badge" class="multiplier-badge hidden">⚡ 3X MULTIPLIER (5s)</div>
+          </div>
+        </div>
+
+        <div class="action-zone">
+          <button id="mom-throw-btn" class="action-btn throw-btn-gold">
+            <span class="btn-icon">📦</span>
+            <span class="btn-text">THROW TRASH</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ERNEST'S STATION (RIGHT SIDE / BLUE) -->
+      <div id="station-ernest" class="player-station station-blue">
+        <div class="station-header">
+          <div class="player-info text-right">
+            <div class="player-name blue-text">ERNEST</div>
+            <div id="ernest-multiplier-badge" class="multiplier-badge hidden">⚡ 3X MULTIPLIER (5s)</div>
+          </div>
+          <div class="player-avatar ernest-avatar">⚡</div>
+        </div>
+
+        <div class="action-zone dual-actions">
+          <button id="ernest-sweep-btn" class="action-btn sweep-btn-blue">
+            <span class="btn-icon">🧹</span>
+            <span class="btn-text">SHOP VACUUM</span>
+            <span class="btn-subtext">DRAG NOZZLE AROUND!</span>
+          </button>
+
+          <button id="ernest-throw-btn" class="action-btn throw-btn-blue">
+            <span class="btn-icon">🚀</span>
+            <span class="btn-text">THROW TRASH</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start / Level Select Modal Overlay -->
+    <div id="start-modal" class="modal-overlay">
+      <div class="modal-card retro-card">
+        <img src="route66_sign.jpg" class="modal-header-img" alt="Route 66 Garage War Neon Sign">
+        
+        <div class="rules-box retro-rules">
+          <div class="rule-item">
+            <span class="rule-icon">🚗</span>
+            <span>The <strong>Muscle Car</strong> (660 HP) is parked in the center—hit it to wreck it!</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">📦</span>
+            <span>Tap <strong>THROW TRASH</strong> to launch high-contrast Gold & Blue junk (tiny to GIANT sizes)!</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🧹</span>
+            <span><strong>Ernest:</strong> Drag the <strong>SHOP VACUUM NOZZLE</strong> anywhere on the floor! Sucks up ANY junk (beware friendly fire!).</span>
+          </div>
+          <div class="rule-item">
+            <span class="rule-icon">🛣️</span>
+            <span><strong>Level 2:</strong> Starts pre-scattered with junk randomly split between Lucian (Gold) & Ernest (Blue)!</span>
+          </div>
+        </div>
+
+        <h3>SELECT GARAGE LEVEL:</h3>
+        <div class="level-select-grid">
+          <button id="select-level-1" class="level-btn active">
+            <span class="level-title">LEVEL 1</span>
+            <span class="level-desc">Clean Garage</span>
+            <span class="level-tag">Pristine Start</span>
+          </button>
+          <button id="select-level-2" class="level-btn">
+            <span class="level-title">LEVEL 2</span>
+            <span class="level-desc">Cluttered Garage</span>
+            <span class="level-tag">Existing Junk</span>
+          </button>
+        </div>
+
+        <button id="start-game-btn" class="primary-btn retro-glow-btn">START GARAGE WAR 🚀</button>
+      </div>
+    </div>
+
+    <!-- Game Victory / Results Modal Overlay -->
+    <div id="victory-modal" class="modal-overlay hidden">
+      <div class="modal-card victory-card retro-card">
+        <img src="route66_badge.jpg" class="modal-badge-img" alt="Route 66 Shield">
+        <h1 id="victory-title" class="victory-title retro-title">GARAGE WAR CONCLUDED!</h1>
+        <div id="winner-badge" class="winner-badge">LUCIAN IS THE JUNK CHAMPION! 🏆</div>
+
+        <div class="results-stats">
+          <div class="stat-card gold-stat">
+            <div class="stat-label">LUCIAN'S JUNK</div>
+            <div id="res-mom-count" class="stat-value">0</div>
+          </div>
+          <div class="stat-card blue-stat">
+            <div class="stat-label">ERNEST'S JUNK</div>
+            <div id="res-ernest-count" class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">TOTAL JUNK</div>
+            <div id="res-total-count" class="stat-value">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">CAR DAMAGE</div>
+            <div id="res-car-damage" class="stat-value">100%</div>
+          </div>
+        </div>
+
+        <!-- End Round 100% Full Score Bar Division Presentation -->
+        <div class="victory-stacked-container">
+          <div class="split-labels">
+            <span class="mom-text">LUCIAN: <span id="res-mom-bar-count">0</span></span>
+            <span class="ratio-text">100% SPLIT DIVISION</span>
+            <span class="ernest-text">ERNEST: <span id="res-ernest-bar-count">0</span></span>
+          </div>
+          <div class="stacked-bar-track">
+            <div id="victory-bar-mom" class="mom-bar-segment" style="width: 50%;"></div>
+            <div id="victory-bar-ernest" class="ernest-bar-segment" style="width: 50%;"></div>
+          </div>
+        </div>
+
+        <p class="glowing-hint">✨ All junk in the garage is glowing in <span class="gold-text">GOLD (Lucian)</span> and <span class="blue-text">BLUE (Ernest)</span>!</p>
+
+        <div class="modal-actions">
+          <button id="restart-game-btn" class="primary-btn retro-glow-btn">PLAY AGAIN 🔄</button>
+          <button id="switch-level-btn" class="secondary-btn">SWITCH LEVEL 🎮</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright Notice -->
+  <footer id="copyright-footer">© 2026 Gang Pan. All rights reserved.</footer>
+
+  <!-- Game Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/junk.js"></script>
+  <script src="js/car.js"></script>
+  <script src="js/physics.js"></script>
+  <script src="js/multiplier.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
