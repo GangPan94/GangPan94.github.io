@@ -105,8 +105,6 @@ The examination of the relation between tax planning innovations and excess retu
 
 I find robust evidence that NegDeltaCETRs are associated with higher ALPHA, suggesting that the competitive advantage of tax planning exists and CETRs reflect such an advantage in a timely fashion. However, the magnitude of the association seems modest. Specifically, a one percent NegDeltaCETRs correlates with a 14 to 17 basis-point increase in annualized ALPHA. This effect is weaker than expected if tax planning competitive advantage were viewed as sustainable. For instance, if a firm could consistently save one cent on every dollar earned through tax planning without incurring additional risks, the resultant excess return would be at least 1 percent.
 
-{% include paper-inline-table.html table_key="summary_stats" %}
-
 ### Why the Competitive Moat Is Narrow
 
 Four major reasons suggest that unlike other competitive advantages, such as those developed through R&D and brand names, the competitive moat surrounding tax-planning strategies appears narrow. First, firms cannot maintain an information advantage of tax planning because tax knowledge is non-rival, non-exclusive, and easily spread. Firms often shop tax strategies by consulting with professionals who serve many clients (Cook et al., 2020; McGuire et al., 2012) or even with their lenders (Gallemore et al., 2019). Additionally, tax strategies are also disseminated through "industry gossip and clever reverse-engineering" (Novack, 1998).
@@ -122,12 +120,6 @@ From a valuation perspective, the aforementioned reasons collectively suggest th
 ### Relative Importance
 
 To evaluate the relative importance of tax planning innovations in generating excess returns, I conduct "horserace" regressions and analyses of covariance (ANCOVA). I find that ALPHA's relation with NegDeltaCETRs is weaker than its relation with pretax performance enhancements, such as sales growth and profit margin increases. Tax planning innovations also fall short compared to other cost leadership indicators, such as cuts in COGS (costs of goods sold) or SG&A (selling, general and administrative expenses). Analyses of covariance further indicate that tax planning innovations have less explanatory power for ALPHA compared to other revenue-boosting and cost-cutting variables. Remarkably, sales growth and COGS reductions each account for over seven times the variance explained by tax planning innovations in some specifications. Even reducing interest expenses has a stronger effect than tax planning innovations. This finding is surprising considering the difficulties inherent in adjusting capital structures (Flannery et al., 2006; Lemmon et al., 2008; Kim et al., 2019). These analyses suggest that tax planning is not an efficient avenue for gaining competitive advantages. They also address the limitation of studying tax-planning innovations in isolation: because we observe only marginal changes in tax planning, its absolute importance may be understated. Focusing on relative importance obviates the need for a counterfactual scenario with no tax planning.
-
-{% include ancova-decomposition.html %}
-
-{% include paper-inline-table.html table_key="main_table" %}
-
-{% include paper-inline-table.html table_key="horserace" %}
 
 ### Persistence of the Advantage
 

@@ -98,27 +98,15 @@ However, the effect of sports betting on employee productivity is not obvious ex
 
 Using staggered state-level launch of legal sports betting from 2018 to 2021 and focusing on a three-year window before and after each state's sports betting launch (SBL) (Appendix 1 provides a timeline of SBL across states), we document a statistically and economically significant decline in employee productivity following the launch. Specifically, we find that following sports betting launch, treated firms (i.e., firms headquartered in states that launched sports betting) exhibit employee-level productivity that is 5.9 percent lower than that of the control firms following SBL. After controlling for fixed effects, local economic conditions, and firm characteristics including firm employment size, our results suggest that this productivity decline is incremental to shifts in labor demand or supply and other changes in local economic conditions following the launch.
 
-{% include paper-inline-table.html table_key="summary_stats" %}
-
 ### Mechanism Test
 
 To test the mechanism of at-work attention distraction that causes the productivity decline, we use cognitive task intensity and skill reliance to capture the attentional demands placed on a firm's workforce. We find that the productivity decline is stronger among firms with higher cognitive task intensity and greater reliance on employee skill. These findings suggest that the productivity decline following the launch of sports betting is driven by employee attention distraction, consistent with the attention-allocation mechanism outlined above.
-
-<hr class="paper__inline-separator">
-{% include sports-betting-event-study.html %}
-<hr class="paper__inline-separator">
-
-{% include paper-inline-table.html table_key="main_table" %}
-
-{% include paper-inline-table.html table_key="heterogeneity" %}
 
 ### Firm Labor and Investment Responses
 
 We further explore the impact of sports betting on firm labor inputs or costs and other investment decisions. A decline in employee productivity could, in principle, coincide with changes in firms' labor inputs, either driven by shifts in local labor market or by firms adjusting labor input choices, such as expanding labor quantity through higher hiring or replacement of incumbent employees (e.g., Acemoglu and Restrepo 2018; Curtis et al. 2021; Hubmer and Restrepo 2025), which raises labor related costs through recruiting, onboarding, and training expenses and disrupts firm-specific human capital. Firms may alternatively respond to productivity loss by increasing capital or R&D investment, which could complement or substitute for labor input depending on resource constraints. We therefore examine how firms' input decisions evolve following the launch of legal sports betting, and whether any observed changes are attributable to the productivity decline itself or instead reflect other confounding factors.
 
 We find that following the launch, treated firms experience significantly higher hiring rates and employee attrition, resulting in increased workforce churn. We also find increases in R&D expenditures and SG&A expenses, though the increase in capital expenditures is not statistically significant. To assess whether these patterns are attributable to the decline in productivity itself, we implement a two-stage least squares approach in which employee productivity, predicted from the SBL indicator (i.e., Treat x Post) in the first stage, is used to explain the concurrent and the subsequent-year hiring, attrition, churn, R&D, and capital expenditures, and SG&A in the second stage. Predicted productivity is not significantly related to hiring, attrition, or churn in period, consistent with the notion that the SBL induced firm-level productivity decline does not drive labor market changes and more plausibly reflects broader shifts in local labor markets following the launch. In contrast, predicted productivity is significantly related to R&D, and capital expenditure, and SG&A, particularly in the subsequent year of the productivity drop, consistent with these increases being attributable, at least in part, to the productivity loss. We also conduct a reverse-direction test to rule out the possibility that the productivity decline is itself a consequence of these input changes rather than their cause. In the first stage, hiring, attrition, churn, R&D, and capital expenditures, and SG&A are each regressed on the SBL indicator. In the second stage, the following year's employee productivity is regressed on the values predicted from the first stage. No significant relation is found in the second stage, indicating that the productivity decline precedes rather than follows changes in firm input. Taken together, these results indicate that the rise in hiring, attrition, and churn more plausibly reflects local labor market conditions, while the increases in R&D and capital expenditures represent a firm response to the productivity loss.
-
-{% include paper-inline-table.html table_key="firm_responses" %}
 
 ### Contributions
 
