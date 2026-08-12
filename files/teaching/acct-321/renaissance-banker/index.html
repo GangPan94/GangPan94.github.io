@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Il Banco di Firenze - Renaissance Accounting Odyssey</title>
+  <meta name="description" content="An interactive educational accounting game set in Renaissance Florence. Master single-entry and double-entry bookkeeping to serve Medici bank patrons and avoid laser-eye catastrophes!">
+  <link rel="stylesheet" href="styles.css?v=114">
+</head>
+<body>
+
+  <!-- Fullscreen Red Laser Overlay Canvas -->
+  <canvas id="laserCanvas"></canvas>
+
+  <!-- Renaissance Header HUD -->
+  <header>
+    <div class="brand">
+      <div class="medici-crest" title="Banco Medici - Firenze">⚜</div>
+      <div>
+        <h1 class="game-title">Il Banco di Firenze</h1>
+        <div class="subtitle">Renaissance Accounting Odyssey (c. 1482)</div>
+      </div>
+    </div>
+
+    <div class="hud-controls">
+      <!-- Level Tabs -->
+      <div class="level-selector">
+        <button id="level1Btn" class="level-btn active" onclick="switchLevel(1)">Level 1: Single-Entry</button>
+        <button id="level2Btn" class="level-btn" onclick="switchLevel(2)">Level 2: Double-Entry</button>
+      </div>
+
+      <!-- Bank Reputation HP -->
+      <div class="reputation-container">
+        <span class="reputation-label">Bank Reputation:</span>
+        <div class="reputation-bar-outer">
+          <div id="reputationBar" class="reputation-bar-inner" style="width: 100%;"></div>
+        </div>
+        <span id="reputationHpText" class="reputation-value">100 HP</span>
+      </div>
+
+      <!-- Control Buttons -->
+      <button id="resetBtn" class="btn-gold" onclick="resetCurrentLevel()">🔄 Reset Level</button>
+      <button id="soundBtn" class="btn-secondary" onclick="toggleSound()">🔊 Sound: ON</button>
+      <button id="rulesBtn" class="btn-secondary" onclick="openRulesModal()">📜 Rules</button>
+    </div>
+  </header>
+
+  <!-- Main Game Area -->
+  <main class="game-area">
+
+    <!-- Customer Stage Section -->
+    <section class="customers-section">
+      <div class="section-header">
+        <div class="section-title">
+          <span>🏛️ Medici Bank Counter & Patrons</span>
+        </div>
+        <div style="font-size: 0.88rem; color: #cbb689; font-style: italic;">
+          Serve all patrons before sanity reaches 0 to protect Bank Reputation!
+        </div>
+      </div>
+
+      <div id="customersGrid" class="customers-grid">
+        <!-- Customer Cards will be dynamically populated by game.js -->
+      </div>
+    </section>
+
+    <!-- Workspace Columns: Ledger + Vault -->
+    <div class="workspace-columns">
+
+      <!-- Left Column: Bookkeeping Ledger -->
+      <section class="ledger-panel">
+        <div class="ledger-header">
+          <div>
+            <div id="ledgerTitle" class="ledger-title">Il Memoriale (Single-Entry Ledger)</div>
+            <div id="ledgerSubtitle" class="ledger-subtitle">Sequential record of cash and vault transactions</div>
+          </div>
+          <span style="font-size: 1.2rem;">📜</span>
+        </div>
+
+        <div id="ledgerContent" class="single-entry-scroll">
+          <!-- Ledger content dynamically injected here -->
+        </div>
+      </section>
+
+      <!-- Right Column: Vault Inventory -->
+      <section class="vault-panel">
+        <div class="vault-header">
+          <div>
+            <div id="vaultTitle" class="vault-title">Il Gran Forziere (Giant Vault)</div>
+            <div id="vaultSubtitle" class="vault-subtitle">Single unorganized vault holding all pledged items and florins</div>
+          </div>
+          <span style="font-size: 1.2rem;">🔑</span>
+        </div>
+
+        <div id="vaultContent" class="giant-vault-container">
+          <!-- Vault items or compartments injected here -->
+        </div>
+
+        <!-- Selection Delivery & Audit Action Bar -->
+        <div class="delivery-bar">
+          <div class="selected-info">
+            <div>
+              <span>Prepared:</span>
+              <strong id="selectedItemName" style="color: #55ff55;">None Selected</strong>
+            </div>
+            <div style="font-size: 0.85rem; color: #a89474; font-style: italic; margin-top: 2px;">
+              (Click ledger entries to highlight proof)
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button id="deliverBtn" class="btn-gold" disabled onclick="deliverSelectedItem()">💰 Hand Vault Item</button>
+            <button id="rejectBtn" class="btn-secondary" style="border-color: #ff5555; color: #ff9999;" disabled onclick="rejectCurrentClaim()">🚫 Reject False Claim</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Title Screen / Start Modal -->
+  <div id="titleScreenModal" class="modal-backdrop show">
+    <div class="modal-box title-modal">
+      <div class="medici-crest-lg">⚜</div>
+      <h1 class="modal-title" style="font-size: 2.2rem; margin-top: 10px;">Il Banco di Firenze</h1>
+      <p style="font-style: italic; color: #7a5837; font-size: 1.1rem; margin-bottom: 20px;">Renaissance Accounting Odyssey (Florence, c. 1482)</p>
+
+      <div class="modal-body text-left" style="background: rgba(255,255,255,0.4); padding: 15px; border-radius: 6px; border: 1px solid #c9b085;">
+        <h3 id="titleLevelHeader" style="font-family: var(--font-heading); color: var(--wood-dark); margin-bottom: 8px;">Level 1: Single-Entry Bookkeeping</h3>
+        <p id="titleLevelDesc" style="font-size: 0.98rem; line-height: 1.5;">Welcome, Master Banker! Patrons will arrive at your counter one by one. Search the historical single-entry ledger scroll to match deposit notes with items in the giant vault. Keep patron sanity high and protect the bank's reputation!</p>
+      </div>
+
+      <div class="modal-actions" style="margin-top: 25px;">
+        <button id="startShiftBtn" class="btn-gold" style="font-size: 1.1rem; padding: 12px 28px;" onclick="document.getElementById('titleScreenModal').style.display='none'; document.getElementById('titleScreenModal').classList.remove('show'); startGameShift();">🏛️ Open Bank & Begin Shift</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help / Rules Modal -->
+  <div id="rulesModal" class="modal-backdrop">
+    <div class="modal-box">
+      <h2 class="modal-title">📜 Rules of Renaissance Banking</h2>
+      <div class="modal-body">
+        <p>Welcome to 15th Century Florence, Banker!</p>
+        <br>
+        <p><strong>Goal:</strong> Serve 3 bank patrons by fulfilling valid claims or rejecting fraudulent claims before their Sanity/Patience drops to zero!</p>
+        <br>
+        <p><strong>Step-by-Step Workflow:</strong></p>
+        <ol style="margin-left: 20px; line-height: 1.6;">
+          <li>Click <strong>Select Patron</strong> on an arriving patron at the counter.</li>
+          <li>Search the <strong>Bookkeeping Ledger</strong> and click the entry/account matching the patron to highlight it as audit proof.</li>
+          <li>For a <strong>Valid Claim</strong>: Click the matching vault item/drawer, then click <strong>💰 Hand Vault Item</strong>.</li>
+          <li>For a <strong>False Claim</strong>: Click <strong>🚫 Reject False Claim</strong> to catch the fraud!</li>
+        </ol>
+        <br>
+        <p style="color: #8b0000;">⚠️ <strong>Warning:</strong> If patron sanity reaches 0s, their eyes will turn shiny red and shoot lasers at the bank, destroying 2 Bank Reputation HP every second!</p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn-gold" onclick="closeRulesModal()">Got It!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Game Victory / Game Over Modal -->
+  <div id="endGameModal" class="modal-backdrop">
+    <div class="modal-box">
+      <h2 id="endGameTitle" class="modal-title">Bank Preserved!</h2>
+      <div id="endGameBody" class="modal-body">
+        <!-- Results dynamically injected -->
+      </div>
+      <div class="modal-actions">
+        <button id="nextLevelOrResetBtn" class="btn-gold" onclick="handleEndGameAction()">Proceed</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Logic Script -->
+  <script src="game.js?v=114"></script>
+</body>
+</html>
