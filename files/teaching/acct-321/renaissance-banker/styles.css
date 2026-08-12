@@ -1051,3 +1051,21 @@ main.game-area {
   }
 }
 
+/* Copyright Footer */
+#copyright-footer {
+  position: fixed;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: rgba(212, 175, 55, 0.55);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
