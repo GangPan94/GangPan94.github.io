@@ -8,7 +8,14 @@ var GATE_CT = "Du4wxwflLTv95K5lEVzkzl1EMzOuJCYIl6NG5koyv6Hedgycakz+b087mG13bPwdd
 async function decryptSection() {
   var password = document.getElementById('gate-password').value;
   var errorEl = document.getElementById('gate-error');
+  var loadingEl = document.getElementById('gate-loading');
+  var submitBtn = document.getElementById('gate-submit');
+  var inputEl = document.getElementById('gate-password');
   errorEl.style.display = 'none';
+  loadingEl.style.display = 'block';
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Unlocking...';
+  inputEl.disabled = true;
 
   try {
     // Decode base64
@@ -62,6 +69,11 @@ async function decryptSection() {
   } catch (e) {
     console.error('Decryption failed:', e);
     errorEl.style.display = 'block';
+    loadingEl.style.display = 'none';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Unlock';
+    inputEl.disabled = false;
+    inputEl.focus();
     return;
   }
 }
@@ -73,6 +85,10 @@ function renderContent(plaintext) {
 
   document.getElementById('protected-section').style.display = 'block';
   document.getElementById('password-gate').style.display = 'none';
+
+  // Unlock scroll
+  document.body.style.overflow = '';
+  document.documentElement.style.overflow = '';
 
   // Re-run syntax highlighters if available
   if (typeof hljs !== 'undefined') {
@@ -87,10 +103,15 @@ function renderContent(plaintext) {
   }
 }
 
-// Allow Enter key to submit
+// Allow Enter key to submit + lock scroll on load
 document.addEventListener('DOMContentLoaded', function() {
+  // Lock scroll until unlocked
+  document.body.style.overflow = 'hidden';
+  document.documentElement.style.overflow = 'hidden';
+
   var input = document.getElementById('gate-password');
   if (input) {
+    input.focus();
     input.addEventListener('keypress', function(e) {
       if (e.key === 'Enter') {
         decryptSection();

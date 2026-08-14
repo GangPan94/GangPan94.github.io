@@ -1,16 +1,17 @@
+<div id="password-gate">
+  <div style="max-width: 500px; margin: 3em auto; padding: 2.5em; text-align: center; border: 1px solid #ddd; border-radius: 12px; background: #f9f9f9; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+    <h3 style="margin-top: 0; font-size: 1.4em;">Restricted Content</h3>
+    <p style="color: #666; margin-bottom: 1.5em;">This guide is password-protected. Enter the password to access the full content.</p>
+    <input type="password" id="gate-password" placeholder="Enter password" style="padding: 0.6em 1em; font-size: 1.05em; border: 1px solid #ccc; border-radius: 6px; width: 280px; box-sizing: border-box;" />
+    <br/><br/>
+    <button id="gate-submit" onclick="decryptSection()" style="padding: 0.6em 2.5em; font-size: 1.05em; cursor: pointer; border: none; border-radius: 6px; background: #1e40af; color: white; transition: background 0.2s;">Unlock</button>
+    <p id="gate-error" style="color: #c0392b; margin-top: 1em; display:none; font-size: 0.9em;">Incorrect password. Please try again.</p>
+    <p id="gate-loading" style="color: #666; margin-top: 1em; display:none; font-size: 0.9em;">Decrypting content...</p>
+  </div>
+</div>
+
 <div id="protected-section" style="display:none;">
   <div id="decrypted-content"></div>
 </div>
 
-<div id="password-gate">
-  <div style="max-width: 600px; margin: 2em auto; padding: 2em; text-align: center; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9;">
-    <h3>Restricted Content</h3>
-    <p>The remaining sections of this guide are password-protected.</p>
-    <input type="password" id="gate-password" placeholder="Enter password" style="padding: 0.5em 1em; font-size: 1em; border: 1px solid #ccc; border-radius: 4px; width: 250px;" />
-    <br/><br/>
-    <button id="gate-submit" onclick="decryptSection()" style="padding: 0.5em 2em; font-size: 1em; cursor: pointer;">Unlock</button>
-    <p id="gate-error" style="color: #c0392b; margin-top: 1em; display:none;">Incorrect password. Please try again.</p>
-  </div>
-</div>
-
-<script src="/assets/js/antigravity-gate.js"></script>
+<script src="/assets/js/antigravity-gate.js?v=20260814"></script>

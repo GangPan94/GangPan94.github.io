@@ -12,6 +12,8 @@ toc_sticky: true
 
 *Author: Gang (Ernest) Pan &middot; Published: March 7, 2026 &middot; Last Updated: July 25, 2026*
 
+{% include antigravity-gate.html %}
+
 ---
 
 # Why This Workflow Exists
@@ -227,6 +229,3 @@ After clarifying questions, a specification document is saved to `quality_report
 You approve the spec, then planning begins. This reduces mid-plan pivots significantly.
 
 ---
-
-
-{% include antigravity-gate.html %}
