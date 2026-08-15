@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; The System in Action – Agentic Workflows for Accounting Academics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/04-building-blocks.html" rel="next">
+<link href="../chapters/02-getting-started.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c35ff27ce1c8cb6062ab96d79361e3d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+<!-- PASSWORD GATE START -->
+<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
+  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
+    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
+    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
+    <br/><br/>
+    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
+    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
+    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/projects/antigravity-workflow/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
+  </div>
+</div>
+<script>
+(function() {
+  // Hide body content until unlocked
+  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
+  bodyContent.forEach(function(el) { el.style.display = 'none'; });
+
+  function agUnlock() {
+    var pw = document.getElementById('ag-pw-input').value;
+    if (pw === 'ai2026') {
+      document.getElementById('ag-gate-overlay').style.display = 'none';
+      bodyContent.forEach(function(el) { el.style.display = ''; });
+      sessionStorage.setItem('ag-unlocked', 'true');
+    } else {
+      document.getElementById('ag-error-msg').style.display = 'block';
+      document.getElementById('ag-pw-input').value = '';
+      document.getElementById('ag-pw-input').focus();
+    }
+  }
+
+  // Auto-unlock if session already unlocked
+  if (sessionStorage.getItem('ag-unlocked') === 'true') {
+    document.getElementById('ag-gate-overlay').style.display = 'none';
+    bodyContent.forEach(function(el) { el.style.display = ''; });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('ag-unlock-btn');
+    var input = document.getElementById('ag-pw-input');
+    if (input) {
+      input.focus();
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') agUnlock();
+      });
+    }
+    if (btn) {
+      btn.addEventListener('click', agUnlock);
+    }
+  });
+})();
+</script>
+<!-- PASSWORD GATE END -->
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-system-in-action.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The System in Action</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Agentic Workflows for Accounting Academics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-why-this-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Agentic AI Matters for Scholars</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-specialized-agents-beat-one-size-fits-all" id="toc-why-specialized-agents-beat-one-size-fits-all" class="nav-link active" data-scroll-target="#why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">3.1</span> Why Specialized Agents Beat One-Size-Fits-All</a></li>
+  <li><a href="#the-adversarial-pattern-critic-fixer" id="toc-the-adversarial-pattern-critic-fixer" class="nav-link" data-scroll-target="#the-adversarial-pattern-critic-fixer"><span class="header-section-number">3.2</span> The Adversarial Pattern: Critic + Fixer</a></li>
+  <li><a href="#the-orchestrator-a-pattern-not-a-daemon" id="toc-the-orchestrator-a-pattern-not-a-daemon" class="nav-link" data-scroll-target="#the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">3.3</span> The Orchestrator: A Pattern, Not a Daemon</a></li>
+  <li><a href="#sec-quality" id="toc-sec-quality" class="nav-link" data-scroll-target="#sec-quality"><span class="header-section-number">3.4</span> Quality Review: The 80/90/95 System</a>
+  <ul class="collapse">
+  <li><a href="#how-scores-are-calculated" id="toc-how-scores-are-calculated" class="nav-link" data-scroll-target="#how-scores-are-calculated"><span class="header-section-number">3.4.1</span> How Scores Are Calculated</a></li>
+  <li><a href="#mandatory-verification" id="toc-mandatory-verification" class="nav-link" data-scroll-target="#mandatory-verification"><span class="header-section-number">3.4.2</span> Mandatory Verification</a></li>
+  <li><a href="#submission-readiness-stacking-the-verification-lenses" id="toc-submission-readiness-stacking-the-verification-lenses" class="nav-link" data-scroll-target="#submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">3.4.3</span> Submission-readiness: stacking the verification lenses</a></li>
+  </ul></li>
+  <li><a href="#sec-domain-reviewer" id="toc-sec-domain-reviewer" class="nav-link" data-scroll-target="#sec-domain-reviewer"><span class="header-section-number">3.5</span> Creating Your Own Domain Reviewer</a>
+  <ul class="collapse">
+  <li><a href="#the-5-lens-framework" id="toc-the-5-lens-framework" class="nav-link" data-scroll-target="#the-5-lens-framework"><span class="header-section-number">3.5.1</span> The 5-Lens Framework</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-system" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The System in Action</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>With setup covered, here is what the system actually <em>does</em>. This section walks through the three core mechanisms that make the workflow powerful: specialized agents, adversarial QA, and automatic quality scoring.</p>
+<section id="why-specialized-agents-beat-one-size-fits-all" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">3.1</span> Why Specialized Agents Beat One-Size-Fits-All</h2>
+<p>Consider proofreading a 140-slide lecture deck. You could ask Gemini:</p>
+<blockquote class="blockquote">
+<p>“Review these slides for grammar, layout, math correctness, code quality, and pedagogical flow.”</p>
+</blockquote>
+<p>Gemini will skim everything and catch some issues. But it will miss:</p>
+<ul>
+<li>The equation on slide 42 where a subscript changed from <span class="math inline">\(m_t^{d=0}\)</span> to <span class="math inline">\(m_t^0\)</span></li>
+<li>The TikZ diagram where two labels overlap at presentation resolution</li>
+<li>The R script that uses <code>k=10</code> covariates but the slide says <code>k=5</code></li>
+</ul>
+<p>Now compare with specialized agents:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Agent</th>
+<th>Focus</th>
+<th>What It Catches</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>proofreader</code></td>
+<td>Grammar only</td>
+<td>“principle” vs “principal”</td>
+</tr>
+<tr class="even">
+<td><code>slide-auditor</code></td>
+<td>Layout only</td>
+<td>Text overflow on slide 37</td>
+</tr>
+<tr class="odd">
+<td><code>pedagogy-reviewer</code></td>
+<td>Flow only</td>
+<td>Missing framing sentence before Theorem 3.1</td>
+</tr>
+<tr class="even">
+<td><code>r-reviewer</code></td>
+<td>Code only</td>
+<td>Missing <code>set.seed()</code></td>
+</tr>
+<tr class="odd">
+<td><code>domain-reviewer</code></td>
+<td>Substance</td>
+<td>Slide says 10,000 MC reps, code runs 1,000</td>
+</tr>
+</tbody>
+</table>
+<p>Each agent reads the same file but examines a different dimension with full attention. The <code>slide-excellence</code> skill runs them all in parallel.</p>
+</section>
+<section id="the-adversarial-pattern-critic-fixer" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="the-adversarial-pattern-critic-fixer"><span class="header-section-number">3.2</span> The Adversarial Pattern: Critic + Fixer</h2>
+<p>The single most powerful pattern in this system is the <strong>adversarial QA loop</strong>:</p>
+<pre><code>+------------------+
+|  quarto-critic   |  "I found 12 issues. 3 Critical."
+|  (READ-ONLY)     |
++--------+---------+
+         |
+    +----v----+
+    | Verdict |
+    +----+----+
+     /       \
+APPROVED   NEEDS WORK
+    |          |
+  Done    +----v---------+
+          | quarto-fixer |  "Fixed 12/12 issues."
+          | (READ-WRITE) |
+          +----+---------+
+               |
+          +----v----------+
+          | quarto-critic |  "Re-audit: 2 remaining."
+          | (Round 2)     |
+          +----+----------+
+               |
+          ... (up to 5 rounds)</code></pre>
+<p><strong>Why it works:</strong> The critic can’t fix files (read-only), so it has no incentive to downplay issues. The fixer can’t approve itself (the critic re-audits). This prevents the common failure of Gemini saying “looks good” about its own work.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Closing the visual loop with Native Multimodal Vision
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The critic-fixer loop above is text-only — it compares LaTeX source to Quarto source. It can’t see the <em>rendered</em> slides. Google’s <strong>Multimodal Vision</strong> capabilities let Gemini accept rendered slide images (such as PDF slides converted to PNGs) directly into the agent context to verify layouts visually. If you want closed-loop visual QA — “does the rendered slide actually look right?” — this multimodal capability closes the gap.</p>
+<p>Optional, not required: <code>qa-quarto</code> and <code>visual-audit</code> already catch most issues without it. Treat visual verification as an extra rung when text-level audits aren’t enough (e.g., suspecting a TikZ render glitch that the source code looks fine for).</p>
+</div>
+</div>
+</section>
+<section id="the-orchestrator-a-pattern-not-a-daemon" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">3.3</span> The Orchestrator: A Pattern, Not a Daemon</h2>
+<p>Individual agents are specialists. Skills like <code>slide-excellence</code> and <code>qa-quarto</code> coordinate a few agents for specific tasks. In day-to-day work, you don’t have to think about which agents to run — the right skill runs the right agents for you.</p>
+<p>The <strong>orchestrator protocol</strong> (<code>.agents/rules/orchestrator-protocol.md</code>) defines the 6-step loop (IMPLEMENT → VERIFY → REVIEW → FIX → RE-VERIFY → SCORE) that skills implement internally. It is <strong>not</strong> a runtime daemon: plan approval does NOT auto-trigger this loop. You invoke a skill (e.g., <code>create-lecture</code>, <code>qa-quarto</code>, <code>review-paper --adversarial</code>) and the skill runs the pattern within its own scope.</p>
+<p>What’s mechanically implemented today: <code>commit</code> (verifier + quality_score), <code>qa-quarto</code> (critic-fixer loop), <code>review-paper --adversarial</code> (critic-fixer loop), <code>slide-excellence</code> (multi-agent fanout), <code>review-paper --peer</code> (editor + 2 referees + cross-artifact). See <a href="05-workflow-patterns.html#pattern-2-contractor-mode-orchestrator">Pattern 2</a> for the complete workflow.</p>
+</section>
+<section id="sec-quality" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="sec-quality"><span class="header-section-number">3.4</span> Quality Review: The 80/90/95 System</h2>
+<p>The <a href="04-building-blocks.html">quality-gates rule</a> (<code>quality-gates.md</code>) defines scoring thresholds that <code>commit</code> and review skills apply. Thresholds are <strong>advisory</strong> — enforced inside specific skills, not by a repo-wide git pre-commit hook. A direct <code>git commit</code> bypasses the review. Every file gets a quality score from 0 to 100:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 31%">
+<col style="width: 25%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Score</th>
+<th>Threshold</th>
+<th>Meaning</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>80+</strong></td>
+<td>Commit</td>
+<td>Safe to save progress</td>
+<td><code>git commit</code> allowed</td>
+</tr>
+<tr class="even">
+<td><strong>90+</strong></td>
+<td>PR</td>
+<td>Ready for deployment</td>
+<td><code>gh pr create</code> encouraged</td>
+</tr>
+<tr class="odd">
+<td><strong>95+</strong></td>
+<td>Excellence</td>
+<td>Exceptional quality</td>
+<td>Aspirational target</td>
+</tr>
+<tr class="even">
+<td><strong>&lt; 80</strong></td>
+<td>Blocked</td>
+<td>Critical issues exist</td>
+<td>Must fix before committing</td>
+</tr>
+</tbody>
+</table>
+<section id="how-scores-are-calculated" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="how-scores-are-calculated"><span class="header-section-number">3.4.1</span> How Scores Are Calculated</h3>
+<p>Points are deducted for issues:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Issue</th>
+<th>Deduction</th>
+<th>Why Critical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Equation overflow</td>
+<td>-20</td>
+<td>Math cut off = unusable</td>
+</tr>
+<tr class="even">
+<td>Broken citation</td>
+<td>-15</td>
+<td>Academic integrity</td>
+</tr>
+<tr class="odd">
+<td>Equation typo</td>
+<td>-10</td>
+<td>Teaches wrong content</td>
+</tr>
+<tr class="even">
+<td>Text overflow</td>
+<td>-5</td>
+<td>Content cut off</td>
+</tr>
+<tr class="odd">
+<td>Label overlap</td>
+<td>-5</td>
+<td>Diagram illegible</td>
+</tr>
+<tr class="even">
+<td>Notation inconsistency</td>
+<td>-3</td>
+<td>Student confusion</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mandatory-verification" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="mandatory-verification"><span class="header-section-number">3.4.2</span> Mandatory Verification</h3>
+<p>The verification protocol (<code>.agents/rules/verification-protocol.md</code>) requires that Gemini compile, render, or otherwise verify every output before reporting a task as complete. Skills that implement the orchestrator pattern enforce this as Step 2: VERIFY. This means Gemini <strong>cannot</strong> say “done” from within those skills without actually checking the output.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Don’t Skip Verification
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Verification catches errors that might silently deploy, like broken diagrams or missing intercepts in scripts.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Model quality can regress — verification is the only durable defence
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>AI providers regularly update model checkpoints and release system changes. These updates can sometimes lead to model-quality drift or subtle regressions on highly specialized tasks. Implication for our workflow: do not treat any given model checkpoint as a stable baseline.</p>
+<p>The defences in this template all assume <strong>model quality drifts</strong>:</p>
+<ul>
+<li><strong><code>verify-claims</code></strong> with the Chain-of-Verification forked-verifier (the verifier cannot self-confirm even if the orchestrator’s checkpoint regressed).</li>
+<li><strong><code>audit-reproducibility</code></strong> with <code>passport.yaml</code> (numeric claims are anchored to specific script output values, not to the model’s recall of the values).</li>
+<li><strong>The cross-artifact review rule</strong> (a paper’s claims are checked against the code that produced them, not against the model’s intuition about whether they’re “plausible”).</li>
+<li><strong>HIGH-WARN gate-refuse on <code>commit</code></strong> (Pass 3A I) — a fabricated citation or numerical contradiction blocks the commit even if the model “feels confident.”</li>
+</ul>
+<p>This is also a useful reminder that running <code>review-paper --variance N</code> (Pass 2C E) is the empirical answer to “should I trust this output?” — a single point estimate of model quality on a single task hides variance that the template’s adversarial-review patterns surface.</p>
+</div>
+</div>
+</section>
+<section id="submission-readiness-stacking-the-verification-lenses" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">3.4.3</span> Submission-readiness: stacking the verification lenses</h3>
+<p>For a paper headed to a journal, three orthogonal lenses run together — each catches a different class of failure:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lens</th>
+<th>Skill</th>
+<th>What it catches</th>
+<th>Block-<code>commit</code> on failure?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Grammar / overflow</strong></td>
+<td><a href="08-appendix.html#all-skills"><code>proofread</code></a></td>
+<td>typos, search-and-replace artifacts, overfull <code>\hbox</code>, citation-format inconsistency</td>
+<td>No (advisory)</td>
+</tr>
+<tr class="even">
+<td><strong>AI-voice tells</strong> (v1.9.0)</td>
+<td><a href="08-appendix.html#all-skills"><code>humanize</code></a></td>
+<td>boilerplate transitions (“Moreover”, “It is important to note”), AI-cliché lexicon (“delve”, “navigate the complexities”), hedging stacking, sycophancy</td>
+<td>No (advisory; author edits manually)</td>
+</tr>
+<tr class="odd">
+<td><strong>Factual claims</strong></td>
+<td><a href="08-appendix.html#all-skills"><code>verify-claims</code></a></td>
+<td>fabricated citations, numerical contradictions, directional contradictions</td>
+<td><strong>Yes — HIGH-WARN gate-refuses</strong> (v1.9.0)</td>
+</tr>
+<tr class="even">
+<td><strong>Numeric provenance</strong></td>
+<td><a href="08-appendix.html#all-skills"><code>audit-reproducibility</code></a></td>
+<td>manuscript value ≠ script output value within tolerance</td>
+<td>Yes via <code>passport.yaml</code> (v1.9.0)</td>
+</tr>
+</tbody>
+</table>
+<p>These are <em>complementary</em>, not redundant. A paper can pass <code>proofread</code> (clean grammar) and fail <code>humanize</code> (the prose reads as AI-drafted). It can pass <code>humanize</code> (your own voice) and fail <code>verify-claims</code> (citation fabricated). It can pass <code>verify-claims</code> (citations real) and fail <code>audit-reproducibility</code> (Table 2 doesn’t match the code). Run all four before submission; reach for <code>review-paper --variance N</code> for the simulated peer-review verdict on top.</p>
+<p><strong><code>humanize</code> design choice</strong>: detect-only, no <code>--rewrite</code> mode. Auto-rewriting AI tells degrades prose quality (cross-vendor research finding) and introduces new tells. The author reads the report and edits — that manual step is the price of preserving voice. If the report flags 8+ HIGH-severity tells per 1000 words, rewrite the affected paragraph from scratch rather than patching tell-by-tell.</p>
+</section>
+</section>
+<section id="sec-domain-reviewer" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="sec-domain-reviewer"><span class="header-section-number">3.5</span> Creating Your Own Domain Reviewer</h2>
+<p>The template includes <code>domain-reviewer.md</code> — a skeleton for building a substance reviewer specific to your field.</p>
+<section id="the-5-lens-framework" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="the-5-lens-framework"><span class="header-section-number">3.5.1</span> The 5-Lens Framework</h3>
+<p>Every domain can benefit from these five review lenses:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 18%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lens</th>
+<th>What It Checks</th>
+<th>Example (Economics)</th>
+<th>Example (Political Science)</th>
+<th>Example (Physics)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Assumption Audit</strong></td>
+<td>Are stated assumptions sufficient?</td>
+<td>Is overlap required for ATT?</td>
+<td>Is ignorability defensible given the observed covariates?</td>
+<td>Is the adiabatic approximation valid here?</td>
+</tr>
+<tr class="even">
+<td><strong>Derivation Check</strong></td>
+<td>Does the math check out?</td>
+<td>Do decomposition terms sum?</td>
+<td>Do conjoint AMCEs identify under Hainmueller–Hopkins–Yamamoto assumptions?</td>
+<td>Do the units balance?</td>
+</tr>
+<tr class="odd">
+<td><strong>Citation Fidelity</strong></td>
+<td>Do slides match cited papers?</td>
+<td>Is the theorem from the right paper?</td>
+<td>Is the manipulation-check threshold cited from the original validation study?</td>
+<td>Is the experimental setup correctly described?</td>
+</tr>
+<tr class="even">
+<td><strong>Code-Theory Alignment</strong></td>
+<td>Does code implement the formula?</td>
+<td>R script matches the slide equation?</td>
+<td><code>cjoint</code>/<code>survey::svyglm</code> weights match the design?</td>
+<td>Simulation parameters match theory?</td>
+</tr>
+<tr class="odd">
+<td><strong>Logic Chain</strong></td>
+<td>Does the reasoning flow?</td>
+<td>Can a PhD student follow backwards?</td>
+<td>Does the causal claim survive the standard counterfactual challenge?</td>
+<td>Are prerequisites established?</td>
+</tr>
+</tbody>
+</table>
+<p>The template ships <strong>two concrete domain-reviewer customizations</strong> in <code>.agents/agents/domain-reviewer.md</code>: an econometrics example (assumptions, identification, R/Stata code-theory alignment) and a political-science example (ignorability, conjoint AMCEs, <code>cjoint</code>/<code>survey</code> package defaults). Both follow the 5-lens structure; either is a viable starting point for your own field.</p>
+<p>To customize, open <code>.agents/agents/domain-reviewer.md</code> and fill in:</p>
+<ol type="1">
+<li>Your domain’s common assumption types</li>
+<li>Typical derivation patterns to verify</li>
+<li>Key papers and their correct attributions</li>
+<li>Code-theory alignment checks for your tools</li>
+<li>Logic chain requirements for your audience</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/02-getting-started.html" class="pagination-link" aria-label="Getting Started">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/04-building-blocks.html" class="pagination-link" aria-label="The Building Blocks">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

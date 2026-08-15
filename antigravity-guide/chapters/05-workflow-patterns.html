@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Workflow Patterns – Agentic Workflows for Accounting Academics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/06-ecosystem.html" rel="next">
+<link href="../chapters/04-building-blocks.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c35ff27ce1c8cb6062ab96d79361e3d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+<!-- PASSWORD GATE START -->
+<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
+  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
+    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
+    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
+    <br/><br/>
+    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
+    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
+    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/projects/antigravity-workflow/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
+  </div>
+</div>
+<script>
+(function() {
+  // Hide body content until unlocked
+  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
+  bodyContent.forEach(function(el) { el.style.display = 'none'; });
+
+  function agUnlock() {
+    var pw = document.getElementById('ag-pw-input').value;
+    if (pw === 'ai2026') {
+      document.getElementById('ag-gate-overlay').style.display = 'none';
+      bodyContent.forEach(function(el) { el.style.display = ''; });
+      sessionStorage.setItem('ag-unlocked', 'true');
+    } else {
+      document.getElementById('ag-error-msg').style.display = 'block';
+      document.getElementById('ag-pw-input').value = '';
+      document.getElementById('ag-pw-input').focus();
+    }
+  }
+
+  // Auto-unlock if session already unlocked
+  if (sessionStorage.getItem('ag-unlocked') === 'true') {
+    document.getElementById('ag-gate-overlay').style.display = 'none';
+    bodyContent.forEach(function(el) { el.style.display = ''; });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('ag-unlock-btn');
+    var input = document.getElementById('ag-pw-input');
+    if (input) {
+      input.focus();
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') agUnlock();
+      });
+    }
+    if (btn) {
+      btn.addEventListener('click', agUnlock);
+    }
+  });
+})();
+</script>
+<!-- PASSWORD GATE END -->
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-workflow-patterns.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Agentic Workflows for Accounting Academics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-why-this-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Agentic AI Matters for Scholars</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pattern-1-plan-first-development" id="toc-pattern-1-plan-first-development" class="nav-link active" data-scroll-target="#pattern-1-plan-first-development"><span class="header-section-number">5.1</span> Pattern 1: Plan-First Development</a>
+  <ul class="collapse">
+  <li><a href="#why-planning-matters" id="toc-why-planning-matters" class="nav-link" data-scroll-target="#why-planning-matters"><span class="header-section-number">5.1.1</span> Why Planning Matters</a></li>
+  <li><a href="#the-protocol" id="toc-the-protocol" class="nav-link" data-scroll-target="#the-protocol"><span class="header-section-number">5.1.2</span> The Protocol</a></li>
+  <li><a href="#context-preservation" id="toc-context-preservation" class="nav-link" data-scroll-target="#context-preservation"><span class="header-section-number">5.1.3</span> Context Preservation</a></li>
+  <li><a href="#session-logging" id="toc-session-logging" class="nav-link" data-scroll-target="#session-logging"><span class="header-section-number">5.1.4</span> Session Logging</a></li>
+  </ul></li>
+  <li><a href="#pattern-2-contractor-mode-orchestrator" id="toc-pattern-2-contractor-mode-orchestrator" class="nav-link" data-scroll-target="#pattern-2-contractor-mode-orchestrator"><span class="header-section-number">5.2</span> Pattern 2: Contractor Mode (Orchestrator)</a>
+  <ul class="collapse">
+  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">5.2.1</span> The Mental Model</a></li>
+  <li><a href="#the-loop" id="toc-the-loop" class="nav-link" data-scroll-target="#the-loop"><span class="header-section-number">5.2.2</span> The Loop</a></li>
+  <li><a href="#agent-selection" id="toc-agent-selection" class="nav-link" data-scroll-target="#agent-selection"><span class="header-section-number">5.2.3</span> Agent Selection</a></li>
+  <li><a href="#just-do-it-mode" id="toc-just-do-it-mode" class="nav-link" data-scroll-target="#just-do-it-mode"><span class="header-section-number">5.2.4</span> “Just Do It” Mode</a></li>
+  <li><a href="#relationship-to-existing-skills" id="toc-relationship-to-existing-skills" class="nav-link" data-scroll-target="#relationship-to-existing-skills"><span class="header-section-number">5.2.5</span> Relationship to Existing Skills</a></li>
+  </ul></li>
+  <li><a href="#pattern-3-creating-a-new-lecture" id="toc-pattern-3-creating-a-new-lecture" class="nav-link" data-scroll-target="#pattern-3-creating-a-new-lecture"><span class="header-section-number">5.3</span> Pattern 3: Creating a New Lecture</a></li>
+  <li><a href="#pattern-4-translating-beamer-to-quarto" id="toc-pattern-4-translating-beamer-to-quarto" class="nav-link" data-scroll-target="#pattern-4-translating-beamer-to-quarto"><span class="header-section-number">5.4</span> Pattern 4: Translating Beamer to Quarto</a></li>
+  <li><a href="#pattern-5-replication-first-coding" id="toc-pattern-5-replication-first-coding" class="nav-link" data-scroll-target="#pattern-5-replication-first-coding"><span class="header-section-number">5.5</span> Pattern 5: Replication-First Coding</a></li>
+  <li><a href="#pattern-6-multi-agent-review" id="toc-pattern-6-multi-agent-review" class="nav-link" data-scroll-target="#pattern-6-multi-agent-review"><span class="header-section-number">5.6</span> Pattern 6: Multi-Agent Review</a></li>
+  <li><a href="#pattern-7-self-improvement-loop" id="toc-pattern-7-self-improvement-loop" class="nav-link" data-scroll-target="#pattern-7-self-improvement-loop"><span class="header-section-number">5.7</span> Pattern 7: Self-Improvement Loop</a>
+  <ul class="collapse">
+  <li><a href="#quick-corrections-learn-tags" id="toc-quick-corrections-learn-tags" class="nav-link" data-scroll-target="#quick-corrections-learn-tags"><span class="header-section-number">5.7.1</span> Quick Corrections: [LEARN] Tags</a></li>
+  <li><a href="#automated-skill-capture-learn" id="toc-automated-skill-capture-learn" class="nav-link" data-scroll-target="#automated-skill-capture-learn"><span class="header-section-number">5.7.2</span> Automated Skill Capture: learn</a></li>
+  </ul></li>
+  <li><a href="#pattern-8-devils-advocate" id="toc-pattern-8-devils-advocate" class="nav-link" data-scroll-target="#pattern-8-devils-advocate"><span class="header-section-number">5.8</span> Pattern 8: Devil’s Advocate</a></li>
+  <li><a href="#sec-research-workflows" id="toc-sec-research-workflows" class="nav-link" data-scroll-target="#sec-research-workflows"><span class="header-section-number">5.9</span> Research Workflows</a>
+  <ul class="collapse">
+  <li><a href="#pattern-9-parallel-agents" id="toc-pattern-9-parallel-agents" class="nav-link" data-scroll-target="#pattern-9-parallel-agents"><span class="header-section-number">5.9.1</span> Pattern 9: Parallel Agents for Research Tasks</a></li>
+  <li><a href="#pattern-10-exploration" id="toc-pattern-10-exploration" class="nav-link" data-scroll-target="#pattern-10-exploration"><span class="header-section-number">5.9.2</span> Pattern 10: Research Exploration Workflow</a></li>
+  <li><a href="#pattern-11-research-skills" id="toc-pattern-11-research-skills" class="nav-link" data-scroll-target="#pattern-11-research-skills"><span class="header-section-number">5.9.3</span> Pattern 11: Research Skills</a></li>
+  <li><a href="#pattern-12-branch-isolation" id="toc-pattern-12-branch-isolation" class="nav-link" data-scroll-target="#pattern-12-branch-isolation"><span class="header-section-number">5.9.4</span> Pattern 12: Branch Isolation with Git Worktrees (Advanced)</a></li>
+  </ul></li>
+  <li><a href="#sec-beyond-slides" id="toc-sec-beyond-slides" class="nav-link" data-scroll-target="#sec-beyond-slides"><span class="header-section-number">5.10</span> Advanced Patterns: Reproducibility and Presentation Design</a>
+  <ul class="collapse">
+  <li><a href="#pattern-13-reproducibility" id="toc-pattern-13-reproducibility" class="nav-link" data-scroll-target="#pattern-13-reproducibility"><span class="header-section-number">5.10.1</span> Pattern 13: Reproducibility &amp; Replication Compliance</a></li>
+  <li><a href="#pattern-14-rhetoric-of-decks" id="toc-pattern-14-rhetoric-of-decks" class="nav-link" data-scroll-target="#pattern-14-rhetoric-of-decks"><span class="header-section-number">5.10.2</span> Pattern 14: The Rhetoric of Decks</a></li>
+  <li><a href="#pattern-15-sequential-audits" id="toc-pattern-15-sequential-audits" class="nav-link" data-scroll-target="#pattern-15-sequential-audits"><span class="header-section-number">5.10.3</span> Pattern 15: Sequential Adversarial Audits</a></li>
+  <li><a href="#pattern-16-preregistration" id="toc-pattern-16-preregistration" class="nav-link" data-scroll-target="#pattern-16-preregistration"><span class="header-section-number">5.10.4</span> Pattern 16: Preregistration and Submission Discipline</a></li>
+  <li><a href="#pattern-17-large-datasets" id="toc-pattern-17-large-datasets" class="nav-link" data-scroll-target="#pattern-17-large-datasets"><span class="header-section-number">5.10.5</span> Pattern 17: Large Datasets, Unstructured Filings &amp; Out-of-Core Processing</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-patterns" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>The first two patterns are <strong>meta-patterns</strong> — they govern how every task flows. Learn these first, then the specific workflows make more sense.</p>
+<section id="pattern-1-plan-first-development" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="pattern-1-plan-first-development"><span class="header-section-number">5.1</span> Pattern 1: Plan-First Development</h2>
+<p>The plan-first pattern ensures that non-trivial tasks begin with thinking, not typing.</p>
+<section id="why-planning-matters" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="why-planning-matters"><span class="header-section-number">5.1.1</span> Why Planning Matters</h3>
+<p>The most common failure mode in AI-assisted development is not bad code — it is solving the wrong problem, or solving the right problem in a fragile order. Plan-first development forces an explicit design step before any file is touched. Plans are saved to <code>quality_reports/plans/</code> on disk, so they survive <a href="04-building-blocks.html#context-survival-system-advanced">context compaction</a>.</p>
+<p>Without a plan:</p>
+<ul>
+<li>Gemini starts editing immediately, discovers a dependency on slide 3 that changes the approach, and has to undo work</li>
+<li>Context compression discards the reasoning behind a design choice, and Gemini makes a contradictory decision later</li>
+<li>The user and Gemini have different mental models of what “done” looks like</li>
+</ul>
+<p>With a plan:</p>
+<ul>
+<li>The approach is agreed upon before any edits happen</li>
+<li>The plan is saved to disk, so it survives compression and session boundaries</li>
+<li>Implementation has a checklist to follow, reducing drift</li>
+</ul>
+</section>
+<section id="the-protocol" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="the-protocol"><span class="header-section-number">5.1.2</span> The Protocol</h3>
+<pre><code>Non-trivial task arrives
+  |
+  +-- Step 1: Gemini enters plan mode (automatic, or say "plan this first")
+  +-- Step 2: Draft plan (approach, files, verification)
+  +-- Step 3: Save to quality_reports/plans/YYYY-MM-DD_description.md
+  +-- Step 4: Present plan to user
+  +-- Step 5: User approves (or revises)
+  +-- Step 6: Save initial session log (capture context while fresh)
+  +-- Step 7: Orchestrator takes over (see Pattern 2)
+  +-- Step 8: Update session log + plan status to COMPLETED</code></pre>
+</section>
+<section id="context-preservation" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="context-preservation"><span class="header-section-number">5.1.3</span> Context Preservation</h3>
+<p>Plans are saved to disk specifically so they survive context compression. The rule: <strong>avoid <code>/clear</code></strong> — prefer auto-compression. Use <code>/clear</code> only when context is genuinely polluted.</p>
+<p>For details on how the system automatically preserves and restores context during compaction, see <a href="04-building-blocks.html#context-survival-system-advanced">Context Survival System</a> in the Building Blocks section.</p>
+</section>
+<section id="session-logging" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="session-logging"><span class="header-section-number">5.1.4</span> Session Logging</h3>
+<p>Session logs (<code>quality_reports/session_logs/YYYY-MM-DD_description.md</code>) are a running record of <em>why</em> things happened. They have <strong>three distinct behaviors</strong>, each solving a different problem:</p>
+<p><strong>After plan approval</strong> — create the log with the goal, plan summary, and rationale for the chosen approach (including rejected alternatives). This captures decisions while context is richest. If you wait, auto-compression may discard the reasoning.</p>
+<p><strong>During implementation</strong> — append to the log as you work. Every time a design decision is made, a problem is discovered, or the approach deviates from the plan, write a 1-3 line entry immediately. This is the most important behavior: context gets compressed as the session progresses, and decisions that live only in the conversation will be lost.</p>
+<p><strong>At session end</strong> — add a final section with what was accomplished, open questions, and unresolved issues.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why Session Logs Matter
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Git records what; session logs record why.</strong> A commit message says “Update Lecture 5 TikZ diagrams.” A session log says “Redesigned the TWFE decomposition diagram because the DA challenge revealed students couldn’t trace the path from weights to bias. Considered a table format but chose a flow diagram because it shows directionality.”</p>
+<p><strong>Incremental logging is the key.</strong> A 4-hour session that only logs at the start and end loses everything in the middle. Appending decisions as they happen means auto-compression can never erase them — they are already on disk.</p>
+</div>
+</div>
+</div>
+<p>Gemini writes all three log entries automatically — no need to ask.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Weekly Reviews
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For multi-project academics, start each week by asking Gemini to read all session logs from the past week and synthesize a status report with priorities and open questions. The session log infrastructure already captures what you need — the weekly review is just a synthesis prompt: <em>“Read all session logs from this week. Summarize: what was accomplished, what’s blocked, what should I prioritize next?”</em></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pattern-2-contractor-mode-orchestrator" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="pattern-2-contractor-mode-orchestrator"><span class="header-section-number">5.2</span> Pattern 2: Contractor Mode (Orchestrator)</h2>
+<p>Once a plan is approved, the orchestrator takes over. It is the natural continuation of Pattern 1: the plan says <em>what</em>, the orchestrator handles <em>how</em> — autonomously.</p>
+<section id="the-mental-model" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">5.2.1</span> The Mental Model</h3>
+<p>Think of the orchestrator as a <strong>general contractor</strong>. You are the client. You describe what you want. The plan-first protocol is the blueprint phase. Once you approve the blueprint, the contractor takes over: hires the right specialists (agents), inspects their work (verification), sends them back to fix issues (review-fix loop), and only calls you when the job passes inspection (quality gates).</p>
+</section>
+<section id="the-loop" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="the-loop"><span class="header-section-number">5.2.2</span> The Loop</h3>
+<pre><code>User: "Translate Lecture 5 to Quarto"
+  |
+  |-- Plan-first (Pattern 1): draft plan, save to disk, get approval
+  |
+  |-- User: "Approved"
+  |
+  +-- Orchestrator activates:
+        |
+        Step 1: IMPLEMENT
+        |  Execute plan steps (create QMD, translate content, etc.)
+        |
+        Step 2: VERIFY
+        |  Run verifier: render Quarto, check HTML output
+        |  If render fails -&gt; fix -&gt; re-render
+        |
+        Step 3: REVIEW (agents selected by file type)
+        |  +--- proofreader ------+
+        |  +--- slide-auditor ----+  (parallel)
+        |  +--- pedagogy-reviewer +
+        |  +--- quarto-critic ----+  (needs others first)
+        |
+        Step 4: FIX
+        |  Apply fixes: Critical -&gt; Major -&gt; Minor
+        |  For quarto-critic issues: invoke quarto-fixer
+        |
+        Step 5: RE-VERIFY
+        |  Render again, confirm fixes are clean
+        |
+        Step 6: SCORE
+        |  Apply quality-gates rubric
+        |
+        +-- Score &gt;= 80?
+              YES -&gt; Present summary to user
+              NO  -&gt; Loop to Step 3 (max 5 rounds)</code></pre>
+</section>
+<section id="agent-selection" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="agent-selection"><span class="header-section-number">5.2.3</span> Agent Selection</h3>
+<p>The orchestrator selects agents based on which files were touched:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Files Modified</th>
+<th>Agents Selected</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>.tex</code> only</td>
+<td>proofreader + slide-auditor + pedagogy-reviewer</td>
+</tr>
+<tr class="even">
+<td><code>.qmd</code> only</td>
+<td>proofreader + slide-auditor + pedagogy-reviewer</td>
+</tr>
+<tr class="odd">
+<td><code>.qmd</code> with matching <code>.tex</code></td>
+<td>Above + quarto-critic (parity check)</td>
+</tr>
+<tr class="even">
+<td><code>.R</code> scripts</td>
+<td>r-reviewer</td>
+</tr>
+<tr class="odd">
+<td>TikZ diagrams present</td>
+<td>tikz-reviewer</td>
+</tr>
+<tr class="even">
+<td>Domain content</td>
+<td>domain-reviewer (if configured)</td>
+</tr>
+<tr class="odd">
+<td>Multiple formats</td>
+<td>verifier for cross-format parity</td>
+</tr>
+</tbody>
+</table>
+<p>Agents that are independent of each other run in parallel. The quarto-critic runs after other agents because it may need their context.</p>
+</section>
+<section id="just-do-it-mode" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="just-do-it-mode"><span class="header-section-number">5.2.4</span> “Just Do It” Mode</h3>
+<p>Sometimes you do not want to approve the final result — you just want it done:</p>
+<blockquote class="blockquote">
+<p>“Translate Lecture 5 to Quarto. Just do it.”</p>
+</blockquote>
+<p>In this mode, the orchestrator still runs the full verify-review-fix loop (quality is non-negotiable), but skips the final approval pause and auto-commits if the score is 80 or above. It still presents the summary so you can see what was done.</p>
+</section>
+<section id="relationship-to-existing-skills" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="relationship-to-existing-skills"><span class="header-section-number">5.2.5</span> Relationship to Existing Skills</h3>
+<p>The orchestrator does NOT replace skills. It coordinates them:</p>
+<ul>
+<li><code>qa-quarto</code> remains available as a standalone adversarial QA loop</li>
+<li><code>slide-excellence</code> remains available for comprehensive multi-agent review</li>
+<li><code>create-lecture</code> remains available as a guided creation workflow</li>
+</ul>
+<p>The difference: when you invoke a skill directly, it runs its specific workflow. When the orchestrator is active, it decides which agents to invoke based on context. The orchestrator is the default; skills are for targeted use.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>When to Use Skills vs.&nbsp;the Orchestrator
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Natural-language task</strong> → Gemini picks a skill: “Translate Lecture 5 to Quarto” → Gemini invokes <code>translate-to-quarto</code>, and that skill runs the orchestrator pattern (translate → verify → review → fix → score) internally.</p>
+<p><strong>Explicit skill call:</strong> <code>qa-quarto Lecture5</code> — you specifically want the adversarial critic-fixer loop, nothing else.</p>
+<p>Both are valid. The natural-language path is the “I trust you, pick the skill” path. Explicit skill calls are the “I know exactly which loop I want” path. Either way, the orchestrator pattern runs <em>inside</em> the invoked skill — there is no auto-trigger outside a skill.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pattern-3-creating-a-new-lecture" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="pattern-3-creating-a-new-lecture"><span class="header-section-number">5.3</span> Pattern 3: Creating a New Lecture</h2>
+<p>The <code>create-lecture</code> skill guides you through a structured lecture creation workflow — from gathering source material to deploying polished slides:</p>
+<pre><code>create-lecture
+  |
+  +-- Phase 1: Gather materials (papers, outlines)
+  +-- Phase 2: Design slide structure
+  +-- Phase 3: Draft Beamer slides
+  +-- Phase 4: Generate R figures
+  +-- Phase 5: Polish and verify
+  |     +-- slide-excellence (domain + visual + pedagogy)
+  |     +-- proofread (grammar/typos)
+  |     +-- visual-audit (layout)
+  +-- Phase 6: Deploy
+        +-- translate-to-quarto (optional)
+        +-- deploy</code></pre>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>TikZ diagrams: start from the gallery, not from scratch
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Writing TikZ from a blank page reliably produces label-over-arrow collisions because the compiler doesn’t warn about them. The template ships three reinforcing layers:</p>
+<ul>
+<li><strong><a href="https://github.com/pedrohcgs/antigravity-my-workflow/tree/main/templates/tikz-snippets"><code>templates/tikz-snippets/</code></a></strong> — 8 production-ready standalone diagrams (DAG basic, DAG mediation, two-period DiD, event study, timeline, regression scatter, 3-step flowchart, supply-demand). Each embeds the prevention rules (explicit node dimensions, coordinate map, directional edge labels) by construction.</li>
+<li><strong>Rules <code>tikz-prevention.md</code> + <code>tikz-measurement.md</code></strong> — Upstream authoring rules (P1–P6) and the six-pass collision protocol with formulas (Bézier depth, character widths, 0.4 cm boundary clearance). Adapted from Scott Cunningham’s <a href="https://github.com/scunning1975/MixtapeTools">MixtapeTools</a>.</li>
+<li><strong><a href="08-appendix.html#all-skills"><code>new-diagram</code></a> skill</strong> — Scaffolds from the gallery, runs the P3/P4 grep pre-check before compiling, invokes <code>tikz-reviewer</code> with measurement citations, loops until APPROVED.</li>
+</ul>
+<p>For existing diagrams in a Beamer deck, <code>extract-tikz</code> runs the same pre-check plus the SVG pipeline.</p>
+</div>
+</div>
+</section>
+<section id="pattern-4-translating-beamer-to-quarto" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="pattern-4-translating-beamer-to-quarto"><span class="header-section-number">5.4</span> Pattern 4: Translating Beamer to Quarto</h2>
+<p>Translation preserves all content while adapting format, converting TikZ to SVG and ggplot to interactive Plotly charts:</p>
+<pre><code>translate-to-quarto Lecture5_Topic.tex
+  |
+  +-- Phase 1-3: Environment mapping + content translation
+  +-- Phase 4-5: Figure conversion (TikZ -&gt; SVG)
+  +-- Phase 6-7: Interactive charts (ggplot -&gt; plotly)
+  +-- Phase 8-9: Render + verify
+  +-- Phase 10-11: qa-quarto adversarial QA
+        +-- Critic: finds issues
+        +-- Fixer: applies fixes
+        +-- Critic: re-audits
+        +-- ... (until APPROVED or 5 rounds)</code></pre>
+</section>
+<section id="pattern-5-replication-first-coding" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="pattern-5-replication-first-coding"><span class="header-section-number">5.5</span> Pattern 5: Replication-First Coding</h2>
+<p>When working with papers that have replication packages:</p>
+<pre><code>Phase 1: Inventory original code
+  +-- Record "gold standard" numbers (Table X, Column Y = Z.ZZ)
+
+Phase 2: Translate (e.g., Stata -&gt; R)
+  +-- Match original specification EXACTLY (same covariates, same clustering)
+
+Phase 3: Verify match
+  +-- Compare every target: paper value vs. our value
+  +-- Tolerance: &lt; 0.01 for estimates, &lt; 0.05 for SEs
+  +-- If mismatch: STOP. Investigate before proceeding.
+
+Phase 4: Only then extend
+  +-- New estimators, new specifications, course-specific figures</code></pre>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Never Skip Replication
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In one course, we discovered that a widely-used R package silently produced <strong>incorrect estimates</strong> due to a subtle specification issue. This bug was caught 3 times in different scripts. Without the replication-first protocol, these wrong numbers would have been taught to PhD students.</p>
+</div>
+</div>
+<p><strong>Source-language coverage:</strong> The pattern is language-agnostic. The template ships <a href="08-appendix.html#all-skills"><code>data-analysis</code></a> for R-first projects and <a href="08-appendix.html#all-skills"><code>stata-replication</code></a> (v1.9.0) for Stata-first projects (mirrors <code>data-analysis</code> exactly; same numbered-pipeline shape, different language; executes via the <code>stata-mcp</code> MCP server). Python-first projects follow the same convention with the path <code>scripts/python/_outputs/</code>. For Stata users, <a href=".agents/rules/stata-code-conventions.md"><code>stata-code-conventions.md</code></a> (v1.9.0) codifies the header (<code>version 18</code>, <code>clear all</code>, <code>set seed</code>/<code>set sortseed</code>), numbered pipeline (00–99), <code>esttab</code> for <code>\input{}</code> tables, clustering discipline (<code>reghdfe</code>), balance via <code>iebaltab</code>, and AEA Data Editor compliance.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Claims provenance via <code>passport.yaml</code> (v1.9.0)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Replication-first verifies the <em>current</em> state. A separate question: how do we keep manuscript and code in sync over the lifetime of a paper, especially during R&amp;R?</p>
+<p>The answer is a per-paper <code>quality_reports/passports/&lt;paper-slug&gt;.yaml</code> that records, for each numeric claim in the manuscript, the script + line + output that produced it. Schema includes <code>tolerance</code>, <code>last_verified_on</code>, <code>status</code> (PASS / FAIL / STALE / UNVERIFIED). <a href="08-appendix.html#all-skills"><code>audit-reproducibility</code></a> reads and rewrites the passport in place; <a href="08-appendix.html#all-skills"><code>commit</code></a> reads it to block commits when a load-bearing claim is FAIL or STALE.</p>
+<p>Starter file: <a href="templates/passport-template.yaml"><code>templates/passport-template.yaml</code></a>. Copy once per paper. Pattern attributed to <a href="https://github.com/Imbad0202/academic-research-skills">Imbad0202/academic-research-skills</a> “Material Passport” concept (scope-reduced for this template: numeric claims only).</p>
+</div>
+</div>
+</section>
+<section id="pattern-6-multi-agent-review" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="pattern-6-multi-agent-review"><span class="header-section-number">5.6</span> Pattern 6: Multi-Agent Review</h2>
+<p>The <code>slide-excellence</code> skill runs up to 6 <a href="04-building-blocks.html#agents---specialized-reviewers">specialized agents</a> in parallel:</p>
+<pre><code>slide-excellence Lecture5_Topic.tex
+  |
+  +-- Agent 1: Visual Audit (slide-auditor)
+  +-- Agent 2: Pedagogical Review (pedagogy-reviewer)
+  +-- Agent 3: Proofreading (proofreader)
+  +-- Agent 4: TikZ Review (tikz-reviewer, if applicable)
+  +-- Agent 5: Content Parity (if Quarto version exists)
+  +-- Agent 6: Substance Review (domain-reviewer)
+  |
+  +-- Synthesize: Combined quality score + prioritized fix list</code></pre>
+</section>
+<section id="pattern-7-self-improvement-loop" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="pattern-7-self-improvement-loop"><span class="header-section-number">5.7</span> Pattern 7: Self-Improvement Loop</h2>
+<p>There are two levels of self-improvement: <strong>quick corrections</strong> via <code>[LEARN]</code> tags and <strong>full skill extraction</strong> via <code>learn</code>.</p>
+<section id="quick-corrections-learn-tags" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="quick-corrections-learn-tags"><span class="header-section-number">5.7.1</span> Quick Corrections: [LEARN] Tags</h3>
+<p>Every correction gets tagged for future reference in MEMORY.md:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Corrections Log</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:notation</span><span class="co">]</span> T_t = 1{t=2} is deterministic -&gt; use T_i in {1,2}</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:citation</span><span class="co">]</span> Post-LASSO is Belloni (2013), NOT Belloni (2014)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:r-code</span><span class="co">]</span> Package X: ALWAYS include intercept in design matrix</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:workflow</span><span class="co">]</span> Every Beamer edit must auto-sync to Quarto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>These tags are searchable and persist across sessions. When Gemini encounters a similar situation, it checks memory first.</p>
+</section>
+<section id="automated-skill-capture-learn" class="level3" data-number="5.7.2">
+<h3 data-number="5.7.2" class="anchored" data-anchor-id="automated-skill-capture-learn"><span class="header-section-number">5.7.2</span> Automated Skill Capture: learn</h3>
+<p>For discoveries that deserve more than a one-line tag, use <code>learn</code> to create a full skill:</p>
+<pre><code>learn fixest-missing-covariate-handling</code></pre>
+<p>The <code>learn</code> skill guides you through a 4-phase workflow:</p>
+<pre><code>Phase 1: EVALUATE
+  "Was this non-obvious? Would future-me benefit?"
+  → If YES to any, continue
+         ↓
+Phase 2: CHECK EXISTING
+  Search .agents/skills/ for related skills
+  → Nothing related? Create new. Overlap? Update existing.
+         ↓
+Phase 3: CREATE SKILL
+  Write to .agents/skills/[name]/SKILL.md
+  • Problem statement
+  • Trigger conditions (exact errors, symptoms)
+  • Step-by-step solution
+  • Verification steps
+         ↓
+Phase 4: QUALITY GATE
+  • Description has specific triggers?
+  • Solution verified to work?
+  • Specific enough to be actionable?
+  • General enough to be reusable?</code></pre>
+<section id="when-to-use-learn" class="level4" data-number="5.7.2.1">
+<h4 data-number="5.7.2.1" class="anchored" data-anchor-id="when-to-use-learn"><span class="header-section-number">5.7.2.1</span> When to Use learn</h4>
+<p>The context monitor suggests <code>learn</code> at 40%, 55%, and 65% context usage. Consider extracting a skill when you encounter:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Trigger</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Non-obvious debugging</td>
+<td>10+ minute investigation not in docs</td>
+</tr>
+<tr class="even">
+<td>Misleading errors</td>
+<td>Error message was wrong, found real cause</td>
+</tr>
+<tr class="odd">
+<td>Workarounds</td>
+<td>Found limitation with creative solution</td>
+</tr>
+<tr class="even">
+<td>Undocumented APIs</td>
+<td>Tool integration not in official docs</td>
+</tr>
+<tr class="odd">
+<td>Trial-and-error</td>
+<td>Multiple attempts before success</td>
+</tr>
+<tr class="even">
+<td>Repeatable workflows</td>
+<td>Multi-step task you’d do again</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="skill-vs.-learn-tag" class="level4" data-number="5.7.2.2">
+<h4 data-number="5.7.2.2" class="anchored" data-anchor-id="skill-vs.-learn-tag"><span class="header-section-number">5.7.2.2</span> Skill vs.&nbsp;[LEARN] Tag</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 68%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>One-liner fix</td>
+<td><code>[LEARN:category]</code> tag in MEMORY.md</td>
+</tr>
+<tr class="even">
+<td>Multi-step workflow</td>
+<td><code>learn</code> to create full skill</td>
+</tr>
+<tr class="odd">
+<td>Error + root cause + solution</td>
+<td><code>learn</code> if reusable, <code>[LEARN]</code> if not</td>
+</tr>
+<tr class="even">
+<td>Package quirk</td>
+<td><code>learn</code> if affects multiple projects</td>
+</tr>
+</tbody>
+</table>
+<p>Skills saved to <code>.agents/skills/</code> survive compaction and session boundaries — if you discover something valuable late in a session, extract it with <code>learn</code> before compaction erases the details.</p>
+</section>
+</section>
+</section>
+<section id="pattern-8-devils-advocate" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="pattern-8-devils-advocate"><span class="header-section-number">5.8</span> Pattern 8: Devil’s Advocate</h2>
+<p>At any design decision, invoke the Devil’s Advocate:</p>
+<blockquote class="blockquote">
+<p>“Create a Devil’s Advocate. Have it challenge this slide design with 5-7 specific pedagogical questions. Work through each challenge and tell me what survives.”</p>
+</blockquote>
+<p>This catches:</p>
+<ul>
+<li>Unstated assumptions</li>
+<li>Alternative orderings that might work better</li>
+<li>Notation that could confuse students</li>
+<li>Missing intuition before formalism</li>
+<li>Cognitive load issues</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Fresh-Context Critique
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A stronger variant: when Gemini reviews its own work in the same conversation, it suffers <strong>confirmation bias</strong> — it has internalized its own reasoning and will systematically find the work acceptable. The fix: spawn a new agent via the Task tool with NO access to the original conversation. Give it only the artifact and a critique prompt. The fresh agent has no sunk cost in the work and will be ruthless.</p>
+<blockquote class="blockquote">
+<p>“Spawn a new agent. Have it read only my paper draft — not our conversation. Ask it to find the 5 weakest points and suggest how a hostile referee would attack each one.”</p>
+</blockquote>
+<p>Like handing your draft to a colleague who wasn’t in the room when you wrote it.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="sec-research-workflows" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="sec-research-workflows"><span class="header-section-number">5.9</span> Research Workflows</h2>
+<p>Patterns 1–8 apply broadly, with course materials as the primary example. The next four patterns are designed for <strong>research projects</strong> — papers, simulations, and empirical analysis — where the rhythm is different: ideas are uncertain, experiments may fail, and code is often written to answer a question rather than to ship. Patterns 13–14 then extend the foundation to reproducibility standards and presentation rhetoric.</p>
+<section id="pattern-9-parallel-agents" class="level3" data-number="5.9.1">
+<h3 data-number="5.9.1" class="anchored" data-anchor-id="pattern-9-parallel-agents"><span class="header-section-number">5.9.1</span> Pattern 9: Parallel Agents for Research Tasks</h3>
+<p>Antigravity can spawn <strong>multiple agents simultaneously</strong> using the Task tool. This is not limited to review — you can use it for any research or analysis task where independent subtasks can run at the same time.</p>
+<section id="when-to-use-parallel-agents" class="level4" data-number="5.9.1.1">
+<h4 data-number="5.9.1.1" class="anchored" data-anchor-id="when-to-use-parallel-agents"><span class="header-section-number">5.9.1.1</span> When to Use Parallel Agents</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 41%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Scenario</th>
+<th>Sequential (slow)</th>
+<th>Parallel (fast)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Reviewing a lecture</td>
+<td>Run proofreader, then auditor, then pedagogy</td>
+<td>Run all 3 simultaneously</td>
+</tr>
+<tr class="even">
+<td>Analyzing 3 papers for a new lecture</td>
+<td>Read paper 1, then 2, then 3</td>
+<td>Spawn 3 agents, each reading one paper</td>
+</tr>
+<tr class="odd">
+<td>Generating figures</td>
+<td>Create plot 1, then plot 2, then plot 3</td>
+<td>Spawn agents for independent plots</td>
+</tr>
+<tr class="even">
+<td>Comparing estimators</td>
+<td>Run simulation 1, then 2, then 3</td>
+<td>Spawn agents for each simulation</td>
+</tr>
+<tr class="odd">
+<td>Debating research design</td>
+<td>Consider DiD, then SC, then RDD</td>
+<td>3 agents, each advocating one approach</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-it-works" class="level4" data-number="5.9.1.2">
+<h4 data-number="5.9.1.2" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">5.9.1.2</span> How It Works</h4>
+<p>You do not need to manage this manually. Skills that implement the orchestrator pattern (<code>create-lecture</code>, <code>review-paper --peer</code>, <code>slide-excellence</code>, etc.) can recognize independent subtasks within their scope and spawn parallel subagents via <code>context: fork</code> — both during implementation (Step 1) and review (Step 3). For example, when <code>slide-excellence</code> runs on a deck, it spawns the visual / pedagogy / proofread agents in parallel; when <code>review-paper --peer</code> runs, it spawns the two referees in parallel. The parallelism is built into the skill’s logic, not into a repo-wide daemon.</p>
+<p>You can also request parallelism explicitly:</p>
+<blockquote class="blockquote">
+<p>“Read these three papers in parallel. For each, extract the key identification assumption, the main estimator, and whether they have a replication package. Summarize in a table.”</p>
+</blockquote>
+<p>Either way, Gemini spawns up to 3 Task agents, each processing one paper simultaneously, then synthesizes the results.</p>
+</section>
+<section id="long-running-tasks-background-tasks-and-schedulers" class="level4" data-number="5.9.1.3">
+<h4 data-number="5.9.1.3" class="anchored" data-anchor-id="long-running-tasks-background-tasks-and-schedulers"><span class="header-section-number">5.9.1.3</span> Long-running tasks: Background Tasks and Schedulers</h4>
+<p>For genuinely long jobs — a 30-minute R fit, an <code>audit-reproducibility</code> batch over many tables, a Quarto render of a 200-slide deck — Antigravity allows launching processes as background tasks and scheduling notifications or check-ins. You can run long jobs in the background and let Antigravity notify you or proceed with other work in the meantime. No polling loop, no sleep cycles. Useful inside <code>data-analysis</code> for the regression step and inside <code>audit-reproducibility</code> when re-running the whole script suite.</p>
+</section>
+<section id="watching-parallel-agents" class="level4" data-number="5.9.1.4">
+<h4 data-number="5.9.1.4" class="anchored" data-anchor-id="watching-parallel-agents"><span class="header-section-number">5.9.1.4</span> Watching parallel agents</h4>
+<p>When several review agents run in parallel (such as the <code>review-paper --peer</code> editor and referee subagents, or <code>slide-excellence</code>’s visual, pedagogy, and proofread fan-out), you can list and monitor them using the subagent management tools. This allows you to track multiple background sessions on a single screen without opening one terminal per agent.</p>
+</section>
+<section id="agent-debates" class="level4" data-number="5.9.1.5">
+<h4 data-number="5.9.1.5" class="anchored" data-anchor-id="agent-debates"><span class="header-section-number">5.9.1.5</span> Agent Debates</h4>
+<p>A powerful variant: give each parallel agent a <strong>distinct methodological perspective</strong> and have them argue. Instead of asking “which estimator should I use?”, spawn 3 agents — one advocates for DiD, one for synthetic control, one for RDD — each arguing why their approach fits your research question best and critiquing the others. Synthesize the debate into a decision matrix. This produces genuinely diverse perspectives that a single conversation cannot, because each agent commits fully to its position.</p>
+</section>
+<section id="practical-limits" class="level4" data-number="5.9.1.6">
+<h4 data-number="5.9.1.6" class="anchored" data-anchor-id="practical-limits"><span class="header-section-number">5.9.1.6</span> Practical Limits</h4>
+<ul>
+<li><strong>3 agents</strong> is the sweet spot. More than that increases overhead without proportional speedup.</li>
+<li>Agents are <strong>independent</strong> — they cannot see each other’s work. If task B depends on task A’s output, they must run sequentially.</li>
+<li>Each agent consumes its own context window. For very large files, sequential processing may be more reliable.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Cost-Conscious Parallelism
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Parallel agents multiply token usage. For cost-sensitive tasks, run the expensive work (Opus agents) sequentially and the cheap work (Sonnet agents) in parallel. The orchestrator already does this: it runs Sonnet-level reviewers in parallel, then the Opus-level critic sequentially.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="pattern-10-exploration" class="level3" data-number="5.9.2">
+<h3 data-number="5.9.2" class="anchored" data-anchor-id="pattern-10-exploration"><span class="header-section-number">5.9.2</span> Pattern 10: Research Exploration Workflow</h3>
+<p>The <strong>exploration workflow</strong> provides a structured sandbox for experimental work.</p>
+<section id="the-problem" class="level4" data-number="5.9.2.1">
+<h4 data-number="5.9.2.1" class="anchored" data-anchor-id="the-problem"><span class="header-section-number">5.9.2.1</span> The Problem</h4>
+<p>Without structure, experimental code scatters across the repository: analysis scripts in <code>scripts/</code>, test files in root, comparison documents in <code>quality_reports/</code>. After a week of exploration, the repo is cluttered with files that may or may not be useful, and nobody remembers which version was the good one.</p>
+</section>
+<section id="the-solution-exploration-folder" class="level4" data-number="5.9.2.2">
+<h4 data-number="5.9.2.2" class="anchored" data-anchor-id="the-solution-exploration-folder"><span class="header-section-number">5.9.2.2</span> The Solution: Exploration Folder</h4>
+<p>All experimental work goes into <code>explorations/</code> first:</p>
+<pre><code>explorations/
+├── [active-project]/
+│   ├── README.md           # Goal, hypotheses, status
+│   ├── R/                  # Code iterations (_v1, _v2)
+│   ├── scripts/            # Test scripts
+│   └── output/             # Results
+└── ARCHIVE/
+    ├── completed_[name]/   # Graduated to production
+    └── abandoned_[name]/   # Documented why stopped</code></pre>
+</section>
+<section id="fast-track-vs.-plan-first" class="level4" data-number="5.9.2.3">
+<h4 data-number="5.9.2.3" class="anchored" data-anchor-id="fast-track-vs.-plan-first"><span class="header-section-number">5.9.2.3</span> Fast-Track vs.&nbsp;Plan-First</h4>
+<p>The decision tree is simple:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Answer</th>
+<th>Workflow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Will this ship?”</td>
+<td>YES</td>
+<td>Plan-First (80/100 quality)</td>
+</tr>
+<tr class="even">
+<td>“Am I testing an idea?”</td>
+<td>YES</td>
+<td>Fast-Track (60/100 quality)</td>
+</tr>
+<tr class="odd">
+<td>“Does this improve the project?”</td>
+<td>NO</td>
+<td>Don’t build it</td>
+</tr>
+</tbody>
+</table>
+<p>Fast-Track explorations skip formal planning. Instead, a 2-minute <strong>research value check</strong> gates the work: “Does this improve the paper/slides/analysis?” If the answer is “maybe”, explore. If “no”, skip. If “yes”, use Plan-First rigor.</p>
+</section>
+<section id="the-lifecycle" class="level4" data-number="5.9.2.4">
+<h4 data-number="5.9.2.4" class="anchored" data-anchor-id="the-lifecycle"><span class="header-section-number">5.9.2.4</span> The Lifecycle</h4>
+<pre><code>Research value check (2 min)
+  ↓
+Create explorations/[project]/ (5 min)
+  ↓
+Code without overhead (60/100 quality)
+  ↓
+Decision point (1-2 hours):
+  ├── Graduate → Move to R/, scripts/, tests/ (upgrade to 80/100)
+  ├── Keep exploring → Stay in explorations/
+  └── Abandon → Archive with brief explanation</code></pre>
+<p>The <strong>kill switch</strong> is explicit: at any point, you can stop, archive with a one-paragraph explanation, and move on. No guilt, no sunk cost. See <code>.agents/rules/exploration-folder-protocol.md</code> and <code>.agents/rules/exploration-fast-track.md</code> for the full protocols.</p>
+</section>
+<section id="simplified-orchestrator-for-research" class="level4" data-number="5.9.2.5">
+<h4 data-number="5.9.2.5" class="anchored" data-anchor-id="simplified-orchestrator-for-research"><span class="header-section-number">5.9.2.5</span> Simplified Orchestrator for Research</h4>
+<p>The full orchestrator (Pattern 2) is designed for course materials with multi-agent review loops. For research projects, the <strong>simple variant</strong> strips this down to: implement → verify → score → done. No multi-round reviews, no parallel agent spawning. This lives in its own path-scoped rule (<code>.agents/rules/orchestrator-research.md</code>) that loads only when working on R scripts or explorations.</p>
+</section>
+<section id="merge-only-quality-reporting" class="level4" data-number="5.9.2.6">
+<h4 data-number="5.9.2.6" class="anchored" data-anchor-id="merge-only-quality-reporting"><span class="header-section-number">5.9.2.6</span> Merge-Only Quality Reporting</h4>
+<p>In research projects, commits are frequent and incremental. Generating a quality report for each commit creates noise. Instead, quality reports are generated <strong>only at merge time</strong> — a permanent snapshot of what was merged and why. Session logs capture the ongoing reasoning. See <code>.agents/rules/session-logging.md</code>.</p>
+</section>
+</section>
+<section id="pattern-11-research-skills" class="level3" data-number="5.9.3">
+<h3 data-number="5.9.3" class="anchored" data-anchor-id="pattern-11-research-skills"><span class="header-section-number">5.9.3</span> Pattern 11: Research Skills</h3>
+<p>Ten skills support the research workflow (including our mathematical and theoretical proof workflow):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 39%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Skill</th>
+<th>What It Does</th>
+<th>When to Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>lit-review [topic]</code></td>
+<td>Search, synthesize, and identify gaps in the literature</td>
+<td>Starting a new project or section</td>
+</tr>
+<tr class="even">
+<td><code>research-ideation [topic]</code></td>
+<td>Generate research questions, hypotheses, and empirical strategies</td>
+<td>Brainstorming phase</td>
+</tr>
+<tr class="odd">
+<td><code>interview-me [topic]</code></td>
+<td>Interactive interview to formalize a vague idea into a concrete specification</td>
+<td>When you have an intuition but not a plan</td>
+</tr>
+<tr class="even">
+<td><code>review-paper [file]</code></td>
+<td>Full manuscript review with referee objections</td>
+<td>Before submission or after a draft</td>
+</tr>
+<tr class="odd">
+<td><code>data-analysis [data]</code></td>
+<td>End-to-end R analysis: explore, regress, produce publication-ready output</td>
+<td>Empirical analysis phase</td>
+</tr>
+<tr class="even">
+<td><code>co-math-init</code></td>
+<td>Initialize a new AI co-mathematician research project</td>
+<td>Starting a new theoretical proof paper</td>
+</tr>
+<tr class="odd">
+<td><code>co-math-status</code></td>
+<td>Render the current status of theoretical workstreams</td>
+<td>Tracking project progress</td>
+</tr>
+<tr class="even">
+<td><code>math-proof</code></td>
+<td>Write clear, detailed mathematical proofs</td>
+<td>Writing proofs for a paper</td>
+</tr>
+<tr class="odd">
+<td><code>gemini-math</code></td>
+<td>Run Gemini 3.5 Pro as an adversarial co-processor (verify, write, explore modes)</td>
+<td>Verifying or exploring complex proof steps</td>
+</tr>
+<tr class="even">
+<td><code>proof-readability</code></td>
+<td>Audit math proofs for logical flow and readability</td>
+<td>Polishing mathematical proofs</td>
+</tr>
+</tbody>
+</table>
+<p>These skills produce structured reports saved to <code>quality_reports/</code>. The <code>data-analysis</code> skill also generates R scripts (saved to <code>scripts/R/</code>) and runs the r-reviewer agent automatically.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><code>review-paper --peer [journal]</code> — simulated peer review pipeline
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For submission-ready manuscripts, <code>review-paper --peer &lt;journal&gt;</code> runs an <strong>editor + two dispositioned referees + editorial decision</strong>, calibrated to the target journal. Editor calibration reads <code>.agents/references/journal-profiles.md</code>; the template ships profiles for <strong>AER, QJE, JPE, ECMA, JoE</strong> (econ) and <strong>APSR, AJPS, JOP</strong> (poli-sci). Other fields: add a profile, ~40 lines each.</p>
+<p>The methods-referee is <strong>paper-type-aware</strong> — the same skill picks different sanity checks based on what kind of paper this is:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Paper type</th>
+<th>Methods-referee tilts toward</th>
+<th>Sanity checks include</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>reduced-form</code></td>
+<td>identification credibility, parallel-trends defence, robustness range</td>
+<td>DiD pre-trends, IV first-stage, overlap, balance</td>
+</tr>
+<tr class="even">
+<td><code>structural</code></td>
+<td>model identification, counterfactual credibility, fit</td>
+<td>moment-matching, sensitivity to functional form, out-of-sample</td>
+</tr>
+<tr class="odd">
+<td><code>theory+empirics</code></td>
+<td>model-data correspondence</td>
+<td>does the empirical estimand identify the theoretical object?</td>
+</tr>
+<tr class="even">
+<td><code>descriptive</code></td>
+<td>measurement validity, generalisability</td>
+<td>sampling frame, missingness, comparator choice</td>
+</tr>
+<tr class="odd">
+<td><code>formal-theory</code> (v1.8.0)</td>
+<td>model originality, comparative-static sharpness</td>
+<td>equilibrium existence, assumption tractability, robustness to relaxation</td>
+</tr>
+<tr class="even">
+<td><code>survey-experiment</code> (v1.8.0)</td>
+<td>design, sampling, attrition + manipulation checks</td>
+<td>balance, manipulation-check pass rate, attrition asymmetry, sampling-frame validity</td>
+</tr>
+</tbody>
+</table>
+<p>R&amp;R continuation is built in: <code>--r2</code> / <code>--r3</code> for response-to-referees rounds; <code>--stress</code> for a hostile-editor stress test. See <code>.agents/references/discipline-cards.md</code> for econ + poli-sci defaults (paper-type frequency, dominant journals, preregistration norms, code conventions). Forkers extend for psych / sociology / public-health.</p>
+</div>
+</div>
+<section id="the-research-lifecycle-as-a-dependency-graph" class="level4" data-number="5.9.3.1">
+<h4 data-number="5.9.3.1" class="anchored" data-anchor-id="the-research-lifecycle-as-a-dependency-graph"><span class="header-section-number">5.9.3.1</span> The Research Lifecycle as a Dependency Graph</h4>
+<p>A research project is not a waterfall — it is a <strong>dependency graph</strong>. Some phases run in parallel; others are strictly sequential:</p>
+<pre><code>research-ideation ─────┐
+                        ├──→ lit-review ──→ data-analysis ──→ review-paper
+interview-me ──────────┘         ↑               ↑
+                                  │               │
+                          (can run in parallel)   │
+                                                  │
+                          (enter mid-pipeline: ───┘
+                           start with data and
+                           work backwards)</code></pre>
+<p><strong>Enter mid-pipeline.</strong> You do not have to start from ideation. If you already have data, start with <code>data-analysis</code> and work backwards to the research question. If you already have a draft, start with <code>review-paper</code>. The skills are modular — use what you need, skip what you don’t.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>For a Production-Grade Paper Pipeline
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For a production-grade paper pipeline, a dedicated fork takes these same skills and wraps them in full research infrastructure: 6 worker-critic agent pairs plus specialized agents (data-engineer, referees, verifier), simulated blind peer review, weighted aggregate scoring, journal targeting, and R&amp;R response routing. If your primary output is research papers, see <a href="06-ecosystem.html">The Ecosystem</a> for details.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pattern-12-branch-isolation" class="level3" data-number="5.9.4">
+<h3 data-number="5.9.4" class="anchored" data-anchor-id="pattern-12-branch-isolation"><span class="header-section-number">5.9.4</span> Pattern 12: Branch Isolation with Git Worktrees (Advanced)</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Advanced Pattern
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This pattern is optional and primarily useful for major translations, risky refactors, or multi-day projects. Most day-to-day work doesn’t need it.</p>
+</div>
+</div>
+<p>Git worktrees create a <strong>separate working directory</strong> linked to the same repository. Each directory has its own branch but shares commit history. Subagents can use worktrees via the <code>isolation: worktree</code> field (see <a href="04-building-blocks.html#sec-agent-config">Advanced Agent Configuration</a>).</p>
+<pre><code>your-project/                     ← main branch (stays clean)
+.worktrees/lecture-06-quarto/     ← isolated branch (Gemini works here)</code></pre>
+<section id="why-use-worktrees" class="level4" data-number="5.9.4.1">
+<h4 data-number="5.9.4.1" class="anchored" data-anchor-id="why-use-worktrees"><span class="header-section-number">5.9.4.1</span> Why Use Worktrees?</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Benefit</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Safe experimentation</strong></td>
+<td>Translate Lecture 6 to Quarto — if it fails, main is untouched</td>
+</tr>
+<tr class="even">
+<td><strong>Clean history</strong></td>
+<td>50 intermediate commits squash into one clean commit</td>
+</tr>
+<tr class="odd">
+<td><strong>Easy discard</strong></td>
+<td>Wrong approach? Delete worktree, no trace in main</td>
+</tr>
+<tr class="even">
+<td><strong>Multi-session work</strong></td>
+<td>Resume worktree next day, no context loss</td>
+</tr>
+<tr class="odd">
+<td><strong>Parallel work</strong></td>
+<td>Work on slides (main) while Gemini translates (worktree)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-workflow" class="level4" data-number="5.9.4.2">
+<h4 data-number="5.9.4.2" class="anchored" data-anchor-id="the-workflow"><span class="header-section-number">5.9.4.2</span> The Workflow</h4>
+<pre><code>1. CREATE WORKTREE
+   git worktree add .worktrees/lecture-06-quarto -b quarto/lecture-06
+   cd .worktrees/lecture-06-quarto
+         ↓
+2. IMPLEMENT
+   All changes happen in the worktree
+   Commit frequently (intermediate commits are OK)
+         ↓
+3. VERIFY
+   Run tests, render, review against worktree only
+         ↓
+4. SYNC TO MAIN (when ready)
+   git checkout main
+   git merge --squash quarto/lecture-06
+   git commit -m "feat: add Lecture 6 Quarto version"
+         ↓
+5. CLEANUP
+   git worktree remove .worktrees/lecture-06-quarto
+   git branch -d quarto/lecture-06</code></pre>
+</section>
+<section id="commands-reference" class="level4" data-number="5.9.4.3">
+<h4 data-number="5.9.4.3" class="anchored" data-anchor-id="commands-reference"><span class="header-section-number">5.9.4.3</span> Commands Reference</h4>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a worktree with new branch</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add .worktrees/<span class="pp">[</span><span class="ss">name</span><span class="pp">]</span> <span class="at">-b</span> <span class="pp">[</span><span class="ss">branch</span><span class="pp">-</span><span class="ss">name</span><span class="pp">]</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># List active worktrees</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree list</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove a worktree (after merging or abandoning)</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree remove .worktrees/<span class="pp">[</span><span class="ss">name</span><span class="pp">]</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete the branch (after removal)</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-d</span> <span class="pp">[</span><span class="ss">branch</span><span class="pp">-</span><span class="ss">name</span><span class="pp">]</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Squash-merge into main</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout main</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge <span class="at">--squash</span> <span class="pp">[</span><span class="ss">branch</span><span class="pp">-</span><span class="ss">name</span><span class="pp">]</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"feat: description of changes"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span><code>worktree.baseRef</code> (Apr 2026 Week 19)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Antigravity’s <code>EnterWorktree</code> tool branches fresh worktrees from a configurable base ref via the <code>worktree.baseRef</code> setting in <code>.agents/settings.json</code>:</p>
+<ul>
+<li><code>fresh</code> (default) — branch from the <strong>remote default branch</strong> (typically <code>origin/main</code>). Safest for clean experimentation.</li>
+<li><code>head</code> — branch from local <code>HEAD</code>. Use when you have uncommitted local work the worktree should inherit.</li>
+</ul>
+<p>The default surprises users with uncommitted in-flight edits: a <code>fresh</code> worktree won’t see those changes. If your workflow assumes “branch off whatever I’m looking at now,” set <code>"worktree.baseRef": "head"</code>.</p>
+</div>
+</div>
+</section>
+<section id="when-to-use" class="level4" data-number="5.9.4.4">
+<h4 data-number="5.9.4.4" class="anchored" data-anchor-id="when-to-use"><span class="header-section-number">5.9.4.4</span> When to Use</h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Use Worktree?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Quick fix to one file</td>
+<td>No — just edit main</td>
+</tr>
+<tr class="even">
+<td>New lecture creation</td>
+<td>Maybe — if multi-session</td>
+</tr>
+<tr class="odd">
+<td>Beamer → Quarto translation</td>
+<td>Yes — many intermediate states</td>
+</tr>
+<tr class="even">
+<td>Major refactor</td>
+<td>Yes — safe rollback</td>
+</tr>
+<tr class="odd">
+<td>Experimenting with new approach</td>
+<td>Yes — easy discard</td>
+</tr>
+</tbody>
+</table>
+<p>For example, translating Lecture 5 from Beamer to Quarto involves extracting TikZ diagrams, converting ggplot to plotly, and rewriting environments — dozens of intermediate files over multiple sessions. A worktree keeps main clean while you iterate.</p>
+</section>
+<section id="complexity-cost" class="level4" data-number="5.9.4.5">
+<h4 data-number="5.9.4.5" class="anchored" data-anchor-id="complexity-cost"><span class="header-section-number">5.9.4.5</span> Complexity Cost</h4>
+<ul>
+<li>Adds ~3 commands to learn</li>
+<li>Adds mental model: “Where am I working?”</li>
+<li>Requires discipline to sync/discard, not leave orphan worktrees</li>
+</ul>
+<p>For most novice users, working directly on main with frequent commits is simpler and sufficient. Use worktrees when the benefits of isolation outweigh the added complexity.</p>
+</section>
+</section>
+</section>
+<section id="sec-beyond-slides" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="sec-beyond-slides"><span class="header-section-number">5.10</span> Advanced Patterns: Reproducibility and Presentation Design</h2>
+<p>The patterns above use slides as the primary example, but the infrastructure is domain-agnostic. The next two patterns address dimensions no existing pattern covers: reproducibility standards and presentation rhetoric.</p>
+<section id="pattern-13-reproducibility" class="level3" data-number="5.10.1">
+<h3 data-number="5.10.1" class="anchored" data-anchor-id="pattern-13-reproducibility"><span class="header-section-number">5.10.1</span> Pattern 13: Reproducibility &amp; Replication Compliance</h3>
+<p>Pattern 5 covers matching <em>someone else’s</em> results before extending them. This pattern is the complement: packaging <em>your own</em> work so that others — and journal data editors — can verify it.</p>
+<section id="the-aea-data-editor-standard" class="level4" data-number="5.10.1.1">
+<h4 data-number="5.10.1.1" class="anchored" data-anchor-id="the-aea-data-editor-standard"><span class="header-section-number">5.10.1.1</span> The AEA Data Editor Standard</h4>
+<p>The <a href="https://social-science-data-editors.github.io/template_README/">Template README for Social Science Replication Packages</a> is the compliance standard for the AEA, Review of Economic Studies, Economic Journal, and other major journals. It requires eight structured sections:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Section</th>
+<th>What It Covers</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Overview</td>
+<td>What the code does, data sources, software, runtime</td>
+</tr>
+<tr class="even">
+<td>Data Availability Statements</td>
+<td>Provenance, access rights, redistribution permissions for every data source</td>
+</tr>
+<tr class="odd">
+<td>Dataset List</td>
+<td>Every data file: source, format, whether provided</td>
+</tr>
+<tr class="even">
+<td>Computational Requirements</td>
+<td>Software versions, packages, random seeds, memory, runtime</td>
+</tr>
+<tr class="odd">
+<td>Description of Programs</td>
+<td>Directory structure, execution order, dependencies</td>
+</tr>
+<tr class="even">
+<td>Instructions to Replicators</td>
+<td>Numbered steps — ideally one command</td>
+</tr>
+<tr class="odd">
+<td>Table/Figure Mapping</td>
+<td>Every exhibit mapped to the specific program and line that generates it</td>
+</tr>
+<tr class="even">
+<td>References</td>
+<td>Proper bibliographic citations for all data sources</td>
+</tr>
+</tbody>
+</table>
+<p>The <strong>Table/Figure Mapping</strong> row is exactly what <code>passport.yaml</code> (v1.9.0) machine-encodes: each numeric claim → script + line + output file + tolerance + verified-on timestamp. The AEA requires the <em>spreadsheet-style</em> version; the passport is the <em>programmatic</em> version. They’re complementary — generate the AEA spreadsheet from the passport when you submit.</p>
+</section>
+<section id="pre-submission-checklist" class="level4" data-number="5.10.1.2">
+<h4 data-number="5.10.1.2" class="anchored" data-anchor-id="pre-submission-checklist"><span class="header-section-number">5.10.1.2</span> Pre-Submission Checklist</h4>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Replication Package Checklist
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Documentation:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">README follows the <a href="https://social-science-data-editors.github.io/template_README/">template</a> with all 8 sections</label></li>
+<li><label><input type="checkbox">PDF version of README included in root directory</label></li>
+<li><label><input type="checkbox">Data citations appear in both README and manuscript</label></li>
+<li><label><input type="checkbox">LICENSE.txt specifies code license (MIT/BSD) and data license (CC-BY)</label></li>
+</ul>
+<p><strong>Code:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">All software listed with exact version numbers</label></li>
+<li><label><input type="checkbox">Setup script installs all dependencies (<code>0_setup.R</code>, <code>requirements.txt</code>, etc.)</label></li>
+<li><label><input type="checkbox">Random seeds set deterministically (not timestamps)</label></li>
+<li><label><input type="checkbox">Master script runs everything without manual intervention</label></li>
+<li><label><input type="checkbox">Each table and figure produced by an identifiable, separate script</label></li>
+</ul>
+<p><strong>Data:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Data Availability Statement for every data source, including confidential data</label></li>
+<li><label><input type="checkbox">Rights certifications: legitimate access + redistribution permission</label></li>
+<li><label><input type="checkbox">Directory structure separates raw, derived, and output data</label></li>
+</ul>
+<p><strong>Verification:</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">Package re-executed in a clean environment</label></li>
+<li><label><input type="checkbox">Results numerically identical to manuscript</label></li>
+<li><label><input type="checkbox">Runtime and hardware requirements documented</label></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="recommended-directory-structure" class="level4" data-number="5.10.1.3">
+<h4 data-number="5.10.1.3" class="anchored" data-anchor-id="recommended-directory-structure"><span class="header-section-number">5.10.1.3</span> Recommended Directory Structure</h4>
+<pre><code>project/
+├── README.pdf              # Following AEA template
+├── LICENSE.txt             # Code: MIT/BSD; Data: CC-BY
+├── data/
+│   ├── raw/                # Source data (untouched)
+│   └── derived/            # Processed/analysis data
+├── code/
+│   ├── 00_setup.R          # Install dependencies
+│   ├── 01_dataprep/        # Data cleaning
+│   ├── 02_analysis/        # Main results
+│   └── 03_appendix/        # Appendix results
+└── results/                # Output tables, figures</code></pre>
+<p>These standards load automatically via the path-scoped rule mechanism: when Gemini edits files matching <code>replication-protocol.md</code>’s path globs, the rule is injected into context without any manual invocation. Ask Gemini to <em>“prepare a replication package”</em> and the rule’s directory structure and checklist above guide the work from the first file touched.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Reproducibility as Architecture
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>A key principle that maps directly to this workflow: <strong>separate scientific reasoning from computational execution.</strong> Humans design diagnostic templates (what to measure); AI handles execution (how to run it).</p>
+<p>This is the template-executor architecture — and you are already using it:</p>
+<ul>
+<li><strong>Your spec</strong> (requirements specification) = the template. It says <em>what</em> must be true.</li>
+<li><strong>The orchestrator</strong> = the executor. It handles <em>how</em> to make it true.</li>
+<li><strong>Plans</strong> = why decisions were made (audit trail)</li>
+<li><strong>Session logs</strong> = reasoning documentation</li>
+<li><strong>Git</strong> = what changed and when</li>
+<li><strong>MEMORY.md</strong> = corrections and accumulated learning</li>
+</ul>
+<p>The <code>learn</code> skill already implements version-controlled knowledge accumulation: each discovery saved as a SKILL.md file with problem, solution, and verification steps — the same pattern sometimes called “structured knowledge bases.”</p>
+<p>Key insight: <em>“For a fixed pipeline version and fixed inputs, the workflow produces identical numerical outputs and retains a complete audit trail of intermediate artifacts and logs.”</em></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pattern-14-rhetoric-of-decks" class="level3" data-number="5.10.2">
+<h3 data-number="5.10.2" class="anchored" data-anchor-id="pattern-14-rhetoric-of-decks"><span class="header-section-number">5.10.2</span> Pattern 14: The Rhetoric of Decks</h3>
+<p>The slide-auditor checks <em>technical</em> quality (overflow, spacing). The pedagogy-reviewer checks <em>teaching</em> quality (notation density, prerequisites). Neither addresses <em>rhetorical</em> quality — whether the slides persuade, whether the argument flows, whether beauty serves function.</p>
+<p>The <a href="https://github.com/scunning1975/MixtapeTools/tree/main/presentations">Rhetoric of Decks</a> framework fills this gap.</p>
+<section id="the-three-laws" class="level4" data-number="5.10.2.1">
+<h4 data-number="5.10.2.1" class="anchored" data-anchor-id="the-three-laws"><span class="header-section-number">5.10.2.1</span> The Three Laws</h4>
+<p><strong>Law 1: Beauty is function.</strong> Beautiful slides are not decorated slides. Beauty is clarity made visible. Every element earns its presence. Nothing distracts from the point. “Decoration without function is noise.”</p>
+<p><strong>Law 2: Cognitive load is the enemy.</strong> One idea per slide. ONE. This is not a guideline — this is the law. The audience has limited working memory. Every unnecessary word, data point, or “just in case” inclusion steals bandwidth from the actual message.</p>
+<p><strong>Law 3: The slide serves the spoken word.</strong> “If your slides can be understood without you speaking, you have written a document and called it a presentation.” The slide is a visual anchor for speech — a focal point for attention, a memory hook for retention.</p>
+</section>
+<section id="the-mbmc-equivalence" class="level4" data-number="5.10.2.2">
+<h4 data-number="5.10.2.2" class="anchored" data-anchor-id="the-mbmc-equivalence"><span class="header-section-number">5.10.2.2</span> The MB/MC Equivalence</h4>
+<p>The most original contribution of this framework — applying marginal analysis to slide design:</p>
+<blockquote class="blockquote">
+<p>Optimal rhetoric equalizes the marginal benefit to marginal cost ratio across all slides: MB₁/MC₁ = MB₂/MC₂ = … = MBₙ/MCₙ</p>
+</blockquote>
+<p><strong>What this means in practice:</strong></p>
+<ul>
+<li><strong>Overloaded slides</strong> (MB/MC too low): text running into footer, competing ideas, audience gives up</li>
+<li><strong>Underloaded slides</strong> (MB/MC too high): wasted opportunity, attention captured but unused</li>
+<li><strong>The goal is smoothness</strong> — consistent cognitive load throughout — not maximum density</li>
+<li><strong>Exception</strong>: deliberate “jump scares” — intentional spikes for rhetorical effect (a striking statistic, a provocative claim)</li>
+</ul>
+</section>
+<section id="actionable-principles" class="level4" data-number="5.10.2.3">
+<h4 data-number="5.10.2.3" class="anchored" data-anchor-id="actionable-principles"><span class="header-section-number">5.10.2.3</span> Actionable Principles</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 17%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Principle</th>
+<th>Why</th>
+<th>Anti-Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Titles are assertions</td>
+<td>“Treatment increased distance by 61 miles” carries the argument</td>
+<td>“Results” tells the audience nothing</td>
+</tr>
+<tr class="even">
+<td>Bullets are defeat</td>
+<td>A list says “I couldn’t find the structure”</td>
+<td>Find the sequence, contrast, hierarchy, or causal chain</td>
+</tr>
+<tr class="odd">
+<td>White space signals confidence</td>
+<td>Crowded slides signal fear — fear of silence, fear of forgetting</td>
+<td>Filling every pixel with text</td>
+</tr>
+<tr class="even">
+<td>Direct labels, not legends</td>
+<td>Legends force the eye to travel; labels stay with the data</td>
+<td>Color-coded legends requiring a key</td>
+</tr>
+<tr class="odd">
+<td>One message per chart</td>
+<td>If you can’t explain it in one sentence, it’s too complex</td>
+<td>Multi-panel figures with competing stories</td>
+</tr>
+<tr class="even">
+<td>Min 24pt body, max 2 fonts</td>
+<td>Sans-serif for projection; test from the back row</td>
+<td>12pt text, decorative fonts</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-existing-agents-support-this" class="level4" data-number="5.10.2.4">
+<h4 data-number="5.10.2.4" class="anchored" data-anchor-id="how-existing-agents-support-this"><span class="header-section-number">5.10.2.4</span> How Existing Agents Support This</h4>
+<p>The <code>slide-excellence</code> skill already invokes the pedagogy-reviewer and slide-auditor, which enforce many of these principles automatically. To enforce <em>all</em> of them — including title-as-assertion and MB/MC smoothness — customize the <strong>domain-reviewer</strong> agent (<code>.agents/agents/domain-reviewer.md</code>) with rhetoric-of-decks lenses. The orchestrator will then apply them during every review cycle without manual invocation.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The Full Framework
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>For the complete philosophical treatment — from Aristotle’s three modes of persuasion through neuroaesthetics and the Netflix analogy — see <a href="https://github.com/scunning1975/MixtapeTools/tree/main/presentations">The Rhetoric of Decks</a>. The repository includes a full essay, example Beamer decks with professional color palettes, a <code>theme_rhetoric()</code> ggplot2 theme, and a tested deck generation prompt for Antigravity.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pattern-15-sequential-audits" class="level3" data-number="5.10.3">
+<h3 data-number="5.10.3" class="anchored" data-anchor-id="pattern-15-sequential-audits"><span class="header-section-number">5.10.3</span> Pattern 15: Sequential Adversarial Audits</h3>
+<p><strong>Principle:</strong> Run N independent audit passes, each focused on ONE dimension. Each auditor sees only the artifact — not previous audits — to prevent groupthink and anchoring bias.</p>
+<p>This pattern differs from the parallel multi-agent review in <a href="#pattern-6-multi-agent-review">Pattern 6</a>. There, agents run simultaneously and findings are merged. Here, audits run <strong>sequentially</strong>, each producing an independent report. The independence is the point: a citation auditor shouldn’t be influenced by what the prose auditor flagged.</p>
+<section id="the-seven-audit-protocol-for-papers" class="level4" data-number="5.10.3.1">
+<h4 data-number="5.10.3.1" class="anchored" data-anchor-id="the-seven-audit-protocol-for-papers"><span class="header-section-number">5.10.3.1</span> The Seven-Audit Protocol (for Papers)</h4>
+<p>Inspired by <a href="https://github.com/aspi6246/GeminiCodeTools">GeminiCodeTools “The Editor”</a>, this protocol runs seven sequential passes before submission:</p>
+<ol type="1">
+<li><strong>Abstract audit</strong> — Does the abstract accurately reflect findings? Is it a compelling “storefront”?</li>
+<li><strong>Introduction structure</strong> — Does the intro follow a recognized template (classic, puzzle-first, contribution-first)?</li>
+<li><strong>Section-by-section audit</strong> — Data description, identification, results, robustness — each checked independently</li>
+<li><strong>Argumentation audit</strong> — Logical gaps, alternative explanations, missing qualifications</li>
+<li><strong>Prose quality</strong> — Passive voice, hedging, jargon density, paragraph flow</li>
+<li><strong>Citation fidelity</strong> — Every claim has a citation? Every citation is real and correctly referenced?</li>
+<li><strong>“So What” test</strong> — Five questions: What’s the question? Why does it matter? What did you find? How do you know? What does it mean?</li>
+</ol>
+</section>
+<section id="how-to-implement" class="level4" data-number="5.10.3.2">
+<h4 data-number="5.10.3.2" class="anchored" data-anchor-id="how-to-implement"><span class="header-section-number">5.10.3.2</span> How to Implement</h4>
+<p>Use <code>review-paper</code> for a comprehensive single-pass review. When you need deeper, independent audits (e.g., before journal submission), run each audit as a separate skill invocation with <code>context: fork</code> to ensure isolation:</p>
+<pre><code>You: "Run the seven-audit protocol on my paper"
+Gemini: [Runs 7 sequential forked reviews, each blind to the others]
+       → Produces 7 independent reports
+       → Synthesizes into prioritized revision checklist</code></pre>
+<p><strong>Adapting for other artifacts:</strong> The same principle works for replication packages (7 passes: code, data, documentation, licensing, runtime, outputs, README) or grant proposals (significance, approach, innovation, environment, budget).</p>
+<p><strong>For the R&amp;R stage (after referee comments arrive):</strong> Use <code>respond-to-referees [report] [revised-manuscript]</code>. It parses each concern, classifies coverage (addressed / partially / deferred / disagreement), points to specific revisions, and drafts the response document using <code>templates/response-to-referees.md</code>.</p>
+</section>
+</section>
+<section id="pattern-16-preregistration" class="level3" data-number="5.10.4">
+<h3 data-number="5.10.4" class="anchored" data-anchor-id="pattern-16-preregistration"><span class="header-section-number">5.10.4</span> Pattern 16: Preregistration and Submission Discipline</h3>
+<p><strong>Principle:</strong> Lock in your hypotheses, design, and analysis plan <strong>before</strong> you see the realised data. Preregistration is the strongest defence against p-hacking, HARKing, and forking-paths, and it’s increasingly mandatory for credibility in social-science venues. Pair it with <code>checkpoint</code> for a verifiable trail of what you committed to and when.</p>
+<section id="when-preregistration-matters" class="level4" data-number="5.10.4.1">
+<h4 data-number="5.10.4.1" class="anchored" data-anchor-id="when-preregistration-matters"><span class="header-section-number">5.10.4.1</span> When preregistration matters</h4>
+<ul>
+<li><strong>Before launching an experiment</strong> (lab, field, or survey) — the canonical case.</li>
+<li><strong>Before analysing observational data</strong> on a target population for a specific RQ. “I have the data but haven’t looked at the outcome variable yet” is the right moment.</li>
+<li><strong>During R&amp;R</strong> when a referee asks for a written preanalysis plan covering robustness specifications.</li>
+<li><strong>Funding</strong> — NSF, NIH, OSF, AEA grants increasingly require a PAP at submission.</li>
+</ul>
+</section>
+<section id="choosing-a-registry" class="level4" data-number="5.10.4.2">
+<h4 data-number="5.10.4.2" class="anchored" data-anchor-id="choosing-a-registry"><span class="header-section-number">5.10.4.2</span> Choosing a registry</h4>
+<p>The template ships three styles via <code>preregister --style</code>:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Registry</th>
+<th>Style flag</th>
+<th>Field</th>
+<th>Length</th>
+<th>Editable later?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>OSF</strong> (<a href="https://osf.io/registries">osf.io/registries</a>)</td>
+<td><code>osf</code></td>
+<td>Broad social science (default for psych, poli-sci, sociology)</td>
+<td>Long-form, ~10–20 pages</td>
+<td>Yes, with versioning</td>
+</tr>
+<tr class="even">
+<td><strong>AsPredicted</strong> (<a href="https://aspredicted.org">aspredicted.org</a>)</td>
+<td><code>aspredicted</code></td>
+<td>Behavioural / experimental short-form</td>
+<td>9 questions, ~2 pages</td>
+<td>Locked once submitted</td>
+</tr>
+<tr class="odd">
+<td><strong>AEA RCT Registry</strong> (<a href="https://socialscienceregistry.org">socialscienceregistry.org</a>)</td>
+<td><code>aea-rct</code></td>
+<td>Economics field experiments (mandatory for AEA journals since 2018)</td>
+<td>Structured fields, ~3–5 pages</td>
+<td>Limited fields editable</td>
+</tr>
+</tbody>
+</table>
+<p>For <strong>public health / clinical trials</strong>, use ClinicalTrials.gov or ISRCTN directly — this template’s <code>preregister</code> doesn’t cover those formats. They’re on the v2.0-backlog.</p>
+</section>
+<section id="the-workflow-1" class="level4" data-number="5.10.4.3">
+<h4 data-number="5.10.4.3" class="anchored" data-anchor-id="the-workflow-1"><span class="header-section-number">5.10.4.3</span> The workflow</h4>
+<pre><code>interview-me                       preregister --style osf
+   ↓                                   ↓
+research-spec.md  ─────────────→  preregistration-draft.md
+   ↓                                   ↓
+(quality_reports/specs/)         (quality_reports/preregistrations/)
+                                       ↓
+                                  user reviews,
+                                  uploads to OSF,
+                                  receives registration ID
+                                       ↓
+                                  checkpoint preregistration-submitted
+                                       ↓
+                                  data collection begins</code></pre>
+<p><code>preregister</code> reads your <code>interview-me</code> spec frontmatter (the <code>paper_type:</code> field flows in from there if you set it) and produces a registry-formatted draft with <strong>MUST / SHOULD / MAY</strong> annotations on every section. Pre-flight checks: directional hypothesis declared, named estimator, ex-ante exclusion rules, sample-size stopping rule.</p>
+</section>
+<section id="mandatory-fields-per-registry-style" class="level4" data-number="5.10.4.4">
+<h4 data-number="5.10.4.4" class="anchored" data-anchor-id="mandatory-fields-per-registry-style"><span class="header-section-number">5.10.4.4</span> Mandatory fields per registry style</h4>
+<p>The <code>--style</code> flag determines the mandatory section list. The template enforces these via the pre-flight check:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Field</th>
+<th style="text-align: center;">OSF</th>
+<th style="text-align: center;">AsPredicted</th>
+<th style="text-align: center;">AEA RCT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Directional hypothesis (with sign)</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="even">
+<td>Sampling frame + recruitment</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">SHOULD</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="odd">
+<td>Sample-size / stopping rule</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="even">
+<td>Named primary estimator</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="odd">
+<td>Pre-specified covariate set</td>
+<td style="text-align: center;">SHOULD</td>
+<td style="text-align: center;">MAY</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="even">
+<td>Multiple-comparison adjustment plan</td>
+<td style="text-align: center;">SHOULD</td>
+<td style="text-align: center;">SHOULD</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="odd">
+<td>Ex-ante exclusion rules</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="even">
+<td>Robustness specifications (named in advance)</td>
+<td style="text-align: center;">SHOULD</td>
+<td style="text-align: center;">MAY</td>
+<td style="text-align: center;">SHOULD</td>
+</tr>
+<tr class="odd">
+<td>Data-sharing plan</td>
+<td style="text-align: center;">SHOULD</td>
+<td style="text-align: center;">MAY</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+<tr class="even">
+<td>Intervention description (RCTs)</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">MUST</td>
+</tr>
+</tbody>
+</table>
+<p><code>preregister</code> refuses to draft a “retrospective preregistration” — if your description contains realised results or post-hoc reasoning, the skill halts and explains why. That refusal is the point.</p>
+</section>
+<section id="pairing-with-checkpoint" class="level4" data-number="5.10.4.5">
+<h4 data-number="5.10.4.5" class="anchored" data-anchor-id="pairing-with-checkpoint"><span class="header-section-number">5.10.4.5</span> Pairing with <code>checkpoint</code></h4>
+<p><code>checkpoint</code> is the structured companion to the narrative session-log workflow. For preregistration specifically:</p>
+<ul>
+<li><strong>Before submitting</strong> to the registry: <code>checkpoint preregistration-pre-submit</code> snapshots the draft state, the spec it derives from, and the next-action (“upload to OSF and record registration ID”).</li>
+<li><strong>After submission</strong>: <code>checkpoint preregistration-submitted [registration-id]</code> records the registry ID and the date in the structured snapshot. The plan and session log link to it.</li>
+<li><strong>On data arrival</strong>: <code>checkpoint data-arrived</code> marks the boundary between “things I could legitimately commit to” and “things I learned from looking.” Anything that follows is exploratory unless explicitly anchored in the preregistered plan.</li>
+</ul>
+<p><code>checkpoint</code> files live at <code>quality_reportscheckpoints/YYYY-MM-DD_&lt;slug&gt;.md</code> (gitignored — they’re session-state, not version-controlled artifacts). Optional <code>--no-memory</code> flag suppresses the auto-proposal of <code>[LEARN]</code> entries to MEMORY.md.</p>
+</section>
+<section id="post-flight-verification" class="level4" data-number="5.10.4.6">
+<h4 data-number="5.10.4.6" class="anchored" data-anchor-id="post-flight-verification"><span class="header-section-number">5.10.4.6</span> Post-flight verification</h4>
+<p>Any cited literature in the preregistration runs through <code>verify-claims</code> (Chain-of-Verification, forked-verifier context, fresh) before the draft is considered ready. Hallucinated citations are the most common preregistration failure mode and the hardest to fix after submission — gate-refusing them at draft time pays back many-fold.</p>
+</section>
+<section id="what-this-pattern-protects-against" class="level4" data-number="5.10.4.7">
+<h4 data-number="5.10.4.7" class="anchored" data-anchor-id="what-this-pattern-protects-against"><span class="header-section-number">5.10.4.7</span> What this pattern protects against</h4>
+<ul>
+<li><strong>HARKing</strong> (Hypothesising After Results are Known) — the preregistered hypothesis pins the directional claim before observation.</li>
+<li><strong>p-hacking</strong> — the named estimator + named multiple-comparison plan removes the discretion that produces inflated false-positive rates.</li>
+<li><strong>Forking paths</strong> — every data-dependent choice is either declared MUST or disclosed as exploratory.</li>
+<li><strong>Selective reporting</strong> — the data-sharing plan + named robustness specifications make selective reporting visible to referees.</li>
+</ul>
+<p>For econometrics, see Christensen &amp; Miguel (2018) on transparency in development economics. For political science, see <a href="https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/research-preregistration-in-political-science/">Monogan (2015)</a> on the political-science case. For psychology, see the OSF Preregistration Guide.</p>
+</section>
+</section>
+<section id="pattern-17-large-datasets" class="level3" data-number="5.10.5">
+<h3 data-number="5.10.5" class="anchored" data-anchor-id="pattern-17-large-datasets"><span class="header-section-number">5.10.5</span> Pattern 17: Large Datasets, Unstructured Filings &amp; Out-of-Core Processing</h3>
+<p><strong>Principle:</strong> When building empirical datasets from raw financial text (SEC EDGAR filings, regulatory disclosures) or multi-gigabyte databases, keep heavy data processing out-of-core and structured. Do not feed raw data directly into the model’s context window.</p>
+<section id="unstructured-to-structured-pipelines-e.g.-sec-edgar" class="level4" data-number="5.10.5.1">
+<h4 data-number="5.10.5.1" class="anchored" data-anchor-id="unstructured-to-structured-pipelines-e.g.-sec-edgar"><span class="header-section-number">5.10.5.1</span> 1. Unstructured to Structured Pipelines (e.g.&nbsp;SEC EDGAR)</h4>
+<ul>
+<li><strong>Interactive Plan-First Design:</strong> Use <code>/interview-me</code> or interactive plan mode to define table schemas and parsing logic <em>before</em> writing scraper scripts.</li>
+<li><strong>Scraping &amp; Parsing Rules:</strong> Write deterministic Python/R scripts to download raw HTML/XML filings, parse structured fields (items, tables, notes), and output clean Parquet or SQLite files.</li>
+<li><strong>Validation Gates:</strong> Inspect intermediate parsing reports before running full batch extractions.</li>
+</ul>
+</section>
+<section id="large-dataset-processing-duckdb-polars" class="level4" data-number="5.10.5.2">
+<h4 data-number="5.10.5.2" class="anchored" data-anchor-id="large-dataset-processing-duckdb-polars"><span class="header-section-number">5.10.5.2</span> 2. Large Dataset Processing (DuckDB &amp; Polars)</h4>
+<ul>
+<li><strong>Out-of-Core Execution:</strong> Use <strong>DuckDB</strong> or <strong>Polars</strong> for large academic datasets that exceed RAM capacity.</li>
+<li><strong>Query Aggregation:</strong> Let the agent write SQL/Polars queries to summarize, index, and join massive tables on disk. Feed only summarized tables or regression-ready samples into statistical models (R <code>fixest</code>, Stata, or Python <code>statsmodels</code>).</li>
+<li><strong>Context Isolation:</strong> Keeps the agent’s context window lightweight and prevents out-of-memory crashes during large data transformations.</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/04-building-blocks.html" class="pagination-link" aria-label="The Building Blocks">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/06-ecosystem.html" class="pagination-link" aria-label="The Ecosystem: What Others Have Built">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
