@@ -5,17 +5,28 @@ permalink: /practice-notes/
 author_profile: true
 ---
 
-<div class="wordwrap">Practitioner-journal publications and applied commentary live here, separate from academic research.</div>
+<div class="wordwrap">Bridging research and practice: translating accounting scholarship into tools and insights practitioners can use.</div>
 
 {% include base_path %}
 
-{% assign practice_notes = site.publications | where: "category", "practice_notes" | reverse %}
+{% assign practice_notes = site.data.practice-notes %}
 {% if practice_notes.size == 0 %}
   <p>No practice notes yet. Practitioner-journal publications and applied commentary will appear here.</p>
 {% else %}
-  {% for post in practice_notes %}
-    {% if post.published != false %}
-      {% include archive-single.html %}
-    {% endif %}
+  {% for note in practice_notes %}
+    <div class="list__item">
+      <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <h2 class="archive__item-title" itemprop="headline">{{ note.title | markdownify | remove: "<p>" | remove: "</p>" }}</h2>
+        {% if note.status %}
+        <p class="page__meta"><i class="fa fa-fw fa-tag" aria-hidden="true"></i> {{ note.status }}</p>
+        {% endif %}
+        {% if note.authors %}
+        <p class="archive__item-authors"><strong>Authors:</strong> {{ note.authors | markdownify | remove: "<p>" | remove: "</p>" }}</p>
+        {% endif %}
+        {% if note.excerpt %}
+        <p class="archive__item-excerpt" itemprop="description">{{ note.excerpt | markdownify }}</p>
+        {% endif %}
+      </article>
+    </div>
   {% endfor %}
 {% endif %}
