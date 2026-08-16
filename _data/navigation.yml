@@ -13,6 +13,9 @@ main:
   - title: "Academic Research"
     url: /publications/
 
+  - title: "Practice Notes"
+    url: /practice-notes/
+
   - title: "Teaching"
     url: /teaching/    
 
