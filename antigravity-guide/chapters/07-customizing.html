@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Customizing for Your Domain – Agentic Workflows for Accounting Academics</title>
+<title>6&nbsp; Customizing for Your Domain – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -68,8 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/08-appendix.html" rel="next">
-<link href="../chapters/06-ecosystem.html" rel="prev">
+<link href="../chapters/06-ecosystem.html" rel="next">
+<link href="../chapters/05-workflow-patterns.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -113,57 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </head>
 
 <body class="nav-sidebar floating quarto-light">
-<!-- PASSWORD GATE START -->
-<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
-  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
-    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
-    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
-    <br/><br/>
-    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
-    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
-    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/antigravity-guide/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
-  </div>
-</div>
-<script>
-(function() {
-  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
-  bodyContent.forEach(function(el) { el.style.display = 'none'; });
-
-  function agUnlock() {
-    var pw = document.getElementById('ag-pw-input').value;
-    if (pw === 'ai2026') {
-      document.getElementById('ag-gate-overlay').style.display = 'none';
-      bodyContent.forEach(function(el) { el.style.display = ''; });
-      sessionStorage.setItem('ag-unlocked', 'true');
-    } else {
-      document.getElementById('ag-error-msg').style.display = 'block';
-      document.getElementById('ag-pw-input').value = '';
-      document.getElementById('ag-pw-input').focus();
-    }
-  }
-
-  if (sessionStorage.getItem('ag-unlocked') === 'true') {
-    document.getElementById('ag-gate-overlay').style.display = 'none';
-    bodyContent.forEach(function(el) { el.style.display = ''; });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('ag-unlock-btn');
-    var input = document.getElementById('ag-pw-input');
-    if (input) {
-      input.focus();
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') agUnlock();
-      });
-    }
-    if (btn) {
-      btn.addEventListener('click', agUnlock);
-    }
-  });
-})();
-</script>
-<!-- PASSWORD GATE END -->
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -172,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-customizing.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/07-customizing.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,28 +184,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -267,25 +227,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#step-1-build-your-knowledge-base" id="toc-step-1-build-your-knowledge-base" class="nav-link active" data-scroll-target="#step-1-build-your-knowledge-base"><span class="header-section-number">7.1</span> Step 1: Build Your Knowledge Base</a>
+  <li><a href="#step-1-build-your-knowledge-base" id="toc-step-1-build-your-knowledge-base" class="nav-link active" data-scroll-target="#step-1-build-your-knowledge-base"><span class="header-section-number">6.1</span> Step 1: Build Your Knowledge Base</a>
   <ul class="collapse">
-  <li><a href="#notation-registry" id="toc-notation-registry" class="nav-link" data-scroll-target="#notation-registry"><span class="header-section-number">7.1.1</span> Notation Registry</a></li>
-  <li><a href="#applications-database" id="toc-applications-database" class="nav-link" data-scroll-target="#applications-database"><span class="header-section-number">7.1.2</span> Applications Database</a></li>
-  <li><a href="#validated-design-principles" id="toc-validated-design-principles" class="nav-link" data-scroll-target="#validated-design-principles"><span class="header-section-number">7.1.3</span> Validated Design Principles</a></li>
+  <li><a href="#notation-registry" id="toc-notation-registry" class="nav-link" data-scroll-target="#notation-registry"><span class="header-section-number">6.1.1</span> Notation Registry</a></li>
+  <li><a href="#applications-database" id="toc-applications-database" class="nav-link" data-scroll-target="#applications-database"><span class="header-section-number">6.1.2</span> Applications Database</a></li>
+  <li><a href="#validated-design-principles" id="toc-validated-design-principles" class="nav-link" data-scroll-target="#validated-design-principles"><span class="header-section-number">6.1.3</span> Validated Design Principles</a></li>
   </ul></li>
-  <li><a href="#step-2-create-your-domain-reviewer" id="toc-step-2-create-your-domain-reviewer" class="nav-link" data-scroll-target="#step-2-create-your-domain-reviewer"><span class="header-section-number">7.2</span> Step 2: Create Your Domain Reviewer</a></li>
-  <li><a href="#step-3-adapt-your-theme" id="toc-step-3-adapt-your-theme" class="nav-link" data-scroll-target="#step-3-adapt-your-theme"><span class="header-section-number">7.3</span> Step 3: Adapt Your Theme</a></li>
-  <li><a href="#sec-create-skills" id="toc-sec-create-skills" class="nav-link" data-scroll-target="#sec-create-skills"><span class="header-section-number">7.4</span> Step 4: Creating Custom Skills</a>
+  <li><a href="#step-2-create-your-domain-reviewer" id="toc-step-2-create-your-domain-reviewer" class="nav-link" data-scroll-target="#step-2-create-your-domain-reviewer"><span class="header-section-number">6.2</span> Step 2: Create Your Domain Reviewer</a></li>
+  <li><a href="#step-3-adapt-your-theme" id="toc-step-3-adapt-your-theme" class="nav-link" data-scroll-target="#step-3-adapt-your-theme"><span class="header-section-number">6.3</span> Step 3: Adapt Your Theme</a></li>
+  <li><a href="#sec-create-skills" id="toc-sec-create-skills" class="nav-link" data-scroll-target="#sec-create-skills"><span class="header-section-number">6.4</span> Step 4: Creating Custom Skills</a>
   <ul class="collapse">
-  <li><a href="#when-to-create-a-skill" id="toc-when-to-create-a-skill" class="nav-link" data-scroll-target="#when-to-create-a-skill"><span class="header-section-number">7.4.1</span> When to Create a Skill</a></li>
-  <li><a href="#skill-structure" id="toc-skill-structure" class="nav-link" data-scroll-target="#skill-structure"><span class="header-section-number">7.4.2</span> Skill Structure</a></li>
-  <li><a href="#skill-frontmatter" id="toc-skill-frontmatter" class="nav-link" data-scroll-target="#skill-frontmatter"><span class="header-section-number">7.4.3</span> Complete Frontmatter Reference</a></li>
-  <li><a href="#skill-dynamic-content" id="toc-skill-dynamic-content" class="nav-link" data-scroll-target="#skill-dynamic-content"><span class="header-section-number">7.4.4</span> Dynamic Content in Skills</a></li>
-  <li><a href="#writing-effective-trigger-descriptions" id="toc-writing-effective-trigger-descriptions" class="nav-link" data-scroll-target="#writing-effective-trigger-descriptions"><span class="header-section-number">7.4.5</span> Writing Effective Trigger Descriptions</a></li>
-  <li><a href="#domain-specific-examples" id="toc-domain-specific-examples" class="nav-link" data-scroll-target="#domain-specific-examples"><span class="header-section-number">7.4.6</span> Domain-Specific Examples</a></li>
-  <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start"><span class="header-section-number">7.4.7</span> Quick Start</a></li>
+  <li><a href="#when-to-create-a-skill" id="toc-when-to-create-a-skill" class="nav-link" data-scroll-target="#when-to-create-a-skill"><span class="header-section-number">6.4.1</span> When to Create a Skill</a></li>
+  <li><a href="#skill-structure" id="toc-skill-structure" class="nav-link" data-scroll-target="#skill-structure"><span class="header-section-number">6.4.2</span> Skill Structure</a></li>
+  <li><a href="#skill-frontmatter" id="toc-skill-frontmatter" class="nav-link" data-scroll-target="#skill-frontmatter"><span class="header-section-number">6.4.3</span> Complete Frontmatter Reference</a></li>
+  <li><a href="#skill-dynamic-content" id="toc-skill-dynamic-content" class="nav-link" data-scroll-target="#skill-dynamic-content"><span class="header-section-number">6.4.4</span> Dynamic Content in Skills</a></li>
+  <li><a href="#writing-effective-trigger-descriptions" id="toc-writing-effective-trigger-descriptions" class="nav-link" data-scroll-target="#writing-effective-trigger-descriptions"><span class="header-section-number">6.4.5</span> Writing Effective Trigger Descriptions</a></li>
+  <li><a href="#domain-specific-examples" id="toc-domain-specific-examples" class="nav-link" data-scroll-target="#domain-specific-examples"><span class="header-section-number">6.4.6</span> Domain-Specific Examples</a></li>
+  <li><a href="#quick-start" id="toc-quick-start" class="nav-link" data-scroll-target="#quick-start"><span class="header-section-number">6.4.7</span> Quick Start</a></li>
   </ul></li>
-  <li><a href="#tips-from-6-sessions-of-iteration" id="toc-tips-from-6-sessions-of-iteration" class="nav-link" data-scroll-target="#tips-from-6-sessions-of-iteration"><span class="header-section-number">7.5</span> Tips from 6+ Sessions of Iteration</a></li>
+  <li><a href="#tips-from-6-sessions-of-iteration" id="toc-tips-from-6-sessions-of-iteration" class="nav-link" data-scroll-target="#tips-from-6-sessions-of-iteration"><span class="header-section-number">6.5</span> Tips from 6+ Sessions of Iteration</a></li>
   </ul>
 </nav>
     </div>
@@ -294,7 +254,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-customize" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></h1>
+<h1 class="title"><span id="sec-customize" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></h1>
 </div>
 
 
@@ -330,36 +290,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Forking for psych, sociology, public health, or other fields:</strong> add ~3 journal profiles, 2–3 paper types, 1 discipline card. The infrastructure (orchestrator, hooks, quality gates, peer-review pipeline) is field-agnostic and transfers without modification. The v2.0 backlog (<code>.agents/references/v2.0-backlog.md</code>) lists psychology, sociology, and public-health as candidate next breadth additions.</p>
 </div>
 </div>
-<section id="step-1-build-your-knowledge-base" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="step-1-build-your-knowledge-base"><span class="header-section-number">7.1</span> Step 1: Build Your Knowledge Base</h2>
+<section id="step-1-build-your-knowledge-base" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="step-1-build-your-knowledge-base"><span class="header-section-number">6.1</span> Step 1: Build Your Knowledge Base</h2>
 <p>The knowledge base (<code>.agents/rules/knowledge-base-template.md</code>) is the most domain-specific component — it’s a <a href="04-building-blocks.html#rules---domain-knowledge-that-auto-loads">path-scoped rule</a> that loads automatically when Gemini works on your content files. It provides skeleton tables for notation conventions, lecture progression, applications, design principles, anti-patterns, and R code pitfalls. Fill them in as you develop your project — you don’t need everything upfront.</p>
-<section id="notation-registry" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="notation-registry"><span class="header-section-number">7.1.1</span> Notation Registry</h3>
+<section id="notation-registry" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="notation-registry"><span class="header-section-number">6.1.1</span> Notation Registry</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Symbol <span class="pp">|</span> Meaning <span class="pp">|</span> Introduced <span class="pp">|</span> Anti-Pattern <span class="pp">|</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|--------|---------|------------|-------------|</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\beta$ <span class="pp">|</span> Regression coefficient <span class="pp">|</span> Lecture 1 <span class="pp">|</span> Don't use $b$ <span class="pp">|</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> $\hat{\theta}$ <span class="pp">|</span> Estimator <span class="pp">|</span> Lecture 2 <span class="pp">|</span> Don't use $\hat{\beta}$ for different estimand <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="applications-database" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="applications-database"><span class="header-section-number">7.1.2</span> Applications Database</h3>
+<section id="applications-database" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="applications-database"><span class="header-section-number">6.1.2</span> Applications Database</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Application <span class="pp">|</span> Paper <span class="pp">|</span> Dataset <span class="pp">|</span> Package <span class="pp">|</span> Lecture <span class="pp">|</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|------------|-------|---------|---------|--------|</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Minimum Wage <span class="pp">|</span> Card &amp; Krueger (1994) <span class="pp">|</span> NJ/PA fast food <span class="pp">|</span> <span class="in">`fixest`</span> <span class="pp">|</span> 3 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="validated-design-principles" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="validated-design-principles"><span class="header-section-number">7.1.3</span> Validated Design Principles</h3>
+<section id="validated-design-principles" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="validated-design-principles"><span class="header-section-number">6.1.3</span> Validated Design Principles</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Principle <span class="pp">|</span> Evidence <span class="pp">|</span> Lectures Applied <span class="pp">|</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|-----------|----------|-----------------|</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Motivation before formalism <span class="pp">|</span> DA challenge: "students lost" <span class="pp">|</span> All <span class="pp">|</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Max 3 new symbols per slide <span class="pp">|</span> Pedagogy review caught overload <span class="pp">|</span> 2, 4 <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="step-2-create-your-domain-reviewer" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="step-2-create-your-domain-reviewer"><span class="header-section-number">7.2</span> Step 2: Create Your Domain Reviewer</h2>
+<section id="step-2-create-your-domain-reviewer" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="step-2-create-your-domain-reviewer"><span class="header-section-number">6.2</span> Step 2: Create Your Domain Reviewer</h2>
 <p>Copy <code>.agents/agents/domain-reviewer.md</code> and customize the <a href="03-system-in-action.html#sec-domain-reviewer">5-lens framework</a> for your field. The template provides the structure; you fill in domain-specific checks.</p>
 </section>
-<section id="step-3-adapt-your-theme" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="step-3-adapt-your-theme"><span class="header-section-number">7.3</span> Step 3: Adapt Your Theme</h2>
+<section id="step-3-adapt-your-theme" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="step-3-adapt-your-theme"><span class="header-section-number">6.3</span> Step 3: Adapt Your Theme</h2>
 <p>The template includes matching LaTeX and Quarto palettes. To customize:</p>
 <ol type="1">
 <li>Edit <code>Preambles/header.tex</code> (Beamer/TikZ) <strong>and</strong> <code>Quarto/theme-template.scss</code> (Quarto) together — same color names, matching HEX values.</li>
@@ -369,16 +329,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p><strong>Palette contract.</strong> The core palette names (<code>primary-blue</code>, <code>primary-gold</code>, <code>highlight-yellow</code>, <code>light-bg</code>, <code>jet</code>) must exist on both surfaces. Snippets in <code>templates/tikz-snippets/</code> currently inline their colors for standalone compilation, but real lectures that <code>\input{header}</code> inherit the palette automatically. See <a href="../Preambles/README.md"><code>Preambles/README.md</code></a> for the full contract and TikZ style library.</p>
 </section>
-<section id="sec-create-skills" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="sec-create-skills"><span class="header-section-number">7.4</span> Step 4: Creating Custom Skills</h2>
+<section id="sec-create-skills" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-create-skills"><span class="header-section-number">6.4</span> Step 4: Creating Custom Skills</h2>
 <p>The guide includes 24 <a href="04-building-blocks.html#skills---reusable-slash-commands">skills</a> for common academic tasks. But if you have repetitive workflows specific to your domain, you can create your own.</p>
-<section id="when-to-create-a-skill" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="when-to-create-a-skill"><span class="header-section-number">7.4.1</span> When to Create a Skill</h3>
+<section id="when-to-create-a-skill" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="when-to-create-a-skill"><span class="header-section-number">6.4.1</span> When to Create a Skill</h3>
 <p>Create a skill when: - You repeatedly explain the same 3+ step workflow to Gemini - You need domain-specific quality checks (citation style, notation consistency, lab protocols) - You enforce field-specific output formats (thesis structure, journal templates) - You coordinate multi-tool workflows (data → analysis → manuscript)</p>
 <p><strong>Don’t create a skill for:</strong> - One-time tasks - Workflows that change frequently - Simple 1-2 step operations</p>
 </section>
-<section id="skill-structure" class="level3" data-number="7.4.2">
-<h3 data-number="7.4.2" class="anchored" data-anchor-id="skill-structure"><span class="header-section-number">7.4.2</span> Skill Structure</h3>
+<section id="skill-structure" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="skill-structure"><span class="header-section-number">6.4.2</span> Skill Structure</h3>
 <p>Each skill is a directory in <code>.agents/skills/</code> with a <code>SKILL.md</code> file:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> your-skill-name</span></span>
@@ -402,8 +362,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Error: <span class="co">[</span><span class="ot">Common error</span><span class="co">]</span></span>
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>Solution: <span class="co">[</span><span class="ot">How to fix</span><span class="co">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="skill-frontmatter" class="level3" data-number="7.4.3">
-<h3 data-number="7.4.3" class="anchored" data-anchor-id="skill-frontmatter"><span class="header-section-number">7.4.3</span> Complete Frontmatter Reference</h3>
+<section id="skill-frontmatter" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="skill-frontmatter"><span class="header-section-number">6.4.3</span> Complete Frontmatter Reference</h3>
 <p>The YAML frontmatter controls how your skill behaves. Here are all available fields:</p>
 <table class="caption-top table">
 <colgroup>
@@ -494,8 +454,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="skill-dynamic-content" class="level3" data-number="7.4.4">
-<h3 data-number="7.4.4" class="anchored" data-anchor-id="skill-dynamic-content"><span class="header-section-number">7.4.4</span> Dynamic Content in Skills</h3>
+<section id="skill-dynamic-content" class="level3" data-number="6.4.4">
+<h3 data-number="6.4.4" class="anchored" data-anchor-id="skill-dynamic-content"><span class="header-section-number">6.4.4</span> Dynamic Content in Skills</h3>
 <p>Skills can include dynamic values using string substitutions and live command output:</p>
 <p><strong>String substitutions:</strong></p>
 <table class="caption-top table">
@@ -541,8 +501,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>Available lectures: <span class="in">`!ls Slides/*.tex`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When Gemini loads the skill, it runs these commands and injects the live output into the skill text. This is powerful for skills that need to adapt to the current project state.</p>
 </section>
-<section id="writing-effective-trigger-descriptions" class="level3" data-number="7.4.5">
-<h3 data-number="7.4.5" class="anchored" data-anchor-id="writing-effective-trigger-descriptions"><span class="header-section-number">7.4.5</span> Writing Effective Trigger Descriptions</h3>
+<section id="writing-effective-trigger-descriptions" class="level3" data-number="6.4.5">
+<h3 data-number="6.4.5" class="anchored" data-anchor-id="writing-effective-trigger-descriptions"><span class="header-section-number">6.4.5</span> Writing Effective Trigger Descriptions</h3>
 <p>The <code>description</code> field is the single most important thing you write when creating a skill. Gemini reads the description of every available skill on every turn and uses it to decide whether to auto-invoke without the user typing a skill. A vague description means a skill that only runs when the user remembers its name — defeating the point of auto-invocation.</p>
 <p><strong>The gold-standard pattern has three parts:</strong></p>
 <ol type="1">
@@ -578,8 +538,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><label><input type="checkbox">Fits in roughly 2–4 lines (longer descriptions get truncated in Gemini’s skill index).</label></li>
 </ul>
 </section>
-<section id="domain-specific-examples" class="level3" data-number="7.4.6">
-<h3 data-number="7.4.6" class="anchored" data-anchor-id="domain-specific-examples"><span class="header-section-number">7.4.6</span> Domain-Specific Examples</h3>
+<section id="domain-specific-examples" class="level3" data-number="6.4.6">
+<h3 data-number="6.4.6" class="anchored" data-anchor-id="domain-specific-examples"><span class="header-section-number">6.4.6</span> Domain-Specific Examples</h3>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Econometrics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Experimental Sciences</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Literature Review</a></li></ul>
 <div class="tab-content">
@@ -604,8 +564,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="quick-start" class="level3" data-number="7.4.7">
-<h3 data-number="7.4.7" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">7.4.7</span> Quick Start</h3>
+<section id="quick-start" class="level3" data-number="6.4.7">
+<h3 data-number="6.4.7" class="anchored" data-anchor-id="quick-start"><span class="header-section-number">6.4.7</span> Quick Start</h3>
 <ol type="1">
 <li><p><strong>Copy the template:</strong></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .agents/skills/your-skill-name</span>
@@ -632,8 +592,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Full template:</strong> See <code>templates/skill-template.md</code> for comprehensive examples from biology, economics, and physics.</p>
 </section>
 </section>
-<section id="tips-from-6-sessions-of-iteration" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="tips-from-6-sessions-of-iteration"><span class="header-section-number">7.5</span> Tips from 6+ Sessions of Iteration</h2>
+<section id="tips-from-6-sessions-of-iteration" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="tips-from-6-sessions-of-iteration"><span class="header-section-number">6.5</span> Tips from 6+ Sessions of Iteration</h2>
 <ol type="1">
 <li><strong>Keep GEMINI.md under 150 lines.</strong> Gemini follows ~150 instructions reliably. A 400-line GEMINI.md means rules get silently ignored. Use path-scoped rules for detailed standards.</li>
 <li><strong>Add rules incrementally.</strong> Don’t try to write all rules upfront. Add them when you discover patterns. Use <code>paths:</code> frontmatter so they only load when relevant.</li>
@@ -658,8 +618,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>For capabilities beyond file editing and shell commands — web search during literature review, database queries for replication, or reference manager integration (Zotero, Mendeley) — Antigravity supports <a href="https://modelcontextprotocol.io">MCP servers</a>. Configure them in <code>.agents/settings.json</code> under <code>"mcpServers"</code>. Start with skills and agents first; add MCP when you need external integrations.</p>
-<section id="extending-with-plugins" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="extending-with-plugins"><span class="header-section-number">7.6</span> Extending with Plugins</h2>
+<section id="extending-with-plugins" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="extending-with-plugins"><span class="header-section-number">6.6</span> Extending with Plugins</h2>
 <p>Antigravity supports <strong>plugins</strong> — bundled collections of skills, agents, hooks, and MCP servers that can be installed from git repositories. Use <code>/plugin</code> to browse and manage plugins (it has a Discover tab for finding new ones). Plugins are a newer extension point; start with skills and rules (which you control entirely) before adopting third-party plugins.</p>
 </section>
 </div>
@@ -1072,13 +1032,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/06-ecosystem.html" class="pagination-link" aria-label="The Ecosystem: What Others Have Built">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span>
+      <a href="../chapters/05-workflow-patterns.html" class="pagination-link" aria-label="Workflow Patterns">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/08-appendix.html" class="pagination-link" aria-label="Appendix: File Reference">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/06-ecosystem.html" class="pagination-link" aria-label="Academic AI Setups &amp; Ecosystem">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

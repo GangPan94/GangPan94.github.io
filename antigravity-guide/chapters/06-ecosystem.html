@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; The Ecosystem: What Others Have Built – Agentic Workflows for Accounting Academics</title>
+<title>Appendix A — Academic AI Setups &amp; Ecosystem – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -68,8 +33,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/07-customizing.html" rel="next">
-<link href="../chapters/05-workflow-patterns.html" rel="prev">
+<link href="../chapters/08-appendix.html" rel="next">
+<link href="../chapters/07-customizing.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -113,57 +78,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </head>
 
 <body class="nav-sidebar floating quarto-light">
-<!-- PASSWORD GATE START -->
-<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
-  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
-    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
-    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
-    <br/><br/>
-    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
-    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
-    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/antigravity-guide/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
-  </div>
-</div>
-<script>
-(function() {
-  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
-  bodyContent.forEach(function(el) { el.style.display = 'none'; });
-
-  function agUnlock() {
-    var pw = document.getElementById('ag-pw-input').value;
-    if (pw === 'ai2026') {
-      document.getElementById('ag-gate-overlay').style.display = 'none';
-      bodyContent.forEach(function(el) { el.style.display = ''; });
-      sessionStorage.setItem('ag-unlocked', 'true');
-    } else {
-      document.getElementById('ag-error-msg').style.display = 'block';
-      document.getElementById('ag-pw-input').value = '';
-      document.getElementById('ag-pw-input').focus();
-    }
-  }
-
-  if (sessionStorage.getItem('ag-unlocked') === 'true') {
-    document.getElementById('ag-gate-overlay').style.display = 'none';
-    bodyContent.forEach(function(el) { el.style.display = ''; });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('ag-unlock-btn');
-    var input = document.getElementById('ag-pw-input');
-    if (input) {
-      input.focus();
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') agUnlock();
-      });
-    }
-    if (btn) {
-      btn.addEventListener('click', agUnlock);
-    }
-  });
-})();
-</script>
-<!-- PASSWORD GATE END -->
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -172,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-ecosystem.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-ecosystem.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/06-ecosystem.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,28 +149,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -267,28 +192,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#barrios-skills-empirical-economics-financial-disclosure-data-stack" id="toc-barrios-skills-empirical-economics-financial-disclosure-data-stack" class="nav-link active" data-scroll-target="#barrios-skills-empirical-economics-financial-disclosure-data-stack"><span class="header-section-number">6.1</span> barrios-skills: Empirical Economics, Financial Disclosure &amp; Data Stack</a></li>
-  <li><a href="#theorist-toolbox-mathematical-proofs-theoretical-architecture" id="toc-theorist-toolbox-mathematical-proofs-theoretical-architecture" class="nav-link" data-scroll-target="#theorist-toolbox-mathematical-proofs-theoretical-architecture"><span class="header-section-number">6.2</span> theorist-toolbox: Mathematical Proofs &amp; Theoretical Architecture</a></li>
-  <li><a href="#clo-author-paper-centric-research-workflows" id="toc-clo-author-paper-centric-research-workflows" class="nav-link" data-scroll-target="#clo-author-paper-centric-research-workflows"><span class="header-section-number">6.3</span> clo-author: Paper-Centric Research Workflows</a></li>
-  <li><a href="#claudeblattman-workflows-for-non-technical-academics" id="toc-claudeblattman-workflows-for-non-technical-academics" class="nav-link" data-scroll-target="#claudeblattman-workflows-for-non-technical-academics"><span class="header-section-number">6.4</span> claudeblattman: Workflows for Non-Technical Academics</a></li>
-  <li><a href="#xu-yang-2026-reproducibility-as-architecture" id="toc-xu-yang-2026-reproducibility-as-architecture" class="nav-link" data-scroll-target="#xu-yang-2026-reproducibility-as-architecture"><span class="header-section-number">6.5</span> Xu &amp; Yang (2026): Reproducibility as Architecture</a></li>
-  <li><a href="#mixtapetools-the-rhetoric-of-decks" id="toc-mixtapetools-the-rhetoric-of-decks" class="nav-link" data-scroll-target="#mixtapetools-the-rhetoric-of-decks"><span class="header-section-number">6.6</span> MixtapeTools: The Rhetoric of Decks</a></li>
-  <li><a href="#aea-data-editor-template" id="toc-aea-data-editor-template" class="nav-link" data-scroll-target="#aea-data-editor-template"><span class="header-section-number">6.7</span> AEA Data Editor Template</a></li>
-  <li><a href="#autoresearch-constraint-based-autonomous-research" id="toc-autoresearch-constraint-based-autonomous-research" class="nav-link" data-scroll-target="#autoresearch-constraint-based-autonomous-research"><span class="header-section-number">6.8</span> autoresearch: Constraint-Based Autonomous Research</a></li>
-  <li><a href="#stata-mcp-mcp-server-for-stata-execution" id="toc-stata-mcp-mcp-server-for-stata-execution" class="nav-link" data-scroll-target="#stata-mcp-mcp-server-for-stata-execution"><span class="header-section-number">6.9</span> stata-mcp: MCP server for Stata execution</a></li>
-  <li><a href="#geminicodetools-the-editor-persona" id="toc-geminicodetools-the-editor-persona" class="nav-link" data-scroll-target="#geminicodetools-the-editor-persona"><span class="header-section-number">6.10</span> GeminiCodeTools: The Editor Persona</a></li>
-  <li><a href="#a-causal-affair-ai-workflows-for-empirical-researchers" id="toc-a-causal-affair-ai-workflows-for-empirical-researchers" class="nav-link" data-scroll-target="#a-causal-affair-ai-workflows-for-empirical-researchers"><span class="header-section-number">6.11</span> A Causal Affair: AI Workflows for Empirical Researchers</a></li>
-  <li><a href="#antigravity-shipped-utilities" id="toc-antigravity-shipped-utilities" class="nav-link" data-scroll-target="#antigravity-shipped-utilities"><span class="header-section-number">6.12</span> Antigravity-Shipped Utilities</a></li>
-  <li><a href="#sec-community" id="toc-sec-community" class="nav-link" data-scroll-target="#sec-community"><span class="header-section-number">6.13</span> Community Adoption</a></li>
+  <li><a href="#empirical-economics-data-workflows" id="toc-empirical-economics-data-workflows" class="nav-link active" data-scroll-target="#empirical-economics-data-workflows"><span class="header-section-number">A.1</span> Empirical Economics &amp; Data Workflows</a></li>
+  <li><a href="#paper-writing-peer-review" id="toc-paper-writing-peer-review" class="nav-link" data-scroll-target="#paper-writing-peer-review"><span class="header-section-number">A.2</span> Paper Writing &amp; Peer Review</a></li>
+  <li><a href="#reproducibility-research-standards" id="toc-reproducibility-research-standards" class="nav-link" data-scroll-target="#reproducibility-research-standards"><span class="header-section-number">A.3</span> Reproducibility &amp; Research Standards</a></li>
+  <li><a href="#presentations-general-academic-life" id="toc-presentations-general-academic-life" class="nav-link" data-scroll-target="#presentations-general-academic-life"><span class="header-section-number">A.4</span> Presentations &amp; General Academic Life</a></li>
+  <li><a href="#cross-platform-migration-tools" id="toc-cross-platform-migration-tools" class="nav-link" data-scroll-target="#cross-platform-migration-tools"><span class="header-section-number">A.5</span> Cross-Platform Migration Tools</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-ecosystem.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/06-ecosystem.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-ecosystem" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></h1>
+<h1 class="title"><span id="sec-ecosystem" class="quarto-section-identifier">Appendix A — Academic AI Setups &amp; Ecosystem</span></h1>
 </div>
 
 
@@ -305,250 +222,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This repository provides the foundation — the infrastructure patterns (plan-first, orchestrator, quality gates, adversarial review, context survival) that work for any academic task. Others have taken these patterns further, building specialized workflows for specific needs. Here are the principles these projects share and how to apply them:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Principle</th>
-<th>Source</th>
-<th>How to Implement Here</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Adversarial review (not self-review)</td>
-<td>All</td>
-<td>Use fresh-context critique (<a href="05-workflow-patterns.html#pattern-8-devils-advocate">Pattern 8</a>) or worker-critic pairs</td>
-</tr>
-<tr class="even">
-<td>Structured intermediate files</td>
-<td>Xu &amp; Yang</td>
-<td>Save every computed object to disk; agents communicate via files</td>
-</tr>
-<tr class="odd">
-<td>Phase-appropriate rigor</td>
-<td>clo-author</td>
-<td>Light review for exploration (60/100), full adversarial for submission (95/100)</td>
-</tr>
-<tr class="even">
-<td>Voice preservation</td>
-<td>claudeblattman</td>
-<td>Maintain a reference doc with your writing style; load as context</td>
-</tr>
-<tr class="odd">
-<td>Template-executor separation</td>
-<td>Xu &amp; Yang</td>
-<td>Spec = what to measure, orchestrator = how to execute</td>
-</tr>
-<tr class="even">
-<td>Self-improving configuration</td>
-<td>claudeblattman</td>
-<td>Use <code>learn</code> to capture discoveries; review MEMORY.md periodically</td>
-</tr>
-<tr class="odd">
-<td>Human judgment, AI execution</td>
-<td>Xu &amp; Yang</td>
-<td>You design the diagnostic; Gemini runs it</td>
-</tr>
-<tr class="even">
-<td>Beauty is function</td>
-<td>MixtapeTools</td>
-<td>Every visual element earns its presence; decoration without function is noise</td>
-</tr>
-<tr class="odd">
-<td>Constraint-based autonomy</td>
-<td>autoresearch</td>
-<td>Define boundaries in Markdown (what CAN/CANNOT change); let Gemini explore within</td>
-</tr>
-<tr class="even">
-<td>Sequential independent audits</td>
-<td>GeminiCodeTools</td>
-<td>Run N blind audit passes; independence prevents groupthink (<a href="05-workflow-patterns.html#pattern-15-sequential-audits">Pattern 15</a>)</td>
-</tr>
-</tbody>
-</table>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Which Ecosystem Project Should I Start With?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you write <strong>papers</strong>: start with clo-author (adversarial review pairs) or GeminiCodeTools (seven-audit protocol, see <a href="05-workflow-patterns.html#pattern-15-sequential-audits">Pattern 15</a>). If you give <strong>presentations</strong>: MixtapeTools. If you run <strong>computational experiments</strong>: autoresearch. If you’re a <strong>non-technical academic</strong>: claudeblattman. All of them build on the same foundation patterns from this template — the <a href="03-system-in-action.html">orchestrator</a>, <a href="03-system-in-action.html#sec-quality">quality gates</a>, and <a href="03-system-in-action.html#the-adversarial-pattern-critic-fixer">adversarial review</a>.</p>
-</div>
-</div>
-<p>Here is what each project does and when you should use it.</p>
-<section id="barrios-skills-empirical-economics-financial-disclosure-data-stack" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="barrios-skills-empirical-economics-financial-disclosure-data-stack"><span class="header-section-number">6.1</span> barrios-skills: Empirical Economics, Financial Disclosure &amp; Data Stack</h2>
-<p><strong>Repository:</strong> <a href="https://github.com/Barrios88/barrios-skills">Barrios88/barrios-skills</a> <strong>Author:</strong> John Barrios (Washington University in St.&nbsp;Louis / University of Chicago) <strong>Focus:</strong> Empirical economics, accounting research, and financial data tools</p>
-<p>A curated collection of 70+ modular agent skills and MCP servers specifically tailored for empirical economics, corporate finance, and accounting research: - <strong>WRDS MCP &amp; Financial APIs:</strong> Built-in Wharton Research Data Services (WRDS) MCP server with SSH tunneling (), SEC EDGAR 10-K/10-Q/8-K filing extractor (), and financial NLP sentiment tools (). - <strong>Modern Python Data Stack:</strong> Specialized econometric and data processing skills including , , , , , , , and explainable AI (). - <strong>Cochrane Writing Craft:</strong> John Cochrane-inspired direct writing and de-fluffing rules (, , ) enforcing short sentences, active voice, concrete magnitudes, and em-dash removal. - <strong>Seminar Talks &amp; Discussant Decks:</strong> for paper-to-talk conversions, conference discussant decks, and timed speaker scripts.</p>
-</section>
-<section id="theorist-toolbox-mathematical-proofs-theoretical-architecture" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="theorist-toolbox-mathematical-proofs-theoretical-architecture"><span class="header-section-number">6.2</span> theorist-toolbox: Mathematical Proofs &amp; Theoretical Architecture</h2>
-<p><strong>Repository:</strong> <a href="https://github.com/morankor/theorist-toolbox">morankor/theorist-toolbox</a> <strong>Author:</strong> Moran Koren (Ben-Gurion University of the Negev) <strong>Focus:</strong> Theoretical economics, game theory, and mathematical proof automation</p>
-<p>An AI Co-Mathematician framework modelled on formal theorem proving and academic mathematical rigor: - <strong>Multi-Agent Proof Infrastructure:</strong> Specialist personas for theorem proving (), formal Lean 4 interactive theorem proving (), mathematical simulation (), and paper rigor auditing (). - <strong>Gap-Free Proof Tracking:</strong> and project scaffolding with strict LaTeX tracking macros and reasoning. - <strong>Proof Readability:</strong> skill for refining verified mathematical proofs into publication-ready exposition without altering analytical correctness.</p>
-</section>
-<section id="clo-author-paper-centric-research-workflows" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="clo-author-paper-centric-research-workflows"><span class="header-section-number">6.3</span> clo-author: Paper-Centric Research Workflows</h2>
-<p><strong>Repository:</strong> <a href="https://github.com/hugosantanna/clo-author">hugosantanna/clo-author</a> <strong>Author:</strong> Hugo Sant’Anna (UAB) <strong>Built on:</strong> Fork of this repository</p>
-<p>clo-author reorients the entire workflow from slides to <strong>research papers</strong>. The paper (<code>Paper/main.tex</code>) becomes the single source of truth; talks and supplements derive from it. The key architectural innovation is <strong>adversarial worker-critic agent pairs</strong>: every creative agent is paired with a dedicated critic agent, with strict separation of powers (critics never create, creators never self-score).</p>
-<p><strong>What it adds:</strong></p>
+<p>This appendix provides a curated directory of open-source setups, skill libraries, and workflow repositories developed by the academic community for economics, finance, and empirical research. You can explore or fork any of these repositories to add specialized capabilities to your project workspace.</p>
+<section id="empirical-economics-data-workflows" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="empirical-economics-data-workflows"><span class="header-section-number">A.1</span> Empirical Economics &amp; Data Workflows</h2>
 <ul>
-<li><strong>17 specialized agents</strong> organized as 6 worker-critic pairs (Librarian, Explorer, Strategist, Coder, Writer, Storyteller — each with a dedicated critic) plus standalone agents (data-engineer, domain-referee, methods-referee, orchestrator, verifier)</li>
-<li><strong>Phase-based severity gradient</strong> — critics are encouraging during Discovery, constructive during Strategy, strict during Execution, and adversarial during Peer Review</li>
-<li><strong>Weighted aggregate scoring</strong> with component minimums: Literature 10%, Data 10%, Identification 25%, Code 15%, Paper 25%, Polish 10%, Replication 5%. Submission gate (≥ 95) requires every component independently ≥ 80</li>
-<li><strong>Simulated blind peer review</strong> — two independent Referee agents plus an Editor making an editorial decision (Accept / Minor / Major / Reject)</li>
-<li><strong>Humanizer pass</strong> — identifies and strips 24 AI writing patterns across four categories (structural tics, lexical tells, rhetorical patterns, formatting tells)</li>
-<li><strong>Domain profile system</strong> — configurable field-specific calibration file read by all agents</li>
-<li><strong>Full submission pipeline</strong> — journal targeting, R&amp;R response routing (classifies referee comments as NEW ANALYSIS / CLARIFICATION / DISAGREE / MINOR), AEA replication compliance, pre-analysis plans, cover letter generation</li>
+<li><strong><a href="https://github.com/Barrios88/barrios-skills">Barrios88/barrios-skills</a></strong> <em>(John Barrios, Washington University in St.&nbsp;Louis)</em>: Over 70 modular skills and MCP servers for empirical economics, Wharton Research Data Services (WRDS) access, SEC EDGAR filing extraction, financial NLP, and John Cochrane-inspired writing rules.</li>
+<li><strong><a href="https://paulgp.substack.com/">A Causal Affair</a></strong> <em>(Paul Goldsmith-Pinkham, Yale School of Management)</em>: Practical essays and video series on agentic AI workflows, out-of-core data pipelines with DuckDB and Polars, and unstructured-to-structured database building.</li>
+<li><strong><a href="https://github.com/SepineTam/stata-mcp">SepineTam/stata-mcp</a></strong> <em>(SepineTam)</em>: A Model Context Protocol (MCP) server that enables AI agents to execute Stata <code>.do</code> files securely with command safeguards and memory monitoring.</li>
+<li><strong><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">meleantonio/awesome-econ-ai-stuff</a></strong> <em>(Antonio Mele, USI / Swiss Finance Institute)</em>: A curated directory of AI prompts, instructions, and workflows tailored for economics and finance researchers.</li>
 </ul>
-<p><strong>When to use it:</strong> Your primary output is research papers and you want production-grade infrastructure for the full lifecycle — from literature review through journal submission and revise-and-resubmit.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>clo-author v26.05 (May 2026)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>clo-author has shipped substantial post-v4 architecture. The current release (v26.05, 2026-05-10) adds:</p>
+</section>
+<section id="paper-writing-peer-review" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="paper-writing-peer-review"><span class="header-section-number">A.2</span> Paper Writing &amp; Peer Review</h2>
 <ul>
-<li><strong>MAS v2</strong> — second-generation multi-agent system with clearer worker/critic boundaries and phase-aware severity gradients</li>
-<li><strong>Skill-Centric Restructure</strong> — repository reorganised around 13 skills + 18 agents (up from 17 in the v4.x line)</li>
-<li><strong>HTML Dashboard</strong> — self-contained visual interface for tracking pipeline state across phases (no server required)</li>
+<li><strong><a href="https://github.com/hugosantanna/clo-author">hugosantanna/clo-author</a></strong> <em>(Hugo Sant’Anna, UAB)</em>: A paper-centric research workflow featuring adversarial worker-critic agent pairs, simulated peer review, and journal submission pipelines.</li>
+<li><strong><a href="https://github.com/aspi6246/GeminiCodeTools">aspi6246/GeminiCodeTools</a></strong>: Structured academic reviewer personas (“The Editor”) executing sequential multi-pass audits and referee report response routing.</li>
+<li><strong><a href="https://github.com/morankor/theorist-toolbox">morankor/theorist-toolbox</a></strong> <em>(Moran Koren, Ben-Gurion University)</em>: An AI co-mathematician framework for theoretical economics, game theory, and formal Lean 4 theorem proving.</li>
 </ul>
-<p>Patterns like <code>checkpoint</code> (originally adapted with permission from clo-author v4.2.0) trace to the earlier line; if you’re forking clo-author directly today, you get the MAS v2 / skill-centric layout.</p>
-</div>
-</div>
 </section>
-<section id="claudeblattman-workflows-for-non-technical-academics" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="claudeblattman-workflows-for-non-technical-academics"><span class="header-section-number">6.4</span> claudeblattman: Workflows for Non-Technical Academics</h2>
-<p><strong>Website:</strong> <a href="https://claudeblattman.com">claudeblattman.com</a> <strong>Repository:</strong> <a href="https://github.com/chrisblattman/claudeblattman">chrisblattman/claudeblattman</a> <strong>Author:</strong> Chris Blattman (University of Chicago)</p>
-<p>claudeblattman is a comprehensive guide for academics who do not write code, built by a political economist who describes himself as someone who “has never written a line of code.” It demonstrates that Antigravity workflows extend far beyond technical tasks into daily academic life.</p>
-<p><strong>What it adds:</strong></p>
+<section id="reproducibility-research-standards" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="reproducibility-research-standards"><span class="header-section-number">A.3</span> Reproducibility &amp; Research Standards</h2>
 <ul>
-<li><strong>Executive assistant workflows</strong> — morning briefings (weather, calendar, inbox, VIP tracking), smart email triage with 14 phases, daily check-in ritual, schedule queries, todo management</li>
-<li><strong>Proposal writing</strong> — donor profiles, voice packs (maintain consistent writing style across documents), template gates, resubmission handling with reviewer comment categorization</li>
-<li><strong>Fresh-context critique</strong> — the intellectual centerpiece: spin up a fresh-context agent to review your work without self-bias (see Pattern 8)</li>
-<li><strong>Agent debates</strong> — multiple agents with distinct identities argue about research design, producing genuinely novel perspectives (see Pattern 9)</li>
-<li><strong>Tips pipeline</strong> — self-improving system: capture tips by emailing yourself, <code>/tips-curate</code> quality-filters them, <code>/tips-integrate</code> converts them into concrete configuration changes</li>
-<li><strong>Depth calibration</strong> — Light/Standard/Deep thoroughness levels that prevent over-engineering simple requests</li>
-<li><strong>Graceful degradation</strong> — every skill works with partial infrastructure. Missing MCP integrations produce explanations, not errors</li>
-<li><strong>Writing style rules</strong> — numbers over adjectives, topic sentences make claims, no throat-clearing, hedge only with a reason or number</li>
+<li><strong><a href="https://github.com/social-science-data-editors/template_README">social-science-data-editors/template_README</a></strong> <em>(Lars Vilhuber, Cornell / AEA Data Editor)</em>: The official compliance template for replication packages across major economics and social science journals.</li>
+<li><strong><a href="https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf">Scaling Reproducibility Paper</a></strong> <em>(Yiqing Xu, Stanford &amp; Leo Yang Yang, HKBU)</em>: Foundational paper on template-executor architecture and automated replication auditing.</li>
 </ul>
-<p><strong>When to use it:</strong> You are new to Antigravity, want practical daily workflows beyond coding, or want to see how an academic non-programmer built a sophisticated system.</p>
 </section>
-<section id="xu-yang-2026-reproducibility-as-architecture" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="xu-yang-2026-reproducibility-as-architecture"><span class="header-section-number">6.5</span> Xu &amp; Yang (2026): Reproducibility as Architecture</h2>
-<p><strong>Paper:</strong> Yiqing Xu (Stanford) and Leo Yang Yang (HKBU), “<a href="https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf">Scaling Reproducibility: An AI-Assisted Workflow for Large-Scale Reanalysis</a>,” 2026.</p>
-<p>This paper formalizes many principles that this workflow uses intuitively. It demonstrates an AI-assisted pipeline that achieved <strong>100% reproducibility</strong> across 92 papers (215 specifications) — conditional on accessible data and code — with each paper processed in under four minutes.</p>
-<p><strong>Key principles:</strong></p>
+<section id="presentations-general-academic-life" class="level2" data-number="A.4">
+<h2 data-number="A.4" class="anchored" data-anchor-id="presentations-general-academic-life"><span class="header-section-number">A.4</span> Presentations &amp; General Academic Life</h2>
 <ul>
-<li><strong>Template-executor separation</strong> — humans design diagnostic templates (what to measure), AI handles execution (how to run it). Maps to our spec-then-plan workflow.</li>
-<li><strong>Three-layer architecture</strong> — LLM orchestrator (coordination) → skill descriptions and knowledge bases (contracts and accumulated experience) → deterministic agent code (numerical work). Maps to our orchestrator → skills/rules → agents.</li>
-<li><strong>Structured intermediate files</strong> — agents communicate through standardized files on disk (JSON, CSV, logs), not hidden state. Ensures every step is inspectable and rerunnable.</li>
-<li><strong>Version-controlled knowledge accumulation</strong> — SKILL.md files with Context/Problem/Fix/Impact format. Maps to our <code>learn</code> skill.</li>
-<li><strong>Adaptation between runs, not during runs</strong> — fixes are incorporated as version-controlled updates between sessions, never as ad hoc patches within a session. This ensures reproducibility.</li>
+<li><strong><a href="https://github.com/scunning1975/MixtapeTools">scunning1975/MixtapeTools</a></strong> <em>(Scott Cunningham, Baylor University)</em>: Presentation design philosophy (“The Rhetoric of Decks”), Beamer themes, and adversarial empirical auditing prompts.</li>
+<li><strong><a href="https://github.com/chrisblattman/claudeblattman">chrisblattman/claudeblattman</a></strong> <em>(Chris Blattman, University of Chicago / <a href="https://claudeblattman.com">claudeblattman.com</a>)</em>: Workflows for non-technical academics covering grant proposals, executive assistance, and fresh-context critique.</li>
+<li><strong><a href="https://github.com/karpathy/autoresearch">karpathy/autoresearch</a></strong> <em>(Andrej Karpathy)</em>: Constraint-based autonomous experimentation framework using Markdown constitutional rules (<code>program.md</code>).</li>
 </ul>
-<p><strong>When to reference it:</strong> You are designing a reproducibility workflow, building a replication package, or want to formalize the principles underlying this guide’s architecture.</p>
 </section>
-<section id="mixtapetools-the-rhetoric-of-decks" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="mixtapetools-the-rhetoric-of-decks"><span class="header-section-number">6.6</span> MixtapeTools: The Rhetoric of Decks</h2>
-<p><strong>Repository:</strong> <a href="https://github.com/scunning1975/MixtapeTools">scunning1975/MixtapeTools</a> <strong>Author:</strong> Scott Cunningham (Baylor University), author of <em>Causal Inference: The Mixtape</em></p>
-<p>MixtapeTools provides the philosophical and practical framework for academic presentation design (see Pattern 14). Beyond the Rhetoric of Decks, it includes:</p>
+<section id="cross-platform-migration-tools" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="cross-platform-migration-tools"><span class="header-section-number">A.5</span> Cross-Platform Migration Tools</h2>
 <ul>
-<li><strong>Referee 2</strong> — a systematic 5-audit adversarial protocol for reviewing and replicating empirical work</li>
-<li><strong>Deck generation prompt</strong> — a tested, customizable multi-agent prompt for creating Beamer decks (builder → rhetoric reviewer → graphics specialist)</li>
-<li><strong>Example decks</strong> with professional color palettes, custom ggplot2 themes (<code>theme_rhetoric()</code>), and complete Beamer templates</li>
-<li><strong>Zero-warning compilation standard</strong> — even 0.5pt overfull hbox must be fixed</li>
+<li><strong><a href="https://github.com/openai/skills/tree/HEAD/skills/.curated/migrate-to-codex">openai/skills (migrate-to-codex)</a></strong> <em>(OpenAI)</em>: Official curated migration skill to convert Claude Code or Cursor instructions and skills into native OpenAI Codex format (<code>AGENTS.md</code> and <code>.codex/</code> configs).</li>
 </ul>
-<p><strong>When to use it:</strong> You want to make your presentations genuinely beautiful and rhetorically effective, or you want a tested deck generation workflow for Antigravity.</p>
-</section>
-<section id="aea-data-editor-template" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="aea-data-editor-template"><span class="header-section-number">6.7</span> AEA Data Editor Template</h2>
-<p><strong>Website:</strong> <a href="https://social-science-data-editors.github.io/template_README/">social-science-data-editors.github.io/template_README</a> <strong>Repository:</strong> <a href="https://github.com/social-science-data-editors/template_README">social-science-data-editors/template_README</a> <strong>Maintainer:</strong> Lars Vilhuber (Cornell University) and editors from REStat, EJ, CJE</p>
-<p>The compliance standard for replication packages at 5+ major economics journals (see Pattern 13). Available in Markdown, Word, LaTeX, and PDF formats.</p>
-<p><strong>When to use it:</strong> You are preparing a replication package for journal submission and need the exact template that data editors will check against.</p>
-</section>
-<section id="autoresearch-constraint-based-autonomous-research" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="autoresearch-constraint-based-autonomous-research"><span class="header-section-number">6.8</span> autoresearch: Constraint-Based Autonomous Research</h2>
-<p><strong>Repository:</strong> <a href="https://github.com/karpathy/autoresearch">karpathy/autoresearch</a> <strong>Author:</strong> Andrej Karpathy</p>
-<p>An autonomous research agent that runs continuous experiments — modifying code, training models, and evaluating results — without human intervention. The key insight for academic workflows:</p>
-<ul>
-<li><strong><code>program.md</code> as a constitutional document</strong> — a single Markdown file defines what the agent CAN modify (architecture, hyperparameters), what it CANNOT (data pipeline, evaluation metric), and what success looks like (validation metric, lower is better)</li>
-<li><strong>Structured results logging</strong> — every experiment is recorded in a TSV file with branch name, metric, and status</li>
-<li><strong>Time-budgeted iterations</strong> — fixed training windows make experiments comparable</li>
-</ul>
-<p><strong>When to use it:</strong> You are running iterative computational experiments (Monte Carlo simulations, hyperparameter searches, model comparisons) and want Gemini to explore the space semi-autonomously within defined constraints.</p>
-<p><strong>Example:</strong> Adapting the <code>program.md</code> pattern for a Monte Carlo study:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># program.md — Monte Carlo Experiment Constraints</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## What You CAN Modify</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DGP parameters (sample sizes, effect sizes, correlation structures)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Estimator implementations (new methods, tuning parameters)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Number of replications (up to 10,000)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">## What You CANNOT Modify</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>prepare_data.R (data generation is frozen)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>evaluation metric (RMSE of ATT, lower is better)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Output format (results.tsv with columns: method, n, rmse, coverage)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Success Metric</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>RMSE of ATT estimate. Lower is better. Report coverage rate alongside.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="stata-mcp-mcp-server-for-stata-execution" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="stata-mcp-mcp-server-for-stata-execution"><span class="header-section-number">6.9</span> stata-mcp: MCP server for Stata execution</h2>
-<p><strong>Repository:</strong> <a href="https://github.com/SepineTam/stata-mcp">SepineTam/stata-mcp</a> <strong>Author:</strong> SepineTam (171+ stars, 91 releases, v1.17.3 as of May 2026)</p>
-<p>A mature MCP server that lets Antigravity execute Stata <code>.do</code> files via a command-guarded interface — refuses destructive shell ops (<code>!/shell/erase</code> etc.), monitors RAM, and pairs with the Stata Language Server. <strong>Install once per user:</strong> <code>antigravity mcp add stata-mcp --scope user -- uvx stata-mcp</code> (requires <code>uv</code> and a local Stata install).</p>
-<p><strong>Why it matters for this template:</strong> v1.9.0 added <a href="08-appendix.html"><code>stata-replication</code></a> for Stata-first projects, which depends on this MCP server. R-first projects (the original template focus) continue to use <a href="08-appendix.html"><code>data-analysis</code></a>; the two skills are parallel — same pipeline shape, different source language. AEA submissions where the original replication package is in Stata are the canonical use case.</p>
-<p>For end-to-end Stata workflows, see <a href=".agents/rules/stata-code-conventions.md"><code>.agents/rules/stata-code-conventions.md</code></a> (header scaffold, numbered pipeline, esttab tables, clustering discipline, AEA Data Editor compliance).</p>
-</section>
-<section id="geminicodetools-the-editor-persona" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="geminicodetools-the-editor-persona"><span class="header-section-number">6.10</span> GeminiCodeTools: The Editor Persona</h2>
-<p><strong>Repository:</strong> <a href="https://github.com/aspi6246/GeminiCodeTools">aspi6246/GeminiCodeTools</a></p>
-<p>A collection of Antigravity personas, including “The Editor” — a deeply structured academic paper reviewer that runs seven sequential audit passes (see <a href="05-workflow-patterns.html#pattern-15-sequential-audits">Pattern 15</a>). Notable features:</p>
-<ul>
-<li><strong>R&amp;R mode</strong> — tracks referee reports and cross-references each concern against revisions</li>
-<li><strong>Blunt, specific feedback</strong> — “This paragraph is incoherent” not “might benefit from clarity”</li>
-<li><strong>“So What” litmus test</strong> — five questions every paper must answer clearly</li>
-</ul>
-<p><strong>When to use it:</strong> You want a structured pre-submission paper review, or you’re responding to referee reports and need systematic tracking of which concerns have been addressed.</p>
-</section>
-<section id="a-causal-affair-ai-workflows-for-empirical-researchers" class="level2" data-number="6.11">
-<h2 data-number="6.11" class="anchored" data-anchor-id="a-causal-affair-ai-workflows-for-empirical-researchers"><span class="header-section-number">6.11</span> A Causal Affair: AI Workflows for Empirical Researchers</h2>
-<p><strong>Website / Substack:</strong> <a href="https://paulgp.substack.com/">A Causal Affair</a> <strong>Author:</strong> Paul Goldsmith-Pinkham (Yale School of Management)</p>
-<p>A practical essay and video series on applying agentic coding tools to empirical economics and financial research.</p>
-<p><strong>Key Contributions:</strong> - <strong>The AI Tool Ladder:</strong> Framework for shifting from chat copy-pasting to agentic workspace execution (see <a href="01-why-this-workflow.html#sec-ladder">Ladder of AI Tools</a>). - <strong>Unstructured Data to Structured Databases:</strong> Worked workflows for scraping SEC EDGAR 10-K filings, designing parsing schemas, and building relational databases (see <a href="05-workflow-patterns.html#pattern-17-large-datasets">Pattern 17</a>). - <strong>Out-of-Core Data Architecture:</strong> Techniques using DuckDB and Polars to handle large datasets without exhausting local RAM or LLM context limits. - <strong>Writing as Thinking:</strong> Strategies to use AI as a sounding board and banal task executor while preserving core human intellectual ownership and academic voice. - <strong>Permissions &amp; Sandboxing:</strong> Clear taxonomy of tool permission rules vs OS/Docker sandboxes for safe autonomous execution.</p>
-</section>
-<section id="antigravity-shipped-utilities" class="level2" data-number="6.12">
-<h2 data-number="6.12" class="anchored" data-anchor-id="antigravity-shipped-utilities"><span class="header-section-number">6.12</span> Antigravity-Shipped Utilities</h2>
-<p>These are first-party Antigravity commands you can invoke directly without forking anything. Worth knowing because they fill gaps this template intentionally doesn’t try to fill:</p>
-<ul>
-<li><strong><code>/team-onboarding</code></strong> — packages your local Antigravity setup (GEMINI.md, skills, agents, hooks, settings) into a replayable guide. Useful for lab groups: a PI configures the workflow once, the rest of the lab runs <code>/team-onboarding</code> and inherits a working copy. Complements but doesn’t replace this template’s “fork + customize” model.</li>
-<li><strong><code>/autofix-pr</code></strong> — runs Antigravity on a GitHub PR, applying typical CI-style fixes (lint, types, simple test failures). Pairs well with our <code>commit</code> flow if you push a PR and want a follow-up auto-cleanup pass before review.</li>
-<li><strong><code>/powerup</code></strong> — interactive lessons that teach Antigravity features (hooks, skills, MCP, plugins) with animated demos. Recommend this to new forkers who want to understand the <em>primitives</em> underneath the template’s customizations.</li>
-<li><strong>Ultraplan</strong> — draft a plan in the cloud from your CLI, review and comment on it in a web editor, then run it remotely or pull it back local. Useful for plans that need stakeholder review (e.g., a co-author signing off on an analysis approach before the actual run).</li>
-<li><strong><code>/loop</code> self-pacing</strong> — run a prompt or skill on a recurring interval, or omit the interval to let the model self-pace until a stopping condition is met. Useful for status-polling tasks (“check the deploy every 5 minutes”) that pair with background tasks. The alias <code>/proactive</code> is also supported.</li>
-<li><strong><code>/goal &lt;verifiable condition&gt;</code></strong> — the “keep working until X holds” command. Gemini continues across turns until a fast model confirms the condition is satisfied. Distinct from <code>/loop</code> (which is interval-based) and from plan mode (which approves a strategy rather than enforcing an outcome). Pairs naturally with <code>commit</code>’s quality gates: <code>/goal "all sections pass verify-claims with no HIGH-WARN findings"</code> then commit. Works in interactive, <code>antigravity -p</code>, and Remote Control.</li>
-<li><strong><code>antigravity agents</code></strong> — one-screen dashboard for all background sessions. Replaces the multi-terminal pattern for parallel review work. Directly aligned with our <code>review-paper --peer</code> and <code>qa-quarto</code> parallel-reviewer setup; you can launch the referees and watch their progress from a single view.</li>
-<li><strong><code>/fewer-permission-prompts</code></strong> — scans recent transcripts for read-only Bash and MCP calls and proposes a project-local allowlist. Sibling to our <code>permission-check</code>: <code>permission-check</code> <em>diagnoses</em> the prompt-fatigue source, <code>/fewer-permission-prompts</code> <em>remediates</em> it.</li>
-</ul>
-<p>These are external to this template — invoke directly, no installation needed. Mention them as off-ramps when this template’s scope doesn’t fit.</p>
-</section>
-<section id="sec-community" class="level2" data-number="6.13">
-<h2 data-number="6.13" class="anchored" data-anchor-id="sec-community"><span class="header-section-number">6.13</span> Community Adoption</h2>
-<p>As of March 2026, <strong>15+ research groups</strong> across multiple disciplines have forked and adapted this workflow for their own projects:</p>
-<ul>
-<li><strong>Economics</strong> — China innovation policy, mental health and layoffs, AIGC and stock prices, capital/labor shares in healthcare</li>
-<li><strong>Energy</strong> — Nepal and global energy economics, PV module reliability</li>
-<li><strong>Teaching</strong> — ECN 152 course development</li>
-</ul>
-<p>Each adaptation follows the same pattern: fork the template, fill in <code>GEMINI.md</code> placeholders, customize the domain reviewer, and add field-specific skills. The infrastructure (orchestrator, hooks, quality gates) transfers without modification.</p>
 
 
 </section>
@@ -956,13 +667,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/05-workflow-patterns.html" class="pagination-link" aria-label="Workflow Patterns">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span>
+      <a href="../chapters/07-customizing.html" class="pagination-link" aria-label="Customizing for Your Domain">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/07-customizing.html" class="pagination-link" aria-label="Customizing for Your Domain">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/08-appendix.html" class="pagination-link" aria-label="Appendix: File Reference">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

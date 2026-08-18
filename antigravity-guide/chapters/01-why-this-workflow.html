@@ -149,28 +149,39 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -227,19 +238,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Work in Progress
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This guide and the associated Antigravity workflow configurations are actively in development. The patterns described here represent the current frontier of AI-assisted academic research.</p>
-</div>
-</div>
 <section id="sec-goal" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="sec-goal"><span class="header-section-number">1.1</span> The Goal of This Guide</h2>
 <p>The goal of this project is simple: <strong>to help our accounting academic colleagues and friends get started with agentic AI to aid their research as quickly as possible.</strong></p>
@@ -322,7 +320,7 @@ Note
 <blockquote class="blockquote">
 <p>“Six months of convergence has settled the shape of the agentic coding tool and turned the next phase into a contest over the harness, the price, and the habits a team builds around one product.”</p>
 </blockquote>
-<p>This article is a good summary of the current landscape of agentic coding tools. Currently, Claude Code is more popular among academics. The primary reason we invest the effort in building this setup is to lower the risk that users are hung up to one service provider. By building a highly modular, system-agnostic foundation, you can easily port your rules, memory, and workflows to other providers if needed.</p>
+<p>This article is a good summary of the current landscape of agentic coding tools. Currently, Claude Code is popular among academics. A key reason we emphasize structured rules, persistent memory, and modular skills is to reduce provider lock-in—making it far easier to adapt your core workflows across tools as platforms evolve.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

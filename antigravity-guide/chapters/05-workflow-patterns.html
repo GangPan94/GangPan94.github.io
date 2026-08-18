@@ -68,7 +68,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/06-ecosystem.html" rel="next">
+<link href="../chapters/07-customizing.html" rel="next">
 <link href="../chapters/04-building-blocks.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -113,57 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </head>
 
 <body class="nav-sidebar floating quarto-light">
-<!-- PASSWORD GATE START -->
-<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
-  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
-    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
-    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
-    <br/><br/>
-    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
-    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
-    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/antigravity-guide/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
-  </div>
-</div>
-<script>
-(function() {
-  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
-  bodyContent.forEach(function(el) { el.style.display = 'none'; });
-
-  function agUnlock() {
-    var pw = document.getElementById('ag-pw-input').value;
-    if (pw === 'ai2026') {
-      document.getElementById('ag-gate-overlay').style.display = 'none';
-      bodyContent.forEach(function(el) { el.style.display = ''; });
-      sessionStorage.setItem('ag-unlocked', 'true');
-    } else {
-      document.getElementById('ag-error-msg').style.display = 'block';
-      document.getElementById('ag-pw-input').value = '';
-      document.getElementById('ag-pw-input').focus();
-    }
-  }
-
-  if (sessionStorage.getItem('ag-unlocked') === 'true') {
-    document.getElementById('ag-gate-overlay').style.display = 'none';
-    bodyContent.forEach(function(el) { el.style.display = ''; });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('ag-unlock-btn');
-    var input = document.getElementById('ag-pw-input');
-    if (input) {
-      input.focus();
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') agUnlock();
-      });
-    }
-    if (btn) {
-      btn.addEventListener('click', agUnlock);
-    }
-  });
-})();
-</script>
-<!-- PASSWORD GATE END -->
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -235,28 +184,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -2152,8 +2112,8 @@ research-spec.md  ─────────────→  preregistration-dr
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/06-ecosystem.html" class="pagination-link" aria-label="The Ecosystem: What Others Have Built">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/07-customizing.html" class="pagination-link" aria-label="Customizing for Your Domain">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

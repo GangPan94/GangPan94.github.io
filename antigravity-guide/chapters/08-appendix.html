@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Appendix: File Reference – Agentic Workflows for Accounting Academics</title>
+<title>Appendix B — Appendix: File Reference – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/09-acknowledgments.html" rel="next">
-<link href="../chapters/07-customizing.html" rel="prev">
+<link href="../chapters/06-ecosystem.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -113,57 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </head>
 
 <body class="nav-sidebar floating quarto-light">
-<!-- PASSWORD GATE START -->
-<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
-  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
-    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
-    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
-    <br/><br/>
-    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
-    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
-    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/antigravity-guide/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
-  </div>
-</div>
-<script>
-(function() {
-  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
-  bodyContent.forEach(function(el) { el.style.display = 'none'; });
-
-  function agUnlock() {
-    var pw = document.getElementById('ag-pw-input').value;
-    if (pw === 'ai2026') {
-      document.getElementById('ag-gate-overlay').style.display = 'none';
-      bodyContent.forEach(function(el) { el.style.display = ''; });
-      sessionStorage.setItem('ag-unlocked', 'true');
-    } else {
-      document.getElementById('ag-error-msg').style.display = 'block';
-      document.getElementById('ag-pw-input').value = '';
-      document.getElementById('ag-pw-input').focus();
-    }
-  }
-
-  if (sessionStorage.getItem('ag-unlocked') === 'true') {
-    document.getElementById('ag-gate-overlay').style.display = 'none';
-    bodyContent.forEach(function(el) { el.style.display = ''; });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('ag-unlock-btn');
-    var input = document.getElementById('ag-pw-input');
-    if (input) {
-      input.focus();
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') agUnlock();
-      });
-    }
-    if (btn) {
-      btn.addEventListener('click', agUnlock);
-    }
-  });
-})();
-</script>
-<!-- PASSWORD GATE END -->
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -172,7 +121,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/08-appendix.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-ecosystem.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/08-appendix.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -235,28 +184,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -267,20 +227,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#all-agents" id="toc-all-agents" class="nav-link active" data-scroll-target="#all-agents"><span class="header-section-number">8.1</span> All Agents</a></li>
-  <li><a href="#all-skills" id="toc-all-skills" class="nav-link" data-scroll-target="#all-skills"><span class="header-section-number">8.2</span> All Skills</a></li>
-  <li><a href="#all-rules" id="toc-all-rules" class="nav-link" data-scroll-target="#all-rules"><span class="header-section-number">8.3</span> All Rules</a></li>
-  <li><a href="#hooks" id="toc-hooks" class="nav-link" data-scroll-target="#hooks"><span class="header-section-number">8.4</span> Hooks</a></li>
-  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">8.5</span> Troubleshooting</a>
+  <li><a href="#all-agents" id="toc-all-agents" class="nav-link active" data-scroll-target="#all-agents"><span class="header-section-number">B.1</span> All Agents</a></li>
+  <li><a href="#all-skills" id="toc-all-skills" class="nav-link" data-scroll-target="#all-skills"><span class="header-section-number">B.2</span> All Skills</a></li>
+  <li><a href="#all-rules" id="toc-all-rules" class="nav-link" data-scroll-target="#all-rules"><span class="header-section-number">B.3</span> All Rules</a></li>
+  <li><a href="#hooks" id="toc-hooks" class="nav-link" data-scroll-target="#hooks"><span class="header-section-number">B.4</span> Hooks</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting"><span class="header-section-number">B.5</span> Troubleshooting</a>
   <ul class="collapse">
-  <li><a href="#latex-wont-compile" id="toc-latex-wont-compile" class="nav-link" data-scroll-target="#latex-wont-compile"><span class="header-section-number">8.5.1</span> LaTeX Won’t Compile</a></li>
-  <li><a href="#quarto-wont-render" id="toc-quarto-wont-render" class="nav-link" data-scroll-target="#quarto-wont-render"><span class="header-section-number">8.5.2</span> Quarto Won’t Render</a></li>
-  <li><a href="#hooks-not-firing" id="toc-hooks-not-firing" class="nav-link" data-scroll-target="#hooks-not-firing"><span class="header-section-number">8.5.3</span> Hooks Not Firing</a></li>
-  <li><a href="#gemini-ignores-rules" id="toc-gemini-ignores-rules" class="nav-link" data-scroll-target="#gemini-ignores-rules"><span class="header-section-number">8.5.4</span> Gemini Ignores Rules</a></li>
-  <li><a href="#context-lost-after-compaction" id="toc-context-lost-after-compaction" class="nav-link" data-scroll-target="#context-lost-after-compaction"><span class="header-section-number">8.5.5</span> Context Lost After Compaction</a></li>
-  <li><a href="#quality-score-too-low" id="toc-quality-score-too-low" class="nav-link" data-scroll-target="#quality-score-too-low"><span class="header-section-number">8.5.6</span> Quality Score Too Low</a></li>
-  <li><a href="#skills-not-auto-invoked" id="toc-skills-not-auto-invoked" class="nav-link" data-scroll-target="#skills-not-auto-invoked"><span class="header-section-number">8.5.7</span> Skills Not Auto-Invoked</a></li>
-  <li><a href="#plans-saved-to-wrong-directory" id="toc-plans-saved-to-wrong-directory" class="nav-link" data-scroll-target="#plans-saved-to-wrong-directory"><span class="header-section-number">8.5.8</span> Plans Saved to Wrong Directory</a></li>
+  <li><a href="#latex-wont-compile" id="toc-latex-wont-compile" class="nav-link" data-scroll-target="#latex-wont-compile"><span class="header-section-number">B.5.1</span> LaTeX Won’t Compile</a></li>
+  <li><a href="#quarto-wont-render" id="toc-quarto-wont-render" class="nav-link" data-scroll-target="#quarto-wont-render"><span class="header-section-number">B.5.2</span> Quarto Won’t Render</a></li>
+  <li><a href="#hooks-not-firing" id="toc-hooks-not-firing" class="nav-link" data-scroll-target="#hooks-not-firing"><span class="header-section-number">B.5.3</span> Hooks Not Firing</a></li>
+  <li><a href="#gemini-ignores-rules" id="toc-gemini-ignores-rules" class="nav-link" data-scroll-target="#gemini-ignores-rules"><span class="header-section-number">B.5.4</span> Gemini Ignores Rules</a></li>
+  <li><a href="#context-lost-after-compaction" id="toc-context-lost-after-compaction" class="nav-link" data-scroll-target="#context-lost-after-compaction"><span class="header-section-number">B.5.5</span> Context Lost After Compaction</a></li>
+  <li><a href="#quality-score-too-low" id="toc-quality-score-too-low" class="nav-link" data-scroll-target="#quality-score-too-low"><span class="header-section-number">B.5.6</span> Quality Score Too Low</a></li>
+  <li><a href="#skills-not-auto-invoked" id="toc-skills-not-auto-invoked" class="nav-link" data-scroll-target="#skills-not-auto-invoked"><span class="header-section-number">B.5.7</span> Skills Not Auto-Invoked</a></li>
+  <li><a href="#plans-saved-to-wrong-directory" id="toc-plans-saved-to-wrong-directory" class="nav-link" data-scroll-target="#plans-saved-to-wrong-directory"><span class="header-section-number">B.5.8</span> Plans Saved to Wrong Directory</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -288,9 +248,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-ecosystem.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/08-appendix.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-appendix" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></h1>
+<h1 class="title"><span id="sec-appendix" class="quarto-section-identifier">Appendix B — Appendix: File Reference</span></h1>
 </div>
 
 
@@ -307,8 +267,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="all-agents" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="all-agents"><span class="header-section-number">8.1</span> All Agents</h2>
+<section id="all-agents" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="all-agents"><span class="header-section-number">B.1</span> All Agents</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 31%">
@@ -436,8 +396,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="all-skills" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="all-skills"><span class="header-section-number">8.2</span> All Skills</h2>
+<section id="all-skills" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="all-skills"><span class="header-section-number">B.2</span> All Skills</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -1035,8 +995,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="all-rules" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="all-rules"><span class="header-section-number">8.3</span> All Rules</h2>
+<section id="all-rules" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="all-rules"><span class="header-section-number">B.3</span> All Rules</h2>
 <p><strong>Always-on</strong> (load every session):</p>
 <table class="caption-top table">
 <colgroup>
@@ -1202,8 +1162,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="hooks" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="hooks"><span class="header-section-number">8.4</span> Hooks</h2>
+<section id="hooks" class="level2" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="hooks"><span class="header-section-number">B.4</span> Hooks</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -1323,45 +1283,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="troubleshooting" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">8.5</span> Troubleshooting</h2>
-<section id="latex-wont-compile" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="latex-wont-compile"><span class="header-section-number">8.5.1</span> LaTeX Won’t Compile</h3>
+<section id="troubleshooting" class="level2" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="troubleshooting"><span class="header-section-number">B.5</span> Troubleshooting</h2>
+<section id="latex-wont-compile" class="level3" data-number="B.5.1">
+<h3 data-number="B.5.1" class="anchored" data-anchor-id="latex-wont-compile"><span class="header-section-number">B.5.1</span> LaTeX Won’t Compile</h3>
 <p><strong>Symptom:</strong> <code>xelatex</code> errors or missing packages.</p>
 <p><strong>Fix:</strong> 1. Check you have XeLaTeX installed: <code>which xelatex</code> 2. Ensure <code>TEXINPUTS</code> includes <code>Preambles/</code>: the <code>compile-latex</code> skill handles this 3. Missing package? Install via TeX Live: <code>tlmgr install [package]</code></p>
 </section>
-<section id="quarto-wont-render" class="level3" data-number="8.5.2">
-<h3 data-number="8.5.2" class="anchored" data-anchor-id="quarto-wont-render"><span class="header-section-number">8.5.2</span> Quarto Won’t Render</h3>
+<section id="quarto-wont-render" class="level3" data-number="B.5.2">
+<h3 data-number="B.5.2" class="anchored" data-anchor-id="quarto-wont-render"><span class="header-section-number">B.5.2</span> Quarto Won’t Render</h3>
 <p><strong>Symptom:</strong> <code>quarto render</code> fails or produces broken HTML.</p>
 <p><strong>Fix:</strong> 1. Check Quarto version: <code>quarto --version</code> (need 1.3+) 2. Check for syntax errors in YAML frontmatter 3. Missing TikZ SVGs? Run <code>extract-tikz</code> first</p>
 </section>
-<section id="hooks-not-firing" class="level3" data-number="8.5.3">
-<h3 data-number="8.5.3" class="anchored" data-anchor-id="hooks-not-firing"><span class="header-section-number">8.5.3</span> Hooks Not Firing</h3>
+<section id="hooks-not-firing" class="level3" data-number="B.5.3">
+<h3 data-number="B.5.3" class="anchored" data-anchor-id="hooks-not-firing"><span class="header-section-number">B.5.3</span> Hooks Not Firing</h3>
 <p><strong>Symptom:</strong> No context warnings, no verification reminders.</p>
 <p><strong>Fix:</strong> 1. Check hooks are configured: <code>cat .agents/settings.json | grep hooks</code> 2. Ensure Python 3 is available: <code>which python3</code> 3. Check hook file permissions: <code>ls -la .agents/hooks/</code></p>
 </section>
-<section id="gemini-ignores-rules" class="level3" data-number="8.5.4">
-<h3 data-number="8.5.4" class="anchored" data-anchor-id="gemini-ignores-rules"><span class="header-section-number">8.5.4</span> Gemini Ignores Rules</h3>
+<section id="gemini-ignores-rules" class="level3" data-number="B.5.4">
+<h3 data-number="B.5.4" class="anchored" data-anchor-id="gemini-ignores-rules"><span class="header-section-number">B.5.4</span> Gemini Ignores Rules</h3>
 <p><strong>Symptom:</strong> Gemini doesn’t follow conventions in <code>.agents/rules/</code>.</p>
 <p><strong>Fix:</strong> 1. Rules use <code>paths:</code> frontmatter — check the path matches your files 2. Too many rules? Gemini follows ~150 instructions reliably. Consolidate. 3. Try: <em>“Read <code>.agents/rules/[rule].md</code> and follow it for this task”</em></p>
 </section>
-<section id="context-lost-after-compaction" class="level3" data-number="8.5.5">
-<h3 data-number="8.5.5" class="anchored" data-anchor-id="context-lost-after-compaction"><span class="header-section-number">8.5.5</span> Context Lost After Compaction</h3>
+<section id="context-lost-after-compaction" class="level3" data-number="B.5.5">
+<h3 data-number="B.5.5" class="anchored" data-anchor-id="context-lost-after-compaction"><span class="header-section-number">B.5.5</span> Context Lost After Compaction</h3>
 <p><strong>Symptom:</strong> Gemini forgets what you were working on.</p>
 <p><strong>Fix:</strong> 1. Point Gemini to the plan: <em>“Read <code>quality_reports/plans/[latest].md</code>”</em> 2. Check session log: <em>“Read <code>quality_reports/session_logs/[latest].md</code>”</em> 3. The <code>post-compact-restore.py</code> hook should print recovery info automatically</p>
 </section>
-<section id="quality-score-too-low" class="level3" data-number="8.5.6">
-<h3 data-number="8.5.6" class="anchored" data-anchor-id="quality-score-too-low"><span class="header-section-number">8.5.6</span> Quality Score Too Low</h3>
+<section id="quality-score-too-low" class="level3" data-number="B.5.6">
+<h3 data-number="B.5.6" class="anchored" data-anchor-id="quality-score-too-low"><span class="header-section-number">B.5.6</span> Quality Score Too Low</h3>
 <p><strong>Symptom:</strong> Score stuck below 80, can’t commit.</p>
 <p><strong>Fix:</strong> 1. Run <code>slide-excellence</code> to get detailed issue breakdown 2. Fix critical issues first (they cost -10 to -20 points each) 3. Ask Gemini: <em>“What are the remaining critical issues?”</em></p>
 </section>
-<section id="skills-not-auto-invoked" class="level3" data-number="8.5.7">
-<h3 data-number="8.5.7" class="anchored" data-anchor-id="skills-not-auto-invoked"><span class="header-section-number">8.5.7</span> Skills Not Auto-Invoked</h3>
+<section id="skills-not-auto-invoked" class="level3" data-number="B.5.7">
+<h3 data-number="B.5.7" class="anchored" data-anchor-id="skills-not-auto-invoked"><span class="header-section-number">B.5.7</span> Skills Not Auto-Invoked</h3>
 <p><strong>Symptom:</strong> Gemini doesn’t use skills when you describe a task.</p>
 <p><strong>Fix:</strong> 1. Be explicit in your request: <em>“Review my slides for grammar and layout issues”</em> 2. Check skill has auto-invocation enabled (no <code>disable-model-invocation: true</code>) 3. Skill descriptions help Gemini know when to use them — check they’re clear</p>
 </section>
-<section id="plans-saved-to-wrong-directory" class="level3" data-number="8.5.8">
-<h3 data-number="8.5.8" class="anchored" data-anchor-id="plans-saved-to-wrong-directory"><span class="header-section-number">8.5.8</span> Plans Saved to Wrong Directory</h3>
+<section id="plans-saved-to-wrong-directory" class="level3" data-number="B.5.8">
+<h3 data-number="B.5.8" class="anchored" data-anchor-id="plans-saved-to-wrong-directory"><span class="header-section-number">B.5.8</span> Plans Saved to Wrong Directory</h3>
 <p><strong>Symptom:</strong> Plans save to <code>~/.agents/plans/</code> instead of your project directory. Can’t track plans in git.</p>
 <p><strong>Fix:</strong> Add to <code>.agents/settings.json</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
@@ -1776,13 +1736,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/07-customizing.html" class="pagination-link" aria-label="Customizing for Your Domain">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span>
+      <a href="../chapters/06-ecosystem.html" class="pagination-link" aria-label="Academic AI Setups &amp; Ecosystem">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/09-acknowledgments.html" class="pagination-link" aria-label="Standing on Shoulders">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -113,57 +113,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </head>
 
 <body class="nav-sidebar floating quarto-light">
-<!-- PASSWORD GATE START -->
-<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
-  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
-    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
-    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
-    <br/><br/>
-    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
-    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
-    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/antigravity-guide/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
-  </div>
-</div>
-<script>
-(function() {
-  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
-  bodyContent.forEach(function(el) { el.style.display = 'none'; });
-
-  function agUnlock() {
-    var pw = document.getElementById('ag-pw-input').value;
-    if (pw === 'ai2026') {
-      document.getElementById('ag-gate-overlay').style.display = 'none';
-      bodyContent.forEach(function(el) { el.style.display = ''; });
-      sessionStorage.setItem('ag-unlocked', 'true');
-    } else {
-      document.getElementById('ag-error-msg').style.display = 'block';
-      document.getElementById('ag-pw-input').value = '';
-      document.getElementById('ag-pw-input').focus();
-    }
-  }
-
-  if (sessionStorage.getItem('ag-unlocked') === 'true') {
-    document.getElementById('ag-gate-overlay').style.display = 'none';
-    bodyContent.forEach(function(el) { el.style.display = ''; });
-  }
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('ag-unlock-btn');
-    var input = document.getElementById('ag-pw-input');
-    if (input) {
-      input.focus();
-      input.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') agUnlock();
-      });
-    }
-    if (btn) {
-      btn.addEventListener('click', agUnlock);
-    }
-  });
-})();
-</script>
-<!-- PASSWORD GATE END -->
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -235,28 +184,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Ecosystem: What Others Have Built</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -267,13 +227,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#day-1-checklist" id="toc-day-1-checklist" class="nav-link active" data-scroll-target="#day-1-checklist"><span class="header-section-number">2.1</span> Day 1 Checklist</a></li>
-  <li><a href="#sec-sample-prompts" id="toc-sec-sample-prompts" class="nav-link" data-scroll-target="#sec-sample-prompts"><span class="header-section-number">2.2</span> Sample Prompts</a>
+  <li><a href="#sec-install-harness" id="toc-sec-install-harness" class="nav-link active" data-scroll-target="#sec-install-harness"><span class="header-section-number">2.1</span> Choosing and Installing Your Harness</a></li>
+  <li><a href="#sec-create-project" id="toc-sec-create-project" class="nav-link" data-scroll-target="#sec-create-project"><span class="header-section-number">2.2</span> Creating a New Project in Your Harness</a>
   <ul class="collapse">
-  <li><a href="#sec-first-session" id="toc-sec-first-session" class="nav-link" data-scroll-target="#sec-first-session"><span class="header-section-number">2.2.1</span> The Starter Prompt</a></li>
-  <li><a href="#research-positioning-interview" id="toc-research-positioning-interview" class="nav-link" data-scroll-target="#research-positioning-interview"><span class="header-section-number">2.2.2</span> Research Positioning Interview</a></li>
+  <li><a href="#sec-start-conversing" id="toc-sec-start-conversing" class="nav-link" data-scroll-target="#sec-start-conversing"><span class="header-section-number">2.2.1</span> You Can Start Conversing Right Away!</a></li>
+  <li><a href="#sec-why-setup" id="toc-sec-why-setup" class="nav-link" data-scroll-target="#sec-why-setup"><span class="header-section-number">2.2.2</span> Why Use a Developed Setup Instead of an Empty Folder?</a></li>
   </ul></li>
-  <li><a href="#sec-spec-then-plan" id="toc-sec-spec-then-plan" class="nav-link" data-scroll-target="#sec-spec-then-plan"><span class="header-section-number">2.3</span> Requirements Specification (For Complex Tasks)</a></li>
+  <li><a href="#sec-companion-tools" id="toc-sec-companion-tools" class="nav-link" data-scroll-target="#sec-companion-tools"><span class="header-section-number">2.3</span> Recommended Companion Tools</a></li>
+  <li><a href="#sec-adopt-setup" id="toc-sec-adopt-setup" class="nav-link" data-scroll-target="#sec-adopt-setup"><span class="header-section-number">2.4</span> Adopting an Established Academic Setup</a>
+  <ul class="collapse">
+  <li><a href="#sec-fork-setup" id="toc-sec-fork-setup" class="nav-link" data-scroll-target="#sec-fork-setup"><span class="header-section-number">2.4.1</span> Forking the Setup: Your Own Personal Copy</a></li>
+  <li><a href="#the-zero-effort-setup-prompt" id="toc-the-zero-effort-setup-prompt" class="nav-link" data-scroll-target="#the-zero-effort-setup-prompt"><span class="header-section-number">2.4.2</span> The “Zero-Effort” Setup Prompt</a></li>
+  </ul></li>
+  <li><a href="#sec-first-session" id="toc-sec-first-session" class="nav-link" data-scroll-target="#sec-first-session"><span class="header-section-number">2.5</span> The Starter Prompt</a>
+  <ul class="collapse">
+  <li><a href="#why-are-we-doing-this" id="toc-why-are-we-doing-this" class="nav-link" data-scroll-target="#why-are-we-doing-this"><span class="header-section-number">2.5.1</span> Why Are We Doing This?</a></li>
+  </ul></li>
+  <li><a href="#sec-spec-then-plan" id="toc-sec-spec-then-plan" class="nav-link" data-scroll-target="#sec-spec-then-plan"><span class="header-section-number">2.6</span> Requirements Specification &amp; <code>/grill-me</code></a>
+  <ul class="collapse">
+  <li><a href="#the-grill-me-interactive-interview" id="toc-the-grill-me-interactive-interview" class="nav-link" data-scroll-target="#the-grill-me-interactive-interview"><span class="header-section-number">2.6.1</span> The <code>/grill-me</code> Interactive Interview</a></li>
+  <li><a href="#the-specification-document" id="toc-the-specification-document" class="nav-link" data-scroll-target="#the-specification-document"><span class="header-section-number">2.6.2</span> The Specification Document</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -299,108 +273,283 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>You need two things: access to the repo, and a session with Antigravity.</p>
-<section id="day-1-checklist" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="day-1-checklist"><span class="header-section-number">2.1</span> Day 1 Checklist</h2>
+<p>When adopting agentic workflows, <strong>success is determined mostly by whether you simply start using the tools or not.</strong></p>
+<p>The intricate mechanics and underlying details of how these tools work can come later. You do not need to master every concept upfront before getting value from them—especially given the fact that you can ask the AI to set itself up, configure your environment, and explain how everything works in real time.</p>
+<p>The intuition, knowledge, and practical skills required to steer agentic AI will grow organically through daily practice and active experimentation. It is far better to start using the tools as soon as possible on real research tasks rather than spending weeks memorizing abstract theories, frameworks, and terminology.</p>
+<p>To begin on Day 1, you fundamentally just need three things:</p>
+<ol type="1">
+<li><strong>Install an agentic AI managing software</strong> (the “harness”)</li>
+<li><strong>Create a project folder</strong> (or clone this repository)</li>
+<li><strong>Start a conversation</strong></li>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Day 1 Checklist
+<span class="screen-reader-only">Tip</span>Day 1 Quick-Start Checklist
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul class="task-list">
-<li><label><input type="checkbox">Clone the repo and open it in your IDE</label></li>
-<li><label><input type="checkbox">Launch Antigravity in the project directory</label></li>
-<li><label><input type="checkbox">Paste the Starter Prompt and fill in your project details</label></li>
-<li><label><input type="checkbox">Wait for Antigravity to build an <code>implementation_plan.md</code></label></li>
-<li><label><input type="checkbox">Approve the plan</label></li>
-<li><label><input type="checkbox">Ask Antigravity to do something: <em>“Review my slides”</em> or <em>“Create a lecture on [topic]”</em></label></li>
-<li><label><input type="checkbox">At session end, use the <code>update-memory</code> skill to persist decisions</label></li>
+<li><label><input type="checkbox"><strong>Step 1: Install your chosen desktop harness</strong> (<a href="https://antigravity.google/download">Google Antigravity</a>, <a href="https://claude.ai/download">Claude Desktop</a>, or <a href="https://openai.com/chatgpt/download/">ChatGPT Desktop</a>) — <a href="#sec-install-harness" class="quarto-xref"><span>Section 2.1</span></a></label></li>
+<li><label><input type="checkbox"><strong>Step 2: Open your project folder in your harness</strong> (or in VS Code) — <a href="#sec-create-project" class="quarto-xref"><span>Section 2.2</span></a> &amp; <a href="#sec-companion-tools" class="quarto-xref"><span>Section 2.3</span></a></label></li>
+<li><label><input type="checkbox"><strong>Step 3: (Recommended) Fork and import an established academic setup</strong> using the zero-effort prompt — <a href="#sec-adopt-setup" class="quarto-xref"><span>Section 2.4</span></a></label></li>
+<li><label><input type="checkbox"><strong>Step 4: Have your AI agent verify your local environment</strong> (Git, LaTeX, Quarto, empirical engines) using the helper prompts — <a href="#sec-companion-tools" class="quarto-xref"><span>Section 2.3</span></a></label></li>
+<li><label><input type="checkbox"><strong>Step 5: Paste the Starter Prompt</strong> into your fresh session to define your paper or lecture goals — <a href="#sec-first-session" class="quarto-xref"><span>Section 2.5</span></a></label></li>
+<li><label><input type="checkbox"><strong>Step 6: Review and approve the implementation plan</strong> (<code>implementation_plan.md</code>) generated by the agent before execution</label></li>
+<li><label><input type="checkbox"><strong>Step 7: Persist session decisions</strong> at the end of each session to <code>MEMORY.md</code> using <code>update-memory</code></label></li>
 </ul>
 </div>
 </div>
-</section>
-<section id="sec-sample-prompts" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-sample-prompts"><span class="header-section-number">2.2</span> Sample Prompts</h2>
-<p>To use these prompts, simply copy the text and paste it into your Antigravity chat.</p>
-<section id="sec-first-session" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="sec-first-session"><span class="header-section-number">2.2.1</span> The Starter Prompt</h3>
-<p>Paste the following into a fresh Antigravity session. Fill in the <strong>bolded placeholders</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>I am starting to work on **[PROJECT NAME]** in this repo.</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>**[Describe your project in 2–3 sentences — what you're building, who it's for,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>what tools you use (e.g., LaTeX/Beamer, R, Quarto, Stata).]**</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>I want our collaboration to follow the Agentic Workflow paradigm: plan-first,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>multi-agent verification, adversarial QA loops, and mandatory compilation checks</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>before any task is considered complete. I don't want to repeat myself — our</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>workflow should be smart about remembering decisions and learning from corrections.</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>The configuration files are in <span class="in">`.agents/skills/`</span>, <span class="in">`.agents/agents/`</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="in">`.agents/rules/`</span>, and <span class="in">`.agents/references/`</span>. Please read them, understand</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>the workflow, and **update all configuration to fit my project** — fill in</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>placeholders in <span class="in">`GEMINI.md`</span>, adjust rules if needed, and propose any</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>customizations specific to my use case.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>Use the plan-first workflow for all non-trivial tasks. Once I approve a plan,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>act as the Orchestrator: coordinate everything autonomously using subagents where</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>appropriate, only pausing when there is genuine ambiguity or a decision to make.</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>Enter plan mode and start by adapting the workflow configuration for this project.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="research-positioning-interview" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="research-positioning-interview"><span class="header-section-number">2.2.2</span> Research Positioning Interview</h3>
-<p>Use this prompt to align your fuzzy research idea against competitors and validate its contributions.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Run the <span class="in">`interview-me`</span> skill, but **OVERRIDE** your default interview phases and final deliverable template with the specific instructions below. </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>We are focusing strictly on crystallization and contribution, NOT data or identification.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>**Topic:** <span class="co">[</span><span class="ot">Paper Title</span><span class="co">]</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>**Core Idea:** <span class="co">[</span><span class="ot">Briefly describe the core idea or thesis</span><span class="co">]</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>**Context Files:**</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Manuscript: <span class="in">`[Path]`</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Project plan: <span class="in">`[Path]`</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Requirements spec: <span class="in">`[Path]`</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Custom Interview Phases (Replace default Phases 1-6)</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Walk me through these topics (still following your rule to ask one at a time and wait for my reply):</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Research Question:** State the RQ in one sentence. Probe on paper type classification and primary audience.</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Competitor Differentiation:** Walk me through how we differ from these papers (one by one):</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">Competitor 1</span><span class="co">]</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">Competitor 2</span><span class="co">]</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span><span class="co">[</span><span class="ot">Competitor 3</span><span class="co">]</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Contribution Pillars:** Validate our contribution to <span class="co">[</span><span class="ot">Field 1</span><span class="co">]</span>, <span class="co">[</span><span class="ot">Field 2</span><span class="co">]</span>, and <span class="co">[</span><span class="ot">Field 3</span><span class="co">]</span>.</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Methodology Scope:** Clarify decisions like <span class="co">[</span><span class="ot">insert specific methodological concerns, e.g., formal derivations or specific simulations</span><span class="co">]</span>.</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Custom Deliverable (Replace default Research Specification)</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>Once the interview is complete, do not use the default spec template. Instead, produce a **Research Positioning Statement** saved to <span class="in">`quality_reports/specs/research_positioning_[Topic_Name].md`</span> with exactly these sections:</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Final research question (1 sentence)</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Paper type classification</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Contribution statement (<span class="co">[</span><span class="ot">Number</span><span class="co">]</span> pillars)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Competitor differentiation matrix (table format)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Methodology scope decisions</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Target venue: <span class="co">[</span><span class="ot">Target Journal/Conference</span><span class="co">]</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>*(Note: The skill's mandatory Post-Flight Verification for citations still applies before saving).*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-</section>
-<section id="sec-spec-then-plan" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="sec-spec-then-plan"><span class="header-section-number">2.3</span> Requirements Specification (For Complex Tasks)</h2>
-<p>For complex or ambiguous tasks, Antigravity may ask 3-5 clarifying questions before planning. This catches ambiguity early and reduces rework.</p>
-<p>After clarifying questions, a specification document is saved to <code>quality_reports/specs/</code> with:</p>
+<section id="sec-install-harness" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-install-harness"><span class="header-section-number">2.1</span> Choosing and Installing Your Harness</h2>
+<p>You can choose any of the leading agentic coding harnesses. <strong>There is no need to purchase a new tool if you already have access to one</strong>—simply pick whichever software harness corresponds to the subscription you already own, or whichever platform is licensed and provided by your university, school, or research institution.</p>
+<p>While this guide uses Google Antigravity as its primary illustration and certain advanced features are tailored to it, the foundational workflow habits, prompt patterns, and plan-first principles translate well across major platforms:</p>
 <ul>
-<li><strong>MUST</strong> have (non-negotiable requirements)</li>
-<li><strong>SHOULD</strong> have (preferred features)</li>
-<li><strong>MAY</strong> have (optional enhancements)</li>
-<li><strong>Clarity status</strong> (CLEAR / ASSUMED / BLOCKED for each aspect)</li>
+<li><strong><a href="https://antigravity.google/download">Google Antigravity</a></strong>: Google’s agentic development environment and desktop application powered by Gemini frontier models.</li>
+<li><strong><a href="https://claude.ai/download">Claude Desktop</a></strong>: Anthropic’s official desktop application with local project integration.</li>
+<li><strong><a href="https://openai.com/chatgpt/download/">ChatGPT Desktop / Codex</a></strong>: OpenAI’s official desktop application and workspace environment.</li>
 </ul>
-<p>You approve the spec, then planning begins. This reduces mid-plan pivots significantly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Subscriptions vs.&nbsp;Free Tiers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Use What You Already Have:</strong> If you or your university already have a subscription (such as Google Workspace with Gemini / Gemini Advanced, ChatGPT Plus/Team/Edu, or Claude Pro/Team), start with that software harness.</li>
+<li><strong>Free Tiers:</strong> If you don’t have an active subscription yet, both Google Antigravity and OpenAI provide accessible free tiers to help you experiment with agentic workflows immediately at zero cost.</li>
+<li><strong>Recommended Approach (Subscriptions):</strong> For researchers setting up a personal account, we strongly recommend a standard <strong>monthly subscription</strong> rather than managing complex API keys and pay-per-token billing. Subscriptions provide predictable monthly costs, access to top-tier frontier reasoning models, higher usage allowances, and a seamless interface.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Built-in Sandboxing and File Safety
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The tools listed above all have a built-in sandbox environment. By default, the agent’s actions and file access are strictly scoped to your active project directory, ensuring that your other personal files and system directories on your computer will not be touched without your explicit permission.</p>
+</div>
+</div>
+</section>
+<section id="sec-create-project" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-create-project"><span class="header-section-number">2.2</span> Creating a New Project in Your Harness</h2>
+<p>Once you have installed your preferred desktop application, follow these simple steps to set up your project workspace:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Google Antigravity</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Claude Desktop</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">ChatGPT Desktop / OpenAI</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<ol type="1">
+<li><strong>Launch Google Antigravity</strong> on your computer.</li>
+<li><strong>Open Your Project Directory:</strong> Click <strong>“Open Folder”</strong> on the startup screen (or choose <code>File &gt; Open Folder...</code> from the top menu).</li>
+<li><strong>Select Your Folder:</strong> Choose the folder where you cloned this template repository (or select any research directory on your machine).</li>
+<li><strong>Automatic Workspace Setup:</strong> Antigravity immediately opens the workspace, scopes its secure sandbox to that folder, and detects existing configuration files (like <code>GEMINI.md</code> and <code>.agents/</code>).</li>
+<li><strong>Start Conversing:</strong> The agent chat panel is ready immediately—you can start conversing with the AI right away!</li>
+</ol>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<ol type="1">
+<li><strong>Launch Claude Desktop</strong> on your computer.</li>
+<li><strong>Navigate to Projects:</strong> Click on <strong>“Projects”</strong> in the left sidebar (available with Pro/Team/Edu subscriptions).</li>
+<li><strong>Create a Project:</strong> Click <strong>“Create Project”</strong> (or the <strong><code>+</code></strong> icon) and give it a name (e.g., <code>CEO-Turnover-Empirics</code> or <code>Accounting-Theory-Paper</code>).</li>
+<li><strong>Attach Files &amp; Context:</strong> Add your paper drafts, data files, or project guidelines to the project context. If using local filesystem connectors, link your project folder directly.</li>
+<li><strong>Start Conversing:</strong> Open a chat within that project to begin collaborating and chatting immediately.</li>
+</ol>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<ol type="1">
+<li><strong>Launch ChatGPT Desktop</strong> on your computer.</li>
+<li><strong>Open Projects / Workspaces:</strong> In the sidebar, select <strong>“Projects”</strong> (or use the Workspace / Canvas feature in Plus/Team/Edu plans).</li>
+<li><strong>Create New Project:</strong> Click <strong>“New Project”</strong>, name your research topic, and set your project-specific custom instructions.</li>
+<li><strong>Sync Project Files:</strong> Attach your working scripts, notes, or LaTeX documents to the project workspace.</li>
+<li><strong>Start Conversing:</strong> Open a chat inside the project to immediately begin the conversation.</li>
+</ol>
+</div>
+</div>
+</div>
+<section id="sec-start-conversing" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="sec-start-conversing"><span class="header-section-number">2.2.1</span> You Can Start Conversing Right Away!</h3>
+<p>Once your project workspace is open, you do not need to do any complex setup before getting started. You can immediately begin chatting with the AI—ask it questions, discuss your research ideas, or direct it to help draft your materials.</p>
+</section>
+<section id="sec-why-setup" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="sec-why-setup"><span class="header-section-number">2.2.2</span> Why Use a Developed Setup Instead of an Empty Folder?</h3>
+<p>While you can always start with an empty folder, using a <strong>developed setup</strong> offers key advantages:</p>
+<ol type="1">
+<li><strong>Eliminates Repetitive Prompting:</strong> You don’t have to repeatedly re-teach the AI your formatting preferences, notation rules, or coding standards across sessions.</li>
+<li><strong>Built-in Quality &amp; Error Prevention:</strong> The AI is pre-calibrated to follow rigorous review habits, catching typos, formatting flaws, and subtle errors automatically.</li>
+<li><strong>Cross-Session Memory:</strong> It preserves project decisions, notation preferences, and learned corrections so you never have to start from scratch each day.</li>
+<li><strong>Instant Productivity:</strong> You can skip hours of manual setup and immediately focus on the substantive research questions and creative ideas.</li>
+</ol>
+</section>
+</section>
+<section id="sec-companion-tools" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-companion-tools"><span class="header-section-number">2.3</span> Recommended Companion Tools</h2>
+<p>You likely already have your preferred empirical software (<strong>R</strong>, <strong>Stata</strong>, or <strong>Python</strong>) installed—your AI agent will connect directly to your existing environment. To streamline your collaboration with the agent, here are a few recommended companion tools:</p>
+<ul>
+<li><strong>Integrated Development Environment (IDE):</strong> <strong><a href="https://code.visualstudio.com/">VS Code</a></strong>
+<ul>
+<li><strong>Why use an IDE for your research projects?</strong> An IDE provides a clear visual picture of your entire project folder structure and gives you instant access to all scripts, datasets, and AI-generated files in one centralized window.</li>
+<li><strong>Integrated Harness Add-ons:</strong> You can install official extensions for your chosen AI harness directly from the VS Code Marketplace, letting you converse with the agent alongside side-by-side code diffs.</li>
+<li><strong>Built-in File Previews:</strong> By installing simple add-ons (such as a PDF viewer extension), you can preview compiled Beamer decks and papers directly inside the IDE without juggling external reader apps.</li>
+</ul></li>
+<li><strong>Version Control:</strong> <strong><a href="https://git-scm.com/">Git</a></strong> and optionally <strong><a href="https://desktop.github.com/">GitHub Desktop</a></strong> for project snapshots, safety checkpoints, and change history.</li>
+<li><strong>Voice-to-Text Dictation:</strong> <strong><a href="https://pipitvoice.com/">Pipit Voice</a></strong> (macOS) for local, zero-delay speech-to-text. Dictating instructions at natural speaking speed is significantly faster and more responsive than the built-in voice tools in most AI harnesses.</li>
+<li><strong>Document &amp; Presentation Compilers:</strong> <strong><a href="https://www.tug.org/mactex/">MacTeX</a></strong> / <strong><a href="https://miktex.org/">MiKTeX</a></strong> for LaTeX/Beamer and <strong><a href="https://quarto.org/docs/get-started/">Quarto CLI</a></strong> for web slides and reports.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Let AI Help You Set Up and Verify Your Tools
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You don’t need to configure your environment alone. You can copy and paste these two prompts into your AI agent:</p>
+<p><strong>Prompt 1: Setup &amp; Guide for Desktop / GUI Applications (Non-CLI)</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">Please check my operating system and verify if the following desktop software is installed:</span><span class="co"> VS Code, GitHub Desktop, MacTeX / MiKTeX, and Pipit Voice. For any missing software, provide the official download link and guide me step-by-step through the installation and initial configuration.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Prompt 2: Automated Installation for Command-Line Tools &amp; Packages (CLI)</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Please run terminal checks to see if Git, Quarto CLI, R, and Python are available on my machine. If any command-line tools or package managers (such as Homebrew on macOS or winget on Windows) are available, propose and execute the commands to install the missing tools and verify their versions for me.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</section>
+<section id="sec-adopt-setup" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-adopt-setup"><span class="header-section-number">2.4</span> Adopting an Established Academic Setup</h2>
+<p>You do not need to build rules, prompt libraries, and configuration files from scratch. The academic community has developed ready-to-use setups tailored to specific harnesses:</p>
+<ul>
+<li><strong>For Claude Code / Claude Desktop Users:</strong>
+<ul>
+<li>The vast majority of community academic setups in economics and finance have been built for Claude Code. Leading examples include <strong><a href="https://github.com/Barrios88/barrios-skills">Barrios88/barrios-skills</a></strong> by John Barrios (Washington University in St.&nbsp;Louis) for empirical economics, WRDS access, SEC EDGAR scraping, and slide workflows, and <strong><a href="https://github.com/hugosantanna/clo-author">hugosantanna/clo-author</a></strong> by Hugo Sant’Anna for paper-centric multi-agent writing and referee reviews.</li>
+</ul></li>
+<li><strong>For Google Antigravity Users:</strong>
+<ul>
+<li><strong><a href="https://github.com/GangPan94/AntigravitySetup">GangPan94/AntigravitySetup</a></strong> — The companion setup repository for this guide, tailored specifically to bring these academic workflows, <code>GEMINI.md</code>, 70+ academic skills, multi-agent adversarial reviews, and memory management into the Google Antigravity environment.</li>
+</ul></li>
+<li><strong>For OpenAI Codex / ChatGPT Users:</strong>
+<ul>
+<li>Because almost all open academic setups are currently created for Claude Code, OpenAI provides an official, curated migration skill called <strong><a href="https://github.com/openai/skills/tree/HEAD/skills/.curated/migrate-to-codex"><code>migrate-to-codex</code></a></strong> (part of the official <a href="https://github.com/openai/skills"><code>openai/skills</code></a> repository).</li>
+<li>This tool automates the transition of instructions (<code>CLAUDE.md</code>), skills, and configuration files from a Claude Code repository (such as <strong><a href="https://github.com/Barrios88/barrios-skills">Barrios88/barrios-skills</a></strong>) directly into native Codex format (<code>AGENTS.md</code> and <code>.codex/</code> configurations) with self-healing dry runs and validation. Alternatively, you can use the prompt below to let your Codex agent perform the conversion directly.</li>
+</ul></li>
+</ul>
+<section id="sec-fork-setup" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="sec-fork-setup"><span class="header-section-number">2.4.1</span> Forking the Setup: Your Own Personal Copy</h3>
+<p>Before importing a setup, you will need a free <strong><a href="https://github.com/">GitHub account</a></strong>. We strongly recommend that you <strong>fork</strong> the original repository to your own account first, and then provide the link to your fork.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What Does “Forking” Mean?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Think of a <strong>fork</strong> as making your own personal photocopy or working duplicate of someone else’s master binder.</p>
+<p>When you click the <strong>“Fork”</strong> button (located near the top-right corner of any GitHub repository page), GitHub creates an exact, independent copy of that entire project under your personal account (<code>https://github.com/your-username/repository-name</code>).</p>
+<p><strong>Why fork instead of using the original link directly?</strong></p>
+<ol type="1">
+<li><strong>Freedom to Customize:</strong> You can modify rules, add personal preferences, and change prompts without worrying about altering the original author’s repository.</li>
+<li><strong>Easy Upstream Updates:</strong> Whenever the original author releases new skills, bug fixes, or improved prompts, GitHub allows you to click <strong>“Sync fork”</strong> to pull in those updates with a single click.</li>
+<li><strong>Cloud Backup:</strong> Your customized academic setup is safely preserved in your own GitHub account across computers and research sessions.</li>
+</ol>
+</div>
+</div>
+</section>
+<section id="the-zero-effort-setup-prompt" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="the-zero-effort-setup-prompt"><span class="header-section-number">2.4.2</span> The “Zero-Effort” Setup Prompt</h3>
+<p>Once you have forked the repository, simply open your project folder in your chosen harness, paste the prompt below into chat, and provide the link to <strong>your forked repository</strong> (<code>https://github.com/your-username/your-repo-name</code>). The AI will configure and convert everything for you automatically:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="an">Please configure this project workspace by importing the academic setup and skills from my repository:</span><span class="co"> **[INSERT YOUR FORKED REPO LINK, e.g., https://github.com/your-username/AntigravitySetup]**.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Inspect the repository structure, copy over the skills (.agents/skills/ or .claude/skills/), preambles, and memory scaffolding into my active project folder, and convert the project constitution (such as CLAUDE.md or GEMINI.md) into the appropriate format for my current harness (e.g., AGENTS.md for Codex / ChatGPT, CLAUDE.md for Claude Code, or GEMINI.md for Antigravity). Do not overwrite or modify any existing research data files.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Explore More Community Setups
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To browse more field-specific setups, domain skill libraries (e.g., theoretical economics, presentation design, automated replication), or empirical data tools, see <strong><a href="../chapters/06-ecosystem.html">Appendix: Academic AI Setups &amp; Ecosystem</a></strong>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-first-session" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="sec-first-session"><span class="header-section-number">2.5</span> The Starter Prompt</h2>
+<p>When starting a project or initializing a fresh workspace, copy and paste the prompt below into your agent chat. Fill in the <strong>bolded placeholders</strong>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>I am starting to work on **[PROJECT NAME]** in this repo.</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>**[Describe your project in 2–3 sentences — what you're building, who it's for, what tools you use (e.g., LaTeX/Beamer, R, Quarto, Stata).]**</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>I want our collaboration to follow the Agentic Workflow paradigm: plan-first, multi-agent verification, adversarial QA loops, and mandatory compilation checks before any task is considered complete. I don't want to repeat myself — our workflow should be smart about remembering decisions and learning from corrections.</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>The configuration files are in <span class="in">`.agents/skills/`</span>, <span class="in">`.agents/agents/`</span>, <span class="in">`.agents/rules/`</span>, and <span class="in">`.agents/references/`</span>. Please read them, understand the workflow, and **update all configuration to fit my project** — fill in placeholders in <span class="in">`GEMINI.md`</span> (or <span class="in">`CLAUDE.md`</span> / <span class="in">`AGENTS.md`</span>), adjust rules if needed, and propose any customizations specific to my use case.</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>Use the plan-first workflow for all non-trivial tasks. Once I approve a plan, act as the Orchestrator: coordinate everything autonomously using subagents where appropriate, only pausing when there is genuine ambiguity or a decision to make.</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Enter plan mode and start by adapting the workflow configuration for this project.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="why-are-we-doing-this" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="why-are-we-doing-this"><span class="header-section-number">2.5.1</span> Why Are We Doing This?</h3>
+<p>While the prompt’s instructions are straightforward, one critical and non-obvious benefit is <strong>preventing tool-routing confusion and instruction bloat</strong>:</p>
+<ul>
+<li><strong>Tailoring Available Skills:</strong> Comprehensive academic setups often come with dozens of domain skills (e.g., WRDS financial access, Stata replication scripts, theorem proving, Beamer slide builders). Stating your project’s scope upfront allows the AI to focus on the skills relevant to your specific methodology and ignore unneeded tools.</li>
+<li><strong>Accurate Tool Routing:</strong> A curated, project-aligned configuration prevents the model from invoking the wrong tool or getting distracted by unrelated capabilities during complex research tasks.</li>
+<li><strong>Staying Within the Instruction Budget:</strong> Frontier language models reliably follow around 100–150 custom instructions at a time. Replacing generic template placeholders and tailoring the active rules ensures your project’s constitution (<code>GEMINI.md</code> / <code>CLAUDE.md</code> / <code>AGENTS.md</code>) remains lean and strictly followed.</li>
+</ul>
+<p><em>(We will revisit how skills, path-scoped rules, and context windows work in detail in <a href="04-building-blocks.html" class="quarto-xref"><span>Chapter 4</span></a>).</em></p>
+</section>
+</section>
+<section id="sec-spec-then-plan" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sec-spec-then-plan"><span class="header-section-number">2.6</span> Requirements Specification &amp; <code>/grill-me</code></h2>
+<p>For complex, creative, or ambiguous tasks (such as framing an empirical identification strategy, scoping a theoretical model, or structuring a new course syllabus), jumping straight into execution often leads to costly rework. The <strong>spec-then-plan</strong> pattern catches ambiguity before any files are created or modified.</p>
+<section id="the-grill-me-interactive-interview" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="the-grill-me-interactive-interview"><span class="header-section-number">2.6.1</span> The <code>/grill-me</code> Interactive Interview</h3>
+<p>When you have a rough idea that needs crystallization, you can invoke the <strong><code>/grill-me</code></strong> command (or prompt your agent: <em>“Grill me on this research idea before creating a plan”</em>):</p>
+<ul>
+<li><strong>One Question at a Time:</strong> The agent conducts a structured, multi-turn interview—asking probing questions about your research question, competitor differentiation, identification strategy, or methodology scope.</li>
+<li><strong>Surfacing Hidden Constraints:</strong> It pushes you to resolve critical design decisions and trade-offs upfront rather than encountering roadblocks mid-implementation.</li>
+</ul>
+</section>
+<section id="the-specification-document" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="the-specification-document"><span class="header-section-number">2.6.2</span> The Specification Document</h3>
+<p>Once the interview or clarifying questions are complete, the agent synthesizes your answers into a structured specification document saved to <code>quality_reports/specs/</code> containing:</p>
+<ul>
+<li><strong>MUST have:</strong> Non-negotiable requirements (e.g., specific estimators, sample filters, baseline controls)</li>
+<li><strong>SHOULD have:</strong> Preferred features and secondary robustness tests</li>
+<li><strong>MAY have:</strong> Optional extensions or exploratory analyses</li>
+<li><strong>Clarity status:</strong> <code>CLEAR</code>, <code>ASSUMED</code>, or <code>BLOCKED</code> for each component</li>
+</ul>
+<p>You review and approve this specification before planning begins. This spec-then-plan sequence drastically reduces mid-project pivots and ensures you and your agent are perfectly aligned.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Have You Asked Your Agent to Execute Your First Task Yet?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have already installed your harness, opened your project folder, and directed your agent to execute your very first task, <strong>congratulations—you are already 80% of the way toward mastering this workflow!</strong></p>
+<p>The remaining chapters will dive deeper into the architectural mechanics, multi-agent adversarial loops, and specialized research patterns, but the foundational habit of active, plan-first collaboration is already well underway.</p>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
