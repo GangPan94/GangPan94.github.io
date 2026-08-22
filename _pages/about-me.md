@@ -40,8 +40,8 @@ The College of Business Administration building of the University of Akron stand
 
 <figure class="half">
   <a href="https://commons.wikimedia.org/wiki/File:Greyhound_Bus_Terminal,_Akron,_Ohio_-_DPLA_-_af99959aa48df99d152880c360c1736c_(page_1).jpg"><img src="/images/greyhound-station-akron-1950.jpg" alt="Vintage postcard of the Greyhound bus terminal in Akron, Ohio, ca. 1950" /></a>
-  <a href="https://commons.wikimedia.org/wiki/File:University_of_Akron_-_DPLA_-_6940d5516d929d88ea9f675844e9199e_(page_1).jpg"><img src="/images/college-of-business-uakron.jpg" alt="College of Law and Business Administration building at the University of Akron, corner view showing the multi-tier layered structure" /></a>
-  <figcaption>The former Greyhound bus terminal in Akron (postcard, ca. 1950) and the College of Business Administration building on the same site. The multi-tier layered structure echoes the Streamline Moderne design of the original station. Photos via Wikimedia Commons / DPLA.</figcaption>
+  <img src="/images/college-of-business-uakron.jpg" alt="College of Business Administration building at the University of Akron, side view showing the multi-tier layered structure" />
+  <figcaption>The former Greyhound bus terminal in Akron (postcard, ca. 1950) and the College of Business Administration building on the same site today. The multi-tier layered structure echoes the Streamline Moderne design of the original station. Historical photo via Wikimedia Commons / DPLA; building photo via Google Street View.</figcaption>
 </figure>
 
 ---
