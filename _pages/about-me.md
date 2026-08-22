@@ -32,6 +32,20 @@ St. Louis is where my academic journey took shape. The faculty at WashU and the 
 
 ---
 
+## Home in Northeast Ohio
+
+I'm fortunate to join the faculty of the University of Akron after my graduation. Northeast Ohio is the ideal place to call home. This place combines the convenience of an urban area and accessibility to nature. The best thing of all is its affordability. Without that, I'm not able to build a residence of six cats. My biggest fear is that this place in the future becomes a destination of exodus, of people who live in other places that are less affordable.
+
+The College of Business Administration building of the University of Akron stands on the site of the former Greyhound bus terminal. The university acquired the site in 1986 and opened the building in 1991. The building today still shares some features of the station. The only similar station remaining is in downtown Cleveland, and I'm fortunate to have started a journey there on my way to my co-author's wedding. The station is now out of operation.
+
+<figure class="half">
+  <a href="https://commons.wikimedia.org/wiki/File:Greyhound_Bus_Terminal,_Akron,_Ohio_-_DPLA_-_af99959aa48df99d152880c360c1736c_(page_1).jpg"><img src="/images/greyhound-station-akron-1950.jpg" alt="Vintage postcard of the Greyhound bus terminal in Akron, Ohio, ca. 1950" /></a>
+  <a href="https://commons.wikimedia.org/wiki/File:University_of_Akron_-_DPLA_-_6940d5516d929d88ea9f675844e9199e_(page_1).jpg"><img src="/images/college-of-business-uakron.jpg" alt="College of Law and Business Administration building at the University of Akron, corner view showing the multi-tier layered structure" /></a>
+  <figcaption>The former Greyhound bus terminal in Akron (postcard, ca. 1950) and the College of Business Administration building on the same site. The multi-tier layered structure echoes the Streamline Moderne design of the original station. Photos via Wikimedia Commons / DPLA.</figcaption>
+</figure>
+
+---
+
 ## Life of "Meowtitasking"
 
 <img src="/images/cats/meowtitasking-six-cats.png" alt="Meowtitasking six-cats photo" style="float:right; max-width:300px; margin:0 0 12px 20px; border-radius:8px;" />
