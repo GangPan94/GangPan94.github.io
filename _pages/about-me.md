@@ -26,6 +26,8 @@ Want to see where I grew up? [Watch scenes from my hometown →](https://youtu.b
 
 ## St. Louis Raised
 
+<img src="/images/doctoral-graduation.png" alt="Doctoral graduation — green doctoral robes, blue velvet hood, black tam cap" style="float:right; max-width:300px; margin:0 0 12px 20px; border-radius:8px;" />
+
 St. Louis is where my academic journey took shape. The faculty at WashU and the intellectual environment there sharpened me as a scholar. What I found was a community of scholars who held research to a serious standard — who engaged substantively with early-stage work, pushed back in seminars, and invested time in a first-year PhD student's ideas. My PhD cohort matched that standard — sharp, generous peers who pushed each other's thinking and made the work better by being in the room. That standard of rigor and mentorship is what I now carry into my own teaching and advising. St. Louis gave me mentors worth emulating.
 
 ---
