@@ -133,7 +133,7 @@ Utils.clearElement = function (el) {
 /* --- Data Loading --- */
 
 /* Load JSON data from a URL via fetch (with cache-busting to prevent stale data) */
-Utils.CACHE_VERSION = "v23";
+Utils.CACHE_VERSION = "v22";
 Utils.loadJSON = function (url) {
   /* Append cache-busting query string to data files */
   var bustUrl = url + (url.indexOf("?") === -1 ? "?" : "&") + Utils.CACHE_VERSION;
