@@ -30,9 +30,7 @@ Want to see where I grew up? [Watch scenes from my hometown →](https://youtu.b
 
 St. Louis is where my academic journey took shape. The faculty at WashU and the intellectual environment there sharpened me as a scholar. What I found was a community of scholars who held research to a serious standard — who engaged substantively with early-stage work, pushed back in seminars, and invested time in a first-year PhD student's ideas. My PhD cohort matched that standard — sharp, generous peers who pushed each other's thinking and made the work better by being in the room. That standard of rigor and mentorship is what I now carry into my own teaching and advising. St. Louis gave me mentors worth emulating.
 
-### Food in Saint Louis
-
-I could tell you where to eat in St. Louis, but John already covered most of what I would mention — and there's simply no competing with a connoisseur of his caliber. [Check out his St. Louis restaurant guide →](https://bpb-us-e2.wpmucdn.com/sites.wustl.edu/dist/3/2139/files/2026/06/StL-Restaurant-Guide-2026.pages.pdf)
+[Food in Saint Louis →](/about/food-in-saint-louis/)
 
 ---
 
