@@ -1,0 +1,2058 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIFO vs. LIFO Interactive Teaching Simulator (Beta) | Accounting & Operations</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              900: '#14532d',
+            },
+            fifo: {
+              light: '#e0f2fe',
+              border: '#38bdf8',
+              badge: '#0284c7',
+              bg: '#0369a1',
+            },
+            lifo: {
+              light: '#fef3c7',
+              border: '#f59e0b',
+              badge: '#d97706',
+              bg: '#b45309',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Custom animations & aesthetics */
+    @keyframes slideInDown {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popOut {
+      from { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      to { transform: scale(1); }
+    }
+    @keyframes pulseHighlight {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+    }
+    .animate-enter { animation: slideInDown 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+    .animate-pop { animation: popOut 0.3s ease-in-out; }
+    .liquidation-pulse { animation: pulseHighlight 1.5s infinite; }
+    
+    /* Cost layer color coding */
+    .cost-tier-0 { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; }
+    .cost-tier-1 { background: linear-gradient(135deg, #06b6d4 0%, #0e7490 100%); color: white; }
+    .cost-tier-2 { background: linear-gradient(135deg, #10b981 0%, #047857 100%); color: white; }
+    .cost-tier-3 { background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); color: white; }
+    .cost-tier-4 { background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); color: white; }
+    .cost-tier-5 { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; }
+    
+    /* Presentation mode adjustments */
+    body.presentation-mode {
+      font-size: 1.15rem;
+    }
+    body.presentation-mode .hide-presentation {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="h-full bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
+
+  <!-- TOP NAVIGATION / HEADER -->
+  <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <!-- Logo & Title -->
+        <div class="flex items-center space-x-3">
+          <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-blue-500 flex items-center justify-center text-white shadow-md">
+            <i class="fa-solid fa-boxes-stacked text-lg"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">FIFO vs. LIFO Teaching Simulator</h1>
+              <span class="px-2 py-0.5 text-[11px] font-extrabold rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-700 uppercase tracking-wider">Beta</span>
+              <span class="px-2 py-0.5 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 hidden sm:inline">Accounting & Operations DES</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Interactive cost flow, LIFO reserve, tax shield, & discrete-event queuing dynamics</p>
+          </div>
+        </div>
+
+        <!-- Right utility controls -->
+        <div class="flex items-center space-x-2">
+          <!-- Quiz / Challenge Toggle -->
+          <button id="btn-quiz-mode" onclick="toggleQuizMode()" class="px-3 py-1.5 text-xs font-medium rounded-lg border border-purple-300 dark:border-purple-800 bg-purple-50 dark:bg-purple-950/50 text-purple-700 dark:text-purple-300 hover:bg-purple-100 transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-graduation-cap"></i> <span id="quiz-btn-label">Student Quiz Mode</span>
+          </button>
+          
+          <!-- Presentation Mode Toggle -->
+          <button onclick="togglePresentationMode()" class="px-3 py-1.5 text-xs font-medium rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-expand"></i> <span>Presentation View</span>
+          </button>
+
+          <!-- Dark/Light Mode -->
+          <button onclick="toggleDarkMode()" class="p-2 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+            <i class="fa-solid fa-moon dark:hidden"></i>
+            <i class="fa-solid fa-sun hidden dark:inline"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRESET SCENARIOS BAR -->
+    <div class="bg-slate-100 dark:bg-slate-900/80 border-t border-slate-200 dark:border-slate-800 px-4 sm:px-6 lg:px-8 py-2">
+      <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2 text-xs">
+        <div class="flex items-center gap-2 font-medium text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-sliders text-indigo-500"></i> Teaching Scenarios:
+        </div>
+        <div class="flex items-center gap-1.5 flex-wrap">
+          <button onclick="loadScenario('inflation')" class="scenario-btn active px-2.5 py-1 rounded-md font-medium bg-indigo-600 text-white shadow-xs hover:bg-indigo-700 transition" id="scen-inflation">
+            1. Inflation (Prices ↑ / Tax Shield)
+          </button>
+          <button onclick="loadScenario('liquidation')" class="scenario-btn px-2.5 py-1 rounded-md font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition" id="scen-liquidation">
+            2. LIFO Liquidation Crisis
+          </button>
+          <button onclick="loadScenario('deflation')" class="scenario-btn px-2.5 py-1 rounded-md font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition" id="scen-deflation">
+            3. Deflation (Prices ↓)
+          </button>
+          <button onclick="loadScenario('divergence')" class="scenario-btn px-2.5 py-1 rounded-md font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition" id="scen-divergence">
+            4. Perpetual vs. Periodic LIFO
+          </button>
+          <button onclick="loadScenario('queuing')" class="scenario-btn px-2.5 py-1 rounded-md font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition" id="scen-queuing">
+            5. Operations Queuing Theory
+          </button>
+          <button onclick="loadScenario('custom')" class="scenario-btn px-2.5 py-1 rounded-md font-medium bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition" id="scen-custom">
+            6. Custom Sandbox ✏️
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN SIMULATION WORKSPACE -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- SCENARIO DESCRIPTION & PEDAGOGICAL OBJECTIVE BANNER -->
+    <div id="scenario-banner" class="bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-900 rounded-xl p-4 flex items-start gap-3">
+      <div class="p-2 bg-blue-100 dark:bg-blue-900/60 rounded-lg text-blue-600 dark:text-blue-300 shrink-0 mt-0.5">
+        <i class="fa-solid fa-chalkboard-user text-lg"></i>
+      </div>
+      <div class="flex-1">
+        <h3 id="scenario-title" class="text-sm font-bold text-blue-900 dark:text-blue-200">Scenario 1: Steady Price Inflation (Prices ↑ / Tax Shield)</h3>
+        <p id="scenario-desc" class="text-xs text-blue-800/90 dark:text-blue-300/90 mt-1 leading-relaxed">
+          Prices rise continuously from $10 to $12 to $15 to $18 per unit. Observe how LIFO charges the most recent expensive costs to COGS (yielding a valuable tax shield), while FIFO reports higher ending inventory and higher net income ("phantom profits").
+        </p>
+      </div>
+      <div class="text-right shrink-0">
+        <span class="text-xs font-semibold px-2.5 py-1 bg-white dark:bg-slate-800 rounded-lg border border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 shadow-2xs">
+          Tax Rate: <span id="lbl-tax-rate" class="font-bold">21%</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- STUDENT QUIZ ALERT (HIDDEN BY DEFAULT) -->
+    <div id="quiz-panel" class="hidden bg-purple-50 dark:bg-purple-950/40 border-2 border-purple-400 dark:border-purple-600 rounded-xl p-5 shadow-md">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <span class="px-2 py-0.5 text-xs font-bold bg-purple-200 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded uppercase tracking-wider">Classroom Challenge</span>
+          <h3 id="quiz-question" class="text-base font-bold text-purple-950 dark:text-purple-100 mt-1">Next Event is a Sale of 150 units at $30/unit!</h3>
+          <p class="text-xs text-purple-800 dark:text-purple-300 mt-1">Predict the financial impacts before hitting Step Next:</p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3">
+            <div class="bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-purple-200 dark:border-purple-800">
+              <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400">1. FIFO COGS ($)</label>
+              <input type="number" id="quiz-in-fifo-cogs" placeholder="e.g. 1500" class="mt-1 w-full text-sm font-bold px-2 py-1 border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700">
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-purple-200 dark:border-purple-800">
+              <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400">2. LIFO COGS ($)</label>
+              <input type="number" id="quiz-in-lifo-cogs" placeholder="e.g. 2500" class="mt-1 w-full text-sm font-bold px-2 py-1 border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700">
+            </div>
+            <div class="bg-white dark:bg-slate-900 p-2.5 rounded-lg border border-purple-200 dark:border-purple-800">
+              <label class="block text-[11px] font-semibold text-slate-600 dark:text-slate-400">3. Ending LIFO Reserve ($)</label>
+              <input type="number" id="quiz-in-reserve" placeholder="e.g. 1000" class="mt-1 w-full text-sm font-bold px-2 py-1 border rounded bg-slate-50 dark:bg-slate-800 dark:border-slate-700">
+            </div>
+          </div>
+        </div>
+        <div class="shrink-0 flex flex-col gap-2">
+          <button onclick="checkQuizAnswer()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs rounded-lg shadow-sm transition">
+            Check Answer
+          </button>
+          <button onclick="revealQuizAnswer()" class="px-4 py-1.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 text-slate-700 dark:text-slate-300 font-medium text-xs rounded-lg transition">
+            Reveal Solution
+          </button>
+        </div>
+      </div>
+      <div id="quiz-feedback" class="mt-3 text-xs font-medium hidden p-2 rounded-lg"></div>
+    </div>
+
+    <!-- CONTROL PANEL & EVENT TIMELINE SCRUBBER -->
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 shadow-sm">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Playback Buttons -->
+        <div class="flex items-center space-x-2">
+          <button id="btn-reset" onclick="resetSim()" title="Reset Simulation" class="p-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
+          <button id="btn-prev" onclick="stepBack()" title="Step Backward" class="p-2.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 transition">
+            <i class="fa-solid fa-backward-step"></i>
+          </button>
+          <button id="btn-play" onclick="togglePlay()" class="px-5 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md transition flex items-center gap-2">
+            <i id="play-icon" class="fa-solid fa-play"></i> <span id="play-text">Play</span>
+          </button>
+          <button id="btn-next" onclick="stepNext()" title="Step Forward" class="px-4 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-white text-white dark:text-slate-900 font-semibold text-sm shadow-md transition flex items-center gap-1.5">
+            <span>Step Next</span> <i class="fa-solid fa-forward-step"></i>
+          </button>
+        </div>
+
+        <!-- Timeline & Scrubber Progress -->
+        <div class="flex-1 w-full max-w-md px-2">
+          <div class="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400 mb-1">
+            <span>Event <span id="current-step-lbl" class="text-indigo-600 dark:text-indigo-400 font-bold">0</span> of <span id="total-step-lbl">6</span></span>
+            <span id="timeline-day-lbl">Day 0 (Initial)</span>
+          </div>
+          <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-2.5 relative overflow-hidden">
+            <div id="timeline-progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+          </div>
+          <div id="timeline-markers" class="flex justify-between mt-1 text-[10px] text-slate-400">
+            <!-- Dynamic Event Pills -->
+          </div>
+        </div>
+
+        <!-- Speed & Tax Rate Controls -->
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-1.5 text-xs">
+            <span class="text-slate-500 font-medium"><i class="fa-solid fa-gauge-high"></i> Speed:</span>
+            <select id="sim-speed" onchange="setSpeed(this.value)" class="bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-md px-2 py-1 text-xs font-semibold">
+              <option value="2000">0.5x</option>
+              <option value="1200" selected>1.0x</option>
+              <option value="600">2.0x</option>
+              <option value="200">Fast</option>
+            </select>
+          </div>
+
+          <div class="flex items-center space-x-1.5 text-xs">
+            <span class="text-slate-500 font-medium">Tax %:</span>
+            <input type="range" id="tax-slider" min="0" max="40" value="21" oninput="updateTaxRate(this.value)" class="w-16 accent-indigo-600">
+            <span id="tax-slider-val" class="font-bold text-slate-700 dark:text-slate-300 w-7">21%</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PROMINENT LIVE TRANSACTION EVENT & UPCOMING PREVIEW DECK -->
+    <div id="active-event-card" class="bg-white dark:bg-slate-900 border-2 border-indigo-200 dark:border-indigo-900/80 rounded-2xl p-5 shadow-sm transition-all duration-300 space-y-4">
+      
+      <!-- TOP HEADER / STATUS BAR -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span id="active-event-badge" class="px-2.5 py-1 text-xs font-bold rounded-lg uppercase tracking-wider bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700">
+            Initial State
+          </span>
+          <h3 id="active-event-title" class="text-sm font-extrabold text-slate-900 dark:text-white">
+            Simulation Initialized (Day 0)
+          </h3>
+        </div>
+        <div id="active-event-status-tag" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+          Ready to Step
+        </div>
+      </div>
+
+      <!-- CURRENT TRANSACTION: FIFO / PERIODIC & LIFO LAYER ACTIONS -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
+        
+        <!-- Left Container Action Narrative -->
+        <div class="p-3.5 rounded-xl bg-sky-50/80 dark:bg-sky-950/40 border-2 border-sky-200 dark:border-sky-800/70 flex items-start gap-3" id="left-action-card">
+          <div class="p-2 bg-sky-500 text-white rounded-lg text-xs mt-0.5 shrink-0 shadow-2xs" id="left-action-icon-box">
+            <i class="fa-solid fa-arrow-down-up-across-line" id="left-action-icon"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-bold text-sky-950 dark:text-sky-200 uppercase tracking-wide text-[11px]" id="left-action-title">Current FIFO Action (Queue)</span>
+              <span id="fifo-event-action-tag" class="text-[10px] font-bold px-2 py-0.5 rounded bg-sky-200 dark:bg-sky-900 text-sky-800 dark:text-sky-200">Head Inflow</span>
+            </div>
+            <p id="active-fifo-desc" class="text-slate-700 dark:text-slate-300 leading-relaxed font-sans text-xs">
+              Simulation is at Day 0. Click <strong>Step Next</strong> or <strong>Play</strong> to process the first purchase transaction and create the initial inventory layer.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Container Action Narrative -->
+        <div class="p-3.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border-2 border-amber-200 dark:border-amber-800/70 flex items-start gap-3" id="right-action-card">
+          <div class="p-2 bg-amber-500 text-white rounded-lg text-xs mt-0.5 shrink-0 shadow-2xs" id="right-action-icon-box">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-bold text-amber-950 dark:text-amber-200 uppercase tracking-wide text-[11px]" id="right-action-title">Current LIFO Action (Stack)</span>
+              <span id="lifo-event-action-tag" class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-200 dark:bg-amber-900 text-amber-800 dark:text-amber-200">Stack Inflow</span>
+            </div>
+            <p id="active-lifo-desc" class="text-slate-700 dark:text-slate-300 leading-relaxed font-sans text-xs">
+              Simulation is at Day 0. Click <strong>Step Next</strong> or <strong>Play</strong> to process the first purchase transaction and create the initial inventory layer.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LIFO Liquidation Alert Box (Shown only when liquidation occurs) -->
+      <div id="liquidation-warning-box" class="hidden p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/60 border-2 border-rose-400 dark:border-rose-700 text-rose-900 dark:text-rose-200 text-xs flex items-center gap-3 liquidation-pulse">
+        <i class="fa-solid fa-triangle-exclamation text-rose-500 text-xl shrink-0"></i>
+        <div>
+          <strong class="font-bold text-sm block">⚠️ LIFO Liquidation Event in Progress!</strong>
+          <span id="liquidation-warning-text" class="block text-xs mt-0.5 text-rose-800 dark:text-rose-300 leading-relaxed">
+            Unit sales have exceeded recent purchases, forcing the company to liquidate old low-cost base layers. This artificially inflates gross profit and causes a non-recurring tax spike!
+          </span>
+        </div>
+      </div>
+
+      <!-- UPCOMING NEXT TRANSACTION PREVIEW STRIP -->
+      <div id="upcoming-event-strip" class="p-3.5 rounded-xl bg-indigo-50/80 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/70 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span class="px-2.5 py-1 text-[11px] font-extrabold rounded-lg bg-indigo-600 text-white uppercase tracking-wider flex items-center gap-1.5 shadow-2xs shrink-0">
+            <i class="fa-solid fa-forward-step"></i> Upcoming Next
+          </span>
+          <span id="upcoming-event-day-badge" class="font-bold font-mono px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/60 text-indigo-900 dark:text-indigo-200">Day 1</span>
+          <span class="text-slate-400 dark:text-slate-600 hidden sm:inline">&bull;</span>
+          <span id="upcoming-event-summary" class="font-bold text-slate-900 dark:text-white">Purchase: Beginning Inventory (200 units @ $10.00)</span>
+        </div>
+        <div id="upcoming-event-preview-hint" class="text-slate-600 dark:text-slate-400 text-[11px] sm:text-right font-medium">
+          Will add Batch B1 to warehouse
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIDE-BY-SIDE WAREHOUSE PHYSICAL & COST FLOW ANIMATION -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- LEFT WAREHOUSE PANEL (FIFO or PERIODIC LIFO in Scenario 4) -->
+      <div id="left-warehouse-panel" class="bg-white dark:bg-slate-900 border-2 border-sky-300 dark:border-sky-800/80 rounded-2xl p-5 shadow-sm relative overflow-hidden transition-colors duration-300">
+        <div id="left-warehouse-badge" class="absolute top-0 right-0 px-4 py-1 bg-sky-500 text-white text-xs font-bold rounded-bl-xl shadow-sm">
+          FIFO (First-In, First-Out)
+        </div>
+        
+        <div class="flex items-center space-x-2 mb-3">
+          <div id="left-warehouse-icon-box" class="p-2 rounded-lg bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400">
+            <i id="left-warehouse-icon" class="fa-solid fa-arrow-down-up-across-line text-lg"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h2 id="left-warehouse-title" class="text-base font-bold text-slate-900 dark:text-white">FIFO Inventory Container (Queue)</h2>
+              <span class="text-[10px] px-2 py-0.5 rounded-md bg-sky-100 dark:bg-sky-900/60 text-sky-800 dark:text-sky-300 font-semibold border border-sky-200 dark:border-sky-800" id="left-thickness-tag">
+                <i class="fa-solid fa-ruler-vertical mr-1"></i>Thickness &propto; Units Remaining
+              </span>
+            </div>
+            <p id="left-warehouse-sub" class="text-xs text-slate-500 dark:text-slate-400">Items sold from the <strong>bottom / oldest layer</strong> first</p>
+          </div>
+        </div>
+
+        <!-- Visual Stack Container -->
+        <div class="bg-slate-100 dark:bg-slate-950 border-2 border-dashed border-slate-300 dark:border-slate-800 rounded-xl p-4 min-h-[260px] flex flex-col justify-end relative">
+          <div class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2 flex justify-between">
+            <span>Top (Newest Purchases Enter Here)</span>
+            <span class="text-sky-600 dark:text-sky-400 font-semibold" id="left-inflow-lbl"><i class="fa-solid fa-arrow-down"></i> Inflow</span>
+          </div>
+          
+          <!-- Stack Elements Render Target -->
+          <div id="fifo-layer-stack" class="space-y-1.5 flex flex-col-reverse">
+            <!-- Layers injected here -->
+          </div>
+
+          <div class="text-[10px] uppercase font-bold tracking-wider text-emerald-600 dark:text-emerald-400 mt-2 pt-2 border-t border-slate-300 dark:border-slate-800 flex justify-between items-center" id="left-bottom-bar">
+            <span id="left-bottom-lbl"><i class="fa-solid fa-arrow-turn-down text-emerald-500"></i> Bottom (Earliest In &rarr; Sold First)</span>
+            <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Total Units: <span id="fifo-total-units">0</span></span>
+          </div>
+        </div>
+
+        <!-- Dispatched COGS Bay -->
+        <div class="mt-4 p-3.5 bg-sky-50 dark:bg-sky-950/40 rounded-xl border border-sky-200 dark:border-sky-900" id="left-dispatched-bay">
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="font-bold text-sky-900 dark:text-sky-200" id="left-dispatched-title"><i class="fa-solid fa-truck-ramp-box"></i> Dispatched to COGS (FIFO):</span>
+            <span id="fifo-cogs-units" class="font-bold text-sky-700 dark:text-sky-300">0 units</span>
+          </div>
+          <div id="fifo-dispatched-layers" class="text-xs space-y-1 text-slate-600 dark:text-slate-400 font-mono">
+            <span class="text-slate-400 italic">No sales recorded yet.</span>
+          </div>
+        </div>
+
+        <!-- Summary Metric Pill -->
+        <div class="mt-4 grid grid-cols-2 gap-2 text-center text-xs">
+          <div class="p-2.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-500 block text-[11px]" id="lbl-left-end-inv">Ending Inventory</span>
+            <span id="fifo-ending-inv-val" class="text-base font-bold text-sky-600 dark:text-sky-400">$0.00</span>
+          </div>
+          <div class="p-2.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-500 block text-[11px]" id="lbl-left-cogs">Total COGS</span>
+            <span id="fifo-cogs-val" class="text-base font-bold text-slate-800 dark:text-slate-200">$0.00</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT WAREHOUSE PANEL (LIFO or PERPETUAL LIFO in Scenario 4) -->
+      <div id="right-warehouse-panel" class="bg-white dark:bg-slate-900 border-2 border-amber-300 dark:border-amber-800/80 rounded-2xl p-5 shadow-sm relative overflow-hidden transition-colors duration-300">
+        <div id="right-warehouse-badge" class="absolute top-0 right-0 px-4 py-1 bg-amber-500 text-white text-xs font-bold rounded-bl-xl shadow-sm">
+          LIFO (Last-In, First-Out)
+        </div>
+
+        <div class="flex items-center space-x-2 mb-3">
+          <div class="p-2 rounded-lg bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400">
+            <i class="fa-solid fa-layer-group text-lg"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h2 id="right-warehouse-title" class="text-base font-bold text-slate-900 dark:text-white">LIFO Inventory Container (Stack)</h2>
+              <span class="text-[10px] px-2 py-0.5 rounded-md bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 font-semibold border border-amber-200 dark:border-amber-800">
+                <i class="fa-solid fa-ruler-vertical mr-1"></i>Thickness &propto; Units Remaining
+              </span>
+            </div>
+            <p id="right-warehouse-sub" class="text-xs text-slate-500 dark:text-slate-400">Items sold from the <strong>top / newest layer</strong> first</p>
+          </div>
+        </div>
+
+        <!-- Visual Stack Container -->
+        <div class="bg-slate-100 dark:bg-slate-950 border-2 border-dashed border-slate-300 dark:border-slate-800 rounded-xl p-4 min-h-[260px] flex flex-col justify-end relative">
+          <div class="text-[10px] uppercase font-bold tracking-wider text-amber-600 dark:text-amber-400 mb-2 flex justify-between items-center">
+            <span id="right-top-lbl"><i class="fa-solid fa-arrow-turn-up text-amber-500"></i> Top (Newest In &rarr; Sold First!)</span>
+            <span class="text-amber-600 dark:text-amber-400 font-semibold"><i class="fa-solid fa-arrow-down"></i> Inflow</span>
+          </div>
+          
+          <!-- Stack Elements Render Target -->
+          <div id="lifo-layer-stack" class="space-y-1.5 flex flex-col-reverse">
+            <!-- Layers injected here -->
+          </div>
+
+          <div class="text-[10px] uppercase font-bold tracking-wider text-slate-400 mt-2 pt-2 border-t border-slate-300 dark:border-slate-800 flex justify-between items-center">
+            <span id="right-bottom-lbl">Bottom (Old Base Layers Stored Here)</span>
+            <span class="text-xs font-bold text-slate-700 dark:text-slate-300">Total Units: <span id="lifo-total-units">0</span></span>
+          </div>
+        </div>
+
+        <!-- Dispatched COGS Bay -->
+        <div class="mt-4 p-3.5 bg-amber-50 dark:bg-amber-950/40 rounded-xl border border-amber-200 dark:border-amber-900">
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="font-bold text-amber-900 dark:text-amber-200" id="right-dispatched-title"><i class="fa-solid fa-truck-ramp-box"></i> Dispatched to COGS (LIFO):</span>
+            <span id="lifo-cogs-units" class="font-bold text-amber-700 dark:text-amber-300">0 units</span>
+          </div>
+          <div id="lifo-dispatched-layers" class="text-xs space-y-1 text-slate-600 dark:text-slate-400 font-mono">
+            <span class="text-slate-400 italic">No sales recorded yet.</span>
+          </div>
+        </div>
+
+        <!-- Summary Metric Pill -->
+        <div class="mt-4 grid grid-cols-2 gap-2 text-center text-xs">
+          <div class="p-2.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-500 block text-[11px]" id="lbl-right-end-inv">Ending Inventory</span>
+            <span id="lifo-ending-inv-val" class="text-base font-bold text-amber-600 dark:text-amber-400">$0.00</span>
+          </div>
+          <div class="p-2.5 bg-slate-50 dark:bg-slate-800/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-500 block text-[11px]" id="lbl-right-cogs">Total COGS</span>
+            <span id="lifo-cogs-val" class="text-base font-bold text-slate-800 dark:text-slate-200">$0.00</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- COMPARATIVE FINANCIAL SCOREBOARD & LIFO RESERVE CARDS -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Ending Inventory Comparison -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-500" id="card-inv-title">Ending Inventory</span>
+          <i class="fa-solid fa-warehouse text-slate-400 text-sm"></i>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <div>
+            <div class="text-xs text-sky-600 font-medium"><span id="lbl-card-method-1">FIFO</span>: <span id="card-fifo-inv" class="font-bold text-sm">$0</span></div>
+            <div class="text-xs text-amber-600 font-medium"><span id="lbl-card-method-2">LIFO</span>: <span id="card-lifo-inv" class="font-bold text-sm">$0</span></div>
+          </div>
+          <span id="badge-inv-diff" class="text-xs font-bold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-200">
+            +$0
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-2">Balance Sheet inventory valuation</p>
+      </div>
+
+      <!-- Cost of Goods Sold (COGS) -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-semibold text-slate-500">Cost of Goods Sold (COGS)</span>
+          <i class="fa-solid fa-receipt text-slate-400 text-sm"></i>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <div>
+            <div class="text-xs text-sky-600 font-medium"><span id="lbl-card-cogs-1">FIFO</span>: <span id="card-fifo-cogs" class="font-bold text-sm">$0</span></div>
+            <div class="text-xs text-amber-600 font-medium"><span id="lbl-card-cogs-2">LIFO</span>: <span id="card-lifo-cogs" class="font-bold text-sm">$0</span></div>
+          </div>
+          <span id="badge-cogs-diff" class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200">
+            -$0
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 mt-2">Expense recognized on Income Statement</p>
+      </div>
+
+      <!-- LIFO Reserve Contra Account / Divergence Card -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border-2 border-indigo-200 dark:border-indigo-900/80 shadow-sm bg-gradient-to-br from-indigo-50/30 to-transparent">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-indigo-900 dark:text-indigo-300" id="lbl-card-reserve-title">LIFO Reserve Balance</span>
+          <i class="fa-solid fa-scale-balanced text-indigo-500 text-sm"></i>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <span id="card-lifo-reserve" class="text-xl font-extrabold text-indigo-600 dark:text-indigo-400">$0.00</span>
+          <span id="card-delta-reserve" class="text-xs font-bold text-indigo-700 dark:text-indigo-300">Δ Reserve: $0</span>
+        </div>
+        <p class="text-[11px] text-indigo-800/80 dark:text-indigo-300/80 mt-2 font-mono" id="lbl-card-reserve-sub">FIFO Inv = LIFO Inv + Reserve</p>
+      </div>
+
+      <!-- LIFO Tax Shield Benefit / Divergence Tax Impact -->
+      <div class="bg-white dark:bg-slate-900 p-4 rounded-xl border-2 border-emerald-200 dark:border-emerald-900/80 shadow-sm bg-gradient-to-br from-emerald-50/30 to-transparent">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-emerald-900 dark:text-emerald-300" id="lbl-card-tax-title">LIFO Tax Shield Savings</span>
+          <i class="fa-solid fa-piggy-bank text-emerald-500 text-sm"></i>
+        </div>
+        <div class="mt-2 flex items-baseline justify-between">
+          <span id="card-tax-shield" class="text-xl font-extrabold text-emerald-600 dark:text-emerald-400">$0.00</span>
+          <span class="text-xs font-semibold text-emerald-700 dark:text-emerald-300" id="lbl-card-tax-action">Cash Flow +</span>
+        </div>
+        <p class="text-[11px] text-emerald-800/80 dark:text-emerald-300/80 mt-2 font-mono" id="lbl-card-tax-sub">Tax Savings = Δ COGS × t</p>
+      </div>
+
+    </div>
+
+    <!-- TABS SECTION: COMPARATIVE STATEMENTS | JOURNAL ENTRIES & T-ACCOUNTS | DISCRETE-SIM QUEUING -->
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+      
+      <!-- Tab Header -->
+      <div class="flex border-b border-slate-200 dark:border-slate-800 px-6 pt-3 gap-6 text-sm font-semibold">
+        <button onclick="switchTab('statements')" id="tab-btn-statements" class="pb-3 border-b-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 flex items-center gap-2">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Comparative Financial Statements
+        </button>
+        <button onclick="switchTab('journal')" id="tab-btn-journal" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2">
+          <i class="fa-solid fa-book-journal-whills"></i> General Journal & T-Accounts
+        </button>
+        <button onclick="switchTab('queuing')" id="tab-btn-queuing" class="pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2">
+          <i class="fa-solid fa-network-wired"></i> Operations Queuing Metrics (discrete-sim)
+        </button>
+      </div>
+
+      <!-- Tab 1: Comparative Financial Statements -->
+      <div id="tab-content-statements" class="p-6 space-y-4">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200">
+                <th class="p-3 font-bold rounded-l-lg">Financial Statement Line Item</th>
+                <th class="p-3 font-bold text-sky-700 dark:text-sky-300">FIFO (Perpetual/Periodic)</th>
+                <th class="p-3 font-bold text-amber-700 dark:text-amber-300" id="th-lifo-perp">LIFO (Perpetual)</th>
+                <th class="p-3 font-bold text-amber-900 dark:text-amber-100" id="th-lifo-perio">LIFO (Periodic)</th>
+                <th class="p-3 font-bold text-slate-600 dark:text-slate-400">Weighted-Average</th>
+                <th class="p-3 font-bold rounded-r-lg text-indigo-700 dark:text-indigo-300" id="th-table-comparison-col">LIFO Effect / Reserve</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-slate-800 font-mono">
+              <tr>
+                <td class="p-3 font-sans font-medium text-slate-800 dark:text-slate-200">Sales Revenue ($30/unit)</td>
+                <td id="tbl-fifo-rev" class="p-3">$0.00</td>
+                <td id="tbl-lifo-rev" class="p-3">$0.00</td>
+                <td id="tbl-lifop-rev" class="p-3">$0.00</td>
+                <td id="tbl-wavg-rev" class="p-3">$0.00</td>
+                <td id="tbl-diff-rev" class="p-3 text-slate-400">$0.00</td>
+              </tr>
+              <tr class="bg-slate-50/50 dark:bg-slate-900/50">
+                <td class="p-3 font-sans font-medium text-slate-800 dark:text-slate-200">Less: Cost of Goods Sold (COGS)</td>
+                <td id="tbl-fifo-cogs" class="p-3 font-bold text-sky-600">$0.00</td>
+                <td id="tbl-lifo-cogs" class="p-3 font-bold text-amber-600">$0.00</td>
+                <td id="tbl-lifop-cogs" class="p-3 font-bold text-amber-700">$0.00</td>
+                <td id="tbl-wavg-cogs" class="p-3 text-slate-600 dark:text-slate-300">$0.00</td>
+                <td id="tbl-diff-cogs" class="p-3 font-bold text-indigo-600">$0.00</td>
+              </tr>
+              <tr class="font-bold">
+                <td class="p-3 font-sans text-slate-900 dark:text-white">Gross Profit</td>
+                <td id="tbl-fifo-gp" class="p-3 text-sky-700 dark:text-sky-300">$0.00</td>
+                <td id="tbl-lifo-gp" class="p-3 text-amber-700 dark:text-amber-300">$0.00</td>
+                <td id="tbl-lifop-gp" class="p-3 text-amber-800 dark:text-amber-200">$0.00</td>
+                <td id="tbl-wavg-gp" class="p-3">$0.00</td>
+                <td id="tbl-diff-gp" class="p-3 text-indigo-600">$0.00</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-sans font-medium text-slate-800 dark:text-slate-200">Gross Margin %</td>
+                <td id="tbl-fifo-gm" class="p-3 font-bold">0.0%</td>
+                <td id="tbl-lifo-gm" class="p-3 font-bold">0.0%</td>
+                <td id="tbl-lifop-gm" class="p-3 font-bold">0.0%</td>
+                <td id="tbl-wavg-gm" class="p-3">0.0%</td>
+                <td id="tbl-diff-gm" class="p-3">0.0%</td>
+              </tr>
+              <tr class="bg-slate-50/50 dark:bg-slate-900/50">
+                <td class="p-3 font-sans font-medium text-slate-800 dark:text-slate-200">Estimated Income Tax (21%)</td>
+                <td id="tbl-fifo-tax" class="p-3 text-red-600 dark:text-red-400">$0.00</td>
+                <td id="tbl-lifo-tax" class="p-3 text-red-600 dark:text-red-400">$0.00</td>
+                <td id="tbl-lifop-tax" class="p-3 text-red-600 dark:text-red-400">$0.00</td>
+                <td id="tbl-wavg-tax" class="p-3">$0.00</td>
+                <td id="tbl-diff-tax" class="p-3 font-bold text-emerald-600 dark:text-emerald-400">+$0.00 (Shield)</td>
+              </tr>
+              <tr class="font-bold bg-indigo-50/30 dark:bg-indigo-950/20">
+                <td class="p-3 font-sans text-slate-900 dark:text-white">Balance Sheet: Ending Inventory</td>
+                <td id="tbl-fifo-inv" class="p-3 text-sky-700 dark:text-sky-300 font-extrabold">$0.00</td>
+                <td id="tbl-lifo-inv" class="p-3 text-amber-700 dark:text-amber-300 font-extrabold">$0.00</td>
+                <td id="tbl-lifop-inv" class="p-3 text-amber-800 dark:text-amber-200 font-extrabold">$0.00</td>
+                <td id="tbl-wavg-inv" class="p-3">$0.00</td>
+                <td id="tbl-diff-reserve" class="p-3 font-extrabold text-indigo-600">$0.00 (Reserve)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Tab 2: General Journal & T-Accounts -->
+      <div id="tab-content-journal" class="p-6 space-y-6 hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Journal Entries Log -->
+          <div>
+            <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-indigo-500"></i> General Journal (LIFO with FIFO Internal)
+            </h3>
+            <div id="journal-entries-container" class="space-y-3 max-h-[350px] overflow-y-auto text-xs font-mono pr-2">
+              <!-- Journal entries rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- T-Accounts -->
+          <div>
+            <h3 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 flex items-center gap-2">
+              <i class="fa-solid fa-table-columns text-indigo-500"></i> General Ledger T-Accounts
+            </h3>
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              
+              <!-- Inventory T-Account -->
+              <div class="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-300 dark:border-slate-700">
+                <div class="text-center font-bold font-sans pb-1 border-b-2 border-slate-800 dark:border-slate-200">
+                  Inventory (Internal FIFO)
+                </div>
+                <div class="grid grid-cols-2 divide-x divide-slate-400 dark:divide-slate-600 pt-1 min-h-[90px] font-mono text-[11px]">
+                  <div id="t-acc-inv-dr" class="pr-1 text-slate-700 dark:text-slate-300"></div>
+                  <div id="t-acc-inv-cr" class="pl-1 text-right text-slate-700 dark:text-slate-300"></div>
+                </div>
+                <div class="border-t border-slate-400 dark:border-slate-600 pt-1 flex justify-between font-bold text-[11px]">
+                  <span>Bal:</span>
+                  <span id="t-acc-inv-bal">$0</span>
+                </div>
+              </div>
+
+              <!-- LIFO Reserve Contra T-Account -->
+              <div class="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-300 dark:border-slate-700">
+                <div class="text-center font-bold font-sans pb-1 border-b-2 border-slate-800 dark:border-slate-200 text-indigo-600 dark:text-indigo-400">
+                  Allowance to Reduce to LIFO
+                </div>
+                <div class="grid grid-cols-2 divide-x divide-slate-400 dark:divide-slate-600 pt-1 min-h-[90px] font-mono text-[11px]">
+                  <div id="t-acc-res-dr" class="pr-1 text-slate-700 dark:text-slate-300"></div>
+                  <div id="t-acc-res-cr" class="pl-1 text-right text-slate-700 dark:text-slate-300"></div>
+                </div>
+                <div class="border-t border-slate-400 dark:border-slate-600 pt-1 flex justify-between font-bold text-[11px] text-indigo-600 dark:text-indigo-400">
+                  <span>Bal (Cr):</span>
+                  <span id="t-acc-res-bal">$0</span>
+                </div>
+              </div>
+
+              <!-- Cost of Goods Sold T-Account -->
+              <div class="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-300 dark:border-slate-700 col-span-2">
+                <div class="text-center font-bold font-sans pb-1 border-b-2 border-slate-800 dark:border-slate-200">
+                  Cost of Goods Sold (COGS - LIFO)
+                </div>
+                <div class="grid grid-cols-2 divide-x divide-slate-400 dark:divide-slate-600 pt-1 min-h-[70px] font-mono text-[11px]">
+                  <div id="t-acc-cogs-dr" class="pr-1 text-slate-700 dark:text-slate-300"></div>
+                  <div id="t-acc-cogs-cr" class="pl-1 text-right text-slate-700 dark:text-slate-300"></div>
+                </div>
+                <div class="border-t border-slate-400 dark:border-slate-600 pt-1 flex justify-between font-bold text-[11px]">
+                  <span>Total COGS Expense:</span>
+                  <span id="t-acc-cogs-bal">$0</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tab 3: Operations Queuing Metrics (from discrete-sim) -->
+      <div id="tab-content-queuing" class="p-6 space-y-4 hidden">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          
+          <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2"><i class="fa-solid fa-clock-rotate-left text-sky-500"></i> FIFO Queue Discipline</h4>
+            <ul class="space-y-1.5 text-slate-600 dark:text-slate-400">
+              <li>&bull; Discipline: <strong>Strict FIFO Arrival Order</strong></li>
+              <li>&bull; Variance in Item Holding Time: <strong>Low</strong></li>
+              <li>&bull; Risk of Item Spoilage/Obsolescence: <strong>Minimized</strong></li>
+              <li>&bull; Physical Flow Match: <strong>Perishable Goods (Food, Pharma)</strong></li>
+            </ul>
+          </div>
+
+          <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2"><i class="fa-solid fa-cubes-stacked text-amber-500"></i> LIFO Stack Discipline</h4>
+            <ul class="space-y-1.5 text-slate-600 dark:text-slate-400">
+              <li>&bull; Discipline: <strong>Strict LIFO (Push / Pop Stack)</strong></li>
+              <li>&bull; Variance in Item Holding Time: <strong>High (Base stays forever)</strong></li>
+              <li>&bull; Risk of Item Spoilage/Obsolescence: <strong>High for deep base</strong></li>
+              <li>&bull; Physical Flow Match: <strong>Bulk piles (Coal, Gravel, Ore)</strong></li>
+            </ul>
+          </div>
+
+          <div class="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-200 dark:border-slate-700">
+            <h4 class="font-bold text-slate-800 dark:text-slate-200 mb-2"><i class="fa-solid fa-code text-indigo-500"></i> discrete-sim Core Engine</h4>
+            <p class="text-[11px] text-slate-500 leading-relaxed">
+              Powered by generator-based event scheduling modeled after <a href="https://github.com/anesask/discrete-sim" target="_blank" class="text-indigo-600 underline">discrete-sim</a>. Tracks arrival queues, buffer capacities, process preemption, and layer fulfillment.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CUSTOM EVENT BUILDER (ONLY SHOWN IN CUSTOM SANDBOX SCENARIO) -->
+    <div id="custom-builder-panel" class="hidden bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <i class="fa-solid fa-pen-to-square text-indigo-500"></i> Custom Sandbox: Transaction Sequence Editor
+        </h3>
+        <button onclick="addCustomEventRow()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold transition flex items-center gap-1">
+          <i class="fa-solid fa-plus"></i> Add Event
+        </button>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-xs text-left">
+          <thead>
+            <tr class="border-b border-slate-200 dark:border-slate-700 text-slate-500">
+              <th class="pb-2 font-semibold">Day</th>
+              <th class="pb-2 font-semibold">Event Type</th>
+              <th class="pb-2 font-semibold">Units</th>
+              <th class="pb-2 font-semibold">Unit Cost / Price ($)</th>
+              <th class="pb-2 font-semibold">Description</th>
+              <th class="pb-2 font-semibold text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="custom-events-tbody" class="divide-y divide-slate-100 dark:divide-slate-800">
+            <!-- Custom rows injected here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button onclick="applyCustomEvents()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold shadow-sm transition">
+          <i class="fa-solid fa-play"></i> Load & Run Custom Simulation
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-4 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>&copy; 2026 Ernest (Gang) Pan. All rights reserved.</div>
+      <div class="flex items-center gap-1.5 flex-wrap justify-center">
+        <span>Adapted from &amp; inspired by the discrete-event simulation architecture in</span>
+        <a href="https://github.com/anesask/discrete-sim" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold underline hover:text-indigo-700 dark:hover:text-indigo-300 inline-flex items-center gap-1">
+          <i class="fa-brands fa-github"></i> anesask/discrete-sim
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT SIMULATION LOGIC & STATE ENGINE                                -->
+  <!-- ========================================================================= -->
+  <script>
+    // --- SCENARIO DATA PRESETS ---
+    const SCENARIOS = {
+      inflation: {
+        title: "Scenario 1: Steady Price Inflation (Prices ↑ / Tax Shield)",
+        desc: "Prices rise continuously ($10 → $12 → $15 → $18). FIFO charges older cheap costs to COGS, creating phantom profits. LIFO charges newest expensive costs to COGS, generating a substantial income tax shield.",
+        events: [
+          { day: 1, type: "purchase", batchId: "B1", units: 200, unitCost: 10, desc: "Beginning Inventory" },
+          { day: 5, type: "purchase", batchId: "B2", units: 150, unitCost: 12, desc: "Purchase #1 (Price Rise)" },
+          { day: 10, type: "sale", batchId: "S1", units: 180, price: 30, desc: "Sale #1 (180 units @ $30)" },
+          { day: 15, type: "purchase", batchId: "B3", units: 100, unitCost: 15, desc: "Purchase #2 (Inflation)" },
+          { day: 20, type: "sale", batchId: "S2", units: 120, price: 30, desc: "Sale #2 (120 units @ $30)" },
+          { day: 25, type: "purchase", batchId: "B4", units: 100, unitCost: 18, desc: "Purchase #3 (Peak Cost)" }
+        ]
+      },
+      liquidation: {
+        title: "Scenario 2: LIFO Liquidation Crisis (Supply Shock)",
+        desc: "Due to supply disruptions, sales drastically exceed new purchases. The company is forced to liquidate old low-cost $10 base layers, artificially spiking taxable net income and wiping out previous tax shields.",
+        events: [
+          { day: 1, type: "purchase", batchId: "B1", units: 300, unitCost: 10, desc: "Base Layer (Old $10 Cost)" },
+          { day: 5, type: "purchase", batchId: "B2", units: 100, unitCost: 20, desc: "Current Purchase ($20 Cost)" },
+          { day: 12, type: "sale", batchId: "S1", units: 350, price: 35, desc: "Huge Sale #1 (350 units - Liquidates Base!)" },
+          { day: 20, type: "purchase", batchId: "B3", units: 50, unitCost: 22, desc: "Replacement Purchase" }
+        ]
+      },
+      deflation: {
+        title: "Scenario 3: Deflationary Environment (Prices ↓)",
+        desc: "Prices drop continuously ($20 → $16 → $12 → $10) (common in tech/electronics). Here, FIFO results in higher COGS and lower taxes than LIFO.",
+        events: [
+          { day: 1, type: "purchase", batchId: "B1", units: 200, unitCost: 20, desc: "Beginning Inventory ($20)" },
+          { day: 5, type: "purchase", batchId: "B2", units: 150, unitCost: 16, desc: "Purchase #1 ($16)" },
+          { day: 10, type: "sale", batchId: "S1", units: 180, price: 25, desc: "Sale #1 (180 units @ $25)" },
+          { day: 15, type: "purchase", batchId: "B3", units: 100, unitCost: 12, desc: "Purchase #2 ($12)" },
+          { day: 20, type: "sale", batchId: "S2", units: 120, price: 25, desc: "Sale #2 (120 units @ $25)" }
+        ]
+      },
+      divergence: {
+        title: "Scenario 4: Perpetual vs. Periodic LIFO Divergence",
+        desc: "A sale occurs on Day 10, followed by a large purchase on Day 15. In Perpetual LIFO, the Day 10 sale can only take from goods available on Day 10 ($10 cost). In Periodic LIFO, all purchases of the period are pooled at period end, matching the Day 15 purchase ($25 cost) against the Day 10 sale!",
+        events: [
+          { day: 1, type: "purchase", batchId: "B1", units: 100, unitCost: 10, desc: "Beginning Inv ($10)" },
+          { day: 10, type: "sale", batchId: "S1", units: 80, price: 30, desc: "Sale on Day 10 (80 units)" },
+          { day: 15, type: "purchase", batchId: "B2", units: 150, unitCost: 25, desc: "Late Purchase on Day 15 ($25)" },
+          { day: 25, type: "sale", batchId: "S2", units: 50, price: 30, desc: "Sale on Day 25 (50 units)" }
+        ]
+      },
+      queuing: {
+        title: "Scenario 5: Operations & Queuing Theory Mode",
+        desc: "Demonstrates item dwell time, queue disciplines (FIFO arrival order vs. LIFO stack pop), and holding cost variances using discrete-sim queue mechanics.",
+        events: [
+          { day: 1, type: "purchase", batchId: "Q1", units: 100, unitCost: 10, desc: "Batch Alpha Arrives" },
+          { day: 3, type: "purchase", batchId: "Q2", units: 100, unitCost: 12, desc: "Batch Beta Arrives" },
+          { day: 5, type: "purchase", batchId: "Q3", units: 100, unitCost: 15, desc: "Batch Gamma Arrives" },
+          { day: 7, type: "sale", batchId: "C1", units: 150, price: 30, desc: "Customer Order 1" },
+          { day: 9, type: "purchase", batchId: "Q4", units: 100, unitCost: 18, desc: "Batch Delta Arrives" },
+          { day: 12, type: "sale", batchId: "C2", units: 150, price: 30, desc: "Customer Order 2" }
+        ]
+      },
+      custom: {
+        title: "Scenario 6: Custom Interactive Sandbox",
+        desc: "Design your own purchase and sale transaction sequence. Adjust units, costs, and selling prices in the editor below.",
+        events: [
+          { day: 1, type: "purchase", batchId: "B1", units: 100, unitCost: 10, desc: "Beginning Inv" },
+          { day: 5, type: "purchase", batchId: "B2", units: 100, unitCost: 15, desc: "Purchase #1" },
+          { day: 10, type: "sale", batchId: "S1", units: 120, price: 30, desc: "Sale #1" }
+        ]
+      }
+    };
+
+    // Global App State
+    let currentScenarioKey = 'inflation';
+    let currentEvents = [];
+    let currentStepIndex = 0; // 0 means initial before event 0
+    let isPlaying = false;
+    let playTimer = null;
+    let playSpeed = 1200;
+    let taxRate = 0.21;
+    let isQuizMode = false;
+
+    function getCostTierClass(unitCost) {
+      if (unitCost <= 10) return 'cost-tier-0';
+      if (unitCost <= 12) return 'cost-tier-1';
+      if (unitCost <= 15) return 'cost-tier-2';
+      if (unitCost <= 18) return 'cost-tier-3';
+      if (unitCost <= 22) return 'cost-tier-4';
+      return 'cost-tier-5';
+    }
+
+    // --- INITIALIZATION ---
+    window.addEventListener('DOMContentLoaded', () => {
+      loadScenario('inflation');
+    });
+
+    function loadScenario(key) {
+      currentScenarioKey = key;
+      const scen = SCENARIOS[key];
+      
+      // Update UI active buttons
+      document.querySelectorAll('.scenario-btn').forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white');
+        btn.classList.add('bg-white', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-200');
+      });
+      const activeBtn = document.getElementById('scen-' + key);
+      if (activeBtn) {
+        activeBtn.classList.add('bg-indigo-600', 'text-white');
+        activeBtn.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-200');
+      }
+
+      // Update banner
+      document.getElementById('scenario-title').innerText = scen.title;
+      document.getElementById('scenario-desc').innerText = scen.desc;
+
+      // Adapt UI layout for Scenario 4 (Periodic LIFO vs Perpetual LIFO)
+      const leftBadge = document.getElementById('left-warehouse-badge');
+      const leftTitle = document.getElementById('left-warehouse-title');
+      const leftSub = document.getElementById('left-warehouse-sub');
+      const leftDispatchedTitle = document.getElementById('left-dispatched-title');
+      const leftActionTitle = document.getElementById('left-action-title');
+      const rightBadge = document.getElementById('right-warehouse-badge');
+      const rightTitle = document.getElementById('right-warehouse-title');
+      const rightSub = document.getElementById('right-warehouse-sub');
+      const rightDispatchedTitle = document.getElementById('right-dispatched-title');
+      const rightActionTitle = document.getElementById('right-action-title');
+
+      const cardInvTitle = document.getElementById('card-inv-title');
+      const lblMethod1 = document.getElementById('lbl-card-method-1');
+      const lblMethod2 = document.getElementById('lbl-card-method-2');
+      const lblCogs1 = document.getElementById('lbl-card-cogs-1');
+      const lblCogs2 = document.getElementById('lbl-card-cogs-2');
+      const lblReserveTitle = document.getElementById('lbl-card-reserve-title');
+      const lblReserveSub = document.getElementById('lbl-card-reserve-sub');
+      const lblTaxTitle = document.getElementById('lbl-card-tax-title');
+      const lblTaxSub = document.getElementById('lbl-card-tax-sub');
+      const thComparison = document.getElementById('th-table-comparison-col');
+
+      if (key === 'divergence') {
+        // Scenario 4: Periodic LIFO vs. Perpetual LIFO Comparison
+        leftBadge.className = 'absolute top-0 right-0 px-4 py-1 bg-amber-600 text-white text-xs font-bold rounded-bl-xl shadow-sm';
+        leftBadge.innerText = 'LIFO (Periodic Pool)';
+        leftTitle.innerText = 'Periodic LIFO Container (Period-End Pool)';
+        leftSub.innerHTML = 'All period purchases pooled at period end — matches latest period purchases ($25) against Day 10 sale';
+        leftDispatchedTitle.innerHTML = '<i class="fa-solid fa-truck-ramp-box"></i> Dispatched to COGS (Periodic LIFO):';
+        leftActionTitle.innerText = 'Periodic LIFO Action (Pool)';
+
+        rightBadge.className = 'absolute top-0 right-0 px-4 py-1 bg-amber-500 text-white text-xs font-bold rounded-bl-xl shadow-sm';
+        rightBadge.innerText = 'LIFO (Perpetual Stack)';
+        rightTitle.innerText = 'Perpetual LIFO Container (Point-of-Sale Stack)';
+        rightSub.innerHTML = 'Items sold from newest available on transaction date — Day 10 sale draws from Day 1 ($10)';
+        rightDispatchedTitle.innerHTML = '<i class="fa-solid fa-truck-ramp-box"></i> Dispatched to COGS (Perpetual LIFO):';
+        rightActionTitle.innerText = 'Perpetual LIFO Action (Stack)';
+
+        cardInvTitle.innerText = 'Ending Inv (Perp vs Period)';
+        lblMethod1.innerText = 'Perpetual';
+        lblMethod2.innerText = 'Periodic';
+        lblCogs1.innerText = 'Perpetual';
+        lblCogs2.innerText = 'Periodic';
+        lblReserveTitle.innerText = 'LIFO Timing Divergence';
+        lblReserveSub.innerText = 'Perpetual Inv - Periodic Inv';
+        lblTaxTitle.innerText = 'Divergence Tax Difference';
+        lblTaxSub.innerText = 'Tax Difference = Δ COGS × t';
+        thComparison.innerText = 'LIFO Divergence (Periodic vs. Perpetual)';
+
+        document.getElementById('th-lifo-perp').classList.add('bg-amber-100', 'dark:bg-amber-950/60');
+        document.getElementById('th-lifo-perio').classList.add('bg-amber-200', 'dark:bg-amber-900/60');
+      } else {
+        // Standard Scenarios: FIFO vs. LIFO Comparison
+        leftBadge.className = 'absolute top-0 right-0 px-4 py-1 bg-sky-500 text-white text-xs font-bold rounded-bl-xl shadow-sm';
+        leftBadge.innerText = 'FIFO (First-In, First-Out)';
+        leftTitle.innerText = 'FIFO Inventory Container (Queue)';
+        leftSub.innerHTML = 'Items sold from the <strong>bottom / oldest layer</strong> first';
+        leftDispatchedTitle.innerHTML = '<i class="fa-solid fa-truck-ramp-box"></i> Dispatched to COGS (FIFO):';
+        leftActionTitle.innerText = 'Current FIFO Action (Queue)';
+
+        rightBadge.className = 'absolute top-0 right-0 px-4 py-1 bg-amber-500 text-white text-xs font-bold rounded-bl-xl shadow-sm';
+        rightBadge.innerText = 'LIFO (Last-In, First-Out)';
+        rightTitle.innerText = 'LIFO Inventory Container (Stack)';
+        rightSub.innerHTML = 'Items sold from the <strong>top / newest layer</strong> first';
+        rightDispatchedTitle.innerHTML = '<i class="fa-solid fa-truck-ramp-box"></i> Dispatched to COGS (LIFO):';
+        rightActionTitle.innerText = 'Current LIFO Action (Stack)';
+
+        cardInvTitle.innerText = 'Ending Inventory';
+        lblMethod1.innerText = 'FIFO';
+        lblMethod2.innerText = 'LIFO';
+        lblCogs1.innerText = 'FIFO';
+        lblCogs2.innerText = 'LIFO';
+        lblReserveTitle.innerText = 'LIFO Reserve Balance';
+        lblReserveSub.innerText = 'FIFO Inv = LIFO Inv + Reserve';
+        lblTaxTitle.innerText = 'LIFO Tax Shield Savings';
+        lblTaxSub.innerText = 'Tax Savings = Δ COGS × t';
+        thComparison.innerText = 'LIFO Effect / Reserve';
+
+        document.getElementById('th-lifo-perp').classList.remove('bg-amber-100', 'dark:bg-amber-950/60');
+        document.getElementById('th-lifo-perio').classList.remove('bg-amber-200', 'dark:bg-amber-900/60');
+      }
+
+      // Custom Sandbox table visibility
+      const customPanel = document.getElementById('custom-builder-panel');
+      if (key === 'custom') {
+        customPanel.classList.remove('hidden');
+        renderCustomEventRows();
+      } else {
+        customPanel.classList.add('hidden');
+      }
+
+      // Clone events
+      currentEvents = JSON.parse(JSON.stringify(scen.events));
+      resetSim();
+    }
+
+    function resetSim() {
+      pauseSim();
+      currentStepIndex = 0;
+      updateUI();
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        pauseSim();
+      } else {
+        playSim();
+      }
+    }
+
+    function playSim() {
+      if (currentStepIndex >= currentEvents.length) {
+        currentStepIndex = 0;
+      }
+      isPlaying = true;
+      document.getElementById('play-icon').className = 'fa-solid fa-pause';
+      document.getElementById('play-text').innerText = 'Pause';
+      
+      runPlayLoop();
+    }
+
+    function runPlayLoop() {
+      if (!isPlaying) return;
+      if (currentStepIndex < currentEvents.length) {
+        // If in quiz mode and next event is sale, pause for quiz!
+        const nextEvt = currentEvents[currentStepIndex];
+        if (isQuizMode && nextEvt.type === 'sale') {
+          pauseSim();
+          showQuizChallenge(nextEvt);
+          return;
+        }
+
+        currentStepIndex++;
+        updateUI();
+        playTimer = setTimeout(runPlayLoop, playSpeed);
+      } else {
+        pauseSim();
+      }
+    }
+
+    function pauseSim() {
+      isPlaying = false;
+      if (playTimer) clearTimeout(playTimer);
+      document.getElementById('play-icon').className = 'fa-solid fa-play';
+      document.getElementById('play-text').innerText = 'Play';
+    }
+
+    function stepNext() {
+      pauseSim();
+      if (currentStepIndex < currentEvents.length) {
+        const nextEvt = currentEvents[currentStepIndex];
+        if (isQuizMode && nextEvt.type === 'sale' && document.getElementById('quiz-panel').classList.contains('hidden')) {
+          showQuizChallenge(nextEvt);
+          return;
+        }
+        currentStepIndex++;
+        document.getElementById('quiz-panel').classList.add('hidden');
+        updateUI();
+      }
+    }
+
+    function stepBack() {
+      pauseSim();
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        document.getElementById('quiz-panel').classList.add('hidden');
+        updateUI();
+      }
+    }
+
+    function setSpeed(val) {
+      playSpeed = parseInt(val, 10);
+    }
+
+    function updateTaxRate(val) {
+      taxRate = parseInt(val, 10) / 100;
+      document.getElementById('tax-slider-val').innerText = val + '%';
+      document.getElementById('lbl-tax-rate').innerText = val + '%';
+      updateUI();
+    }
+
+    // --- SIMULATION CALCULATION & STEP NARRATIVE ENGINE ---
+    function computeSimulationState(upToStep) {
+      // FIFO State
+      let fifoLayers = []; // [{ batchId, day, originalUnits, remainingUnits, unitCost, isNew, consumedInStep }]
+      let fifoCogsTotal = 0;
+      let fifoCogsUnits = 0;
+      let fifoDispatched = [];
+
+      // LIFO Perpetual State
+      let lifoLayers = [];
+      let lifoCogsTotal = 0;
+      let lifoCogsUnits = 0;
+      let lifoDispatched = [];
+      let lifoLiquidationOccurred = false;
+      let liquidationDistortionUnits = 0;
+      let liquidationDistortionDollars = 0;
+
+      // Weighted Average State
+      let wavgInvTotal = 0;
+      let wavgInvUnits = 0;
+      let wavgCogsTotal = 0;
+
+      // Revenue
+      let totalRevenue = 0;
+      let totalUnitsSold = 0;
+
+      // Journal Log
+      let journalEntries = [];
+
+      // Step Narrative Record (for the active step)
+      let activeStepRecord = null;
+
+      for (let i = 0; i < upToStep; i++) {
+        const evt = currentEvents[i];
+        const isCurrentActiveStep = (i === upToStep - 1);
+
+        // Reset step action flags for each iteration
+        fifoLayers.forEach(l => { l.isNew = false; l.consumedInStep = 0; l.exhaustedInStep = false; });
+        lifoLayers.forEach(l => { l.isNew = false; l.consumedInStep = 0; l.exhaustedInStep = false; });
+
+        if (evt.type === 'purchase') {
+          const purchaseAmt = evt.units * evt.unitCost;
+
+          // Add to FIFO
+          const newFifoLayer = {
+            batchId: evt.batchId,
+            day: evt.day,
+            originalUnits: evt.units,
+            remainingUnits: evt.units,
+            unitCost: evt.unitCost,
+            desc: evt.desc,
+            isNew: isCurrentActiveStep,
+            consumedInStep: 0,
+            exhaustedInStep: false
+          };
+          fifoLayers.push(newFifoLayer);
+
+          // Add to LIFO
+          const newLifoLayer = {
+            batchId: evt.batchId,
+            day: evt.day,
+            originalUnits: evt.units,
+            remainingUnits: evt.units,
+            unitCost: evt.unitCost,
+            desc: evt.desc,
+            isNew: isCurrentActiveStep,
+            consumedInStep: 0,
+            exhaustedInStep: false
+          };
+          lifoLayers.push(newLifoLayer);
+
+          // Weighted Average
+          wavgInvTotal += evt.units * evt.unitCost;
+          wavgInvUnits += evt.units;
+
+          // Journal Entry
+          journalEntries.push({
+            day: evt.day,
+            title: `Purchase (Batch ${evt.batchId}): ${evt.units} units @ $${evt.unitCost}`,
+            lines: [
+              { acc: "Inventory", dr: purchaseAmt, cr: null },
+              { acc: "Accounts Payable / Cash", dr: null, cr: purchaseAmt }
+            ]
+          });
+
+          if (isCurrentActiveStep) {
+            let leftDesc = `Created new inventory layer Batch [${evt.batchId}] with ${evt.units} units @ $${evt.unitCost}.00 (${formatUSD(purchaseAmt)} total). Placed at the top of the FIFO queue.`;
+            let rightDesc = `Created new inventory layer Batch [${evt.batchId}] with ${evt.units} units @ $${evt.unitCost}.00 (${formatUSD(purchaseAmt)} total). Pushed onto the top of the LIFO stack (will be sold first on next sale).`;
+
+            if (currentScenarioKey === 'divergence') {
+              leftDesc = `Periodic Pool: Added Batch [${evt.batchId}] (${evt.units} units @ $${evt.unitCost} = ${formatUSD(purchaseAmt)}). Enters the full period pool and will be available to absorb earlier or later sales.`;
+              rightDesc = `Perpetual Stack: Added Batch [${evt.batchId}] (${evt.units} units @ $${evt.unitCost} = ${formatUSD(purchaseAmt)}). Pushed onto stack for sales on or after Day ${evt.day}.`;
+            }
+
+            activeStepRecord = {
+              day: evt.day,
+              type: 'purchase',
+              badge: '➕ NEW LAYER CREATED',
+              badgeStyle: 'bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 border border-emerald-300 dark:border-emerald-700',
+              statusTag: 'Layer Added to Warehouse',
+              title: `Day ${evt.day}: Purchase of ${evt.units} units @ $${evt.unitCost}/ea (${evt.desc})`,
+              fifoActionTag: (currentScenarioKey === 'divergence' ? 'Pool Inflow' : 'New Inflow at Top'),
+              lifoActionTag: (currentScenarioKey === 'divergence' ? 'Stack Top Inflow' : 'New Inflow at Top (Next Out)'),
+              fifoDesc: leftDesc,
+              lifoDesc: rightDesc,
+              liquidation: false
+            };
+          }
+
+        } else if (evt.type === 'sale') {
+          const salePrice = evt.price || 30;
+          const rev = evt.units * salePrice;
+          totalRevenue += rev;
+          totalUnitsSold += evt.units;
+
+          // --- FIFO Dispatch (Pulls from Head / Index 0) ---
+          let unitsNeededFifo = evt.units;
+          let saleFifoCogs = 0;
+          let fifoBatchesUsed = [];
+          let fifoActionNarratives = [];
+          let fifoExhaustedCount = 0;
+
+          for (let l = 0; l < fifoLayers.length; l++) {
+            let layer = fifoLayers[l];
+            if (layer.remainingUnits > 0) {
+              let take = Math.min(layer.remainingUnits, unitsNeededFifo);
+              layer.remainingUnits -= take;
+              unitsNeededFifo -= take;
+              saleFifoCogs += take * layer.unitCost;
+              if (isCurrentActiveStep) {
+                layer.consumedInStep = take;
+              }
+              fifoBatchesUsed.push(`${take}u @ $${layer.unitCost} (${layer.batchId})`);
+              
+              if (layer.remainingUnits === 0) {
+                fifoExhaustedCount++;
+                if (isCurrentActiveStep) layer.exhaustedInStep = true;
+                fifoActionNarratives.push(`Consumed all ${take} units from Batch [${layer.batchId}] @ $${layer.unitCost} ➔ [Layer Exhausted & Removed]`);
+              } else {
+                fifoActionNarratives.push(`Consumed ${take} units from Batch [${layer.batchId}] @ $${layer.unitCost} (${layer.remainingUnits} units remain)`);
+              }
+
+              if (unitsNeededFifo === 0) break;
+            }
+          }
+          fifoCogsTotal += saleFifoCogs;
+          fifoCogsUnits += evt.units;
+          fifoDispatched.push({
+            day: evt.day,
+            units: evt.units,
+            cogs: saleFifoCogs,
+            detail: fifoBatchesUsed.join(" + ")
+          });
+
+          // --- LIFO Dispatch (Pulls from Tail / Top) ---
+          let unitsNeededLifo = evt.units;
+          let saleLifoCogs = 0;
+          let lifoBatchesUsed = [];
+          let lifoActionNarratives = [];
+          let stepLiquidationOccurred = false;
+          let stepLiquidationUnits = 0;
+          let lifoExhaustedCount = 0;
+
+          for (let l = lifoLayers.length - 1; l >= 0; l--) {
+            let layer = lifoLayers[l];
+            if (layer.remainingUnits > 0) {
+              let take = Math.min(layer.remainingUnits, unitsNeededLifo);
+              layer.remainingUnits -= take;
+              unitsNeededLifo -= take;
+              saleLifoCogs += take * layer.unitCost;
+              if (isCurrentActiveStep) {
+                layer.consumedInStep = take;
+              }
+              lifoBatchesUsed.push(`${take}u @ $${layer.unitCost} (${layer.batchId})`);
+
+              // Check if we invaded base layer B1 when higher layers existed
+              if (layer.batchId === 'B1' && l === 0 && lifoLayers.length > 1) {
+                lifoLiquidationOccurred = true;
+                stepLiquidationOccurred = true;
+                stepLiquidationUnits += take;
+                liquidationDistortionUnits += take;
+                const recentCost = currentEvents.slice(0, i + 1).filter(e => e.type === 'purchase').slice(-1)[0]?.unitCost || 20;
+                liquidationDistortionDollars += take * (recentCost - layer.unitCost);
+              }
+
+              if (layer.remainingUnits === 0) {
+                lifoExhaustedCount++;
+                if (isCurrentActiveStep) layer.exhaustedInStep = true;
+                lifoActionNarratives.push(`Consumed all ${take} units from Batch [${layer.batchId}] @ $${layer.unitCost} ➔ [Layer Exhausted & Removed]`);
+              } else {
+                lifoActionNarratives.push(`Consumed ${take} units from Batch [${layer.batchId}] @ $${layer.unitCost} (${layer.remainingUnits} units remain)`);
+              }
+
+              if (unitsNeededLifo === 0) break;
+            }
+          }
+          lifoCogsTotal += saleLifoCogs;
+          lifoCogsUnits += evt.units;
+          lifoDispatched.push({
+            day: evt.day,
+            units: evt.units,
+            cogs: saleLifoCogs,
+            detail: lifoBatchesUsed.join(" + ")
+          });
+
+          // --- Weighted Average Dispatch ---
+          const currentAvgCost = wavgInvUnits > 0 ? (wavgInvTotal / wavgInvUnits) : 0;
+          const wavgSaleCogs = evt.units * currentAvgCost;
+          wavgCogsTotal += wavgSaleCogs;
+          wavgInvTotal -= wavgSaleCogs;
+          wavgInvUnits -= evt.units;
+
+          // Journal Entry for Sale & COGS
+          journalEntries.push({
+            day: evt.day,
+            title: `Sale: ${evt.units} units @ $${salePrice}`,
+            lines: [
+              { acc: "Accounts Receivable / Cash", dr: rev, cr: null },
+              { acc: "Sales Revenue", dr: null, cr: rev },
+              { acc: "COGS (Internal FIFO)", dr: saleFifoCogs, cr: null },
+              { acc: "Inventory", dr: null, cr: saleFifoCogs }
+            ]
+          });
+
+          // LIFO Reserve Adjustment Entry
+          const deltaCogs = saleLifoCogs - saleFifoCogs;
+          if (deltaCogs !== 0) {
+            if (deltaCogs > 0) {
+              journalEntries.push({
+                day: evt.day,
+                title: `LIFO Reserve Adjustment (COGS Alignment)`,
+                lines: [
+                  { acc: "Cost of Goods Sold (LIFO Adjustment)", dr: deltaCogs, cr: null },
+                  { acc: "Allowance to Reduce Inv to LIFO (LIFO Reserve)", dr: null, cr: deltaCogs }
+                ]
+              });
+            } else {
+              journalEntries.push({
+                day: evt.day,
+                title: `LIFO Reserve Drawdown (LIFO Liquidation Recovery)`,
+                lines: [
+                  { acc: "Allowance to Reduce Inv to LIFO (LIFO Reserve)", dr: Math.abs(deltaCogs), cr: null },
+                  { acc: "Cost of Goods Sold (Credit)", dr: null, cr: Math.abs(deltaCogs) }
+                ]
+              });
+            }
+          }
+
+          if (isCurrentActiveStep) {
+            let leftDesc = `PULLED FROM EARLIEST (BOTTOM) LAYERS: ${fifoActionNarratives.join(' + ')}. Total FIFO COGS = ${formatUSD(saleFifoCogs)}.`;
+            let rightDesc = `PULLED FROM LATEST (TOP) LAYERS: ${lifoActionNarratives.join(' + ')}. Total LIFO COGS = ${formatUSD(saleLifoCogs)}.`;
+
+            if (currentScenarioKey === 'divergence') {
+              if (evt.day === 10) {
+                leftDesc = `Periodic LIFO records ${evt.units} units sold. Cost matching is deferred until period end — when Day 15 purchase arrives ($25), all ${evt.units} units will be matched against the $25 batch ($2,000 COGS).`;
+                rightDesc = `Perpetual LIFO must immediately draw from Batch B1 @ $10 ($800 COGS) because Batch B2 does NOT exist yet on Day 10! Remaining: 20 units in B1.`;
+              } else if (evt.day === 25) {
+                leftDesc = `Periodic LIFO matches all ${totalUnitsSold} units sold during the period against the latest period purchases (Batch B2 @ $25 = $3,250 COGS). Ending Periodic Inv = $1,500.`;
+                rightDesc = `Perpetual LIFO draws 50 units from Batch B2 @ $25 ($1,250 COGS). Total COGS = $2,050 ($1,200 lower than Periodic). Ending Perpetual Inv = $2,700.`;
+              }
+            }
+
+            activeStepRecord = {
+              day: evt.day,
+              type: 'sale',
+              badge: '⚡ LAYER(S) CONSUMED & REMOVED',
+              badgeStyle: 'bg-amber-100 dark:bg-amber-950/80 text-amber-800 dark:text-amber-200 border border-amber-300 dark:border-amber-700',
+              statusTag: `${evt.units} Units Dispatched`,
+              title: `Day ${evt.day}: Sale of ${evt.units} units @ $${salePrice}/ea (${evt.desc})`,
+              fifoActionTag: (currentScenarioKey === 'divergence' ? 'Periodic Pool Match' : `Bottom Queue Pull (${fifoExhaustedCount > 0 ? fifoExhaustedCount + ' Layer Removed' : 'Partial Layer'})`),
+              lifoActionTag: (currentScenarioKey === 'divergence' ? 'Perpetual Stack Pull' : `Top Stack Pull (${lifoExhaustedCount > 0 ? lifoExhaustedCount + ' Layer Removed' : 'Partial Layer'})`),
+              fifoDesc: leftDesc,
+              lifoDesc: rightDesc,
+              liquidation: stepLiquidationOccurred,
+              liquidationUnits: stepLiquidationUnits,
+              liquidationDistortion: liquidationDistortionDollars
+            };
+          }
+
+        }
+      }
+
+      // Ending Inventory Balances
+      const fifoEndingInv = fifoLayers.reduce((acc, l) => acc + (l.remainingUnits * l.unitCost), 0);
+      const fifoEndingUnits = fifoLayers.reduce((acc, l) => acc + l.remainingUnits, 0);
+
+      const lifoEndingInv = lifoLayers.reduce((acc, l) => acc + (l.remainingUnits * l.unitCost), 0);
+      const lifoEndingUnits = lifoLayers.reduce((acc, l) => acc + l.remainingUnits, 0);
+
+      // Periodic LIFO Calculation & Layers (Pool entire period up to step)
+      let periodicLifoCogs = 0;
+      let periodicLifoEndingInv = 0;
+      let periodicLifoLayers = [];
+      let periodicLifoDispatched = [];
+      {
+        let allPurchased = currentEvents.slice(0, upToStep).filter(e => e.type === 'purchase');
+        let totalUnitsAvail = allPurchased.reduce((acc, p) => acc + p.units, 0);
+        let totalCostAvail = allPurchased.reduce((acc, p) => acc + (p.units * p.unitCost), 0);
+        let remUnits = totalUnitsAvail - totalUnitsSold;
+
+        // In Periodic LIFO, remaining units come from EARLIEST purchases of the period
+        let uNeeded = remUnits;
+        for (let p of allPurchased) {
+          let remInBatch = 0;
+          if (uNeeded > 0) {
+            remInBatch = Math.min(p.units, uNeeded);
+            uNeeded -= remInBatch;
+          }
+          periodicLifoLayers.push({
+            batchId: p.batchId,
+            day: p.day,
+            originalUnits: p.units,
+            remainingUnits: remInBatch,
+            unitCost: p.unitCost,
+            desc: p.desc,
+            isNew: (p.day === currentEvents[upToStep - 1]?.day && currentEvents[upToStep - 1]?.type === 'purchase'),
+            consumedInStep: 0,
+            exhaustedInStep: (remInBatch === 0 && totalUnitsSold > 0)
+          });
+        }
+        periodicLifoEndingInv = periodicLifoLayers.reduce((acc, l) => acc + (l.remainingUnits * l.unitCost), 0);
+        periodicLifoCogs = totalCostAvail - periodicLifoEndingInv;
+
+        if (totalUnitsSold > 0) {
+          let soldNeeded = totalUnitsSold;
+          let poolRev = [...allPurchased].reverse();
+          let matched = [];
+          for (let p of poolRev) {
+            if (soldNeeded <= 0) break;
+            let take = Math.min(p.units, soldNeeded);
+            matched.push(`${take}u @ $${p.unitCost} (${p.batchId})`);
+            soldNeeded -= take;
+          }
+          periodicLifoDispatched.push({
+            day: currentEvents[upToStep - 1]?.day || 0,
+            units: totalUnitsSold,
+            cogs: periodicLifoCogs,
+            detail: matched.join(' + ')
+          });
+        }
+      }
+
+      const lifoReserve = fifoEndingInv - lifoEndingInv;
+
+      return {
+        fifoLayers,
+        fifoEndingInv,
+        fifoEndingUnits,
+        fifoCogsTotal,
+        fifoCogsUnits,
+        fifoDispatched,
+
+        lifoLayers,
+        lifoEndingInv,
+        lifoEndingUnits,
+        lifoCogsTotal,
+        lifoCogsUnits,
+        lifoDispatched,
+        lifoLiquidationOccurred,
+
+        periodicLifoCogs,
+        periodicLifoEndingInv,
+        periodicLifoLayers,
+        periodicLifoDispatched,
+
+        wavgCogsTotal,
+        wavgEndingInv: wavgInvTotal,
+
+        totalRevenue,
+        totalUnitsSold,
+        lifoReserve,
+        journalEntries,
+        activeStepRecord
+      };
+    }
+
+    // --- UI RENDER & UPDATE ---
+    function updateUI() {
+      const state = computeSimulationState(currentStepIndex);
+      const prevState = currentStepIndex > 0 ? computeSimulationState(currentStepIndex - 1) : state;
+      const deltaReserve = state.lifoReserve - prevState.lifoReserve;
+
+      // Update Scrubber & Timeline
+      document.getElementById('current-step-lbl').innerText = currentStepIndex;
+      document.getElementById('total-step-lbl').innerText = currentEvents.length;
+      
+      const pct = currentEvents.length > 0 ? (currentStepIndex / currentEvents.length) * 100 : 0;
+      document.getElementById('timeline-progress-bar').style.width = pct + '%';
+      
+      const currentDay = currentStepIndex > 0 ? currentEvents[currentStepIndex - 1].day : 0;
+      const nextEvt = currentStepIndex < currentEvents.length ? currentEvents[currentStepIndex] : null;
+      document.getElementById('timeline-day-lbl').innerText = `Day ${currentDay}` + (nextEvt ? ` (Next: Day ${nextEvt.day} ${nextEvt.type.toUpperCase()})` : ` (Completed)`);
+
+      // Update Active Event Description Banner (Current Transaction)
+      const eventBadge = document.getElementById('active-event-badge');
+      const eventTitle = document.getElementById('active-event-title');
+      const eventStatusTag = document.getElementById('active-event-status-tag');
+      const fifoActionTag = document.getElementById('fifo-event-action-tag');
+      const lifoActionTag = document.getElementById('lifo-event-action-tag');
+      const fifoDesc = document.getElementById('active-fifo-desc');
+      const lifoDesc = document.getElementById('active-lifo-desc');
+      const liqBox = document.getElementById('liquidation-warning-box');
+      const liqText = document.getElementById('liquidation-warning-text');
+
+      if (currentStepIndex === 0) {
+        eventBadge.className = 'px-2.5 py-1 text-xs font-bold rounded-lg uppercase tracking-wider bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-slate-700';
+        eventBadge.innerText = 'Initial State';
+        eventTitle.innerText = 'Simulation Initialized (Day 0 — Warehouse Empty)';
+        eventStatusTag.innerText = 'Ready to Step';
+        fifoActionTag.innerText = (currentScenarioKey === 'divergence' ? 'Pool Ready' : 'Queue Ready');
+        lifoActionTag.innerText = 'Stack Ready';
+        fifoDesc.innerHTML = 'Simulation is at Day 0. Click <strong>Step Next</strong> or <strong>Play</strong> to process the first transaction below.';
+        lifoDesc.innerHTML = 'Simulation is at Day 0. Click <strong>Step Next</strong> or <strong>Play</strong> to process the first transaction below.';
+        liqBox.classList.add('hidden');
+      } else if (state.activeStepRecord) {
+        const rec = state.activeStepRecord;
+        eventBadge.className = `px-2.5 py-1 text-xs font-bold rounded-lg uppercase tracking-wider ${rec.badgeStyle}`;
+        eventBadge.innerText = rec.badge;
+        eventTitle.innerText = rec.title;
+        eventStatusTag.innerText = rec.statusTag;
+        fifoActionTag.innerText = rec.fifoActionTag;
+        lifoActionTag.innerText = rec.lifoActionTag;
+        fifoDesc.innerText = rec.fifoDesc;
+        lifoDesc.innerText = rec.lifoDesc;
+
+        if (rec.liquidation) {
+          liqBox.classList.remove('hidden');
+          liqText.innerHTML = `This sale consumed <strong>${rec.liquidationUnits} units</strong> of the original low-cost base layer (Batch B1 @ $10). Old historical costs were matched against current selling prices, creating an artificial profit distortion!`;
+        } else {
+          liqBox.classList.add('hidden');
+        }
+      }
+
+      // Update Upcoming Next Transaction Preview Strip
+      const upcomingDayBadge = document.getElementById('upcoming-event-day-badge');
+      const upcomingSummary = document.getElementById('upcoming-event-summary');
+      const upcomingHint = document.getElementById('upcoming-event-preview-hint');
+
+      if (currentStepIndex < currentEvents.length) {
+        const nextEvt = currentEvents[currentStepIndex];
+        upcomingDayBadge.innerText = `Day ${nextEvt.day}`;
+        if (nextEvt.type === 'purchase') {
+          upcomingSummary.innerText = `Purchase: Batch [${nextEvt.batchId}] — ${nextEvt.units} units @ $${nextEvt.unitCost}.00 (${formatUSD(nextEvt.units * nextEvt.unitCost)} total)`;
+          if (currentScenarioKey === 'divergence') {
+            upcomingHint.innerHTML = `<span class="text-amber-600 dark:text-amber-400 font-semibold"><i class="fa-solid fa-code-compare"></i> Divergence Alert:</span> This $25 purchase arrives AFTER the Day 10 sale. Periodic LIFO pools it against the Day 10 sale; Perpetual LIFO cannot!`;
+          } else {
+            upcomingHint.innerHTML = `<span class="text-emerald-600 dark:text-emerald-400 font-semibold"><i class="fa-solid fa-plus-circle"></i> Inflow:</span> Adds a new layer of <strong>${nextEvt.units}u @ $${nextEvt.unitCost}</strong> to top of both containers.`;
+          }
+        } else if (nextEvt.type === 'sale') {
+          upcomingSummary.innerText = `Sale: ${nextEvt.units} units @ $${nextEvt.price || 30}.00 (Revenue: ${formatUSD(nextEvt.units * (nextEvt.price || 30))})`;
+          if (currentScenarioKey === 'divergence') {
+            upcomingHint.innerHTML = `<span class="text-indigo-600 dark:text-indigo-400 font-semibold"><i class="fa-solid fa-crosshairs"></i> Target:</span> Perpetual LIFO draws from Day 1 ($10); Periodic LIFO pools all period purchases.`;
+          } else {
+            const fifoTarget = state.fifoLayers.find(l => l.remainingUnits > 0);
+            const lifoTarget = [...state.lifoLayers].reverse().find(l => l.remainingUnits > 0);
+            const fifoTargetTxt = fifoTarget ? `Batch [${fifoTarget.batchId}] ($${fifoTarget.unitCost}/ea)` : 'Empty';
+            const lifoTargetTxt = lifoTarget ? `Batch [${lifoTarget.batchId}] ($${lifoTarget.unitCost}/ea)` : 'Empty';
+            upcomingHint.innerHTML = `<span class="text-indigo-600 dark:text-indigo-400 font-semibold"><i class="fa-solid fa-crosshairs"></i> Next Draw:</span> FIFO pulls <strong>${fifoTargetTxt}</strong> | LIFO pulls <strong>${lifoTargetTxt}</strong>`;
+          }
+        }
+      } else {
+        upcomingDayBadge.innerText = `End of Period`;
+        upcomingSummary.innerText = `🎉 Simulation Complete — All transactions have been processed!`;
+        upcomingHint.innerHTML = `<span class="text-indigo-600 dark:text-indigo-400 font-semibold">Review Final Results:</span> Compare ending inventory, income statements, and T-accounts below.`;
+      }
+
+      // Render Dynamic Timeline Markers
+      renderTimelineMarkers();
+
+      // Render Warehouse Visual Stacks
+      if (currentScenarioKey === 'divergence') {
+        renderStack('fifo', state.periodicLifoLayers);
+        renderStack('lifo', state.lifoLayers);
+        renderDispatched('fifo', state.periodicLifoDispatched, state.totalUnitsSold);
+        renderDispatched('lifo', state.lifoDispatched, state.lifoCogsUnits);
+
+        document.getElementById('fifo-total-units').innerText = state.totalUnitsSold > 0 ? (state.totalRevenue > 0 ? state.periodicLifoLayers.reduce((a, l) => a + l.remainingUnits, 0) : state.fifoEndingUnits) : state.fifoEndingUnits;
+        document.getElementById('lifo-total-units').innerText = state.lifoEndingUnits;
+        document.getElementById('fifo-ending-inv-val').innerText = formatUSD(state.periodicLifoEndingInv);
+        document.getElementById('lifo-ending-inv-val').innerText = formatUSD(state.lifoEndingInv);
+        document.getElementById('fifo-cogs-val').innerText = formatUSD(state.periodicLifoCogs);
+        document.getElementById('lifo-cogs-val').innerText = formatUSD(state.lifoCogsTotal);
+      } else {
+        renderStack('fifo', state.fifoLayers);
+        renderStack('lifo', state.lifoLayers);
+        renderDispatched('fifo', state.fifoDispatched, state.fifoCogsUnits);
+        renderDispatched('lifo', state.lifoDispatched, state.lifoCogsUnits);
+
+        document.getElementById('fifo-total-units').innerText = state.fifoEndingUnits;
+        document.getElementById('lifo-total-units').innerText = state.lifoEndingUnits;
+        document.getElementById('fifo-ending-inv-val').innerText = formatUSD(state.fifoEndingInv);
+        document.getElementById('lifo-ending-inv-val').innerText = formatUSD(state.lifoEndingInv);
+        document.getElementById('fifo-cogs-val').innerText = formatUSD(state.fifoCogsTotal);
+        document.getElementById('lifo-cogs-val').innerText = formatUSD(state.lifoCogsTotal);
+      }
+
+      // Scoreboard Cards
+      if (currentScenarioKey === 'divergence') {
+        const divergenceInv = state.lifoEndingInv - state.periodicLifoEndingInv;
+        const divergenceCogs = state.periodicLifoCogs - state.lifoCogsTotal;
+        const divTaxDiff = divergenceCogs * taxRate;
+
+        document.getElementById('card-fifo-inv').innerText = formatUSD(state.lifoEndingInv);
+        document.getElementById('card-lifo-inv').innerText = formatUSD(state.periodicLifoEndingInv);
+        document.getElementById('badge-inv-diff').innerText = `${divergenceInv >= 0 ? '+' : ''}${formatUSD(divergenceInv)} (Perp > Period)`;
+
+        document.getElementById('card-fifo-cogs').innerText = formatUSD(state.lifoCogsTotal);
+        document.getElementById('card-lifo-cogs').innerText = formatUSD(state.periodicLifoCogs);
+        document.getElementById('badge-cogs-diff').innerText = `${divergenceCogs >= 0 ? '+' : ''}${formatUSD(divergenceCogs)} (Period higher)`;
+
+        document.getElementById('card-lifo-reserve').innerText = formatUSD(Math.abs(divergenceInv));
+        document.getElementById('card-delta-reserve').innerText = `Divergence: ${formatUSD(Math.abs(divergenceInv))}`;
+
+        document.getElementById('card-tax-shield').innerText = formatUSD(Math.abs(divTaxDiff));
+      } else {
+        document.getElementById('card-fifo-inv').innerText = formatUSD(state.fifoEndingInv);
+        document.getElementById('card-lifo-inv').innerText = formatUSD(state.lifoEndingInv);
+        document.getElementById('badge-inv-diff').innerText = `+${formatUSD(state.lifoReserve)} (Reserve)`;
+
+        document.getElementById('card-fifo-cogs').innerText = formatUSD(state.fifoCogsTotal);
+        document.getElementById('card-lifo-cogs').innerText = formatUSD(state.lifoCogsTotal);
+        const cogsDiff = state.lifoCogsTotal - state.fifoCogsTotal;
+        document.getElementById('badge-cogs-diff').innerText = (cogsDiff >= 0 ? `+${formatUSD(cogsDiff)}` : `-${formatUSD(Math.abs(cogsDiff))}`);
+
+        document.getElementById('card-lifo-reserve').innerText = formatUSD(state.lifoReserve);
+        document.getElementById('card-delta-reserve').innerText = `Δ Reserve: ${deltaReserve >= 0 ? '+' : ''}${formatUSD(deltaReserve)}`;
+
+        const taxShieldSavings = Math.max(0, (state.lifoCogsTotal - state.fifoCogsTotal) * taxRate);
+        document.getElementById('card-tax-shield').innerText = formatUSD(taxShieldSavings);
+      }
+
+      // Financial Statement Table
+      const fifoGp = state.totalRevenue - state.fifoCogsTotal;
+      const lifoGp = state.totalRevenue - state.lifoCogsTotal;
+      const lifopGp = state.totalRevenue - state.periodicLifoCogs;
+      const wavgGp = state.totalRevenue - state.wavgCogsTotal;
+
+      const fifoGm = state.totalRevenue > 0 ? ((fifoGp / state.totalRevenue) * 100).toFixed(1) : '0.0';
+      const lifoGm = state.totalRevenue > 0 ? ((lifoGp / state.totalRevenue) * 100).toFixed(1) : '0.0';
+      const lifopGm = state.totalRevenue > 0 ? ((lifopGp / state.totalRevenue) * 100).toFixed(1) : '0.0';
+      const wavgGm = state.totalRevenue > 0 ? ((wavgGp / state.totalRevenue) * 100).toFixed(1) : '0.0';
+
+      const fifoTax = Math.max(0, fifoGp * taxRate);
+      const lifoTax = Math.max(0, lifoGp * taxRate);
+      const lifopTax = Math.max(0, lifopGp * taxRate);
+      const wavgTax = Math.max(0, wavgGp * taxRate);
+
+      document.getElementById('tbl-fifo-rev').innerText = formatUSD(state.totalRevenue);
+      document.getElementById('tbl-lifo-rev').innerText = formatUSD(state.totalRevenue);
+      document.getElementById('tbl-lifop-rev').innerText = formatUSD(state.totalRevenue);
+      document.getElementById('tbl-wavg-rev').innerText = formatUSD(state.totalRevenue);
+
+      document.getElementById('tbl-fifo-cogs').innerText = formatUSD(state.fifoCogsTotal);
+      document.getElementById('tbl-lifo-cogs').innerText = formatUSD(state.lifoCogsTotal);
+      document.getElementById('tbl-lifop-cogs').innerText = formatUSD(state.periodicLifoCogs);
+      document.getElementById('tbl-wavg-cogs').innerText = formatUSD(state.wavgCogsTotal);
+
+      document.getElementById('tbl-fifo-gp').innerText = formatUSD(fifoGp);
+      document.getElementById('tbl-lifo-gp').innerText = formatUSD(lifoGp);
+      document.getElementById('tbl-lifop-gp').innerText = formatUSD(lifopGp);
+      document.getElementById('tbl-wavg-gp').innerText = formatUSD(wavgGp);
+
+      document.getElementById('tbl-fifo-gm').innerText = fifoGm + '%';
+      document.getElementById('tbl-lifo-gm').innerText = lifoGm + '%';
+      document.getElementById('tbl-lifop-gm').innerText = lifopGm + '%';
+      document.getElementById('tbl-wavg-gm').innerText = wavgGm + '%';
+
+      document.getElementById('tbl-fifo-tax').innerText = formatUSD(fifoTax);
+      document.getElementById('tbl-lifo-tax').innerText = formatUSD(lifoTax);
+      document.getElementById('tbl-lifop-tax').innerText = formatUSD(lifopTax);
+      document.getElementById('tbl-wavg-tax').innerText = formatUSD(wavgTax);
+
+      document.getElementById('tbl-fifo-inv').innerText = formatUSD(state.fifoEndingInv);
+      document.getElementById('tbl-lifo-inv').innerText = formatUSD(state.lifoEndingInv);
+      document.getElementById('tbl-lifop-inv').innerText = formatUSD(state.periodicLifoEndingInv);
+      document.getElementById('tbl-wavg-inv').innerText = formatUSD(state.wavgEndingInv);
+
+      if (currentScenarioKey === 'divergence') {
+        const divergenceCogs = state.periodicLifoCogs - state.lifoCogsTotal;
+        const divergenceGp = lifopGp - lifoGp;
+        const divergenceGm = (parseFloat(lifopGm) - parseFloat(lifoGm)).toFixed(1);
+        const divergenceTax = lifopTax - lifoTax;
+        const divergenceInv = state.periodicLifoEndingInv - state.lifoEndingInv;
+
+        document.getElementById('tbl-diff-cogs').innerText = `${divergenceCogs >= 0 ? '+' : ''}${formatUSD(divergenceCogs)}`;
+        document.getElementById('tbl-diff-gp').innerText = `${divergenceGp >= 0 ? '+' : ''}${formatUSD(divergenceGp)}`;
+        document.getElementById('tbl-diff-gm').innerText = `${divergenceGm}%`;
+        document.getElementById('tbl-diff-tax').innerText = `${divergenceTax >= 0 ? '+' : ''}${formatUSD(divergenceTax)}`;
+        document.getElementById('tbl-diff-reserve').innerText = `${divergenceInv >= 0 ? '+' : ''}${formatUSD(divergenceInv)}`;
+      } else {
+        const cogsDiff = state.lifoCogsTotal - state.fifoCogsTotal;
+        document.getElementById('tbl-diff-cogs').innerText = `${cogsDiff >= 0 ? '+' : ''}${formatUSD(cogsDiff)}`;
+        document.getElementById('tbl-diff-gp').innerText = `${(fifoGp - lifoGp) >= 0 ? '+' : ''}${formatUSD(fifoGp - lifoGp)}`;
+        document.getElementById('tbl-diff-gm').innerText = ((parseFloat(fifoGm) - parseFloat(lifoGm)).toFixed(1)) + '%';
+        document.getElementById('tbl-diff-tax').innerText = `${formatUSD(fifoTax - lifoTax)} (Shield)`;
+        document.getElementById('tbl-diff-reserve').innerText = formatUSD(state.lifoReserve);
+      }
+
+      // Render Journal Entries
+      renderJournalEntries(state.journalEntries);
+
+      // Render T-Accounts
+      renderTAccounts(state);
+    }
+
+    function renderStack(type, layers) {
+      const container = document.getElementById(`${type}-layer-stack`);
+      container.innerHTML = '';
+
+      if (!layers || layers.length === 0) {
+        container.innerHTML = '<div class="text-center text-xs text-slate-400 py-6 italic">Warehouse is currently empty.</div>';
+        return;
+      }
+
+      // Check for exhausted layers in this step to show temporary notification
+      const exhaustedLayers = layers.filter(l => l.exhaustedInStep);
+      if (exhaustedLayers.length > 0) {
+        exhaustedLayers.forEach(el => {
+          const exhDiv = document.createElement('div');
+          exhDiv.className = 'p-2 rounded-lg bg-rose-100 dark:bg-rose-950/80 border border-rose-300 dark:border-rose-800 text-rose-800 dark:text-rose-200 text-[11px] font-bold flex items-center justify-between animate-enter';
+          exhDiv.innerHTML = `
+            <span><i class="fa-solid fa-fire-flame-curved text-rose-500"></i> Batch [${el.batchId}] ($${el.unitCost}/ea)</span>
+            <span class="px-1.5 py-0.5 rounded bg-rose-200 dark:bg-rose-900 text-[10px] uppercase">Layer Exhausted &amp; Removed</span>
+          `;
+          container.appendChild(exhDiv);
+        });
+      }
+
+      layers.forEach((layer, idx) => {
+        if (layer.remainingUnits === 0) return; // omit fully consumed layers
+        const div = document.createElement('div');
+        const tierClass = getCostTierClass(layer.unitCost);
+        
+        // Is this layer the active target for next sale?
+        let isNextTarget = false;
+        if (type === 'fifo' && idx === layers.findIndex(l => l.remainingUnits > 0)) {
+          isNextTarget = true;
+        }
+        if (type === 'lifo' && idx === findLastIndex(layers, l => l.remainingUnits > 0)) {
+          isNextTarget = true;
+        }
+
+        let actionBadgeHTML = '';
+        if (layer.isNew) {
+          actionBadgeHTML = `<span class="ml-1.5 px-1.5 py-0.5 rounded bg-emerald-400 text-slate-900 text-[9px] font-extrabold uppercase animate-enter shrink-0">✨ Added</span>`;
+        } else if (layer.consumedInStep > 0) {
+          actionBadgeHTML = `<span class="ml-1.5 px-1.5 py-0.5 rounded bg-amber-300 text-slate-900 text-[9px] font-extrabold uppercase animate-enter shrink-0">⚡ -${layer.consumedInStep}u</span>`;
+        } else if (isNextTarget) {
+          actionBadgeHTML = `<span class="ml-1.5 px-1.5 py-0.5 rounded bg-white/30 text-white text-[9px] font-bold uppercase shrink-0">🎯 Next Out</span>`;
+        }
+
+        // Proportional height / thickness based on remainingUnits:
+        // Base minimum height = 42px (compact single-row), scaling up by 0.30px per unit
+        const baseMinHeight = 42;
+        const pxPerUnit = 0.30;
+        const calculatedHeight = Math.max(baseMinHeight, Math.round(baseMinHeight + (layer.remainingUnits * pxPerUnit)));
+        const fillPercent = Math.min(100, Math.round((layer.remainingUnits / layer.originalUnits) * 100));
+
+        div.style.minHeight = `${calculatedHeight}px`;
+        div.style.height = `${calculatedHeight}px`;
+        div.style.transition = 'height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), min-height 0.45s ease, opacity 0.3s ease';
+
+        div.className = `p-2.5 rounded-lg shadow-sm font-medium text-xs flex flex-col justify-between relative overflow-hidden transition-all ${tierClass} ${layer.isNew ? 'ring-2 ring-emerald-400 animate-enter' : ''} ${isNextTarget ? 'ring-2 ring-white ring-offset-2 ring-offset-slate-900 animate-pop' : 'opacity-95'}`;
+        
+        if (calculatedHeight >= 66) {
+          // Spacious 2-row layout for thicker layers
+          div.innerHTML = `
+            <div class="flex items-center justify-between gap-1 w-full">
+              <div class="flex items-center space-x-1.5 flex-wrap">
+                <span class="font-bold px-1.5 py-0.5 rounded bg-black/30 text-[10px] font-mono">Day ${layer.day} [${layer.batchId}]</span>
+                ${actionBadgeHTML}
+              </div>
+              <div class="text-right">
+                <span class="font-bold text-sm">$${layer.unitCost}</span><span class="text-[10px]">/ea</span>
+              </div>
+            </div>
+            <div class="flex items-end justify-between gap-1 w-full mt-auto pt-1">
+              <span class="text-[11px] font-bold">
+                <strong>${layer.remainingUnits}</strong> / ${layer.originalUnits} units <span class="text-[10px] font-normal text-white/80">(${fillPercent}%)</span>
+              </span>
+              <span class="text-[11px] font-mono text-white/90 font-bold">
+                ${formatUSD(layer.remainingUnits * layer.unitCost)}
+              </span>
+            </div>
+            <!-- Bottom proportional unit capacity bar -->
+            <div class="absolute bottom-0 left-0 h-1 bg-white/40 rounded-full" style="width: ${fillPercent}%;"></div>
+          `;
+        } else {
+          // Compact 1-row layout for thin layers (e.g. 10-30 units remaining)
+          div.innerHTML = `
+            <div class="flex items-center justify-between gap-1 w-full my-auto">
+              <div class="flex items-center space-x-1.5">
+                <span class="font-bold px-1.5 py-0.5 rounded bg-black/30 text-[10px] font-mono">[${layer.batchId}]</span>
+                <span><strong>${layer.remainingUnits}</strong>/${layer.originalUnits}u</span>
+                ${actionBadgeHTML}
+              </div>
+              <div class="text-right">
+                <span class="font-bold text-xs">$${layer.unitCost}</span>
+                <span class="text-[10px] text-white/85 font-mono ml-1">(${formatUSD(layer.remainingUnits * layer.unitCost)})</span>
+              </div>
+            </div>
+            <!-- Bottom proportional unit capacity bar -->
+            <div class="absolute bottom-0 left-0 h-1 bg-white/40 rounded-full" style="width: ${fillPercent}%;"></div>
+          `;
+        }
+
+        container.appendChild(div);
+      });
+    }
+
+    function renderTimelineMarkers() {
+      const container = document.getElementById('timeline-markers');
+      if (!container) return;
+      
+      let html = `<button onclick="jumpToStep(0)" class="cursor-pointer font-bold ${currentStepIndex === 0 ? 'text-indigo-600 dark:text-indigo-400 font-extrabold' : 'text-slate-400 hover:text-slate-600'}" title="Reset to start">Start</button>`;
+      
+      currentEvents.forEach((ev, idx) => {
+        const stepNum = idx + 1;
+        let style = 'text-slate-400 hover:text-slate-600';
+        let prefix = '';
+        
+        if (stepNum < currentStepIndex) {
+          style = 'text-emerald-600 dark:text-emerald-400 font-semibold';
+          prefix = '✓ ';
+        } else if (stepNum === currentStepIndex) {
+          style = 'text-indigo-600 dark:text-indigo-400 font-extrabold underline';
+          prefix = '▶ ';
+        } else if (stepNum === currentStepIndex + 1) {
+          style = 'text-amber-600 dark:text-amber-400 font-bold';
+          prefix = '⏳ ';
+        }
+
+        html += `<button onclick="jumpToStep(${stepNum})" class="cursor-pointer transition-colors ${style}" title="Day ${ev.day}: ${ev.type.toUpperCase()}">${prefix}D${ev.day}</button>`;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function jumpToStep(stepIdx) {
+      pauseSim();
+      if (stepIdx >= 0 && stepIdx <= currentEvents.length) {
+        currentStepIndex = stepIdx;
+        document.getElementById('quiz-panel').classList.add('hidden');
+        updateUI();
+      }
+    }
+
+    function renderDispatched(type, dispatched, totalUnits) {
+      const container = document.getElementById(`${type}-dispatched-layers`);
+      document.getElementById(`${type}-cogs-units`).innerText = `${totalUnits} units`;
+      
+      if (!dispatched || dispatched.length === 0) {
+        container.innerHTML = '<span class="text-slate-400 italic">No sales recorded yet.</span>';
+        return;
+      }
+
+      container.innerHTML = dispatched.map((d, i) => {
+        const isLatest = (i === dispatched.length - 1);
+        return `
+          <div class="flex justify-between items-center py-1 border-b border-slate-200/50 dark:border-slate-800 ${isLatest ? 'font-semibold text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400'}">
+            <span>${isLatest ? '👉 ' : ''}Day ${d.day}: ${d.units} units (${d.detail})</span>
+            <span class="font-bold font-mono ${isLatest ? 'text-indigo-600 dark:text-indigo-400' : ''}">${formatUSD(d.cogs)}</span>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderJournalEntries(entries) {
+      const container = document.getElementById('journal-entries-container');
+      if (entries.length === 0) {
+        container.innerHTML = '<div class="text-slate-400 italic">No entries recorded yet.</div>';
+        return;
+      }
+
+      container.innerHTML = entries.map(ent => `
+        <div class="bg-slate-50 dark:bg-slate-800/40 p-2.5 rounded-lg border border-slate-200 dark:border-slate-800">
+          <div class="font-bold text-slate-700 dark:text-slate-300 mb-1 border-b border-slate-200 dark:border-slate-700 pb-1 flex justify-between">
+            <span>Day ${ent.day}: ${ent.title}</span>
+          </div>
+          <table class="w-full">
+            <tbody>
+              ${ent.lines.map(l => `
+                <tr>
+                  <td class="${l.dr ? 'pl-0 font-medium' : 'pl-4 text-slate-500'} py-0.5">${l.acc}</td>
+                  <td class="text-right py-0.5 w-20 font-bold">${l.dr ? formatUSD(l.dr) : ''}</td>
+                  <td class="text-right py-0.5 w-20 font-bold">${l.cr ? formatUSD(l.cr) : ''}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      `).join('');
+    }
+
+    function renderTAccounts(state) {
+      // Inventory T-Account
+      let invDr = [];
+      let invCr = [];
+      currentEvents.slice(0, currentStepIndex).forEach(e => {
+        if (e.type === 'purchase') invDr.push(`+${formatUSD(e.units * e.unitCost)}`);
+      });
+      state.fifoDispatched.forEach(d => invCr.push(`-${formatUSD(d.cogs)}`));
+      document.getElementById('t-acc-inv-dr').innerHTML = invDr.join('<br>') || '$0';
+      document.getElementById('t-acc-inv-cr').innerHTML = invCr.join('<br>') || '$0';
+      document.getElementById('t-acc-inv-bal').innerText = formatUSD(state.fifoEndingInv);
+
+      // LIFO Reserve T-Account
+      document.getElementById('t-acc-res-dr').innerHTML = state.lifoReserve < 0 ? formatUSD(Math.abs(state.lifoReserve)) : '';
+      document.getElementById('t-acc-res-cr').innerHTML = state.lifoReserve >= 0 ? formatUSD(state.lifoReserve) : '';
+      document.getElementById('t-acc-res-bal').innerText = formatUSD(state.lifoReserve);
+
+      // COGS T-Account
+      let cogsDr = [];
+      state.lifoDispatched.forEach(d => cogsDr.push(`+${formatUSD(d.cogs)}`));
+      document.getElementById('t-acc-cogs-dr').innerHTML = cogsDr.join('<br>') || '$0';
+      document.getElementById('t-acc-cogs-cr').innerHTML = '';
+      document.getElementById('t-acc-cogs-bal').innerText = formatUSD(state.lifoCogsTotal);
+    }
+
+    // --- QUIZ MODE MECHANICS ---
+    function toggleQuizMode() {
+      isQuizMode = !isQuizMode;
+      const btn = document.getElementById('btn-quiz-mode');
+      const lbl = document.getElementById('quiz-btn-label');
+      if (isQuizMode) {
+        btn.classList.add('bg-purple-600', 'text-white');
+        btn.classList.remove('bg-purple-50', 'text-purple-700');
+        lbl.innerText = 'Quiz Mode: Active 🎯';
+      } else {
+        btn.classList.remove('bg-purple-600', 'text-white');
+        btn.classList.add('bg-purple-50', 'text-purple-700');
+        lbl.innerText = 'Student Quiz Mode';
+        document.getElementById('quiz-panel').classList.add('hidden');
+      }
+    }
+
+    function showQuizChallenge(saleEvt) {
+      const panel = document.getElementById('quiz-panel');
+      panel.classList.remove('hidden');
+      document.getElementById('quiz-question').innerText = `Challenge: Next Event on Day ${saleEvt.day} is a Sale of ${saleEvt.units} units @ $${saleEvt.price || 30}!`;
+      document.getElementById('quiz-in-fifo-cogs').value = '';
+      document.getElementById('quiz-in-lifo-cogs').value = '';
+      document.getElementById('quiz-in-reserve').value = '';
+      document.getElementById('quiz-feedback').classList.add('hidden');
+    }
+
+    function checkQuizAnswer() {
+      const targetState = computeSimulationState(currentStepIndex + 1);
+      const prev = computeSimulationState(currentStepIndex);
+
+      const expFifoCogs = targetState.fifoCogsTotal - prev.fifoCogsTotal;
+      const expLifoCogs = targetState.lifoCogsTotal - prev.lifoCogsTotal;
+      const expReserve = targetState.lifoReserve;
+
+      const userFifo = parseFloat(document.getElementById('quiz-in-fifo-cogs').value);
+      const userLifo = parseFloat(document.getElementById('quiz-in-lifo-cogs').value);
+      const userRes = parseFloat(document.getElementById('quiz-in-reserve').value);
+
+      const fb = document.getElementById('quiz-feedback');
+      fb.classList.remove('hidden');
+
+      if (userFifo === expFifoCogs && userLifo === expLifoCogs && userRes === expReserve) {
+        fb.className = 'mt-3 text-xs font-bold p-2.5 rounded-lg bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200';
+        fb.innerHTML = `🎉 <strong>100% Correct!</strong> FIFO COGS = $${expFifoCogs}, LIFO COGS = $${expLifoCogs}, Ending LIFO Reserve = $${expReserve}.`;
+      } else {
+        fb.className = 'mt-3 text-xs font-bold p-2.5 rounded-lg bg-rose-100 dark:bg-rose-900 text-rose-800 dark:text-rose-200';
+        fb.innerHTML = `❌ Check your figures. Expected: FIFO COGS = $${expFifoCogs} | LIFO COGS = $${expLifoCogs} | LIFO Reserve = $${expReserve}.`;
+      }
+    }
+
+    function revealQuizAnswer() {
+      const targetState = computeSimulationState(currentStepIndex + 1);
+      const prev = computeSimulationState(currentStepIndex);
+      const expFifoCogs = targetState.fifoCogsTotal - prev.fifoCogsTotal;
+      const expLifoCogs = targetState.lifoCogsTotal - prev.lifoCogsTotal;
+      const expReserve = targetState.lifoReserve;
+
+      document.getElementById('quiz-in-fifo-cogs').value = expFifoCogs;
+      document.getElementById('quiz-in-lifo-cogs').value = expLifoCogs;
+      document.getElementById('quiz-in-reserve').value = expReserve;
+
+      const fb = document.getElementById('quiz-feedback');
+      fb.classList.remove('hidden');
+      fb.className = 'mt-3 text-xs font-medium p-2.5 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200';
+      fb.innerHTML = `💡 <strong>Solution:</strong> FIFO takes earliest available layers ($${expFifoCogs}); LIFO takes newest available layers ($${expLifoCogs}); LIFO Reserve becomes $${expReserve}.`;
+    }
+
+    // --- TAB SWITCHER ---
+    function switchTab(tabId) {
+      ['statements', 'journal', 'queuing'].forEach(t => {
+        document.getElementById(`tab-content-${t}`).classList.add('hidden');
+        document.getElementById(`tab-btn-${t}`).className = 'pb-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-2';
+      });
+      document.getElementById(`tab-content-${tabId}`).classList.remove('hidden');
+      document.getElementById(`tab-btn-${tabId}`).className = 'pb-3 border-b-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 flex items-center gap-2 font-bold';
+    }
+
+    // --- CUSTOM SANDBOX TABLE EDITOR ---
+    function renderCustomEventRows() {
+      const tbody = document.getElementById('custom-events-tbody');
+      tbody.innerHTML = '';
+      currentEvents.forEach((ev, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="py-2"><input type="number" value="${ev.day}" onchange="updateCustomEvent(${idx}, 'day', this.value)" class="w-14 px-1.5 py-1 border rounded dark:bg-slate-800 dark:border-slate-700"></td>
+          <td class="py-2">
+            <select onchange="updateCustomEvent(${idx}, 'type', this.value)" class="px-2 py-1 border rounded dark:bg-slate-800 dark:border-slate-700">
+              <option value="purchase" ${ev.type === 'purchase' ? 'selected' : ''}>Purchase</option>
+              <option value="sale" ${ev.type === 'sale' ? 'selected' : ''}>Sale</option>
+            </select>
+          </td>
+          <td class="py-2"><input type="number" value="${ev.units}" onchange="updateCustomEvent(${idx}, 'units', this.value)" class="w-16 px-1.5 py-1 border rounded dark:bg-slate-800 dark:border-slate-700"></td>
+          <td class="py-2"><input type="number" value="${ev.type === 'purchase' ? ev.unitCost : (ev.price || 30)}" onchange="updateCustomEvent(${idx}, '${ev.type === 'purchase' ? 'unitCost' : 'price'}', this.value)" class="w-16 px-1.5 py-1 border rounded dark:bg-slate-800 dark:border-slate-700"></td>
+          <td class="py-2"><input type="text" value="${ev.desc || ''}" onchange="updateCustomEvent(${idx}, 'desc', this.value)" class="w-full px-1.5 py-1 border rounded dark:bg-slate-800 dark:border-slate-700"></td>
+          <td class="py-2 text-right">
+            <button onclick="deleteCustomEventRow(${idx})" class="text-rose-500 hover:text-rose-700 p-1"><i class="fa-solid fa-trash"></i></button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function updateCustomEvent(idx, field, val) {
+      if (field === 'day' || field === 'units' || field === 'unitCost' || field === 'price') {
+        currentEvents[idx][field] = parseFloat(val);
+      } else {
+        currentEvents[idx][field] = val;
+      }
+    }
+
+    function addCustomEventRow() {
+      const lastDay = currentEvents.length > 0 ? currentEvents[currentEvents.length - 1].day + 5 : 1;
+      currentEvents.push({
+        day: lastDay,
+        type: 'purchase',
+        batchId: 'B' + (currentEvents.length + 1),
+        units: 100,
+        unitCost: 15,
+        desc: 'New Batch'
+      });
+      renderCustomEventRows();
+    }
+
+    function deleteCustomEventRow(idx) {
+      currentEvents.splice(idx, 1);
+      renderCustomEventRows();
+    }
+
+    function applyCustomEvents() {
+      currentEvents.sort((a, b) => a.day - b.day);
+      resetSim();
+    }
+
+    // --- HELPER UTILITIES ---
+    function formatUSD(num) {
+      return '$' + Number(num || 0).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    }
+
+    function findLastIndex(array, predicate) {
+      for (let i = array.length - 1; i >= 0; i--) {
+        if (predicate(array[i])) return i;
+      }
+      return -1;
+    }
+
+    function toggleDarkMode() {
+      document.documentElement.classList.toggle('dark');
+    }
+
+    function togglePresentationMode() {
+      document.body.classList.toggle('presentation-mode');
+    }
+  </script>
+</body>
+</html>

@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ACCT 321 — Accounting Cycle Practice</title>
-    <link rel="stylesheet" href="css/base.css?v=22" />
-    <link rel="stylesheet" href="css/worked-examples.css?v=22" />
-    <link rel="stylesheet" href="css/random-practice.css?v=22" />
+    <link rel="stylesheet" href="css/base.css?v=23" />
+    <link rel="stylesheet" href="css/worked-examples.css?v=23" />
+    <link rel="stylesheet" href="css/random-practice.css?v=23" />
   </head>
   <body>
     <!-- Header -->
@@ -35,6 +35,9 @@
         <button class="track-btn" data-track="random-practice" role="tab" aria-selected="false" aria-controls="random-practice-content" id="tab-random">
           Random Practice (Beta)
         </button>
+        <button class="track-btn" data-track="fifo-lifo" role="tab" aria-selected="false" aria-controls="fifo-lifo-content" id="tab-fifo-lifo">
+          FIFO/LIFO Sim
+        </button>
       </nav>
 
       <!-- Worked Examples Track -->
@@ -45,6 +48,25 @@
       <!-- Random Practice Track -->
       <section class="track-content" id="random-practice-content" role="tabpanel" aria-labelledby="tab-random">
         <!-- Populated by random-practice.js -->
+      </section>
+
+      <!-- FIFO/LIFO Interactive Simulation Track -->
+      <section class="track-content" id="fifo-lifo-content" role="tabpanel" aria-labelledby="tab-fifo-lifo">
+        <div class="fifo-lifo-intro">
+          <h2>FIFO vs. LIFO Interactive Simulator</h2>
+          <p>
+            Explore how inventory cost flow assumptions (FIFO and LIFO) affect cost of goods sold,
+            ending inventory, the LIFO reserve, and the tax shield. Step through purchases and sales,
+            watch cost layers build up, and see the income statement and balance sheet impact of each method.
+          </p>
+        </div>
+        <iframe
+          class="fifo-lifo-frame"
+          src="fifo-lifo-sim.html"
+          title="FIFO vs. LIFO Interactive Teaching Simulator"
+          loading="lazy"
+          allowfullscreen
+        ></iframe>
       </section>
     </main>
 
@@ -63,13 +85,13 @@
     </aside>
 
     <!-- Scripts -->
-    <script src="js/utils.js?v=22"></script>
-    <script src="js/checker.js?v=22"></script>
-    <script src="js/generator.js?v=22"></script>
-    <script src="js/exercise-engine.js?v=22"></script>
-    <script src="js/worked-examples.js?v=22"></script>
-    <script src="js/random-practice.js?v=22"></script>
-    <script src="js/celebration.js?v=22"></script>
-    <script src="js/app.js?v=22"></script>
+    <script src="js/utils.js?v=23"></script>
+    <script src="js/checker.js?v=23"></script>
+    <script src="js/generator.js?v=23"></script>
+    <script src="js/exercise-engine.js?v=23"></script>
+    <script src="js/worked-examples.js?v=23"></script>
+    <script src="js/random-practice.js?v=23"></script>
+    <script src="js/celebration.js?v=23"></script>
+    <script src="js/app.js?v=23"></script>
   </body>
 </html>

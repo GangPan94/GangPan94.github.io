@@ -96,19 +96,16 @@ App.switchTrack = function (track) {
     }
   });
 
-  /* Show the selected track content, hide the other */
+  /* Show the selected track content, hide the others */
   var workedContent = document.getElementById("worked-examples-content");
   var randomContent = document.getElementById("random-practice-content");
+  var fifoContent = document.getElementById("fifo-lifo-content");
 
-  if (workedContent && randomContent) {
-    if (track === "worked-examples") {
-      workedContent.classList.add("active");
-      randomContent.classList.remove("active");
-    } else {
-      workedContent.classList.remove("active");
-      randomContent.classList.add("active");
+  [workedContent, randomContent, fifoContent].forEach(function (el) {
+    if (el) {
+      el.classList.toggle("active", el.id === track + "-content");
     }
-  }
+  });
 
   /* Initialize the track if not already done */
   if (track === "worked-examples" && !WorkedExamples.initialized) {
