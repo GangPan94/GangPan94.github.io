@@ -92,38 +92,38 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <script>
 (function() {
-  var bodyContent = document.querySelectorAll("body > *:not(#ag-gate-overlay)");
-  bodyContent.forEach(function(el) { el.style.display = "none"; });
+  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
+  bodyContent.forEach(function(el) { el.style.display = 'none'; });
 
   function agUnlock() {
-    var pw = document.getElementById("ag-pw-input").value;
-    if (pw === "ai2026") {
-      document.getElementById("ag-gate-overlay").style.display = "none";
-      bodyContent.forEach(function(el) { el.style.display = ""; });
-      sessionStorage.setItem("ag-unlocked", "true");
+    var pw = document.getElementById('ag-pw-input').value;
+    if (pw === 'ai2026') {
+      document.getElementById('ag-gate-overlay').style.display = 'none';
+      bodyContent.forEach(function(el) { el.style.display = ''; });
+      sessionStorage.setItem('ag-unlocked', 'true');
     } else {
-      document.getElementById("ag-error-msg").style.display = "block";
-      document.getElementById("ag-pw-input").value = "";
-      document.getElementById("ag-pw-input").focus();
+      document.getElementById('ag-error-msg').style.display = 'block';
+      document.getElementById('ag-pw-input').value = '';
+      document.getElementById('ag-pw-input').focus();
     }
   }
 
-  if (sessionStorage.getItem("ag-unlocked") === "true") {
-    document.getElementById("ag-gate-overlay").style.display = "none";
-    bodyContent.forEach(function(el) { el.style.display = ""; });
+  if (sessionStorage.getItem('ag-unlocked') === 'true') {
+    document.getElementById('ag-gate-overlay').style.display = 'none';
+    bodyContent.forEach(function(el) { el.style.display = ''; });
   }
 
-  document.addEventListener("DOMContentLoaded", function() {
-    var btn = document.getElementById("ag-unlock-btn");
-    var input = document.getElementById("ag-pw-input");
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('ag-unlock-btn');
+    var input = document.getElementById('ag-pw-input');
     if (input) {
       input.focus();
-      input.addEventListener("keypress", function(e) {
-        if (e.key === "Enter") agUnlock();
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') agUnlock();
       });
     }
     if (btn) {
-      btn.addEventListener("click", agUnlock);
+      btn.addEventListener('click', agUnlock);
     }
   });
 })();
@@ -182,26 +182,32 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: How LLMs Think, Remember, and Perform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -719,7 +725,7 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/07-customizing.html" class="pagination-link" aria-label="Customizing for Your Domain">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
