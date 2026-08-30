@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; The Context Window &amp; Memory Architecture – Agentic Workflows for Accounting Academics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/03-system-in-action.html" rel="next">
+<link href="../chapters/03-under-the-hood.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-de63f62b328812d8e578a4d74e282472.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c35ff27ce1c8cb6062ab96d79361e3d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+<!-- PASSWORD GATE START -->
+<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
+  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
+    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
+    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
+    <br/><br/>
+    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
+    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
+    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/antigravity-guide/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
+  </div>
+</div>
+<script>
+(function() {
+  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
+  bodyContent.forEach(function(el) { el.style.display = 'none'; });
+
+  function agUnlock() {
+    var pw = document.getElementById('ag-pw-input').value;
+    if (pw === 'ai2026') {
+      document.getElementById('ag-gate-overlay').style.display = 'none';
+      bodyContent.forEach(function(el) { el.style.display = ''; });
+      sessionStorage.setItem('ag-unlocked', 'true');
+    } else {
+      document.getElementById('ag-error-msg').style.display = 'block';
+      document.getElementById('ag-pw-input').value = '';
+      document.getElementById('ag-pw-input').focus();
+    }
+  }
+
+  if (sessionStorage.getItem('ag-unlocked') === 'true') {
+    document.getElementById('ag-gate-overlay').style.display = 'none';
+    bodyContent.forEach(function(el) { el.style.display = ''; });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('ag-unlock-btn');
+    var input = document.getElementById('ag-pw-input');
+    if (input) {
+      input.focus();
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') agUnlock();
+      });
+    }
+    if (btn) {
+      btn.addEventListener('click', agUnlock);
+    }
+  });
+})();
+</script>
+<!-- PASSWORD GATE END -->
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-context-and-memory.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Agentic Workflows for Accounting Academics</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/01-why-this-workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction: Why Agentic AI Matters for Scholars</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/02-getting-started.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-context-and-memory.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/06-ecosystem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/08-appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/09-acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standing on Shoulders</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-context-window" id="toc-sec-context-window" class="nav-link active" data-scroll-target="#sec-context-window"><span class="header-section-number">4.1</span> The Context Window: The Agent’s Working Memory</a>
+  <ul class="collapse">
+  <li><a href="#the-lost-in-the-middle-effect-and-attention-dilution" id="toc-the-lost-in-the-middle-effect-and-attention-dilution" class="nav-link" data-scroll-target="#the-lost-in-the-middle-effect-and-attention-dilution"><span class="header-section-number">4.1.1</span> The “Lost in the Middle” Effect and Attention Dilution</a></li>
+  <li><a href="#context-pollution-the-silent-performance-killer" id="toc-context-pollution-the-silent-performance-killer" class="nav-link" data-scroll-target="#context-pollution-the-silent-performance-killer"><span class="header-section-number">4.1.2</span> Context Pollution: The Silent Performance Killer</a></li>
+  <li><a href="#auto-compaction-when-the-window-fills-up" id="toc-auto-compaction-when-the-window-fills-up" class="nav-link" data-scroll-target="#auto-compaction-when-the-window-fills-up"><span class="header-section-number">4.1.3</span> Auto-Compaction: When the Window Fills Up</a></li>
+  </ul></li>
+  <li><a href="#sec-memory-hierarchy" id="toc-sec-memory-hierarchy" class="nav-link" data-scroll-target="#sec-memory-hierarchy"><span class="header-section-number">4.2</span> The Memory Hierarchy in Agentic Workflows</a>
+  <ul class="collapse">
+  <li><a href="#level-1-ephemeral-working-memory-the-chat-window" id="toc-level-1-ephemeral-working-memory-the-chat-window" class="nav-link" data-scroll-target="#level-1-ephemeral-working-memory-the-chat-window"><span class="header-section-number">4.2.1</span> Level 1: Ephemeral Working Memory (The Chat Window)</a></li>
+  <li><a href="#level-2-task-memory-quality_reportsplans" id="toc-level-2-task-memory-quality_reportsplans" class="nav-link" data-scroll-target="#level-2-task-memory-quality_reportsplans"><span class="header-section-number">4.2.2</span> Level 2: Task Memory (<code>quality_reports/plans/</code>)</a></li>
+  <li><a href="#level-3-persistent-project-memory-gemini.md-memory.md" id="toc-level-3-persistent-project-memory-gemini.md-memory.md" class="nav-link" data-scroll-target="#level-3-persistent-project-memory-gemini.md-memory.md"><span class="header-section-number">4.2.3</span> Level 3: Persistent Project Memory (<code>GEMINI.md</code> &amp; <code>MEMORY.md</code>)</a></li>
+  <li><a href="#the-rule-budget-why-gemini.md-must-stay-lean" id="toc-the-rule-budget-why-gemini.md-must-stay-lean" class="nav-link" data-scroll-target="#the-rule-budget-why-gemini.md-must-stay-lean"><span class="header-section-number">4.2.4</span> The Rule Budget: Why <code>GEMINI.md</code> Must Stay Lean</a></li>
+  </ul></li>
+  <li><a href="#sec-caching-economics" id="toc-sec-caching-economics" class="nav-link" data-scroll-target="#sec-caching-economics"><span class="header-section-number">4.3</span> Context Caching and API Economics</a></li>
+  <li><a href="#sec-context-isolation" id="toc-sec-context-isolation" class="nav-link" data-scroll-target="#sec-context-isolation"><span class="header-section-number">4.4</span> Context Management &amp; Multi-Agent Isolation</a>
+  <ul class="collapse">
+  <li><a href="#multi-agent-context-isolation" id="toc-multi-agent-context-isolation" class="nav-link" data-scroll-target="#multi-agent-context-isolation"><span class="header-section-number">4.4.1</span> Multi-Agent Context Isolation</a></li>
+  </ul></li>
+  <li><a href="#summary-context-memory-checklist-for-scholars" id="toc-summary-context-memory-checklist-for-scholars" class="nav-link" data-scroll-target="#summary-context-memory-checklist-for-scholars"><span class="header-section-number">4.5</span> Summary: Context &amp; Memory Checklist for Scholars</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-context-memory" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In casual chatbot usage, the context window is often treated as a simple counter: “how long can my conversation be?” In <strong>agentic research workflows</strong>, however, the context window is the central operating bottleneck.</p>
+<p>Understanding how working memory functions—and how persistent memory is maintained across sessions—is what separates a fragile setup from a robust, production-grade research system.</p>
+<p>This chapter explores how the context window operates as working memory, why context pollution degrades agent performance, how the <strong>three-tier memory hierarchy</strong> protects long-term projects, and how <strong>multi-agent isolation</strong> keeps attention sharp on large tasks.</p>
+<hr>
+<section id="sec-context-window" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec-context-window"><span class="header-section-number">4.1</span> The Context Window: The Agent’s Working Memory</h2>
+<p>The <strong>context window</strong> is the maximum number of tokens an LLM can receive and process in a single inference call. It represents the agent’s total <strong>working memory</strong>.</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                        THE CONTEXT WINDOW (RAM)                        │
+│                                                                        │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────┐  │
+│  │ System Rules     │  │ Workspace Files  │  │ Conversation &amp; Logs  │  │
+│  │ (GEMINI.md, etc) │  │ (Read into chat) │  │ (User &amp; Agent turns) │  │
+│  └──────────────────┘  └──────────────────┘  └──────────────────────┘  │
+│                                                                        │
+└────────────────────────────────────────────────────────────────────────┘</code></pre>
+<p>Modern models boast enormous context windows—from 128,000 tokens (GPT-4o) to 1,000,000+ tokens (Gemini 1.5/2.0 Pro). However, having a massive window does not mean you should fill it carelessly.</p>
+<section id="the-lost-in-the-middle-effect-and-attention-dilution" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="the-lost-in-the-middle-effect-and-attention-dilution"><span class="header-section-number">4.1.1</span> The “Lost in the Middle” Effect and Attention Dilution</h3>
+<p>Transformer models use an <strong>attention mechanism</strong> that computes mathematical relationships between every token in the context window. As the context grows:</p>
+<ol type="1">
+<li><strong>Attention Dilution:</strong> The model must distribute its attention weights across tens of thousands of tokens. Subtle instructions placed in the middle of a massive context dump receive less focus than instructions placed at the very beginning (system prompt) or the very end (recent user message).</li>
+<li><strong>Context Degradation:</strong> Research shows that as a chat session exceeds 50,000–100,000 tokens, the model’s adherence to nuanced negative constraints (“do not use package X”, “keep equations under 3 lines”) begins to decay.</li>
+</ol>
+</section>
+<section id="context-pollution-the-silent-performance-killer" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="context-pollution-the-silent-performance-killer"><span class="header-section-number">4.1.2</span> Context Pollution: The Silent Performance Killer</h3>
+<p>The most common reason an agentic workflow starts behaving erratically or ignoring instructions is <strong>context pollution</strong>. Context pollution occurs when the active conversation becomes cluttered with:</p>
+<ul>
+<li>Giant terminal error logs (e.g., dumping 500 lines of raw stack traces).</li>
+<li>Repeated failed attempts to edit a file without clearing the history.</li>
+<li>Irrelevant files read into the context that have no bearing on the current task.</li>
+<li>Rambling back-and-forth conversational chatter.</li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Context Hygiene
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Treat the context window as a precious resource. A concise, focused 10,000-token session with clear instructions will consistently outperform a bloated 150,000-token session filled with dead-end debugging attempts.</p>
+</div>
+</div>
+</section>
+<section id="auto-compaction-when-the-window-fills-up" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="auto-compaction-when-the-window-fills-up"><span class="header-section-number">4.1.3</span> Auto-Compaction: When the Window Fills Up</h3>
+<p>When a session approaches the context limit, the harness triggers <strong>auto-compaction</strong> (or context compression). The harness asks an LLM to summarize the earlier parts of the conversation, replaces the full history with that summary, and continues.</p>
+<p>While auto-compaction keeps the conversation alive, <strong>lossy compression is inevitable</strong>: * Exact line numbers and code snippets from earlier turns are compressed away. * Specific negative constraints or minor formatting rules may be omitted from the summary. * Subtle econometric notation conventions agreed upon earlier might be forgotten.</p>
+<p>This is why structured projects use <strong>persistent disk files</strong> rather than relying solely on chat history.</p>
+<hr>
+</section>
+</section>
+<section id="sec-memory-hierarchy" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="sec-memory-hierarchy"><span class="header-section-number">4.2</span> The Memory Hierarchy in Agentic Workflows</h2>
+<p>To solve the limitations of ephemeral context windows, a well-designed agentic system uses a <strong>three-tier memory architecture</strong>, directly mirroring the memory hierarchy of computer hardware:</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│ LEVEL 1: Ephemeral Working Memory (RAM)                                │
+│ Active Context Window • Chat messages • Current file buffers          │
+│ Fast, immediate, but wiped clean on session reset or compaction.       │
+├────────────────────────────────────────────────────────────────────────┤
+│ LEVEL 2: Task Memory (Scratchpad / SSD)                                │
+│ quality_reports/plans/ • Implementation plans • Scratch scripts        │
+│ Preserves structured goals and step-by-step checklists across turns.   │
+├────────────────────────────────────────────────────────────────────────┤
+│ LEVEL 3: Persistent Project Memory (Hard Drive)                       │
+│ GEMINI.md • MEMORY.md • Session Logs • Git History                     │
+│ Endures across days, weeks, and completely fresh sessions.            │
+└────────────────────────────────────────────────────────────────────────┘</code></pre>
+<section id="level-1-ephemeral-working-memory-the-chat-window" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="level-1-ephemeral-working-memory-the-chat-window"><span class="header-section-number">4.2.1</span> Level 1: Ephemeral Working Memory (The Chat Window)</h3>
+<ul>
+<li><strong>What it is:</strong> The tokens currently inside the active prompt.</li>
+<li><strong>Lifespan:</strong> Single conversation session.</li>
+<li><strong>Role:</strong> Instant communication, quick iterations, scratchpad debugging.</li>
+</ul>
+</section>
+<section id="level-2-task-memory-quality_reportsplans" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="level-2-task-memory-quality_reportsplans"><span class="header-section-number">4.2.2</span> Level 2: Task Memory (<code>quality_reports/plans/</code>)</h3>
+<ul>
+<li><strong>What it is:</strong> Markdown plan files written directly to disk.</li>
+<li><strong>Lifespan:</strong> The duration of a specific milestone or task.</li>
+<li><strong>Role:</strong> Protects multi-step tasks against context degradation. If the agent loses focus or auto-compacts, reading the plan file immediately restores full task orientation.</li>
+</ul>
+</section>
+<section id="level-3-persistent-project-memory-gemini.md-memory.md" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="level-3-persistent-project-memory-gemini.md-memory.md"><span class="header-section-number">4.2.3</span> Level 3: Persistent Project Memory (<code>GEMINI.md</code> &amp; <code>MEMORY.md</code>)</h3>
+<ul>
+<li><strong>What it is:</strong> Dedicated repository documentation that the agent reads at the start of every session.</li>
+<li><strong>Lifespan:</strong> Permanent (committed to Git).</li>
+<li><strong>Role:</strong> Stores institutional project knowledge:
+<ul>
+<li><strong><code>GEMINI.md</code>:</strong> The project’s <em>Constitution</em> (folder structure, core commands, notation standards).</li>
+<li><strong><code>MEMORY.md</code>:</strong> The project’s <em>Corrections Log</em> (<code>[LEARN]</code> tags capturing user preferences and past corrections).</li>
+<li><strong><code>quality_reports/session_logs/</code>:</strong> A record of <em>why</em> decisions were made.</li>
+</ul></li>
+</ul>
+</section>
+<section id="the-rule-budget-why-gemini.md-must-stay-lean" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="the-rule-budget-why-gemini.md-must-stay-lean"><span class="header-section-number">4.2.4</span> The Rule Budget: Why <code>GEMINI.md</code> Must Stay Lean</h3>
+<p>Because <code>GEMINI.md</code> and always-on rules are prepended to the context on <strong>every single turn</strong>, they consume working memory and attention.</p>
+<p>Empirical testing across LLMs reveals a consistent <strong>rule budget</strong>: * An LLM reliably follows approximately <strong>100 to 150 custom instructions</strong>. * If your <code>GEMINI.md</code> file balloons into a 600-line manual, the model begins suffering from instruction fatigue and will silently ignore rules. * <strong>Solution:</strong> Keep <code>GEMINI.md</code> under ~120 lines for top-level principles, and move specific domain rules into <strong>path-scoped rules</strong> (which only load when editing matching files like <code>.R</code> or <code>.tex</code>).</p>
+<hr>
+</section>
+</section>
+<section id="sec-caching-economics" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="sec-caching-economics"><span class="header-section-number">4.3</span> Context Caching and API Economics</h2>
+<p>For large academic projects containing hundreds of pages of LaTeX or large data scripts, re-sending the entire repository on every prompt would be slow and costly.</p>
+<p>Modern APIs use <strong>Prompt Caching</strong> (or Context Caching): * When static files (like your system prompt, <code>GEMINI.md</code>, and reference literature) remain unchanged between turns, the API server caches their processed neural activations. * Subsequent calls read from cache at a fraction of the cost (often 75–90% cheaper) and with near-zero latency. * <strong>Takeaway:</strong> Keeping your project structure organized and avoiding unnecessary edits to base configuration files maximizes cache hits and speeds up your workflow.</p>
+<hr>
+</section>
+<section id="sec-context-isolation" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-context-isolation"><span class="header-section-number">4.4</span> Context Management &amp; Multi-Agent Isolation</h2>
+<p>When presented with a large task—such as reviewing a 50-page manuscript—the intuitive beginner approach is to give the agent one massive prompt:</p>
+<blockquote class="blockquote">
+<p><em>“Please review this paper for econometric identification, proofread all grammar, check that all 80 citations exist in the .bib file, verify the TikZ diagram layouts, and improve the writing style.”</em></p>
+</blockquote>
+<p>This <strong>monolithic prompt</strong> inevitably fails due to attention splitting: * The model skims the paper. * It catches a few obvious typos and comments on the introduction. * It completely misses the wrong subscript in Equation 14 and the missing citation in Section 4.</p>
+<section id="multi-agent-context-isolation" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="multi-agent-context-isolation"><span class="header-section-number">4.4.1</span> Multi-Agent Context Isolation</h3>
+<p>The solution to attention splitting is <strong>multi-agent context isolation</strong>. Instead of one agent doing five jobs with divided attention, the system dispatches <strong>multiple specialized subagents in parallel</strong>:</p>
+<pre><code>                                 ┌───────────────────────┐
+                                 │   Orchestrator Agent  │
+                                 └──────────┬────────────┘
+                                            │
+               ┌────────────────────────────┼────────────────────────────┐
+               │                            │                            │
+      ┌────────▼─────────┐         ┌────────▼─────────┐         ┌────────▼─────────┐
+      │   proofreader    │         │  domain-reviewer │         │  claim-verifier  │
+      │  (Grammar Only)  │         │(Econometrics/Math│         │(BibTeX Citations)│
+      └────────┬─────────┘         └────────┬─────────┘         └────────┬─────────┘
+               │                            │                            │
+               │ 100% Focused Context       │ 100% Focused Context       │ 100% Focused Context
+               │                            │                            │
+               └────────────────────────────┼────────────────────────────┘
+                                            │
+                                 ┌──────────▼────────────┐
+                                 │ Synthesized QA Report │
+                                 └───────────────────────┘</code></pre>
+<p>Each subagent runs in its own <strong>isolated, fresh context window</strong>: * The <code>proofreader</code> agent receives only the text and grammar instructions (zero clutter from code or citations). * The <code>claim-verifier</code> agent receives only the extracted factual claims and bibliography references. * The <code>domain-reviewer</code> agent focuses 100% of its attention budget on mathematical rigor and identification assumptions.</p>
+<p>Because each subagent has a clean context window, it operates at maximum attention capacity.</p>
+<hr>
+</section>
+</section>
+<section id="summary-context-memory-checklist-for-scholars" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="summary-context-memory-checklist-for-scholars"><span class="header-section-number">4.5</span> Summary: Context &amp; Memory Checklist for Scholars</h2>
+<ol type="1">
+<li><strong>The Context Window is Working Memory (RAM):</strong> Keep it clean. Avoid dumping giant error logs or unneeded files into chat.</li>
+<li><strong>LLMs are Stateless Across Turns:</strong> If an instruction or insight is not in the context window or in a loaded file (<code>GEMINI.md</code>, <code>MEMORY.md</code>), it does not exist for the model.</li>
+<li><strong>Use Disk Files as Task SSDs:</strong> Save multi-step roadmaps to <code>quality_reports/plans/</code> so goals survive session compaction.</li>
+<li><strong>Protect the Rule Budget:</strong> Keep <code>GEMINI.md</code> under ~120 lines and path-scope detailed coding rules.</li>
+<li><strong>Isolate Context for Big Jobs:</strong> Use parallel subagents with fresh context windows rather than overloading a single prompt.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/03-under-the-hood.html" class="pagination-link" aria-label="Under the Hood: LLM Mechanics &amp; Deterministic Grounding">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/03-system-in-action.html" class="pagination-link" aria-label="The System in Action">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
