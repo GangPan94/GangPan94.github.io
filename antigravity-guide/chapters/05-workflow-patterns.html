@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; Workflow Patterns – Agentic Workflows for Accounting Academics</title>
+<title>7&nbsp; Workflow Patterns – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-workflow-patterns.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/05-workflow-patterns.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,31 +218,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: How LLMs Think, Remember, and Perform</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-context-and-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -284,45 +290,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pattern-1-plan-first-development" id="toc-pattern-1-plan-first-development" class="nav-link active" data-scroll-target="#pattern-1-plan-first-development"><span class="header-section-number">6.1</span> Pattern 1: Plan-First Development</a>
+  <li><a href="#pattern-1-plan-first-development" id="toc-pattern-1-plan-first-development" class="nav-link active" data-scroll-target="#pattern-1-plan-first-development"><span class="header-section-number">7.1</span> Pattern 1: Plan-First Development</a>
   <ul class="collapse">
-  <li><a href="#why-planning-matters" id="toc-why-planning-matters" class="nav-link" data-scroll-target="#why-planning-matters"><span class="header-section-number">6.1.1</span> Why Planning Matters</a></li>
-  <li><a href="#the-protocol" id="toc-the-protocol" class="nav-link" data-scroll-target="#the-protocol"><span class="header-section-number">6.1.2</span> The Protocol</a></li>
-  <li><a href="#context-preservation" id="toc-context-preservation" class="nav-link" data-scroll-target="#context-preservation"><span class="header-section-number">6.1.3</span> Context Preservation</a></li>
-  <li><a href="#session-logging" id="toc-session-logging" class="nav-link" data-scroll-target="#session-logging"><span class="header-section-number">6.1.4</span> Session Logging</a></li>
+  <li><a href="#why-planning-matters" id="toc-why-planning-matters" class="nav-link" data-scroll-target="#why-planning-matters"><span class="header-section-number">7.1.1</span> Why Planning Matters</a></li>
+  <li><a href="#the-protocol" id="toc-the-protocol" class="nav-link" data-scroll-target="#the-protocol"><span class="header-section-number">7.1.2</span> The Protocol</a></li>
+  <li><a href="#context-preservation" id="toc-context-preservation" class="nav-link" data-scroll-target="#context-preservation"><span class="header-section-number">7.1.3</span> Context Preservation</a></li>
+  <li><a href="#session-logging" id="toc-session-logging" class="nav-link" data-scroll-target="#session-logging"><span class="header-section-number">7.1.4</span> Session Logging</a></li>
   </ul></li>
-  <li><a href="#pattern-2-contractor-mode-orchestrator" id="toc-pattern-2-contractor-mode-orchestrator" class="nav-link" data-scroll-target="#pattern-2-contractor-mode-orchestrator"><span class="header-section-number">6.2</span> Pattern 2: Contractor Mode (Orchestrator)</a>
+  <li><a href="#pattern-2-contractor-mode-orchestrator" id="toc-pattern-2-contractor-mode-orchestrator" class="nav-link" data-scroll-target="#pattern-2-contractor-mode-orchestrator"><span class="header-section-number">7.2</span> Pattern 2: Contractor Mode (Orchestrator)</a>
   <ul class="collapse">
-  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">6.2.1</span> The Mental Model</a></li>
-  <li><a href="#the-loop" id="toc-the-loop" class="nav-link" data-scroll-target="#the-loop"><span class="header-section-number">6.2.2</span> The Loop</a></li>
-  <li><a href="#agent-selection" id="toc-agent-selection" class="nav-link" data-scroll-target="#agent-selection"><span class="header-section-number">6.2.3</span> Agent Selection</a></li>
-  <li><a href="#just-do-it-mode" id="toc-just-do-it-mode" class="nav-link" data-scroll-target="#just-do-it-mode"><span class="header-section-number">6.2.4</span> “Just Do It” Mode</a></li>
-  <li><a href="#relationship-to-existing-skills" id="toc-relationship-to-existing-skills" class="nav-link" data-scroll-target="#relationship-to-existing-skills"><span class="header-section-number">6.2.5</span> Relationship to Existing Skills</a></li>
+  <li><a href="#the-mental-model" id="toc-the-mental-model" class="nav-link" data-scroll-target="#the-mental-model"><span class="header-section-number">7.2.1</span> The Mental Model</a></li>
+  <li><a href="#the-loop" id="toc-the-loop" class="nav-link" data-scroll-target="#the-loop"><span class="header-section-number">7.2.2</span> The Loop</a></li>
+  <li><a href="#agent-selection" id="toc-agent-selection" class="nav-link" data-scroll-target="#agent-selection"><span class="header-section-number">7.2.3</span> Agent Selection</a></li>
+  <li><a href="#just-do-it-mode" id="toc-just-do-it-mode" class="nav-link" data-scroll-target="#just-do-it-mode"><span class="header-section-number">7.2.4</span> “Just Do It” Mode</a></li>
+  <li><a href="#relationship-to-existing-skills" id="toc-relationship-to-existing-skills" class="nav-link" data-scroll-target="#relationship-to-existing-skills"><span class="header-section-number">7.2.5</span> Relationship to Existing Skills</a></li>
   </ul></li>
-  <li><a href="#pattern-3-creating-a-new-lecture" id="toc-pattern-3-creating-a-new-lecture" class="nav-link" data-scroll-target="#pattern-3-creating-a-new-lecture"><span class="header-section-number">6.3</span> Pattern 3: Creating a New Lecture</a></li>
-  <li><a href="#pattern-4-translating-beamer-to-quarto" id="toc-pattern-4-translating-beamer-to-quarto" class="nav-link" data-scroll-target="#pattern-4-translating-beamer-to-quarto"><span class="header-section-number">6.4</span> Pattern 4: Translating Beamer to Quarto</a></li>
-  <li><a href="#pattern-5-replication-first-coding" id="toc-pattern-5-replication-first-coding" class="nav-link" data-scroll-target="#pattern-5-replication-first-coding"><span class="header-section-number">6.5</span> Pattern 5: Replication-First Coding</a></li>
-  <li><a href="#pattern-6-multi-agent-review" id="toc-pattern-6-multi-agent-review" class="nav-link" data-scroll-target="#pattern-6-multi-agent-review"><span class="header-section-number">6.6</span> Pattern 6: Multi-Agent Review</a></li>
-  <li><a href="#pattern-7-self-improvement-loop" id="toc-pattern-7-self-improvement-loop" class="nav-link" data-scroll-target="#pattern-7-self-improvement-loop"><span class="header-section-number">6.7</span> Pattern 7: Self-Improvement Loop</a>
+  <li><a href="#pattern-3-creating-a-new-lecture" id="toc-pattern-3-creating-a-new-lecture" class="nav-link" data-scroll-target="#pattern-3-creating-a-new-lecture"><span class="header-section-number">7.3</span> Pattern 3: Creating a New Lecture</a></li>
+  <li><a href="#pattern-4-translating-beamer-to-quarto" id="toc-pattern-4-translating-beamer-to-quarto" class="nav-link" data-scroll-target="#pattern-4-translating-beamer-to-quarto"><span class="header-section-number">7.4</span> Pattern 4: Translating Beamer to Quarto</a></li>
+  <li><a href="#pattern-5-replication-first-coding" id="toc-pattern-5-replication-first-coding" class="nav-link" data-scroll-target="#pattern-5-replication-first-coding"><span class="header-section-number">7.5</span> Pattern 5: Replication-First Coding</a></li>
+  <li><a href="#pattern-6-multi-agent-review" id="toc-pattern-6-multi-agent-review" class="nav-link" data-scroll-target="#pattern-6-multi-agent-review"><span class="header-section-number">7.6</span> Pattern 6: Multi-Agent Review</a></li>
+  <li><a href="#pattern-7-self-improvement-loop" id="toc-pattern-7-self-improvement-loop" class="nav-link" data-scroll-target="#pattern-7-self-improvement-loop"><span class="header-section-number">7.7</span> Pattern 7: Self-Improvement Loop</a>
   <ul class="collapse">
-  <li><a href="#quick-corrections-learn-tags" id="toc-quick-corrections-learn-tags" class="nav-link" data-scroll-target="#quick-corrections-learn-tags"><span class="header-section-number">6.7.1</span> Quick Corrections: [LEARN] Tags</a></li>
-  <li><a href="#automated-skill-capture-learn" id="toc-automated-skill-capture-learn" class="nav-link" data-scroll-target="#automated-skill-capture-learn"><span class="header-section-number">6.7.2</span> Automated Skill Capture: learn</a></li>
+  <li><a href="#quick-corrections-learn-tags" id="toc-quick-corrections-learn-tags" class="nav-link" data-scroll-target="#quick-corrections-learn-tags"><span class="header-section-number">7.7.1</span> Quick Corrections: [LEARN] Tags</a></li>
+  <li><a href="#automated-skill-capture-learn" id="toc-automated-skill-capture-learn" class="nav-link" data-scroll-target="#automated-skill-capture-learn"><span class="header-section-number">7.7.2</span> Automated Skill Capture: learn</a></li>
   </ul></li>
-  <li><a href="#pattern-8-devils-advocate" id="toc-pattern-8-devils-advocate" class="nav-link" data-scroll-target="#pattern-8-devils-advocate"><span class="header-section-number">6.8</span> Pattern 8: Devil’s Advocate</a></li>
-  <li><a href="#sec-research-workflows" id="toc-sec-research-workflows" class="nav-link" data-scroll-target="#sec-research-workflows"><span class="header-section-number">6.9</span> Research Workflows</a>
+  <li><a href="#pattern-8-devils-advocate" id="toc-pattern-8-devils-advocate" class="nav-link" data-scroll-target="#pattern-8-devils-advocate"><span class="header-section-number">7.8</span> Pattern 8: Devil’s Advocate</a></li>
+  <li><a href="#sec-research-workflows" id="toc-sec-research-workflows" class="nav-link" data-scroll-target="#sec-research-workflows"><span class="header-section-number">7.9</span> Research Workflows</a>
   <ul class="collapse">
-  <li><a href="#pattern-9-parallel-agents" id="toc-pattern-9-parallel-agents" class="nav-link" data-scroll-target="#pattern-9-parallel-agents"><span class="header-section-number">6.9.1</span> Pattern 9: Parallel Agents for Research Tasks</a></li>
-  <li><a href="#pattern-10-exploration" id="toc-pattern-10-exploration" class="nav-link" data-scroll-target="#pattern-10-exploration"><span class="header-section-number">6.9.2</span> Pattern 10: Research Exploration Workflow</a></li>
-  <li><a href="#pattern-11-research-skills" id="toc-pattern-11-research-skills" class="nav-link" data-scroll-target="#pattern-11-research-skills"><span class="header-section-number">6.9.3</span> Pattern 11: Research Skills</a></li>
-  <li><a href="#pattern-12-branch-isolation" id="toc-pattern-12-branch-isolation" class="nav-link" data-scroll-target="#pattern-12-branch-isolation"><span class="header-section-number">6.9.4</span> Pattern 12: Branch Isolation with Git Worktrees (Advanced)</a></li>
+  <li><a href="#pattern-9-parallel-agents" id="toc-pattern-9-parallel-agents" class="nav-link" data-scroll-target="#pattern-9-parallel-agents"><span class="header-section-number">7.9.1</span> Pattern 9: Parallel Agents for Research Tasks</a></li>
+  <li><a href="#pattern-10-exploration" id="toc-pattern-10-exploration" class="nav-link" data-scroll-target="#pattern-10-exploration"><span class="header-section-number">7.9.2</span> Pattern 10: Research Exploration Workflow</a></li>
+  <li><a href="#pattern-11-research-skills" id="toc-pattern-11-research-skills" class="nav-link" data-scroll-target="#pattern-11-research-skills"><span class="header-section-number">7.9.3</span> Pattern 11: Research Skills</a></li>
+  <li><a href="#pattern-12-branch-isolation" id="toc-pattern-12-branch-isolation" class="nav-link" data-scroll-target="#pattern-12-branch-isolation"><span class="header-section-number">7.9.4</span> Pattern 12: Branch Isolation with Git Worktrees (Advanced)</a></li>
   </ul></li>
-  <li><a href="#sec-beyond-slides" id="toc-sec-beyond-slides" class="nav-link" data-scroll-target="#sec-beyond-slides"><span class="header-section-number">6.10</span> Advanced Patterns: Reproducibility and Presentation Design</a>
+  <li><a href="#sec-beyond-slides" id="toc-sec-beyond-slides" class="nav-link" data-scroll-target="#sec-beyond-slides"><span class="header-section-number">7.10</span> Advanced Patterns: Reproducibility and Presentation Design</a>
   <ul class="collapse">
-  <li><a href="#pattern-13-reproducibility" id="toc-pattern-13-reproducibility" class="nav-link" data-scroll-target="#pattern-13-reproducibility"><span class="header-section-number">6.10.1</span> Pattern 13: Reproducibility &amp; Replication Compliance</a></li>
-  <li><a href="#pattern-14-rhetoric-of-decks" id="toc-pattern-14-rhetoric-of-decks" class="nav-link" data-scroll-target="#pattern-14-rhetoric-of-decks"><span class="header-section-number">6.10.2</span> Pattern 14: The Rhetoric of Decks</a></li>
-  <li><a href="#pattern-15-sequential-audits" id="toc-pattern-15-sequential-audits" class="nav-link" data-scroll-target="#pattern-15-sequential-audits"><span class="header-section-number">6.10.3</span> Pattern 15: Sequential Adversarial Audits</a></li>
-  <li><a href="#pattern-16-preregistration" id="toc-pattern-16-preregistration" class="nav-link" data-scroll-target="#pattern-16-preregistration"><span class="header-section-number">6.10.4</span> Pattern 16: Preregistration and Submission Discipline</a></li>
-  <li><a href="#pattern-17-large-datasets" id="toc-pattern-17-large-datasets" class="nav-link" data-scroll-target="#pattern-17-large-datasets"><span class="header-section-number">6.10.5</span> Pattern 17: Large Datasets, Unstructured Filings &amp; Out-of-Core Processing</a></li>
+  <li><a href="#pattern-13-reproducibility" id="toc-pattern-13-reproducibility" class="nav-link" data-scroll-target="#pattern-13-reproducibility"><span class="header-section-number">7.10.1</span> Pattern 13: Reproducibility &amp; Replication Compliance</a></li>
+  <li><a href="#pattern-14-rhetoric-of-decks" id="toc-pattern-14-rhetoric-of-decks" class="nav-link" data-scroll-target="#pattern-14-rhetoric-of-decks"><span class="header-section-number">7.10.2</span> Pattern 14: The Rhetoric of Decks</a></li>
+  <li><a href="#pattern-15-sequential-audits" id="toc-pattern-15-sequential-audits" class="nav-link" data-scroll-target="#pattern-15-sequential-audits"><span class="header-section-number">7.10.3</span> Pattern 15: Sequential Adversarial Audits</a></li>
+  <li><a href="#pattern-16-preregistration" id="toc-pattern-16-preregistration" class="nav-link" data-scroll-target="#pattern-16-preregistration"><span class="header-section-number">7.10.4</span> Pattern 16: Preregistration and Submission Discipline</a></li>
+  <li><a href="#pattern-17-large-datasets" id="toc-pattern-17-large-datasets" class="nav-link" data-scroll-target="#pattern-17-large-datasets"><span class="header-section-number">7.10.5</span> Pattern 17: Large Datasets, Unstructured Filings &amp; Out-of-Core Processing</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -332,7 +338,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-patterns" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></h1>
+<h1 class="title"><span id="sec-patterns" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></h1>
 </div>
 
 
@@ -350,11 +356,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>The first two patterns are <strong>meta-patterns</strong> — they govern how every task flows. Learn these first, then the specific workflows make more sense.</p>
-<section id="pattern-1-plan-first-development" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="pattern-1-plan-first-development"><span class="header-section-number">6.1</span> Pattern 1: Plan-First Development</h2>
+<section id="pattern-1-plan-first-development" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="pattern-1-plan-first-development"><span class="header-section-number">7.1</span> Pattern 1: Plan-First Development</h2>
 <p>The plan-first pattern ensures that non-trivial tasks begin with thinking, not typing.</p>
-<section id="why-planning-matters" class="level3" data-number="6.1.1">
-<h3 data-number="6.1.1" class="anchored" data-anchor-id="why-planning-matters"><span class="header-section-number">6.1.1</span> Why Planning Matters</h3>
+<section id="why-planning-matters" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="why-planning-matters"><span class="header-section-number">7.1.1</span> Why Planning Matters</h3>
 <p>The most common failure mode in AI-assisted development is not bad code — it is solving the wrong problem, or solving the right problem in a fragile order. Plan-first development forces an explicit design step before any file is touched. Plans are saved to <code>quality_reports/plans/</code> on disk, so they survive <a href="04-building-blocks.html#context-survival-system-advanced">context compaction</a>.</p>
 <p>Without a plan:</p>
 <ul>
@@ -369,8 +375,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Implementation has a checklist to follow, reducing drift</li>
 </ul>
 </section>
-<section id="the-protocol" class="level3" data-number="6.1.2">
-<h3 data-number="6.1.2" class="anchored" data-anchor-id="the-protocol"><span class="header-section-number">6.1.2</span> The Protocol</h3>
+<section id="the-protocol" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="the-protocol"><span class="header-section-number">7.1.2</span> The Protocol</h3>
 <pre><code>Non-trivial task arrives
   |
   +-- Step 1: Gemini enters plan mode (automatic, or say "plan this first")
@@ -382,13 +388,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   +-- Step 7: Orchestrator takes over (see Pattern 2)
   +-- Step 8: Update session log + plan status to COMPLETED</code></pre>
 </section>
-<section id="context-preservation" class="level3" data-number="6.1.3">
-<h3 data-number="6.1.3" class="anchored" data-anchor-id="context-preservation"><span class="header-section-number">6.1.3</span> Context Preservation</h3>
+<section id="context-preservation" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="context-preservation"><span class="header-section-number">7.1.3</span> Context Preservation</h3>
 <p>Plans are saved to disk specifically so they survive context compression. The rule: <strong>avoid <code>/clear</code></strong> — prefer auto-compression. Use <code>/clear</code> only when context is genuinely polluted.</p>
 <p>For details on how the system automatically preserves and restores context during compaction, see <a href="04-building-blocks.html#context-survival-system-advanced">Context Survival System</a> in the Building Blocks section.</p>
 </section>
-<section id="session-logging" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="session-logging"><span class="header-section-number">6.1.4</span> Session Logging</h3>
+<section id="session-logging" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="session-logging"><span class="header-section-number">7.1.4</span> Session Logging</h3>
 <p>Session logs (<code>quality_reports/session_logs/YYYY-MM-DD_description.md</code>) are a running record of <em>why</em> things happened. They have <strong>three distinct behaviors</strong>, each solving a different problem:</p>
 <p><strong>After plan approval</strong> — create the log with the goal, plan summary, and rationale for the chosen approach (including rejected alternatives). This captures decisions while context is richest. If you wait, auto-compression may discard the reasoning.</p>
 <p><strong>During implementation</strong> — append to the log as you work. Every time a design decision is made, a problem is discovered, or the approach deviates from the plan, write a 1-3 line entry immediately. This is the most important behavior: context gets compressed as the session progresses, and decisions that live only in the conversation will be lost.</p>
@@ -429,15 +435,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="pattern-2-contractor-mode-orchestrator" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="pattern-2-contractor-mode-orchestrator"><span class="header-section-number">6.2</span> Pattern 2: Contractor Mode (Orchestrator)</h2>
+<section id="pattern-2-contractor-mode-orchestrator" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="pattern-2-contractor-mode-orchestrator"><span class="header-section-number">7.2</span> Pattern 2: Contractor Mode (Orchestrator)</h2>
 <p>Once a plan is approved, the orchestrator takes over. It is the natural continuation of Pattern 1: the plan says <em>what</em>, the orchestrator handles <em>how</em> — autonomously.</p>
-<section id="the-mental-model" class="level3" data-number="6.2.1">
-<h3 data-number="6.2.1" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">6.2.1</span> The Mental Model</h3>
+<section id="the-mental-model" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="the-mental-model"><span class="header-section-number">7.2.1</span> The Mental Model</h3>
 <p>Think of the orchestrator as a <strong>general contractor</strong>. You are the client. You describe what you want. The plan-first protocol is the blueprint phase. Once you approve the blueprint, the contractor takes over: hires the right specialists (agents), inspects their work (verification), sends them back to fix issues (review-fix loop), and only calls you when the job passes inspection (quality gates).</p>
 </section>
-<section id="the-loop" class="level3" data-number="6.2.2">
-<h3 data-number="6.2.2" class="anchored" data-anchor-id="the-loop"><span class="header-section-number">6.2.2</span> The Loop</h3>
+<section id="the-loop" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="the-loop"><span class="header-section-number">7.2.2</span> The Loop</h3>
 <pre><code>User: "Translate Lecture 5 to Quarto"
   |
   |-- Plan-first (Pattern 1): draft plan, save to disk, get approval
@@ -473,8 +479,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
               YES -&gt; Present summary to user
               NO  -&gt; Loop to Step 3 (max 5 rounds)</code></pre>
 </section>
-<section id="agent-selection" class="level3" data-number="6.2.3">
-<h3 data-number="6.2.3" class="anchored" data-anchor-id="agent-selection"><span class="header-section-number">6.2.3</span> Agent Selection</h3>
+<section id="agent-selection" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="agent-selection"><span class="header-section-number">7.2.3</span> Agent Selection</h3>
 <p>The orchestrator selects agents based on which files were touched:</p>
 <table class="caption-top table">
 <thead>
@@ -516,16 +522,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Agents that are independent of each other run in parallel. The quarto-critic runs after other agents because it may need their context.</p>
 </section>
-<section id="just-do-it-mode" class="level3" data-number="6.2.4">
-<h3 data-number="6.2.4" class="anchored" data-anchor-id="just-do-it-mode"><span class="header-section-number">6.2.4</span> “Just Do It” Mode</h3>
+<section id="just-do-it-mode" class="level3" data-number="7.2.4">
+<h3 data-number="7.2.4" class="anchored" data-anchor-id="just-do-it-mode"><span class="header-section-number">7.2.4</span> “Just Do It” Mode</h3>
 <p>Sometimes you do not want to approve the final result — you just want it done:</p>
 <blockquote class="blockquote">
 <p>“Translate Lecture 5 to Quarto. Just do it.”</p>
 </blockquote>
 <p>In this mode, the orchestrator still runs the full verify-review-fix loop (quality is non-negotiable), but skips the final approval pause and auto-commits if the score is 80 or above. It still presents the summary so you can see what was done.</p>
 </section>
-<section id="relationship-to-existing-skills" class="level3" data-number="6.2.5">
-<h3 data-number="6.2.5" class="anchored" data-anchor-id="relationship-to-existing-skills"><span class="header-section-number">6.2.5</span> Relationship to Existing Skills</h3>
+<section id="relationship-to-existing-skills" class="level3" data-number="7.2.5">
+<h3 data-number="7.2.5" class="anchored" data-anchor-id="relationship-to-existing-skills"><span class="header-section-number">7.2.5</span> Relationship to Existing Skills</h3>
 <p>The orchestrator does NOT replace skills. It coordinates them:</p>
 <ul>
 <li><code>qa-quarto</code> remains available as a standalone adversarial QA loop</li>
@@ -553,8 +559,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="pattern-3-creating-a-new-lecture" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="pattern-3-creating-a-new-lecture"><span class="header-section-number">6.3</span> Pattern 3: Creating a New Lecture</h2>
+<section id="pattern-3-creating-a-new-lecture" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="pattern-3-creating-a-new-lecture"><span class="header-section-number">7.3</span> Pattern 3: Creating a New Lecture</h2>
 <p>The <code>create-lecture</code> skill guides you through a structured lecture creation workflow — from gathering source material to deploying polished slides:</p>
 <pre><code>create-lecture
   |
@@ -589,8 +595,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="pattern-4-translating-beamer-to-quarto" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="pattern-4-translating-beamer-to-quarto"><span class="header-section-number">6.4</span> Pattern 4: Translating Beamer to Quarto</h2>
+<section id="pattern-4-translating-beamer-to-quarto" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="pattern-4-translating-beamer-to-quarto"><span class="header-section-number">7.4</span> Pattern 4: Translating Beamer to Quarto</h2>
 <p>Translation preserves all content while adapting format, converting TikZ to SVG and ggplot to interactive Plotly charts:</p>
 <pre><code>translate-to-quarto Lecture5_Topic.tex
   |
@@ -604,8 +610,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         +-- Critic: re-audits
         +-- ... (until APPROVED or 5 rounds)</code></pre>
 </section>
-<section id="pattern-5-replication-first-coding" class="level2" data-number="6.5">
-<h2 data-number="6.5" class="anchored" data-anchor-id="pattern-5-replication-first-coding"><span class="header-section-number">6.5</span> Pattern 5: Replication-First Coding</h2>
+<section id="pattern-5-replication-first-coding" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="pattern-5-replication-first-coding"><span class="header-section-number">7.5</span> Pattern 5: Replication-First Coding</h2>
 <p>When working with papers that have replication packages:</p>
 <pre><code>Phase 1: Inventory original code
   +-- Record "gold standard" numbers (Table X, Column Y = Z.ZZ)
@@ -650,8 +656,8 @@ Phase 4: Only then extend
 </div>
 </div>
 </section>
-<section id="pattern-6-multi-agent-review" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="pattern-6-multi-agent-review"><span class="header-section-number">6.6</span> Pattern 6: Multi-Agent Review</h2>
+<section id="pattern-6-multi-agent-review" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="pattern-6-multi-agent-review"><span class="header-section-number">7.6</span> Pattern 6: Multi-Agent Review</h2>
 <p>The <code>slide-excellence</code> skill runs up to 6 <a href="04-building-blocks.html#agents---specialized-reviewers">specialized agents</a> in parallel:</p>
 <pre><code>slide-excellence Lecture5_Topic.tex
   |
@@ -664,11 +670,11 @@ Phase 4: Only then extend
   |
   +-- Synthesize: Combined quality score + prioritized fix list</code></pre>
 </section>
-<section id="pattern-7-self-improvement-loop" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="pattern-7-self-improvement-loop"><span class="header-section-number">6.7</span> Pattern 7: Self-Improvement Loop</h2>
+<section id="pattern-7-self-improvement-loop" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="pattern-7-self-improvement-loop"><span class="header-section-number">7.7</span> Pattern 7: Self-Improvement Loop</h2>
 <p>There are two levels of self-improvement: <strong>quick corrections</strong> via <code>[LEARN]</code> tags and <strong>full skill extraction</strong> via <code>learn</code>.</p>
-<section id="quick-corrections-learn-tags" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="quick-corrections-learn-tags"><span class="header-section-number">6.7.1</span> Quick Corrections: [LEARN] Tags</h3>
+<section id="quick-corrections-learn-tags" class="level3" data-number="7.7.1">
+<h3 data-number="7.7.1" class="anchored" data-anchor-id="quick-corrections-learn-tags"><span class="header-section-number">7.7.1</span> Quick Corrections: [LEARN] Tags</h3>
 <p>Every correction gets tagged for future reference in MEMORY.md:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Corrections Log</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:notation</span><span class="co">]</span> T_t = 1{t=2} is deterministic -&gt; use T_i in {1,2}</span>
@@ -677,8 +683,8 @@ Phase 4: Only then extend
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:workflow</span><span class="co">]</span> Every Beamer edit must auto-sync to Quarto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>These tags are searchable and persist across sessions. When Gemini encounters a similar situation, it checks memory first.</p>
 </section>
-<section id="automated-skill-capture-learn" class="level3" data-number="6.7.2">
-<h3 data-number="6.7.2" class="anchored" data-anchor-id="automated-skill-capture-learn"><span class="header-section-number">6.7.2</span> Automated Skill Capture: learn</h3>
+<section id="automated-skill-capture-learn" class="level3" data-number="7.7.2">
+<h3 data-number="7.7.2" class="anchored" data-anchor-id="automated-skill-capture-learn"><span class="header-section-number">7.7.2</span> Automated Skill Capture: learn</h3>
 <p>For discoveries that deserve more than a one-line tag, use <code>learn</code> to create a full skill:</p>
 <pre><code>learn fixest-missing-covariate-handling</code></pre>
 <p>The <code>learn</code> skill guides you through a 4-phase workflow:</p>
@@ -702,8 +708,8 @@ Phase 4: QUALITY GATE
   • Solution verified to work?
   • Specific enough to be actionable?
   • General enough to be reusable?</code></pre>
-<section id="when-to-use-learn" class="level4" data-number="6.7.2.1">
-<h4 data-number="6.7.2.1" class="anchored" data-anchor-id="when-to-use-learn"><span class="header-section-number">6.7.2.1</span> When to Use learn</h4>
+<section id="when-to-use-learn" class="level4" data-number="7.7.2.1">
+<h4 data-number="7.7.2.1" class="anchored" data-anchor-id="when-to-use-learn"><span class="header-section-number">7.7.2.1</span> When to Use learn</h4>
 <p>The context monitor suggests <code>learn</code> at 40%, 55%, and 65% context usage. Consider extracting a skill when you encounter:</p>
 <table class="caption-top table">
 <thead>
@@ -740,8 +746,8 @@ Phase 4: QUALITY GATE
 </tbody>
 </table>
 </section>
-<section id="skill-vs.-learn-tag" class="level4" data-number="6.7.2.2">
-<h4 data-number="6.7.2.2" class="anchored" data-anchor-id="skill-vs.-learn-tag"><span class="header-section-number">6.7.2.2</span> Skill vs.&nbsp;[LEARN] Tag</h4>
+<section id="skill-vs.-learn-tag" class="level4" data-number="7.7.2.2">
+<h4 data-number="7.7.2.2" class="anchored" data-anchor-id="skill-vs.-learn-tag"><span class="header-section-number">7.7.2.2</span> Skill vs.&nbsp;[LEARN] Tag</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 68%">
@@ -776,8 +782,8 @@ Phase 4: QUALITY GATE
 </section>
 </section>
 </section>
-<section id="pattern-8-devils-advocate" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="pattern-8-devils-advocate"><span class="header-section-number">6.8</span> Pattern 8: Devil’s Advocate</h2>
+<section id="pattern-8-devils-advocate" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="pattern-8-devils-advocate"><span class="header-section-number">7.8</span> Pattern 8: Devil’s Advocate</h2>
 <p>At any design decision, invoke the Devil’s Advocate:</p>
 <blockquote class="blockquote">
 <p>“Create a Devil’s Advocate. Have it challenge this slide design with 5-7 specific pedagogical questions. Work through each challenge and tell me what survives.”</p>
@@ -811,14 +817,14 @@ Phase 4: QUALITY GATE
 </div>
 </div>
 </section>
-<section id="sec-research-workflows" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="sec-research-workflows"><span class="header-section-number">6.9</span> Research Workflows</h2>
+<section id="sec-research-workflows" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="sec-research-workflows"><span class="header-section-number">7.9</span> Research Workflows</h2>
 <p>Patterns 1–8 apply broadly, with course materials as the primary example. The next four patterns are designed for <strong>research projects</strong> — papers, simulations, and empirical analysis — where the rhythm is different: ideas are uncertain, experiments may fail, and code is often written to answer a question rather than to ship. Patterns 13–14 then extend the foundation to reproducibility standards and presentation rhetoric.</p>
-<section id="pattern-9-parallel-agents" class="level3" data-number="6.9.1">
-<h3 data-number="6.9.1" class="anchored" data-anchor-id="pattern-9-parallel-agents"><span class="header-section-number">6.9.1</span> Pattern 9: Parallel Agents for Research Tasks</h3>
+<section id="pattern-9-parallel-agents" class="level3" data-number="7.9.1">
+<h3 data-number="7.9.1" class="anchored" data-anchor-id="pattern-9-parallel-agents"><span class="header-section-number">7.9.1</span> Pattern 9: Parallel Agents for Research Tasks</h3>
 <p>Antigravity can spawn <strong>multiple agents simultaneously</strong> using the Task tool. This is not limited to review — you can use it for any research or analysis task where independent subtasks can run at the same time.</p>
-<section id="when-to-use-parallel-agents" class="level4" data-number="6.9.1.1">
-<h4 data-number="6.9.1.1" class="anchored" data-anchor-id="when-to-use-parallel-agents"><span class="header-section-number">6.9.1.1</span> When to Use Parallel Agents</h4>
+<section id="when-to-use-parallel-agents" class="level4" data-number="7.9.1.1">
+<h4 data-number="7.9.1.1" class="anchored" data-anchor-id="when-to-use-parallel-agents"><span class="header-section-number">7.9.1.1</span> When to Use Parallel Agents</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -861,8 +867,8 @@ Phase 4: QUALITY GATE
 </tbody>
 </table>
 </section>
-<section id="how-it-works" class="level4" data-number="6.9.1.2">
-<h4 data-number="6.9.1.2" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">6.9.1.2</span> How It Works</h4>
+<section id="how-it-works" class="level4" data-number="7.9.1.2">
+<h4 data-number="7.9.1.2" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">7.9.1.2</span> How It Works</h4>
 <p>You do not need to manage this manually. Skills that implement the orchestrator pattern (<code>create-lecture</code>, <code>review-paper --peer</code>, <code>slide-excellence</code>, etc.) can recognize independent subtasks within their scope and spawn parallel subagents via <code>context: fork</code> — both during implementation (Step 1) and review (Step 3). For example, when <code>slide-excellence</code> runs on a deck, it spawns the visual / pedagogy / proofread agents in parallel; when <code>review-paper --peer</code> runs, it spawns the two referees in parallel. The parallelism is built into the skill’s logic, not into a repo-wide daemon.</p>
 <p>You can also request parallelism explicitly:</p>
 <blockquote class="blockquote">
@@ -870,20 +876,20 @@ Phase 4: QUALITY GATE
 </blockquote>
 <p>Either way, Gemini spawns up to 3 Task agents, each processing one paper simultaneously, then synthesizes the results.</p>
 </section>
-<section id="long-running-tasks-background-tasks-and-schedulers" class="level4" data-number="6.9.1.3">
-<h4 data-number="6.9.1.3" class="anchored" data-anchor-id="long-running-tasks-background-tasks-and-schedulers"><span class="header-section-number">6.9.1.3</span> Long-running tasks: Background Tasks and Schedulers</h4>
+<section id="long-running-tasks-background-tasks-and-schedulers" class="level4" data-number="7.9.1.3">
+<h4 data-number="7.9.1.3" class="anchored" data-anchor-id="long-running-tasks-background-tasks-and-schedulers"><span class="header-section-number">7.9.1.3</span> Long-running tasks: Background Tasks and Schedulers</h4>
 <p>For genuinely long jobs — a 30-minute R fit, an <code>audit-reproducibility</code> batch over many tables, a Quarto render of a 200-slide deck — Antigravity allows launching processes as background tasks and scheduling notifications or check-ins. You can run long jobs in the background and let Antigravity notify you or proceed with other work in the meantime. No polling loop, no sleep cycles. Useful inside <code>data-analysis</code> for the regression step and inside <code>audit-reproducibility</code> when re-running the whole script suite.</p>
 </section>
-<section id="watching-parallel-agents" class="level4" data-number="6.9.1.4">
-<h4 data-number="6.9.1.4" class="anchored" data-anchor-id="watching-parallel-agents"><span class="header-section-number">6.9.1.4</span> Watching parallel agents</h4>
+<section id="watching-parallel-agents" class="level4" data-number="7.9.1.4">
+<h4 data-number="7.9.1.4" class="anchored" data-anchor-id="watching-parallel-agents"><span class="header-section-number">7.9.1.4</span> Watching parallel agents</h4>
 <p>When several review agents run in parallel (such as the <code>review-paper --peer</code> editor and referee subagents, or <code>slide-excellence</code>’s visual, pedagogy, and proofread fan-out), you can list and monitor them using the subagent management tools. This allows you to track multiple background sessions on a single screen without opening one terminal per agent.</p>
 </section>
-<section id="agent-debates" class="level4" data-number="6.9.1.5">
-<h4 data-number="6.9.1.5" class="anchored" data-anchor-id="agent-debates"><span class="header-section-number">6.9.1.5</span> Agent Debates</h4>
+<section id="agent-debates" class="level4" data-number="7.9.1.5">
+<h4 data-number="7.9.1.5" class="anchored" data-anchor-id="agent-debates"><span class="header-section-number">7.9.1.5</span> Agent Debates</h4>
 <p>A powerful variant: give each parallel agent a <strong>distinct methodological perspective</strong> and have them argue. Instead of asking “which estimator should I use?”, spawn 3 agents — one advocates for DiD, one for synthetic control, one for RDD — each arguing why their approach fits your research question best and critiquing the others. Synthesize the debate into a decision matrix. This produces genuinely diverse perspectives that a single conversation cannot, because each agent commits fully to its position.</p>
 </section>
-<section id="practical-limits" class="level4" data-number="6.9.1.6">
-<h4 data-number="6.9.1.6" class="anchored" data-anchor-id="practical-limits"><span class="header-section-number">6.9.1.6</span> Practical Limits</h4>
+<section id="practical-limits" class="level4" data-number="7.9.1.6">
+<h4 data-number="7.9.1.6" class="anchored" data-anchor-id="practical-limits"><span class="header-section-number">7.9.1.6</span> Practical Limits</h4>
 <ul>
 <li><strong>3 agents</strong> is the sweet spot. More than that increases overhead without proportional speedup.</li>
 <li>Agents are <strong>independent</strong> — they cannot see each other’s work. If task B depends on task A’s output, they must run sequentially.</li>
@@ -904,15 +910,15 @@ Phase 4: QUALITY GATE
 </div>
 </section>
 </section>
-<section id="pattern-10-exploration" class="level3" data-number="6.9.2">
-<h3 data-number="6.9.2" class="anchored" data-anchor-id="pattern-10-exploration"><span class="header-section-number">6.9.2</span> Pattern 10: Research Exploration Workflow</h3>
+<section id="pattern-10-exploration" class="level3" data-number="7.9.2">
+<h3 data-number="7.9.2" class="anchored" data-anchor-id="pattern-10-exploration"><span class="header-section-number">7.9.2</span> Pattern 10: Research Exploration Workflow</h3>
 <p>The <strong>exploration workflow</strong> provides a structured sandbox for experimental work.</p>
-<section id="the-problem" class="level4" data-number="6.9.2.1">
-<h4 data-number="6.9.2.1" class="anchored" data-anchor-id="the-problem"><span class="header-section-number">6.9.2.1</span> The Problem</h4>
+<section id="the-problem" class="level4" data-number="7.9.2.1">
+<h4 data-number="7.9.2.1" class="anchored" data-anchor-id="the-problem"><span class="header-section-number">7.9.2.1</span> The Problem</h4>
 <p>Without structure, experimental code scatters across the repository: analysis scripts in <code>scripts/</code>, test files in root, comparison documents in <code>quality_reports/</code>. After a week of exploration, the repo is cluttered with files that may or may not be useful, and nobody remembers which version was the good one.</p>
 </section>
-<section id="the-solution-exploration-folder" class="level4" data-number="6.9.2.2">
-<h4 data-number="6.9.2.2" class="anchored" data-anchor-id="the-solution-exploration-folder"><span class="header-section-number">6.9.2.2</span> The Solution: Exploration Folder</h4>
+<section id="the-solution-exploration-folder" class="level4" data-number="7.9.2.2">
+<h4 data-number="7.9.2.2" class="anchored" data-anchor-id="the-solution-exploration-folder"><span class="header-section-number">7.9.2.2</span> The Solution: Exploration Folder</h4>
 <p>All experimental work goes into <code>explorations/</code> first:</p>
 <pre><code>explorations/
 ├── [active-project]/
@@ -924,8 +930,8 @@ Phase 4: QUALITY GATE
     ├── completed_[name]/   # Graduated to production
     └── abandoned_[name]/   # Documented why stopped</code></pre>
 </section>
-<section id="fast-track-vs.-plan-first" class="level4" data-number="6.9.2.3">
-<h4 data-number="6.9.2.3" class="anchored" data-anchor-id="fast-track-vs.-plan-first"><span class="header-section-number">6.9.2.3</span> Fast-Track vs.&nbsp;Plan-First</h4>
+<section id="fast-track-vs.-plan-first" class="level4" data-number="7.9.2.3">
+<h4 data-number="7.9.2.3" class="anchored" data-anchor-id="fast-track-vs.-plan-first"><span class="header-section-number">7.9.2.3</span> Fast-Track vs.&nbsp;Plan-First</h4>
 <p>The decision tree is simple:</p>
 <table class="caption-top table">
 <thead>
@@ -955,8 +961,8 @@ Phase 4: QUALITY GATE
 </table>
 <p>Fast-Track explorations skip formal planning. Instead, a 2-minute <strong>research value check</strong> gates the work: “Does this improve the paper/slides/analysis?” If the answer is “maybe”, explore. If “no”, skip. If “yes”, use Plan-First rigor.</p>
 </section>
-<section id="the-lifecycle" class="level4" data-number="6.9.2.4">
-<h4 data-number="6.9.2.4" class="anchored" data-anchor-id="the-lifecycle"><span class="header-section-number">6.9.2.4</span> The Lifecycle</h4>
+<section id="the-lifecycle" class="level4" data-number="7.9.2.4">
+<h4 data-number="7.9.2.4" class="anchored" data-anchor-id="the-lifecycle"><span class="header-section-number">7.9.2.4</span> The Lifecycle</h4>
 <pre><code>Research value check (2 min)
   ↓
 Create explorations/[project]/ (5 min)
@@ -969,17 +975,17 @@ Decision point (1-2 hours):
   └── Abandon → Archive with brief explanation</code></pre>
 <p>The <strong>kill switch</strong> is explicit: at any point, you can stop, archive with a one-paragraph explanation, and move on. No guilt, no sunk cost. See <code>.agents/rules/exploration-folder-protocol.md</code> and <code>.agents/rules/exploration-fast-track.md</code> for the full protocols.</p>
 </section>
-<section id="simplified-orchestrator-for-research" class="level4" data-number="6.9.2.5">
-<h4 data-number="6.9.2.5" class="anchored" data-anchor-id="simplified-orchestrator-for-research"><span class="header-section-number">6.9.2.5</span> Simplified Orchestrator for Research</h4>
+<section id="simplified-orchestrator-for-research" class="level4" data-number="7.9.2.5">
+<h4 data-number="7.9.2.5" class="anchored" data-anchor-id="simplified-orchestrator-for-research"><span class="header-section-number">7.9.2.5</span> Simplified Orchestrator for Research</h4>
 <p>The full orchestrator (Pattern 2) is designed for course materials with multi-agent review loops. For research projects, the <strong>simple variant</strong> strips this down to: implement → verify → score → done. No multi-round reviews, no parallel agent spawning. This lives in its own path-scoped rule (<code>.agents/rules/orchestrator-research.md</code>) that loads only when working on R scripts or explorations.</p>
 </section>
-<section id="merge-only-quality-reporting" class="level4" data-number="6.9.2.6">
-<h4 data-number="6.9.2.6" class="anchored" data-anchor-id="merge-only-quality-reporting"><span class="header-section-number">6.9.2.6</span> Merge-Only Quality Reporting</h4>
+<section id="merge-only-quality-reporting" class="level4" data-number="7.9.2.6">
+<h4 data-number="7.9.2.6" class="anchored" data-anchor-id="merge-only-quality-reporting"><span class="header-section-number">7.9.2.6</span> Merge-Only Quality Reporting</h4>
 <p>In research projects, commits are frequent and incremental. Generating a quality report for each commit creates noise. Instead, quality reports are generated <strong>only at merge time</strong> — a permanent snapshot of what was merged and why. Session logs capture the ongoing reasoning. See <code>.agents/rules/session-logging.md</code>.</p>
 </section>
 </section>
-<section id="pattern-11-research-skills" class="level3" data-number="6.9.3">
-<h3 data-number="6.9.3" class="anchored" data-anchor-id="pattern-11-research-skills"><span class="header-section-number">6.9.3</span> Pattern 11: Research Skills</h3>
+<section id="pattern-11-research-skills" class="level3" data-number="7.9.3">
+<h3 data-number="7.9.3" class="anchored" data-anchor-id="pattern-11-research-skills"><span class="header-section-number">7.9.3</span> Pattern 11: Research Skills</h3>
 <p>Ten skills support the research workflow (including our mathematical and theoretical proof workflow):</p>
 <table class="caption-top table">
 <colgroup>
@@ -1109,8 +1115,8 @@ Decision point (1-2 hours):
 <p>R&amp;R continuation is built in: <code>--r2</code> / <code>--r3</code> for response-to-referees rounds; <code>--stress</code> for a hostile-editor stress test. See <code>.agents/references/discipline-cards.md</code> for econ + poli-sci defaults (paper-type frequency, dominant journals, preregistration norms, code conventions). Forkers extend for psych / sociology / public-health.</p>
 </div>
 </div>
-<section id="the-research-lifecycle-as-a-dependency-graph" class="level4" data-number="6.9.3.1">
-<h4 data-number="6.9.3.1" class="anchored" data-anchor-id="the-research-lifecycle-as-a-dependency-graph"><span class="header-section-number">6.9.3.1</span> The Research Lifecycle as a Dependency Graph</h4>
+<section id="the-research-lifecycle-as-a-dependency-graph" class="level4" data-number="7.9.3.1">
+<h4 data-number="7.9.3.1" class="anchored" data-anchor-id="the-research-lifecycle-as-a-dependency-graph"><span class="header-section-number">7.9.3.1</span> The Research Lifecycle as a Dependency Graph</h4>
 <p>A research project is not a waterfall — it is a <strong>dependency graph</strong>. Some phases run in parallel; others are strictly sequential:</p>
 <pre><code>research-ideation ─────┐
                         ├──→ lit-review ──→ data-analysis ──→ review-paper
@@ -1140,8 +1146,8 @@ interview-me ──────────┘         ↑               ↑
 </div>
 </section>
 </section>
-<section id="pattern-12-branch-isolation" class="level3" data-number="6.9.4">
-<h3 data-number="6.9.4" class="anchored" data-anchor-id="pattern-12-branch-isolation"><span class="header-section-number">6.9.4</span> Pattern 12: Branch Isolation with Git Worktrees (Advanced)</h3>
+<section id="pattern-12-branch-isolation" class="level3" data-number="7.9.4">
+<h3 data-number="7.9.4" class="anchored" data-anchor-id="pattern-12-branch-isolation"><span class="header-section-number">7.9.4</span> Pattern 12: Branch Isolation with Git Worktrees (Advanced)</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1158,8 +1164,8 @@ interview-me ──────────┘         ↑               ↑
 <p>Git worktrees create a <strong>separate working directory</strong> linked to the same repository. Each directory has its own branch but shares commit history. Subagents can use worktrees via the <code>isolation: worktree</code> field (see <a href="04-building-blocks.html#sec-agent-config">Advanced Agent Configuration</a>).</p>
 <pre><code>your-project/                     ← main branch (stays clean)
 .worktrees/lecture-06-quarto/     ← isolated branch (Gemini works here)</code></pre>
-<section id="why-use-worktrees" class="level4" data-number="6.9.4.1">
-<h4 data-number="6.9.4.1" class="anchored" data-anchor-id="why-use-worktrees"><span class="header-section-number">6.9.4.1</span> Why Use Worktrees?</h4>
+<section id="why-use-worktrees" class="level4" data-number="7.9.4.1">
+<h4 data-number="7.9.4.1" class="anchored" data-anchor-id="why-use-worktrees"><span class="header-section-number">7.9.4.1</span> Why Use Worktrees?</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -1195,8 +1201,8 @@ interview-me ──────────┘         ↑               ↑
 </tbody>
 </table>
 </section>
-<section id="the-workflow" class="level4" data-number="6.9.4.2">
-<h4 data-number="6.9.4.2" class="anchored" data-anchor-id="the-workflow"><span class="header-section-number">6.9.4.2</span> The Workflow</h4>
+<section id="the-workflow" class="level4" data-number="7.9.4.2">
+<h4 data-number="7.9.4.2" class="anchored" data-anchor-id="the-workflow"><span class="header-section-number">7.9.4.2</span> The Workflow</h4>
 <pre><code>1. CREATE WORKTREE
    git worktree add .worktrees/lecture-06-quarto -b quarto/lecture-06
    cd .worktrees/lecture-06-quarto
@@ -1217,8 +1223,8 @@ interview-me ──────────┘         ↑               ↑
    git worktree remove .worktrees/lecture-06-quarto
    git branch -d quarto/lecture-06</code></pre>
 </section>
-<section id="commands-reference" class="level4" data-number="6.9.4.3">
-<h4 data-number="6.9.4.3" class="anchored" data-anchor-id="commands-reference"><span class="header-section-number">6.9.4.3</span> Commands Reference</h4>
+<section id="commands-reference" class="level4" data-number="7.9.4.3">
+<h4 data-number="7.9.4.3" class="anchored" data-anchor-id="commands-reference"><span class="header-section-number">7.9.4.3</span> Commands Reference</h4>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a worktree with new branch</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> worktree add .worktrees/<span class="pp">[</span><span class="ss">name</span><span class="pp">]</span> <span class="at">-b</span> <span class="pp">[</span><span class="ss">branch</span><span class="pp">-</span><span class="ss">name</span><span class="pp">]</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1254,8 +1260,8 @@ interview-me ──────────┘         ↑               ↑
 </div>
 </div>
 </section>
-<section id="when-to-use" class="level4" data-number="6.9.4.4">
-<h4 data-number="6.9.4.4" class="anchored" data-anchor-id="when-to-use"><span class="header-section-number">6.9.4.4</span> When to Use</h4>
+<section id="when-to-use" class="level4" data-number="7.9.4.4">
+<h4 data-number="7.9.4.4" class="anchored" data-anchor-id="when-to-use"><span class="header-section-number">7.9.4.4</span> When to Use</h4>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1288,8 +1294,8 @@ interview-me ──────────┘         ↑               ↑
 </table>
 <p>For example, translating Lecture 5 from Beamer to Quarto involves extracting TikZ diagrams, converting ggplot to plotly, and rewriting environments — dozens of intermediate files over multiple sessions. A worktree keeps main clean while you iterate.</p>
 </section>
-<section id="complexity-cost" class="level4" data-number="6.9.4.5">
-<h4 data-number="6.9.4.5" class="anchored" data-anchor-id="complexity-cost"><span class="header-section-number">6.9.4.5</span> Complexity Cost</h4>
+<section id="complexity-cost" class="level4" data-number="7.9.4.5">
+<h4 data-number="7.9.4.5" class="anchored" data-anchor-id="complexity-cost"><span class="header-section-number">7.9.4.5</span> Complexity Cost</h4>
 <ul>
 <li>Adds ~3 commands to learn</li>
 <li>Adds mental model: “Where am I working?”</li>
@@ -1299,14 +1305,14 @@ interview-me ──────────┘         ↑               ↑
 </section>
 </section>
 </section>
-<section id="sec-beyond-slides" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="sec-beyond-slides"><span class="header-section-number">6.10</span> Advanced Patterns: Reproducibility and Presentation Design</h2>
+<section id="sec-beyond-slides" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="sec-beyond-slides"><span class="header-section-number">7.10</span> Advanced Patterns: Reproducibility and Presentation Design</h2>
 <p>The patterns above use slides as the primary example, but the infrastructure is domain-agnostic. The next two patterns address dimensions no existing pattern covers: reproducibility standards and presentation rhetoric.</p>
-<section id="pattern-13-reproducibility" class="level3" data-number="6.10.1">
-<h3 data-number="6.10.1" class="anchored" data-anchor-id="pattern-13-reproducibility"><span class="header-section-number">6.10.1</span> Pattern 13: Reproducibility &amp; Replication Compliance</h3>
+<section id="pattern-13-reproducibility" class="level3" data-number="7.10.1">
+<h3 data-number="7.10.1" class="anchored" data-anchor-id="pattern-13-reproducibility"><span class="header-section-number">7.10.1</span> Pattern 13: Reproducibility &amp; Replication Compliance</h3>
 <p>Pattern 5 covers matching <em>someone else’s</em> results before extending them. This pattern is the complement: packaging <em>your own</em> work so that others — and journal data editors — can verify it.</p>
-<section id="the-aea-data-editor-standard" class="level4" data-number="6.10.1.1">
-<h4 data-number="6.10.1.1" class="anchored" data-anchor-id="the-aea-data-editor-standard"><span class="header-section-number">6.10.1.1</span> The AEA Data Editor Standard</h4>
+<section id="the-aea-data-editor-standard" class="level4" data-number="7.10.1.1">
+<h4 data-number="7.10.1.1" class="anchored" data-anchor-id="the-aea-data-editor-standard"><span class="header-section-number">7.10.1.1</span> The AEA Data Editor Standard</h4>
 <p>The <a href="https://social-science-data-editors.github.io/template_README/">Template README for Social Science Replication Packages</a> is the compliance standard for the AEA, Review of Economic Studies, Economic Journal, and other major journals. It requires eight structured sections:</p>
 <table class="caption-top table">
 <colgroup>
@@ -1356,8 +1362,8 @@ interview-me ──────────┘         ↑               ↑
 </table>
 <p>The <strong>Table/Figure Mapping</strong> row is exactly what <code>passport.yaml</code> (v1.9.0) machine-encodes: each numeric claim → script + line + output file + tolerance + verified-on timestamp. The AEA requires the <em>spreadsheet-style</em> version; the passport is the <em>programmatic</em> version. They’re complementary — generate the AEA spreadsheet from the passport when you submit.</p>
 </section>
-<section id="pre-submission-checklist" class="level4" data-number="6.10.1.2">
-<h4 data-number="6.10.1.2" class="anchored" data-anchor-id="pre-submission-checklist"><span class="header-section-number">6.10.1.2</span> Pre-Submission Checklist</h4>
+<section id="pre-submission-checklist" class="level4" data-number="7.10.1.2">
+<h4 data-number="7.10.1.2" class="anchored" data-anchor-id="pre-submission-checklist"><span class="header-section-number">7.10.1.2</span> Pre-Submission Checklist</h4>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1401,8 +1407,8 @@ interview-me ──────────┘         ↑               ↑
 </div>
 </div>
 </section>
-<section id="recommended-directory-structure" class="level4" data-number="6.10.1.3">
-<h4 data-number="6.10.1.3" class="anchored" data-anchor-id="recommended-directory-structure"><span class="header-section-number">6.10.1.3</span> Recommended Directory Structure</h4>
+<section id="recommended-directory-structure" class="level4" data-number="7.10.1.3">
+<h4 data-number="7.10.1.3" class="anchored" data-anchor-id="recommended-directory-structure"><span class="header-section-number">7.10.1.3</span> Recommended Directory Structure</h4>
 <pre><code>project/
 ├── README.pdf              # Following AEA template
 ├── LICENSE.txt             # Code: MIT/BSD; Data: CC-BY
@@ -1445,18 +1451,18 @@ interview-me ──────────┘         ↑               ↑
 </div>
 </section>
 </section>
-<section id="pattern-14-rhetoric-of-decks" class="level3" data-number="6.10.2">
-<h3 data-number="6.10.2" class="anchored" data-anchor-id="pattern-14-rhetoric-of-decks"><span class="header-section-number">6.10.2</span> Pattern 14: The Rhetoric of Decks</h3>
+<section id="pattern-14-rhetoric-of-decks" class="level3" data-number="7.10.2">
+<h3 data-number="7.10.2" class="anchored" data-anchor-id="pattern-14-rhetoric-of-decks"><span class="header-section-number">7.10.2</span> Pattern 14: The Rhetoric of Decks</h3>
 <p>The slide-auditor checks <em>technical</em> quality (overflow, spacing). The pedagogy-reviewer checks <em>teaching</em> quality (notation density, prerequisites). Neither addresses <em>rhetorical</em> quality — whether the slides persuade, whether the argument flows, whether beauty serves function.</p>
 <p>The <a href="https://github.com/scunning1975/MixtapeTools/tree/main/presentations">Rhetoric of Decks</a> framework fills this gap.</p>
-<section id="the-three-laws" class="level4" data-number="6.10.2.1">
-<h4 data-number="6.10.2.1" class="anchored" data-anchor-id="the-three-laws"><span class="header-section-number">6.10.2.1</span> The Three Laws</h4>
+<section id="the-three-laws" class="level4" data-number="7.10.2.1">
+<h4 data-number="7.10.2.1" class="anchored" data-anchor-id="the-three-laws"><span class="header-section-number">7.10.2.1</span> The Three Laws</h4>
 <p><strong>Law 1: Beauty is function.</strong> Beautiful slides are not decorated slides. Beauty is clarity made visible. Every element earns its presence. Nothing distracts from the point. “Decoration without function is noise.”</p>
 <p><strong>Law 2: Cognitive load is the enemy.</strong> One idea per slide. ONE. This is not a guideline — this is the law. The audience has limited working memory. Every unnecessary word, data point, or “just in case” inclusion steals bandwidth from the actual message.</p>
 <p><strong>Law 3: The slide serves the spoken word.</strong> “If your slides can be understood without you speaking, you have written a document and called it a presentation.” The slide is a visual anchor for speech — a focal point for attention, a memory hook for retention.</p>
 </section>
-<section id="the-mbmc-equivalence" class="level4" data-number="6.10.2.2">
-<h4 data-number="6.10.2.2" class="anchored" data-anchor-id="the-mbmc-equivalence"><span class="header-section-number">6.10.2.2</span> The MB/MC Equivalence</h4>
+<section id="the-mbmc-equivalence" class="level4" data-number="7.10.2.2">
+<h4 data-number="7.10.2.2" class="anchored" data-anchor-id="the-mbmc-equivalence"><span class="header-section-number">7.10.2.2</span> The MB/MC Equivalence</h4>
 <p>The most original contribution of this framework — applying marginal analysis to slide design:</p>
 <blockquote class="blockquote">
 <p>Optimal rhetoric equalizes the marginal benefit to marginal cost ratio across all slides: MB₁/MC₁ = MB₂/MC₂ = … = MBₙ/MCₙ</p>
@@ -1469,8 +1475,8 @@ interview-me ──────────┘         ↑               ↑
 <li><strong>Exception</strong>: deliberate “jump scares” — intentional spikes for rhetorical effect (a striking statistic, a provocative claim)</li>
 </ul>
 </section>
-<section id="actionable-principles" class="level4" data-number="6.10.2.3">
-<h4 data-number="6.10.2.3" class="anchored" data-anchor-id="actionable-principles"><span class="header-section-number">6.10.2.3</span> Actionable Principles</h4>
+<section id="actionable-principles" class="level4" data-number="7.10.2.3">
+<h4 data-number="7.10.2.3" class="anchored" data-anchor-id="actionable-principles"><span class="header-section-number">7.10.2.3</span> Actionable Principles</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 37%">
@@ -1518,8 +1524,8 @@ interview-me ──────────┘         ↑               ↑
 </tbody>
 </table>
 </section>
-<section id="how-existing-agents-support-this" class="level4" data-number="6.10.2.4">
-<h4 data-number="6.10.2.4" class="anchored" data-anchor-id="how-existing-agents-support-this"><span class="header-section-number">6.10.2.4</span> How Existing Agents Support This</h4>
+<section id="how-existing-agents-support-this" class="level4" data-number="7.10.2.4">
+<h4 data-number="7.10.2.4" class="anchored" data-anchor-id="how-existing-agents-support-this"><span class="header-section-number">7.10.2.4</span> How Existing Agents Support This</h4>
 <p>The <code>slide-excellence</code> skill already invokes the pedagogy-reviewer and slide-auditor, which enforce many of these principles automatically. To enforce <em>all</em> of them — including title-as-assertion and MB/MC smoothness — customize the <strong>domain-reviewer</strong> agent (<code>.agents/agents/domain-reviewer.md</code>) with rhetoric-of-decks lenses. The orchestrator will then apply them during every review cycle without manual invocation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
@@ -1539,12 +1545,12 @@ interview-me ──────────┘         ↑               ↑
 </div>
 </section>
 </section>
-<section id="pattern-15-sequential-audits" class="level3" data-number="6.10.3">
-<h3 data-number="6.10.3" class="anchored" data-anchor-id="pattern-15-sequential-audits"><span class="header-section-number">6.10.3</span> Pattern 15: Sequential Adversarial Audits</h3>
+<section id="pattern-15-sequential-audits" class="level3" data-number="7.10.3">
+<h3 data-number="7.10.3" class="anchored" data-anchor-id="pattern-15-sequential-audits"><span class="header-section-number">7.10.3</span> Pattern 15: Sequential Adversarial Audits</h3>
 <p><strong>Principle:</strong> Run N independent audit passes, each focused on ONE dimension. Each auditor sees only the artifact — not previous audits — to prevent groupthink and anchoring bias.</p>
 <p>This pattern differs from the parallel multi-agent review in <a href="#pattern-6-multi-agent-review">Pattern 6</a>. There, agents run simultaneously and findings are merged. Here, audits run <strong>sequentially</strong>, each producing an independent report. The independence is the point: a citation auditor shouldn’t be influenced by what the prose auditor flagged.</p>
-<section id="the-seven-audit-protocol-for-papers" class="level4" data-number="6.10.3.1">
-<h4 data-number="6.10.3.1" class="anchored" data-anchor-id="the-seven-audit-protocol-for-papers"><span class="header-section-number">6.10.3.1</span> The Seven-Audit Protocol (for Papers)</h4>
+<section id="the-seven-audit-protocol-for-papers" class="level4" data-number="7.10.3.1">
+<h4 data-number="7.10.3.1" class="anchored" data-anchor-id="the-seven-audit-protocol-for-papers"><span class="header-section-number">7.10.3.1</span> The Seven-Audit Protocol (for Papers)</h4>
 <p>Inspired by <a href="https://github.com/aspi6246/GeminiCodeTools">GeminiCodeTools “The Editor”</a>, this protocol runs seven sequential passes before submission:</p>
 <ol type="1">
 <li><strong>Abstract audit</strong> — Does the abstract accurately reflect findings? Is it a compelling “storefront”?</li>
@@ -1556,8 +1562,8 @@ interview-me ──────────┘         ↑               ↑
 <li><strong>“So What” test</strong> — Five questions: What’s the question? Why does it matter? What did you find? How do you know? What does it mean?</li>
 </ol>
 </section>
-<section id="how-to-implement" class="level4" data-number="6.10.3.2">
-<h4 data-number="6.10.3.2" class="anchored" data-anchor-id="how-to-implement"><span class="header-section-number">6.10.3.2</span> How to Implement</h4>
+<section id="how-to-implement" class="level4" data-number="7.10.3.2">
+<h4 data-number="7.10.3.2" class="anchored" data-anchor-id="how-to-implement"><span class="header-section-number">7.10.3.2</span> How to Implement</h4>
 <p>Use <code>review-paper</code> for a comprehensive single-pass review. When you need deeper, independent audits (e.g., before journal submission), run each audit as a separate skill invocation with <code>context: fork</code> to ensure isolation:</p>
 <pre><code>You: "Run the seven-audit protocol on my paper"
 Gemini: [Runs 7 sequential forked reviews, each blind to the others]
@@ -1567,11 +1573,11 @@ Gemini: [Runs 7 sequential forked reviews, each blind to the others]
 <p><strong>For the R&amp;R stage (after referee comments arrive):</strong> Use <code>respond-to-referees [report] [revised-manuscript]</code>. It parses each concern, classifies coverage (addressed / partially / deferred / disagreement), points to specific revisions, and drafts the response document using <code>templates/response-to-referees.md</code>.</p>
 </section>
 </section>
-<section id="pattern-16-preregistration" class="level3" data-number="6.10.4">
-<h3 data-number="6.10.4" class="anchored" data-anchor-id="pattern-16-preregistration"><span class="header-section-number">6.10.4</span> Pattern 16: Preregistration and Submission Discipline</h3>
+<section id="pattern-16-preregistration" class="level3" data-number="7.10.4">
+<h3 data-number="7.10.4" class="anchored" data-anchor-id="pattern-16-preregistration"><span class="header-section-number">7.10.4</span> Pattern 16: Preregistration and Submission Discipline</h3>
 <p><strong>Principle:</strong> Lock in your hypotheses, design, and analysis plan <strong>before</strong> you see the realised data. Preregistration is the strongest defence against p-hacking, HARKing, and forking-paths, and it’s increasingly mandatory for credibility in social-science venues. Pair it with <code>checkpoint</code> for a verifiable trail of what you committed to and when.</p>
-<section id="when-preregistration-matters" class="level4" data-number="6.10.4.1">
-<h4 data-number="6.10.4.1" class="anchored" data-anchor-id="when-preregistration-matters"><span class="header-section-number">6.10.4.1</span> When preregistration matters</h4>
+<section id="when-preregistration-matters" class="level4" data-number="7.10.4.1">
+<h4 data-number="7.10.4.1" class="anchored" data-anchor-id="when-preregistration-matters"><span class="header-section-number">7.10.4.1</span> When preregistration matters</h4>
 <ul>
 <li><strong>Before launching an experiment</strong> (lab, field, or survey) — the canonical case.</li>
 <li><strong>Before analysing observational data</strong> on a target population for a specific RQ. “I have the data but haven’t looked at the outcome variable yet” is the right moment.</li>
@@ -1579,8 +1585,8 @@ Gemini: [Runs 7 sequential forked reviews, each blind to the others]
 <li><strong>Funding</strong> — NSF, NIH, OSF, AEA grants increasingly require a PAP at submission.</li>
 </ul>
 </section>
-<section id="choosing-a-registry" class="level4" data-number="6.10.4.2">
-<h4 data-number="6.10.4.2" class="anchored" data-anchor-id="choosing-a-registry"><span class="header-section-number">6.10.4.2</span> Choosing a registry</h4>
+<section id="choosing-a-registry" class="level4" data-number="7.10.4.2">
+<h4 data-number="7.10.4.2" class="anchored" data-anchor-id="choosing-a-registry"><span class="header-section-number">7.10.4.2</span> Choosing a registry</h4>
 <p>The template ships three styles via <code>preregister --style</code>:</p>
 <table class="caption-top table">
 <thead>
@@ -1618,8 +1624,8 @@ Gemini: [Runs 7 sequential forked reviews, each blind to the others]
 </table>
 <p>For <strong>public health / clinical trials</strong>, use ClinicalTrials.gov or ISRCTN directly — this template’s <code>preregister</code> doesn’t cover those formats. They’re on the v2.0-backlog.</p>
 </section>
-<section id="the-workflow-1" class="level4" data-number="6.10.4.3">
-<h4 data-number="6.10.4.3" class="anchored" data-anchor-id="the-workflow-1"><span class="header-section-number">6.10.4.3</span> The workflow</h4>
+<section id="the-workflow-1" class="level4" data-number="7.10.4.3">
+<h4 data-number="7.10.4.3" class="anchored" data-anchor-id="the-workflow-1"><span class="header-section-number">7.10.4.3</span> The workflow</h4>
 <pre><code>interview-me                       preregister --style osf
    ↓                                   ↓
 research-spec.md  ─────────────→  preregistration-draft.md
@@ -1635,8 +1641,8 @@ research-spec.md  ─────────────→  preregistration-dr
                                   data collection begins</code></pre>
 <p><code>preregister</code> reads your <code>interview-me</code> spec frontmatter (the <code>paper_type:</code> field flows in from there if you set it) and produces a registry-formatted draft with <strong>MUST / SHOULD / MAY</strong> annotations on every section. Pre-flight checks: directional hypothesis declared, named estimator, ex-ante exclusion rules, sample-size stopping rule.</p>
 </section>
-<section id="mandatory-fields-per-registry-style" class="level4" data-number="6.10.4.4">
-<h4 data-number="6.10.4.4" class="anchored" data-anchor-id="mandatory-fields-per-registry-style"><span class="header-section-number">6.10.4.4</span> Mandatory fields per registry style</h4>
+<section id="mandatory-fields-per-registry-style" class="level4" data-number="7.10.4.4">
+<h4 data-number="7.10.4.4" class="anchored" data-anchor-id="mandatory-fields-per-registry-style"><span class="header-section-number">7.10.4.4</span> Mandatory fields per registry style</h4>
 <p>The <code>--style</code> flag determines the mandatory section list. The template enforces these via the pre-flight check:</p>
 <table class="caption-top table">
 <thead>
@@ -1712,8 +1718,8 @@ research-spec.md  ─────────────→  preregistration-dr
 </table>
 <p><code>preregister</code> refuses to draft a “retrospective preregistration” — if your description contains realised results or post-hoc reasoning, the skill halts and explains why. That refusal is the point.</p>
 </section>
-<section id="pairing-with-checkpoint" class="level4" data-number="6.10.4.5">
-<h4 data-number="6.10.4.5" class="anchored" data-anchor-id="pairing-with-checkpoint"><span class="header-section-number">6.10.4.5</span> Pairing with <code>checkpoint</code></h4>
+<section id="pairing-with-checkpoint" class="level4" data-number="7.10.4.5">
+<h4 data-number="7.10.4.5" class="anchored" data-anchor-id="pairing-with-checkpoint"><span class="header-section-number">7.10.4.5</span> Pairing with <code>checkpoint</code></h4>
 <p><code>checkpoint</code> is the structured companion to the narrative session-log workflow. For preregistration specifically:</p>
 <ul>
 <li><strong>Before submitting</strong> to the registry: <code>checkpoint preregistration-pre-submit</code> snapshots the draft state, the spec it derives from, and the next-action (“upload to OSF and record registration ID”).</li>
@@ -1722,12 +1728,12 @@ research-spec.md  ─────────────→  preregistration-dr
 </ul>
 <p><code>checkpoint</code> files live at <code>quality_reportscheckpoints/YYYY-MM-DD_&lt;slug&gt;.md</code> (gitignored — they’re session-state, not version-controlled artifacts). Optional <code>--no-memory</code> flag suppresses the auto-proposal of <code>[LEARN]</code> entries to MEMORY.md.</p>
 </section>
-<section id="post-flight-verification" class="level4" data-number="6.10.4.6">
-<h4 data-number="6.10.4.6" class="anchored" data-anchor-id="post-flight-verification"><span class="header-section-number">6.10.4.6</span> Post-flight verification</h4>
+<section id="post-flight-verification" class="level4" data-number="7.10.4.6">
+<h4 data-number="7.10.4.6" class="anchored" data-anchor-id="post-flight-verification"><span class="header-section-number">7.10.4.6</span> Post-flight verification</h4>
 <p>Any cited literature in the preregistration runs through <code>verify-claims</code> (Chain-of-Verification, forked-verifier context, fresh) before the draft is considered ready. Hallucinated citations are the most common preregistration failure mode and the hardest to fix after submission — gate-refusing them at draft time pays back many-fold.</p>
 </section>
-<section id="what-this-pattern-protects-against" class="level4" data-number="6.10.4.7">
-<h4 data-number="6.10.4.7" class="anchored" data-anchor-id="what-this-pattern-protects-against"><span class="header-section-number">6.10.4.7</span> What this pattern protects against</h4>
+<section id="what-this-pattern-protects-against" class="level4" data-number="7.10.4.7">
+<h4 data-number="7.10.4.7" class="anchored" data-anchor-id="what-this-pattern-protects-against"><span class="header-section-number">7.10.4.7</span> What this pattern protects against</h4>
 <ul>
 <li><strong>HARKing</strong> (Hypothesising After Results are Known) — the preregistered hypothesis pins the directional claim before observation.</li>
 <li><strong>p-hacking</strong> — the named estimator + named multiple-comparison plan removes the discretion that produces inflated false-positive rates.</li>
@@ -1737,19 +1743,19 @@ research-spec.md  ─────────────→  preregistration-dr
 <p>For econometrics, see Christensen &amp; Miguel (2018) on transparency in development economics. For political science, see <a href="https://www.cambridge.org/core/journals/ps-political-science-and-politics/article/research-preregistration-in-political-science/">Monogan (2015)</a> on the political-science case. For psychology, see the OSF Preregistration Guide.</p>
 </section>
 </section>
-<section id="pattern-17-large-datasets" class="level3" data-number="6.10.5">
-<h3 data-number="6.10.5" class="anchored" data-anchor-id="pattern-17-large-datasets"><span class="header-section-number">6.10.5</span> Pattern 17: Large Datasets, Unstructured Filings &amp; Out-of-Core Processing</h3>
+<section id="pattern-17-large-datasets" class="level3" data-number="7.10.5">
+<h3 data-number="7.10.5" class="anchored" data-anchor-id="pattern-17-large-datasets"><span class="header-section-number">7.10.5</span> Pattern 17: Large Datasets, Unstructured Filings &amp; Out-of-Core Processing</h3>
 <p><strong>Principle:</strong> When building empirical datasets from raw financial text (SEC EDGAR filings, regulatory disclosures) or multi-gigabyte databases, keep heavy data processing out-of-core and structured. Do not feed raw data directly into the model’s context window.</p>
-<section id="unstructured-to-structured-pipelines-e.g.-sec-edgar" class="level4" data-number="6.10.5.1">
-<h4 data-number="6.10.5.1" class="anchored" data-anchor-id="unstructured-to-structured-pipelines-e.g.-sec-edgar"><span class="header-section-number">6.10.5.1</span> 1. Unstructured to Structured Pipelines (e.g.&nbsp;SEC EDGAR)</h4>
+<section id="unstructured-to-structured-pipelines-e.g.-sec-edgar" class="level4" data-number="7.10.5.1">
+<h4 data-number="7.10.5.1" class="anchored" data-anchor-id="unstructured-to-structured-pipelines-e.g.-sec-edgar"><span class="header-section-number">7.10.5.1</span> Unstructured to Structured Pipelines (e.g.&nbsp;SEC EDGAR)</h4>
 <ul>
 <li><strong>Interactive Plan-First Design:</strong> Use <code>/interview-me</code> or interactive plan mode to define table schemas and parsing logic <em>before</em> writing scraper scripts.</li>
 <li><strong>Scraping &amp; Parsing Rules:</strong> Write deterministic Python/R scripts to download raw HTML/XML filings, parse structured fields (items, tables, notes), and output clean Parquet or SQLite files.</li>
 <li><strong>Validation Gates:</strong> Inspect intermediate parsing reports before running full batch extractions.</li>
 </ul>
 </section>
-<section id="large-dataset-processing-duckdb-polars" class="level4" data-number="6.10.5.2">
-<h4 data-number="6.10.5.2" class="anchored" data-anchor-id="large-dataset-processing-duckdb-polars"><span class="header-section-number">6.10.5.2</span> 2. Large Dataset Processing (DuckDB &amp; Polars)</h4>
+<section id="large-dataset-processing-duckdb-polars" class="level4" data-number="7.10.5.2">
+<h4 data-number="7.10.5.2" class="anchored" data-anchor-id="large-dataset-processing-duckdb-polars"><span class="header-section-number">7.10.5.2</span> Large Dataset Processing (DuckDB &amp; Polars)</h4>
 <ul>
 <li><strong>Out-of-Core Execution:</strong> Use <strong>DuckDB</strong> or <strong>Polars</strong> for large academic datasets that exceed RAM capacity.</li>
 <li><strong>Query Aggregation:</strong> Let the agent write SQL/Polars queries to summarize, index, and join massive tables on disk. Feed only summarized tables or regression-ready samples into statistical models (R <code>fixest</code>, Stata, or Python <code>statsmodels</code>).</li>
@@ -2165,12 +2171,12 @@ research-spec.md  ─────────────→  preregistration-dr
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/04-building-blocks.html" class="pagination-link" aria-label="The Building Blocks">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/07-customizing.html" class="pagination-link" aria-label="Customizing for Your Domain">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

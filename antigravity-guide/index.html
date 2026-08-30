@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Gang (Ernest) Pan">
-<meta name="dcterms.date" content="2026-08-19">
+<meta name="dcterms.date" content="2026-08-29">
 
 <title>Agentic Workflows for Accounting Academics</title>
 <style>
@@ -133,31 +133,37 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: How LLMs Think, Remember, and Perform</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/04-context-and-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -230,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 19, 2026</p>
+      <p class="date">August 29, 2026</p>
     </div>
   </div>
   
@@ -278,8 +284,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="how-to-use-this-guide">How to Use This Guide</h2>
 <ul>
 <li><strong>If you want to start working today:</strong> Jump straight to <strong><a href="./chapters/02-getting-started.html">Chapter 2: Getting Started</a></strong> to install your harness and try your first starter prompt in minutes.</li>
-<li><strong>If you want to understand the paradigm shift:</strong> Read <strong><a href="./chapters/01-why-this-workflow.html">Chapter 1: Why Agentic AI Matters</a></strong> and <strong><a href="./chapters/03-system-in-action.html">Chapter 3: The System in Action</a></strong> for the conceptual foundation and multi-agent quality gates.</li>
-<li><strong>If you are looking for specific research workflows:</strong> Explore <strong><a href="./chapters/05-workflow-patterns.html">Chapter 5: Workflow Patterns</a></strong> for replication-first coding, Beamer slide generation, and big-data pipelines.</li>
+<li><strong>If you want to understand the underlying engine:</strong> Read <strong><a href="./chapters/03-under-the-hood.html">Chapter 3: Under the Hood</a></strong> and <strong><a href="./chapters/04-context-and-memory.html">Chapter 4: The Context Window &amp; Memory</a></strong> for next-token prediction, deterministic tool grounding, and memory hierarchies.</li>
+<li><strong>If you want to see the workflow in action:</strong> Explore <strong><a href="./chapters/03-system-in-action.html">Chapter 5: The System in Action</a></strong> and <strong><a href="./chapters/05-workflow-patterns.html">Chapter 7: Workflow Patterns</a></strong> for replication-first coding, Beamer slide generation, and big-data pipelines.</li>
 </ul>
 </section>
 <section id="navigation-structure" class="level2">
@@ -287,10 +293,12 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><strong><a href="./chapters/01-why-this-workflow.html">Chapter 1: Introduction — Why Agentic AI Matters for Scholars</a></strong> — The evolution beyond chatbots, the AI tool ladder, fundamental agentic concepts, the human scholar’s role, and why you don’t need to build systems from scratch (the iPhone analogy).</li>
 <li><strong><a href="./chapters/02-getting-started.html">Chapter 2: Getting Started</a></strong> — Desktop harness setup (Antigravity, Claude, ChatGPT), project creation steps, importing established academic setups, companion tools, the starter prompt, and spec-first workflow.</li>
-<li><strong><a href="./chapters/03-system-in-action.html">Chapter 3: The System in Action</a></strong> — Why specialized agents beat generalists, critic-fixer loops, native multimodal vision, and the 80/90/95 quality gates.</li>
-<li><strong><a href="./chapters/04-building-blocks.html">Chapter 4: The Building Blocks</a></strong> — <code>GEMINI.md</code>, path-scoped rules, skills, specialized agents, multi-model cost optimization, settings, permissions, and context survival.</li>
-<li><strong><a href="./chapters/05-workflow-patterns.html">Chapter 5: Workflow Patterns</a></strong> — Meta-patterns (plan-first, orchestrator), slide creation &amp; translation, replication-first coding, research pipelines, preregistration, and big-data out-of-core pipelines (SEC EDGAR, DuckDB, Polars).</li>
-<li><strong><a href="./chapters/07-customizing.html">Chapter 6: Customizing for Your Domain</a></strong> — Adapting knowledge bases, domain reviewers, theme palettes, and creating domain-specific skills.</li>
+<li><strong><a href="./chapters/03-under-the-hood.html">Chapter 3: Under the Hood — LLM Mechanics &amp; Deterministic Grounding</a></strong> — Autoregressive next-token prediction, statelessness, Chain of Thought, tool grounding as the anchor of truth, and model selection.</li>
+<li><strong><a href="./chapters/04-context-and-memory.html">Chapter 4: The Context Window &amp; Memory Architecture</a></strong> — Working memory (RAM), attention dilution, context pollution, the 3-tier memory hierarchy, rule budgets, context caching, and multi-agent isolation.</li>
+<li><strong><a href="./chapters/03-system-in-action.html">Chapter 5: The System in Action</a></strong> — Why specialized agents beat generalists, critic-fixer loops, native multimodal vision, and the 80/90/95 quality gates.</li>
+<li><strong><a href="./chapters/04-building-blocks.html">Chapter 6: The Building Blocks</a></strong> — <code>GEMINI.md</code>, path-scoped rules, skills, specialized agents, multi-model cost optimization, settings, permissions, and context survival.</li>
+<li><strong><a href="./chapters/05-workflow-patterns.html">Chapter 7: Workflow Patterns</a></strong> — Meta-patterns (plan-first, orchestrator), slide creation &amp; translation, replication-first coding, research pipelines, preregistration, and big-data out-of-core pipelines (SEC EDGAR, DuckDB, Polars).</li>
+<li><strong><a href="./chapters/07-customizing.html">Chapter 8: Customizing for Your Domain</a></strong> — Adapting knowledge bases, domain reviewers, theme palettes, and creating domain-specific skills.</li>
 <li><strong><a href="./chapters/06-ecosystem.html">Appendix A: Academic AI Setups &amp; Ecosystem</a></strong> — Curated directory of community repositories, empirical skills, and migration tools.</li>
 <li><strong><a href="./chapters/08-appendix.html">Appendix B: File &amp; Skill Reference</a></strong> — Complete inventory tables of all agents, skills, rules, and hooks, plus troubleshooting FAQ.</li>
 <li><strong><a href="./chapters/09-acknowledgments.html">Appendix C: Standing on Shoulders</a></strong> — Inspirations, contributors, and origins.</li>

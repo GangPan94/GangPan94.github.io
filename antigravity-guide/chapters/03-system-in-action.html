@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; The System in Action – Agentic Workflows for Accounting Academics</title>
+<title>5&nbsp; The System in Action – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -34,7 +34,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/04-building-blocks.html" rel="next">
-<link href="../chapters/03-under-the-hood.html" rel="prev">
+<link href="../chapters/04-context-and-memory.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -166,7 +166,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-system-in-action.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-system-in-action.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -212,31 +212,37 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: How LLMs Think, Remember, and Perform</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-context-and-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -278,18 +284,18 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-specialized-agents-beat-one-size-fits-all" id="toc-why-specialized-agents-beat-one-size-fits-all" class="nav-link active" data-scroll-target="#why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">4.1</span> Why Specialized Agents Beat One-Size-Fits-All</a></li>
-  <li><a href="#the-adversarial-pattern-critic-fixer" id="toc-the-adversarial-pattern-critic-fixer" class="nav-link" data-scroll-target="#the-adversarial-pattern-critic-fixer"><span class="header-section-number">4.2</span> The Adversarial Pattern: Critic + Fixer</a></li>
-  <li><a href="#the-orchestrator-a-pattern-not-a-daemon" id="toc-the-orchestrator-a-pattern-not-a-daemon" class="nav-link" data-scroll-target="#the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">4.3</span> The Orchestrator: A Pattern, Not a Daemon</a></li>
-  <li><a href="#sec-quality" id="toc-sec-quality" class="nav-link" data-scroll-target="#sec-quality"><span class="header-section-number">4.4</span> Quality Review: The 80/90/95 System</a>
+  <li><a href="#why-specialized-agents-beat-one-size-fits-all" id="toc-why-specialized-agents-beat-one-size-fits-all" class="nav-link active" data-scroll-target="#why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">5.1</span> Why Specialized Agents Beat One-Size-Fits-All</a></li>
+  <li><a href="#the-adversarial-pattern-critic-fixer" id="toc-the-adversarial-pattern-critic-fixer" class="nav-link" data-scroll-target="#the-adversarial-pattern-critic-fixer"><span class="header-section-number">5.2</span> The Adversarial Pattern: Critic + Fixer</a></li>
+  <li><a href="#the-orchestrator-a-pattern-not-a-daemon" id="toc-the-orchestrator-a-pattern-not-a-daemon" class="nav-link" data-scroll-target="#the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">5.3</span> The Orchestrator: A Pattern, Not a Daemon</a></li>
+  <li><a href="#sec-quality" id="toc-sec-quality" class="nav-link" data-scroll-target="#sec-quality"><span class="header-section-number">5.4</span> Quality Review: The 80/90/95 System</a>
   <ul class="collapse">
-  <li><a href="#how-scores-are-calculated" id="toc-how-scores-are-calculated" class="nav-link" data-scroll-target="#how-scores-are-calculated"><span class="header-section-number">4.4.1</span> How Scores Are Calculated</a></li>
-  <li><a href="#mandatory-verification" id="toc-mandatory-verification" class="nav-link" data-scroll-target="#mandatory-verification"><span class="header-section-number">4.4.2</span> Mandatory Verification</a></li>
-  <li><a href="#submission-readiness-stacking-the-verification-lenses" id="toc-submission-readiness-stacking-the-verification-lenses" class="nav-link" data-scroll-target="#submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">4.4.3</span> Submission-readiness: stacking the verification lenses</a></li>
+  <li><a href="#how-scores-are-calculated" id="toc-how-scores-are-calculated" class="nav-link" data-scroll-target="#how-scores-are-calculated"><span class="header-section-number">5.4.1</span> How Scores Are Calculated</a></li>
+  <li><a href="#mandatory-verification" id="toc-mandatory-verification" class="nav-link" data-scroll-target="#mandatory-verification"><span class="header-section-number">5.4.2</span> Mandatory Verification</a></li>
+  <li><a href="#submission-readiness-stacking-the-verification-lenses" id="toc-submission-readiness-stacking-the-verification-lenses" class="nav-link" data-scroll-target="#submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">5.4.3</span> Submission-readiness: stacking the verification lenses</a></li>
   </ul></li>
-  <li><a href="#sec-domain-reviewer" id="toc-sec-domain-reviewer" class="nav-link" data-scroll-target="#sec-domain-reviewer"><span class="header-section-number">4.5</span> Creating Your Own Domain Reviewer</a>
+  <li><a href="#sec-domain-reviewer" id="toc-sec-domain-reviewer" class="nav-link" data-scroll-target="#sec-domain-reviewer"><span class="header-section-number">5.5</span> Creating Your Own Domain Reviewer</a>
   <ul class="collapse">
-  <li><a href="#the-5-lens-framework" id="toc-the-5-lens-framework" class="nav-link" data-scroll-target="#the-5-lens-framework"><span class="header-section-number">4.5.1</span> The 5-Lens Framework</a></li>
+  <li><a href="#the-5-lens-framework" id="toc-the-5-lens-framework" class="nav-link" data-scroll-target="#the-5-lens-framework"><span class="header-section-number">5.5.1</span> The 5-Lens Framework</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -299,7 +305,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-system" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></span></h1>
+<h1 class="title"><span id="sec-system" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span></h1>
 </div>
 
 
@@ -317,8 +323,8 @@ window.Quarto = {
 
 
 <p>With setup covered, here is what the system actually <em>does</em>. This section walks through the three core mechanisms that make the workflow powerful: specialized agents, adversarial QA, and automatic quality scoring.</p>
-<section id="why-specialized-agents-beat-one-size-fits-all" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">4.1</span> Why Specialized Agents Beat One-Size-Fits-All</h2>
+<section id="why-specialized-agents-beat-one-size-fits-all" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">5.1</span> Why Specialized Agents Beat One-Size-Fits-All</h2>
 <p>Consider proofreading a 140-slide lecture deck. You could ask Gemini:</p>
 <blockquote class="blockquote">
 <p>“Review these slides for grammar, layout, math correctness, code quality, and pedagogical flow.”</p>
@@ -373,8 +379,8 @@ window.Quarto = {
 </table>
 <p>Each agent reads the same file but examines a different dimension with full attention. The <code>slide-excellence</code> skill runs them all in parallel.</p>
 </section>
-<section id="the-adversarial-pattern-critic-fixer" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="the-adversarial-pattern-critic-fixer"><span class="header-section-number">4.2</span> The Adversarial Pattern: Critic + Fixer</h2>
+<section id="the-adversarial-pattern-critic-fixer" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="the-adversarial-pattern-critic-fixer"><span class="header-section-number">5.2</span> The Adversarial Pattern: Critic + Fixer</h2>
 <p>The single most powerful pattern in this system is the <strong>adversarial QA loop</strong>:</p>
 <pre><code>+------------------+
 |  quarto-critic   |  "I found 12 issues. 3 Critical."
@@ -414,14 +420,14 @@ APPROVED   NEEDS WORK
 </div>
 </div>
 </section>
-<section id="the-orchestrator-a-pattern-not-a-daemon" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">4.3</span> The Orchestrator: A Pattern, Not a Daemon</h2>
+<section id="the-orchestrator-a-pattern-not-a-daemon" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">5.3</span> The Orchestrator: A Pattern, Not a Daemon</h2>
 <p>Individual agents are specialists. Skills like <code>slide-excellence</code> and <code>qa-quarto</code> coordinate a few agents for specific tasks. In day-to-day work, you don’t have to think about which agents to run — the right skill runs the right agents for you.</p>
 <p>The <strong>orchestrator protocol</strong> (<code>.agents/rules/orchestrator-protocol.md</code>) defines the 6-step loop (IMPLEMENT → VERIFY → REVIEW → FIX → RE-VERIFY → SCORE) that skills implement internally. It is <strong>not</strong> a runtime daemon: plan approval does NOT auto-trigger this loop. You invoke a skill (e.g., <code>create-lecture</code>, <code>qa-quarto</code>, <code>review-paper --adversarial</code>) and the skill runs the pattern within its own scope.</p>
 <p>What’s mechanically implemented today: <code>commit</code> (verifier + quality_score), <code>qa-quarto</code> (critic-fixer loop), <code>review-paper --adversarial</code> (critic-fixer loop), <code>slide-excellence</code> (multi-agent fanout), <code>review-paper --peer</code> (editor + 2 referees + cross-artifact). See <a href="05-workflow-patterns.html#pattern-2-contractor-mode-orchestrator">Pattern 2</a> for the complete workflow.</p>
 </section>
-<section id="sec-quality" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-quality"><span class="header-section-number">4.4</span> Quality Review: The 80/90/95 System</h2>
+<section id="sec-quality" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sec-quality"><span class="header-section-number">5.4</span> Quality Review: The 80/90/95 System</h2>
 <p>The <a href="04-building-blocks.html">quality-gates rule</a> (<code>quality-gates.md</code>) defines scoring thresholds that <code>commit</code> and review skills apply. Thresholds are <strong>advisory</strong> — enforced inside specific skills, not by a repo-wide git pre-commit hook. A direct <code>git commit</code> bypasses the review. Every file gets a quality score from 0 to 100:</p>
 <table class="caption-top table">
 <colgroup>
@@ -465,8 +471,8 @@ APPROVED   NEEDS WORK
 </tr>
 </tbody>
 </table>
-<section id="how-scores-are-calculated" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="how-scores-are-calculated"><span class="header-section-number">4.4.1</span> How Scores Are Calculated</h3>
+<section id="how-scores-are-calculated" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="how-scores-are-calculated"><span class="header-section-number">5.4.1</span> How Scores Are Calculated</h3>
 <p>Points are deducted for issues:</p>
 <table class="caption-top table">
 <thead>
@@ -510,8 +516,8 @@ APPROVED   NEEDS WORK
 </tbody>
 </table>
 </section>
-<section id="mandatory-verification" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="mandatory-verification"><span class="header-section-number">4.4.2</span> Mandatory Verification</h3>
+<section id="mandatory-verification" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="mandatory-verification"><span class="header-section-number">5.4.2</span> Mandatory Verification</h3>
 <p>The verification protocol (<code>.agents/rules/verification-protocol.md</code>) requires that Gemini compile, render, or otherwise verify every output before reporting a task as complete. Skills that implement the orchestrator pattern enforce this as Step 2: VERIFY. This means Gemini <strong>cannot</strong> say “done” from within those skills without actually checking the output.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -548,8 +554,8 @@ APPROVED   NEEDS WORK
 </div>
 </div>
 </section>
-<section id="submission-readiness-stacking-the-verification-lenses" class="level3" data-number="4.4.3">
-<h3 data-number="4.4.3" class="anchored" data-anchor-id="submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">4.4.3</span> Submission-readiness: stacking the verification lenses</h3>
+<section id="submission-readiness-stacking-the-verification-lenses" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">5.4.3</span> Submission-readiness: stacking the verification lenses</h3>
 <p>For a paper headed to a journal, three orthogonal lenses run together — each catches a different class of failure:</p>
 <table class="caption-top table">
 <thead>
@@ -591,11 +597,11 @@ APPROVED   NEEDS WORK
 <p><strong><code>humanize</code> design choice</strong>: detect-only, no <code>--rewrite</code> mode. Auto-rewriting AI tells degrades prose quality (cross-vendor research finding) and introduces new tells. The author reads the report and edits — that manual step is the price of preserving voice. If the report flags 8+ HIGH-severity tells per 1000 words, rewrite the affected paragraph from scratch rather than patching tell-by-tell.</p>
 </section>
 </section>
-<section id="sec-domain-reviewer" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="sec-domain-reviewer"><span class="header-section-number">4.5</span> Creating Your Own Domain Reviewer</h2>
+<section id="sec-domain-reviewer" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-domain-reviewer"><span class="header-section-number">5.5</span> Creating Your Own Domain Reviewer</h2>
 <p>The template includes <code>domain-reviewer.md</code> — a skeleton for building a substance reviewer specific to your field.</p>
-<section id="the-5-lens-framework" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="the-5-lens-framework"><span class="header-section-number">4.5.1</span> The 5-Lens Framework</h3>
+<section id="the-5-lens-framework" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="the-5-lens-framework"><span class="header-section-number">5.5.1</span> The 5-Lens Framework</h3>
 <p>Every domain can benefit from these five review lenses:</p>
 <table class="caption-top table">
 <colgroup>
@@ -1069,13 +1075,13 @@ APPROVED   NEEDS WORK
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/03-under-the-hood.html" class="pagination-link" aria-label="Under the Hood: How LLMs Think, Remember, and Perform">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: How LLMs Think, Remember, and Perform</span></span>
+      <a href="../chapters/04-context-and-memory.html" class="pagination-link" aria-label="The Context Window &amp; Memory Architecture">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/04-building-blocks.html" class="pagination-link" aria-label="The Building Blocks">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

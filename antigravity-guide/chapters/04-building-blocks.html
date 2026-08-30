@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; The Building Blocks – Agentic Workflows for Accounting Academics</title>
+<title>6&nbsp; The Building Blocks – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -172,7 +172,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-building-blocks.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-building-blocks.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,31 +218,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: How LLMs Think, Remember, and Perform</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/04-context-and-memory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/03-system-in-action.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/04-building-blocks.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/05-workflow-patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/07-customizing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -284,38 +290,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#gemini.md-your-projects-constitution" id="toc-gemini.md-your-projects-constitution" class="nav-link active" data-scroll-target="#gemini.md-your-projects-constitution"><span class="header-section-number">5.1</span> GEMINI.md — Your Project’s Constitution</a></li>
-  <li><a href="#rules---domain-knowledge-that-auto-loads" id="toc-rules---domain-knowledge-that-auto-loads" class="nav-link" data-scroll-target="#rules---domain-knowledge-that-auto-loads"><span class="header-section-number">5.2</span> Rules — Domain Knowledge That Auto-Loads</a>
+  <li><a href="#gemini.md-your-projects-constitution" id="toc-gemini.md-your-projects-constitution" class="nav-link active" data-scroll-target="#gemini.md-your-projects-constitution"><span class="header-section-number">6.1</span> GEMINI.md — Your Project’s Constitution</a></li>
+  <li><a href="#rules---domain-knowledge-that-auto-loads" id="toc-rules---domain-knowledge-that-auto-loads" class="nav-link" data-scroll-target="#rules---domain-knowledge-that-auto-loads"><span class="header-section-number">6.2</span> Rules — Domain Knowledge That Auto-Loads</a>
   <ul class="collapse">
-  <li><a href="#example-path-scoped-r-code-conventions-rule" id="toc-example-path-scoped-r-code-conventions-rule" class="nav-link" data-scroll-target="#example-path-scoped-r-code-conventions-rule"><span class="header-section-number">5.2.1</span> Example: Path-Scoped R Code Conventions Rule</a></li>
+  <li><a href="#example-path-scoped-r-code-conventions-rule" id="toc-example-path-scoped-r-code-conventions-rule" class="nav-link" data-scroll-target="#example-path-scoped-r-code-conventions-rule"><span class="header-section-number">6.2.1</span> Example: Path-Scoped R Code Conventions Rule</a></li>
   </ul></li>
-  <li><a href="#constitutional-governance-optional" id="toc-constitutional-governance-optional" class="nav-link" data-scroll-target="#constitutional-governance-optional"><span class="header-section-number">5.3</span> Constitutional Governance (Optional)</a>
+  <li><a href="#constitutional-governance-optional" id="toc-constitutional-governance-optional" class="nav-link" data-scroll-target="#constitutional-governance-optional"><span class="header-section-number">6.3</span> Constitutional Governance (Optional)</a>
   <ul class="collapse">
-  <li><a href="#example-articles-you-might-define" id="toc-example-articles-you-might-define" class="nav-link" data-scroll-target="#example-articles-you-might-define"><span class="header-section-number">5.3.1</span> Example Articles You Might Define</a></li>
+  <li><a href="#example-articles-you-might-define" id="toc-example-articles-you-might-define" class="nav-link" data-scroll-target="#example-articles-you-might-define"><span class="header-section-number">6.3.1</span> Example Articles You Might Define</a></li>
   </ul></li>
-  <li><a href="#skills---reusable-slash-commands" id="toc-skills---reusable-slash-commands" class="nav-link" data-scroll-target="#skills---reusable-slash-commands"><span class="header-section-number">5.4</span> Skills — Reusable Slash Commands</a></li>
-  <li><a href="#agents---specialized-reviewers" id="toc-agents---specialized-reviewers" class="nav-link" data-scroll-target="#agents---specialized-reviewers"><span class="header-section-number">5.5</span> Agents — Specialized Reviewers</a>
+  <li><a href="#skills---reusable-slash-commands" id="toc-skills---reusable-slash-commands" class="nav-link" data-scroll-target="#skills---reusable-slash-commands"><span class="header-section-number">6.4</span> Skills — Reusable Slash Commands</a></li>
+  <li><a href="#agents---specialized-reviewers" id="toc-agents---specialized-reviewers" class="nav-link" data-scroll-target="#agents---specialized-reviewers"><span class="header-section-number">6.5</span> Agents — Specialized Reviewers</a>
   <ul class="collapse">
-  <li><a href="#agent-anatomy" id="toc-agent-anatomy" class="nav-link" data-scroll-target="#agent-anatomy"><span class="header-section-number">5.5.1</span> Agent Anatomy</a></li>
-  <li><a href="#multi-model-strategy-cost-vs-quality" id="toc-multi-model-strategy-cost-vs-quality" class="nav-link" data-scroll-target="#multi-model-strategy-cost-vs-quality"><span class="header-section-number">5.5.2</span> Multi-Model Strategy: Cost vs.&nbsp;Quality</a></li>
-  <li><a href="#sec-agent-config" id="toc-sec-agent-config" class="nav-link" data-scroll-target="#sec-agent-config"><span class="header-section-number">5.5.3</span> Advanced Agent Configuration</a></li>
-  <li><a href="#sec-cost" id="toc-sec-cost" class="nav-link" data-scroll-target="#sec-cost"><span class="header-section-number">5.5.4</span> Cost-Conscious Composition: Caching, Routing, and Diagnostics</a></li>
+  <li><a href="#agent-anatomy" id="toc-agent-anatomy" class="nav-link" data-scroll-target="#agent-anatomy"><span class="header-section-number">6.5.1</span> Agent Anatomy</a></li>
+  <li><a href="#multi-model-strategy-cost-vs-quality" id="toc-multi-model-strategy-cost-vs-quality" class="nav-link" data-scroll-target="#multi-model-strategy-cost-vs-quality"><span class="header-section-number">6.5.2</span> Multi-Model Strategy: Cost vs.&nbsp;Quality</a></li>
+  <li><a href="#sec-agent-config" id="toc-sec-agent-config" class="nav-link" data-scroll-target="#sec-agent-config"><span class="header-section-number">6.5.3</span> Advanced Agent Configuration</a></li>
+  <li><a href="#sec-cost" id="toc-sec-cost" class="nav-link" data-scroll-target="#sec-cost"><span class="header-section-number">6.5.4</span> Cost-Conscious Composition: Caching, Routing, and Diagnostics</a></li>
   </ul></li>
-  <li><a href="#settings---permissions-and-hooks" id="toc-settings---permissions-and-hooks" class="nav-link" data-scroll-target="#settings---permissions-and-hooks"><span class="header-section-number">5.6</span> Settings — Permissions and Hooks</a>
+  <li><a href="#settings---permissions-and-hooks" id="toc-settings---permissions-and-hooks" class="nav-link" data-scroll-target="#settings---permissions-and-hooks"><span class="header-section-number">6.6</span> Settings — Permissions and Hooks</a>
   <ul class="collapse">
-  <li><a href="#the-six-layer-permission-stack" id="toc-the-six-layer-permission-stack" class="nav-link" data-scroll-target="#the-six-layer-permission-stack"><span class="header-section-number">5.6.1</span> The Six-Layer Permission Stack</a></li>
-  <li><a href="#troubleshooting-prompts-fire-despite-bypasspermissions" id="toc-troubleshooting-prompts-fire-despite-bypasspermissions" class="nav-link" data-scroll-target="#troubleshooting-prompts-fire-despite-bypasspermissions"><span class="header-section-number">5.6.2</span> Troubleshooting: Prompts Fire Despite <code>bypassPermissions</code></a></li>
-  <li><a href="#the-plan-bypass-handoff-recommended-daily-driver" id="toc-the-plan-bypass-handoff-recommended-daily-driver" class="nav-link" data-scroll-target="#the-plan-bypass-handoff-recommended-daily-driver"><span class="header-section-number">5.6.3</span> The Plan → Bypass Handoff (Recommended Daily Driver)</a></li>
-  <li><a href="#sec-session-management" id="toc-sec-session-management" class="nav-link" data-scroll-target="#sec-session-management"><span class="header-section-number">5.6.4</span> Session Management</a></li>
+  <li><a href="#the-six-layer-permission-stack" id="toc-the-six-layer-permission-stack" class="nav-link" data-scroll-target="#the-six-layer-permission-stack"><span class="header-section-number">6.6.1</span> The Six-Layer Permission Stack</a></li>
+  <li><a href="#troubleshooting-prompts-fire-despite-bypasspermissions" id="toc-troubleshooting-prompts-fire-despite-bypasspermissions" class="nav-link" data-scroll-target="#troubleshooting-prompts-fire-despite-bypasspermissions"><span class="header-section-number">6.6.2</span> Troubleshooting: Prompts Fire Despite <code>bypassPermissions</code></a></li>
+  <li><a href="#the-plan-bypass-handoff-recommended-daily-driver" id="toc-the-plan-bypass-handoff-recommended-daily-driver" class="nav-link" data-scroll-target="#the-plan-bypass-handoff-recommended-daily-driver"><span class="header-section-number">6.6.3</span> The Plan → Bypass Handoff (Recommended Daily Driver)</a></li>
+  <li><a href="#sec-session-management" id="toc-sec-session-management" class="nav-link" data-scroll-target="#sec-session-management"><span class="header-section-number">6.6.4</span> Session Management</a></li>
   </ul></li>
-  <li><a href="#sec-effort" id="toc-sec-effort" class="nav-link" data-scroll-target="#sec-effort"><span class="header-section-number">5.7</span> Effort Levels — Cost vs.&nbsp;Thoroughness</a></li>
-  <li><a href="#memory---cross-session-persistence" id="toc-memory---cross-session-persistence" class="nav-link" data-scroll-target="#memory---cross-session-persistence"><span class="header-section-number">5.8</span> Memory — Cross-Session Persistence</a>
+  <li><a href="#sec-effort" id="toc-sec-effort" class="nav-link" data-scroll-target="#sec-effort"><span class="header-section-number">6.7</span> Effort Levels — Cost vs.&nbsp;Thoroughness</a></li>
+  <li><a href="#memory---cross-session-persistence" id="toc-memory---cross-session-persistence" class="nav-link" data-scroll-target="#memory---cross-session-persistence"><span class="header-section-number">6.8</span> Memory — Cross-Session Persistence</a>
   <ul class="collapse">
-  <li><a href="#plans-compression-resistant-task-memory" id="toc-plans-compression-resistant-task-memory" class="nav-link" data-scroll-target="#plans-compression-resistant-task-memory"><span class="header-section-number">5.8.1</span> Plans — Compression-Resistant Task Memory</a></li>
-  <li><a href="#session-logs-why-not-just-what-history-with-automated-reminders" id="toc-session-logs-why-not-just-what-history-with-automated-reminders" class="nav-link" data-scroll-target="#session-logs-why-not-just-what-history-with-automated-reminders"><span class="header-section-number">5.8.2</span> Session Logs — Why-Not-Just-What History (with Automated Reminders)</a></li>
-  <li><a href="#how-it-all-fits-together" id="toc-how-it-all-fits-together" class="nav-link" data-scroll-target="#how-it-all-fits-together"><span class="header-section-number">5.8.3</span> How It All Fits Together</a></li>
-  <li><a href="#hooks---automated-enforcement" id="toc-hooks---automated-enforcement" class="nav-link" data-scroll-target="#hooks---automated-enforcement"><span class="header-section-number">5.8.4</span> Hooks — Automated Enforcement</a></li>
-  <li><a href="#context-survival-system-advanced" id="toc-context-survival-system-advanced" class="nav-link" data-scroll-target="#context-survival-system-advanced"><span class="header-section-number">5.8.5</span> Context Survival System (Advanced)</a></li>
+  <li><a href="#plans-compression-resistant-task-memory" id="toc-plans-compression-resistant-task-memory" class="nav-link" data-scroll-target="#plans-compression-resistant-task-memory"><span class="header-section-number">6.8.1</span> Plans — Compression-Resistant Task Memory</a></li>
+  <li><a href="#session-logs-why-not-just-what-history-with-automated-reminders" id="toc-session-logs-why-not-just-what-history-with-automated-reminders" class="nav-link" data-scroll-target="#session-logs-why-not-just-what-history-with-automated-reminders"><span class="header-section-number">6.8.2</span> Session Logs — Why-Not-Just-What History (with Automated Reminders)</a></li>
+  <li><a href="#how-it-all-fits-together" id="toc-how-it-all-fits-together" class="nav-link" data-scroll-target="#how-it-all-fits-together"><span class="header-section-number">6.8.3</span> How It All Fits Together</a></li>
+  <li><a href="#hooks---automated-enforcement" id="toc-hooks---automated-enforcement" class="nav-link" data-scroll-target="#hooks---automated-enforcement"><span class="header-section-number">6.8.4</span> Hooks — Automated Enforcement</a></li>
+  <li><a href="#context-survival-system-advanced" id="toc-context-survival-system-advanced" class="nav-link" data-scroll-target="#context-survival-system-advanced"><span class="header-section-number">6.8.5</span> Context Survival System (Advanced)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -325,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-blocks" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></h1>
+<h1 class="title"><span id="sec-blocks" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span></h1>
 </div>
 
 
@@ -343,8 +349,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Understanding the configuration layers helps you customize the workflow and debug when things go wrong. Antigravity’s power comes from five configuration layers that work together — think of them as the operating system for your academic project.</p>
-<section id="gemini.md-your-projects-constitution" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="gemini.md-your-projects-constitution"><span class="header-section-number">5.1</span> GEMINI.md — Your Project’s Constitution</h2>
+<section id="gemini.md-your-projects-constitution" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="gemini.md-your-projects-constitution"><span class="header-section-number">6.1</span> GEMINI.md — Your Project’s Constitution</h2>
 <p><code>GEMINI.md</code> is the single most important file. Gemini reads it at the start of every session. But here is the critical insight: <strong>Gemini reliably follows about 100–150 custom instructions.</strong> Your system prompt already uses ~50, leaving ~100–150 for your project. GEMINI.md and always-on rules share this budget.</p>
 <p>This means GEMINI.md should be a <strong>slim constitution</strong> — short directives and pointers, not comprehensive documentation. Aim for ~120 lines:</p>
 <ul>
@@ -388,8 +394,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="rules---domain-knowledge-that-auto-loads" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="rules---domain-knowledge-that-auto-loads"><span class="header-section-number">5.2</span> Rules — Domain Knowledge That Auto-Loads</h2>
+<section id="rules---domain-knowledge-that-auto-loads" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="rules---domain-knowledge-that-auto-loads"><span class="header-section-number">6.2</span> Rules — Domain Knowledge That Auto-Loads</h2>
 <p>Rules are markdown files in <code>.agents/rules/</code> that Gemini loads automatically. They encode your project’s standards. The key design principle is <strong>path-scoping</strong>: rules with a <code>paths:</code> YAML frontmatter only load when Gemini works on matching files.</p>
 <p><strong>Always-on rules</strong> (no <code>paths:</code> frontmatter) load every session. Keep these few and focused:</p>
 <pre><code>.agents/rules/
@@ -409,8 +415,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The first three always-on rules total ~148 lines of actionable instructions. <code>meta-governance</code> is a reference document for the template’s dual nature (working project vs.&nbsp;public template) and loads passively. Path-scoped rules add rich, domain-specific guidance exactly when Gemini needs it.</p>
 <p><strong>Sync vs.&nbsp;translate:</strong> The <code>beamer-quarto-sync</code> rule handles incremental edits — fix a typo in Beamer, same fix goes to Quarto. The <code>translate-to-quarto</code> skill is for full initial translation of a new lecture. Translate once, sync thereafter.</p>
 <p><strong>Why rules matter:</strong> Without them, Gemini will use generic defaults. With them, Gemini follows <em>your</em> standards consistently across sessions.</p>
-<section id="example-path-scoped-r-code-conventions-rule" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="example-path-scoped-r-code-conventions-rule"><span class="header-section-number">5.2.1</span> Example: Path-Scoped R Code Conventions Rule</h3>
+<section id="example-path-scoped-r-code-conventions-rule" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="example-path-scoped-r-code-conventions-rule"><span class="header-section-number">6.2.1</span> Example: Path-Scoped R Code Conventions Rule</h3>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paths</span><span class="kw">:</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">"**/*.R"</span></span>
@@ -430,16 +436,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The <code>paths:</code> block means this rule only loads when Gemini reads or edits an <code>.R</code> file. When Gemini works on a <code>.tex</code> file, this rule doesn’t consume any of the instruction budget.</p>
 </section>
 </section>
-<section id="constitutional-governance-optional" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="constitutional-governance-optional"><span class="header-section-number">5.3</span> Constitutional Governance (Optional)</h2>
+<section id="constitutional-governance-optional" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="constitutional-governance-optional"><span class="header-section-number">6.3</span> Constitutional Governance (Optional)</h2>
 <p>As your project grows, some decisions become non-negotiable (to maintain quality, reproducibility, or collaboration standards). Others remain flexible.</p>
 <p>The <code>templates/constitutional-governance.md</code> template helps you distinguish between:</p>
 <ul>
 <li><strong>Immutable principles</strong> (Articles I-V): Non-negotiable rules that ensure consistency</li>
 <li><strong>User preferences</strong>: Flexible patterns that can vary by context</li>
 </ul>
-<section id="example-articles-you-might-define" class="level3" data-number="5.3.1">
-<h3 data-number="5.3.1" class="anchored" data-anchor-id="example-articles-you-might-define"><span class="header-section-number">5.3.1</span> Example Articles You Might Define</h3>
+<section id="example-articles-you-might-define" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="example-articles-you-might-define"><span class="header-section-number">6.3.1</span> Example Articles You Might Define</h3>
 <ul>
 <li><strong>Article I: Primary Artifact</strong> — Which file is authoritative (e.g., <code>.tex</code> vs <code>.qmd</code>, <code>.Rmd</code> vs <code>.html</code>, notebook vs script)</li>
 <li><strong>Article II: Plan-First Threshold</strong> — When to enter plan mode (e.g., &gt;3 files, &gt;30 min, multi-step workflows)</li>
@@ -452,8 +458,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Template:</strong> <code>templates/constitutional-governance.md</code></p>
 </section>
 </section>
-<section id="skills---reusable-slash-commands" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="skills---reusable-slash-commands"><span class="header-section-number">5.4</span> Skills — Reusable Slash Commands</h2>
+<section id="skills---reusable-slash-commands" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="skills---reusable-slash-commands"><span class="header-section-number">6.4</span> Skills — Reusable Slash Commands</h2>
 <p>Skills are multi-step workflows invoked with <code>/command</code>. Each skill lives in <code>.agents/skills/[name]/SKILL.md</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> compile-latex</span></span>
@@ -535,8 +541,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="agents---specialized-reviewers" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="agents---specialized-reviewers"><span class="header-section-number">5.5</span> Agents — Specialized Reviewers</h2>
+<section id="agents---specialized-reviewers" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="agents---specialized-reviewers"><span class="header-section-number">6.5</span> Agents — Specialized Reviewers</h2>
 <p>Agents are the real power of this system. Each agent is an expert in one dimension of quality:</p>
 <pre><code>.agents/agents/
 +-- proofreader.md        # Grammar, typos, consistency
@@ -555,8 +561,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 +-- paper-reviewer.md     # Gates workstream completion
 +-- coder.md              # Runs computational experiments
 +-- lean-prover.md        # Formalizes proofs in Lean 4</code></pre>
-<section id="agent-anatomy" class="level3" data-number="5.5.1">
-<h3 data-number="5.5.1" class="anchored" data-anchor-id="agent-anatomy"><span class="header-section-number">5.5.1</span> Agent Anatomy</h3>
+<section id="agent-anatomy" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="agent-anatomy"><span class="header-section-number">6.5.1</span> Agent Anatomy</h3>
 <p>Each agent file has YAML frontmatter + detailed instructions:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">name:</span><span class="co"> proofreader</span></span>
@@ -596,8 +602,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="multi-model-strategy-cost-vs-quality" class="level3" data-number="5.5.2">
-<h3 data-number="5.5.2" class="anchored" data-anchor-id="multi-model-strategy-cost-vs-quality"><span class="header-section-number">5.5.2</span> Multi-Model Strategy: Cost vs.&nbsp;Quality</h3>
+<section id="multi-model-strategy-cost-vs-quality" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="multi-model-strategy-cost-vs-quality"><span class="header-section-number">6.5.2</span> Multi-Model Strategy: Cost vs.&nbsp;Quality</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -679,8 +685,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="sec-agent-config" class="level3" data-number="5.5.3">
-<h3 data-number="5.5.3" class="anchored" data-anchor-id="sec-agent-config"><span class="header-section-number">5.5.3</span> Advanced Agent Configuration</h3>
+<section id="sec-agent-config" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="sec-agent-config"><span class="header-section-number">6.5.3</span> Advanced Agent Configuration</h3>
 <p>Beyond model selection, agent definitions support several configuration fields:</p>
 <table class="caption-top table">
 <thead>
@@ -747,8 +753,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Use <code>maxTurns</code> to prevent review agents from looping indefinitely, and <code>tools</code> to enforce read-only behavior for agents that should only produce reports.</p>
 </section>
-<section id="sec-cost" class="level3" data-number="5.5.4">
-<h3 data-number="5.5.4" class="anchored" data-anchor-id="sec-cost"><span class="header-section-number">5.5.4</span> Cost-Conscious Composition: Caching, Routing, and Diagnostics</h3>
+<section id="sec-cost" class="level3" data-number="6.5.4">
+<h3 data-number="6.5.4" class="anchored" data-anchor-id="sec-cost"><span class="header-section-number">6.5.4</span> Cost-Conscious Composition: Caching, Routing, and Diagnostics</h3>
 <p>Cost is invisible until you look at the monthly invoice. Three levers, in order of impact:</p>
 <p><strong>1. Context caching.</strong> Google’s Context Caching for the Gemini API lets repeated prefix tokens (system instructions, personal memory, large codebase context, and reference documents) bypass active input token costs, running at a fraction of the standard price.</p>
 <ul>
@@ -817,8 +823,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="settings---permissions-and-hooks" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="settings---permissions-and-hooks"><span class="header-section-number">5.6</span> Settings — Permissions and Hooks</h2>
+<section id="settings---permissions-and-hooks" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="settings---permissions-and-hooks"><span class="header-section-number">6.6</span> Settings — Permissions and Hooks</h2>
 <p><code>.agents/settings.json</code> controls what Gemini is allowed to do. Here is <code>json {   "permissions": {     "defaultMode": "bypassPermissions",     "allow": [       "view_file",       "write_to_file",       "replace_file_content",       "multi_replace_file_content",       "run_command",       "list_dir",       "grep_search",       "invoke_subagent"     ]   } }</code></p>
 <p><strong>Permission modes.</strong> Antigravity has five permission modes that control how much autonomy Gemini gets:</p>
 <table class="caption-top table">
@@ -876,8 +882,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Set via CLI flag (<code>antigravity --permission-mode plan</code>), the <code>/config</code> command, or <code>permissions.defaultMode</code> in <code>settings.json</code>.</p>
-<section id="the-six-layer-permission-stack" class="level3" data-number="5.6.1">
-<h3 data-number="5.6.1" class="anchored" data-anchor-id="the-six-layer-permission-stack"><span class="header-section-number">5.6.1</span> The Six-Layer Permission Stack</h3>
+<section id="the-six-layer-permission-stack" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="the-six-layer-permission-stack"><span class="header-section-number">6.6.1</span> The Six-Layer Permission Stack</h3>
 <p>Permission mode is not resolved from a single file. Antigravity honors <strong>six layers</strong>, with later layers overriding earlier ones:</p>
 <table class="caption-top table">
 <colgroup>
@@ -935,8 +941,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p><strong>Layer 6 is authoritative</strong> and catches most users off-guard. <code>initialPermissionMode</code> only fires at <strong>session start</strong> — if you (or <code>Shift+Tab</code>) change modes mid-session, every file-level layer is ignored until the session ends.</p>
 </section>
-<section id="troubleshooting-prompts-fire-despite-bypasspermissions" class="level3" data-number="5.6.2">
-<h3 data-number="5.6.2" class="anchored" data-anchor-id="troubleshooting-prompts-fire-despite-bypasspermissions"><span class="header-section-number">5.6.2</span> Troubleshooting: Prompts Fire Despite <code>bypassPermissions</code></h3>
+<section id="troubleshooting-prompts-fire-despite-bypasspermissions" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="troubleshooting-prompts-fire-despite-bypasspermissions"><span class="header-section-number">6.6.2</span> Troubleshooting: Prompts Fire Despite <code>bypassPermissions</code></h3>
 <p>This is the single most common source of confusion. Work through the checklist in order:</p>
 <ol type="1">
 <li><strong>Look at the status line</strong> at the top of the Antigravity panel. With this repo’s <code>statusLine</code> configured, it prints <code>[BYPASS]</code>, <code>[PLAN]</code>, <code>[AUTO-EDIT]</code>, or <code>[PROMPT]</code> for the four standard modes. Any other mode Antigravity reports (e.g., <code>dontAsk</code>) is shown as a bracketed raw name like <code>[dontAsk]</code>. If it doesn’t say <code>[BYPASS]</code>, you have an in-session override — press <code>Shift+Tab</code> to cycle modes until you land on bypass.</li>
@@ -946,8 +952,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>VSCode vs CLI split.</strong> If the VSCode layers say bypass but no CLI layer does, a terminal-launched Antigravity will still prompt. Align them.</li>
 </ol>
 </section>
-<section id="the-plan-bypass-handoff-recommended-daily-driver" class="level3" data-number="5.6.3">
-<h3 data-number="5.6.3" class="anchored" data-anchor-id="the-plan-bypass-handoff-recommended-daily-driver"><span class="header-section-number">5.6.3</span> The Plan → Bypass Handoff (Recommended Daily Driver)</h3>
+<section id="the-plan-bypass-handoff-recommended-daily-driver" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="the-plan-bypass-handoff-recommended-daily-driver"><span class="header-section-number">6.6.3</span> The Plan → Bypass Handoff (Recommended Daily Driver)</h3>
 <p>Plan mode and bypass permissions sound like opposites, but they chain into a single workflow that gives you a <strong>review-before-execute convenience</strong>: you see the approach before any edits happen, then execution runs without per-tool prompts.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -992,8 +998,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 </ul>
 <p><strong>Prerequisite:</strong> your <code>defaultMode</code> must be <code>bypassPermissions</code> in at least one CLI layer (typically the project or project-local layer). Without that, exiting plan mode returns you to <code>default</code> and you’re back to per-tool prompts.</p>
 </section>
-<section id="sec-session-management" class="level3" data-number="5.6.4">
-<h3 data-number="5.6.4" class="anchored" data-anchor-id="sec-session-management"><span class="header-section-number">5.6.4</span> Session Management</h3>
+<section id="sec-session-management" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="sec-session-management"><span class="header-section-number">6.6.4</span> Session Management</h3>
 <p>A handful of recent Mar–Apr 2026 commands cut friction in the actual editing loop. Worth knowing before you reach for them in a panic:</p>
 <table class="caption-top table">
 <colgroup>
@@ -1076,8 +1082,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 <p>The <strong>Stop hook</strong> runs a fast Python script after every response. No LLM call, no latency. It checks whether the session log is current and reminds Gemini to update it if not. Behavioral rules like verification and Beamer-Quarto sync are enforced via auto-loaded rules in <code>.agents/rules/</code>, which is the right tool for nuanced judgment that Gemini can evaluate in-context.</p>
 </section>
 </section>
-<section id="sec-effort" class="level2" data-number="5.7">
-<h2 data-number="5.7" class="anchored" data-anchor-id="sec-effort"><span class="header-section-number">5.7</span> Effort Levels — Cost vs.&nbsp;Thoroughness</h2>
+<section id="sec-effort" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="sec-effort"><span class="header-section-number">6.7</span> Effort Levels — Cost vs.&nbsp;Thoroughness</h2>
 <p>Antigravity lets you control how deeply it reasons about each task. Higher effort means more “thinking tokens” and better results — but higher cost.</p>
 <table class="caption-top table">
 <colgroup>
@@ -1150,8 +1156,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 </div>
 </div>
 </section>
-<section id="memory---cross-session-persistence" class="level2" data-number="5.8">
-<h2 data-number="5.8" class="anchored" data-anchor-id="memory---cross-session-persistence"><span class="header-section-number">5.8</span> Memory — Cross-Session Persistence</h2>
+<section id="memory---cross-session-persistence" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="memory---cross-session-persistence"><span class="header-section-number">6.8</span> Memory — Cross-Session Persistence</h2>
 <p>Antigravity has an auto-memory system at <code>~/.agents/projects/[project]/memory/MEMORY.md</code>. This file persists across sessions and is loaded into every conversation.</p>
 <p>Use it for: - Key project facts that never change - Corrections you don’t want repeated (<code>[LEARN:tag]</code> format) - Current plan status</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Auto Memory</span></span>
@@ -1164,8 +1170,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:r-code</span><span class="co">]</span> Package X drops obs silently when covariate is missing</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:citation</span><span class="co">]</span> Post-LASSO is Belloni (2013), NOT Belloni (2014)</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">LEARN:workflow</span><span class="co">]</span> Every Beamer edit must auto-sync to Quarto</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="two-tier-memory-architecture-memory.md-vs-personal-memory.md" class="level4" data-number="5.8.0.1">
-<h4 data-number="5.8.0.1" class="anchored" data-anchor-id="two-tier-memory-architecture-memory.md-vs-personal-memory.md"><span class="header-section-number">5.8.0.1</span> Two-tier memory architecture (<code>MEMORY.md</code> vs <code>personal-memory.md</code>)</h4>
+<section id="two-tier-memory-architecture-memory.md-vs-personal-memory.md" class="level4" data-number="6.8.0.1">
+<h4 data-number="6.8.0.1" class="anchored" data-anchor-id="two-tier-memory-architecture-memory.md-vs-personal-memory.md"><span class="header-section-number">6.8.0.1</span> Two-tier memory architecture (<code>MEMORY.md</code> vs <code>personal-memory.md</code>)</h4>
 <p>The template splits memory into two tiers (see <a href=".agents/rules/meta-governance.md"><code>meta-governance.md</code></a>):</p>
 <ul>
 <li><strong><code>MEMORY.md</code></strong> (committed, ≤ 200 lines) — generic learnings that help all forkers: workflow patterns, design principles, documentation standards, quality thresholds that transfer across domains.</li>
@@ -1173,8 +1179,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 </ul>
 <p>When a fork user does <code>git clone</code>, they get the generic <code>MEMORY.md</code>. Their own <code>personal-memory.md</code> builds up locally as they work.</p>
 </section>
-<section id="promote-memory-graduating-learnings-v1.9.0" class="level4" data-number="5.8.0.2">
-<h4 data-number="5.8.0.2" class="anchored" data-anchor-id="promote-memory-graduating-learnings-v1.9.0"><span class="header-section-number">5.8.0.2</span> <code>promote-memory</code> — graduating learnings (v1.9.0)</h4>
+<section id="promote-memory-graduating-learnings-v1.9.0" class="level4" data-number="6.8.0.2">
+<h4 data-number="6.8.0.2" class="anchored" data-anchor-id="promote-memory-graduating-learnings-v1.9.0"><span class="header-section-number">6.8.0.2</span> <code>promote-memory</code> — graduating learnings (v1.9.0)</h4>
 <p>The two-tier split poses one question: <em>who decides which <code>[LEARN]</code> entries graduate from <code>personal-memory.md</code> to <code>MEMORY.md</code>?</em> The answer is a <strong>five-critic council</strong>.</p>
 <p><code>promote-memory [filter]</code> runs five critics in parallel, each reviewing one dimension:</p>
 <ol type="1">
@@ -1187,8 +1193,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 <p>Majority (3+ of 5 YES) recommends promotion; the user approves the final move. Critics run in <em>isolated forked contexts</em> — they cannot see each other’s votes — so dimensions are reviewed independently, no groupthink. Critics use Haiku (per <a href=".agents/rules/model-routing.md">model-routing.md</a>) since the review is mechanical-ish.</p>
 <p>When to run: monthly as memory-maintenance, before sharing a fork, after a paper or course cycle ships, or wired as a <code>/loop</code> task.</p>
 </section>
-<section id="plans-compression-resistant-task-memory" class="level3" data-number="5.8.1">
-<h3 data-number="5.8.1" class="anchored" data-anchor-id="plans-compression-resistant-task-memory"><span class="header-section-number">5.8.1</span> Plans — Compression-Resistant Task Memory</h3>
+<section id="plans-compression-resistant-task-memory" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="plans-compression-resistant-task-memory"><span class="header-section-number">6.8.1</span> Plans — Compression-Resistant Task Memory</h3>
 <p>While MEMORY.md stores long-lived project facts, <strong>plans</strong> store task-specific strategy. Every non-trivial plan is saved to <code>quality_reports/plans/</code> with a timestamp. This means:</p>
 <ul>
 <li>Plans survive auto-compression (they are on disk, not just in context)</li>
@@ -1197,14 +1203,14 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 </ul>
 <p>See Pattern 1 in <a href="05-workflow-patterns.html">Workflow Patterns</a> for the full protocol.</p>
 </section>
-<section id="session-logs-why-not-just-what-history-with-automated-reminders" class="level3" data-number="5.8.2">
-<h3 data-number="5.8.2" class="anchored" data-anchor-id="session-logs-why-not-just-what-history-with-automated-reminders"><span class="header-section-number">5.8.2</span> Session Logs — Why-Not-Just-What History (with Automated Reminders)</h3>
+<section id="session-logs-why-not-just-what-history-with-automated-reminders" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="session-logs-why-not-just-what-history-with-automated-reminders"><span class="header-section-number">6.8.2</span> Session Logs — Why-Not-Just-What History (with Automated Reminders)</h3>
 <p>Git commits record what changed, but not <em>why</em>. Session logs fill this gap. Gemini writes to <code>quality_reports/session_logs/</code> at three points: right after plan approval, incrementally during implementation (as decisions happen), and at session end. This means the log captures reasoning <em>as it happens</em>, before auto-compression can discard it.</p>
 <p>Because relying on instructions alone is fragile (Gemini forgets during long sessions), a <strong>Stop hook</strong> (<code>.agents/hooks/log-reminder.py</code>) fires after every response. It tracks how many responses have passed since the session log was last updated. After a threshold, it blocks Gemini from stopping until the log is current. This turns a best practice into an enforced behavior.</p>
 <p>New sessions can read these logs to understand not just the current state of the project, but the reasoning behind it. See Pattern 1 in <a href="05-workflow-patterns.html">Workflow Patterns</a> for the full protocol.</p>
 </section>
-<section id="how-it-all-fits-together" class="level3" data-number="5.8.3">
-<h3 data-number="5.8.3" class="anchored" data-anchor-id="how-it-all-fits-together"><span class="header-section-number">5.8.3</span> How It All Fits Together</h3>
+<section id="how-it-all-fits-together" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="how-it-all-fits-together"><span class="header-section-number">6.8.3</span> How It All Fits Together</h3>
 <p>With GEMINI.md, MEMORY.md, plans, and session logs, the system has four distinct memory layers. Here is what each one does and when it matters:</p>
 <table class="caption-top table">
 <colgroup>
@@ -1263,8 +1269,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 </table>
 <p>The first four layers are your safety net. Anything written to disk survives indefinitely. The conversation context is ephemeral — auto-compression will eventually discard details. The workflow’s design ensures that anything worth keeping is written to one of the four persistent layers before compression can erase it.</p>
 </section>
-<section id="hooks---automated-enforcement" class="level3" data-number="5.8.4">
-<h3 data-number="5.8.4" class="anchored" data-anchor-id="hooks---automated-enforcement"><span class="header-section-number">5.8.4</span> Hooks — Automated Enforcement</h3>
+<section id="hooks---automated-enforcement" class="level3" data-number="6.8.4">
+<h3 data-number="6.8.4" class="anchored" data-anchor-id="hooks---automated-enforcement"><span class="header-section-number">6.8.4</span> Hooks — Automated Enforcement</h3>
 <p>The session log reminder above is one example of a broader pattern: using <strong>hooks</strong> to enforce rules that Gemini might otherwise forget during long sessions. Rules live in context and can be compressed away. Hooks live in <code>.agents/settings.json</code> and fire every time, regardless of context state.</p>
 <p>The template includes hooks for logging, notifications, and context survival:</p>
 <table class="caption-top table">
@@ -1366,11 +1372,11 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 </div>
 </div>
 </section>
-<section id="context-survival-system-advanced" class="level3" data-number="5.8.5">
-<h3 data-number="5.8.5" class="anchored" data-anchor-id="context-survival-system-advanced"><span class="header-section-number">5.8.5</span> Context Survival System (Advanced)</h3>
+<section id="context-survival-system-advanced" class="level3" data-number="6.8.5">
+<h3 data-number="6.8.5" class="anchored" data-anchor-id="context-survival-system-advanced"><span class="header-section-number">6.8.5</span> Context Survival System (Advanced)</h3>
 <p>When context compaction happens, Gemini loses working memory. The <strong>context survival system</strong> ensures you can recover seamlessly.</p>
-<section id="how-it-works" class="level4" data-number="5.8.5.1">
-<h4 data-number="5.8.5.1" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">5.8.5.1</span> How It Works</h4>
+<section id="how-it-works" class="level4" data-number="6.8.5.1">
+<h4 data-number="6.8.5.1" class="anchored" data-anchor-id="how-it-works"><span class="header-section-number">6.8.5.1</span> How It Works</h4>
 <p>Two hooks work together to preserve and restore state:</p>
 <pre><code>Session running → context fills up → PreCompact fires
                                            ↓
@@ -1388,8 +1394,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
                                     • Prints context summary
                                     • Gemini knows where it left off</code></pre>
 </section>
-<section id="what-gets-saved" class="level4" data-number="5.8.5.2">
-<h4 data-number="5.8.5.2" class="anchored" data-anchor-id="what-gets-saved"><span class="header-section-number">5.8.5.2</span> What Gets Saved</h4>
+<section id="what-gets-saved" class="level4" data-number="6.8.5.2">
+<h4 data-number="6.8.5.2" class="anchored" data-anchor-id="what-gets-saved"><span class="header-section-number">6.8.5.2</span> What Gets Saved</h4>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 26%">
@@ -1427,8 +1433,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 </tbody>
 </table>
 </section>
-<section id="context-monitoring" class="level4" data-number="5.8.5.3">
-<h4 data-number="5.8.5.3" class="anchored" data-anchor-id="context-monitoring"><span class="header-section-number">5.8.5.3</span> Context Monitoring</h4>
+<section id="context-monitoring" class="level4" data-number="6.8.5.3">
+<h4 data-number="6.8.5.3" class="anchored" data-anchor-id="context-monitoring"><span class="header-section-number">6.8.5.3</span> Context Monitoring</h4>
 <p>The <code>context-monitor.py</code> hook tracks approximate context usage and provides progressive warnings:</p>
 <table class="caption-top table">
 <colgroup>
@@ -1464,8 +1470,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 <p>Use <code>/context-status</code> to check current session health at any time.</p>
 <p>Note: the monitor uses tool call count as a proxy for context usage, so warnings may appear earlier or later than actual compaction.</p>
 </section>
-<section id="recovery-after-compaction" class="level4" data-number="5.8.5.4">
-<h4 data-number="5.8.5.4" class="anchored" data-anchor-id="recovery-after-compaction"><span class="header-section-number">5.8.5.4</span> Recovery After Compaction</h4>
+<section id="recovery-after-compaction" class="level4" data-number="6.8.5.4">
+<h4 data-number="6.8.5.4" class="anchored" data-anchor-id="recovery-after-compaction"><span class="header-section-number">6.8.5.4</span> Recovery After Compaction</h4>
 <p>If compaction happens mid-task, Gemini will automatically see:</p>
 <ol type="1">
 <li><strong>Restoration message</strong> — what plan was active, what task was in progress</li>
@@ -1476,8 +1482,8 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 <p>“We just had compaction. Read <code>quality_reports/plans/2026-02-06_translate-lecture5.md</code> and continue from where we left off.”</p>
 </blockquote>
 </section>
-<section id="distil-before-compaction-compress-session-v1.9.0" class="level4" data-number="5.8.5.5">
-<h4 data-number="5.8.5.5" class="anchored" data-anchor-id="distil-before-compaction-compress-session-v1.9.0"><span class="header-section-number">5.8.5.5</span> Distil before compaction: <code>compress-session</code> (v1.9.0)</h4>
+<section id="distil-before-compaction-compress-session-v1.9.0" class="level4" data-number="6.8.5.5">
+<h4 data-number="6.8.5.5" class="anchored" data-anchor-id="distil-before-compaction-compress-session-v1.9.0"><span class="header-section-number">6.8.5.5</span> Distil before compaction: <code>compress-session</code> (v1.9.0)</h4>
 <p>Auto-compaction is <em>lossy</em> — it keeps recent turns and drops earlier ones, with no preservation of <em>what was decided</em> mid-session. For long pipelines (long debug sessions, multi-decision refactors, end-of-working-day handoffs), <code>compress-session</code> is the <strong>distil-not-truncate</strong> alternative: structured note with Active state, Decisions made, Files touched, Open questions, Next actions, and explicitly <strong>Discarded as noise</strong> (failed hypotheses that should NOT carry forward).</p>
 <p><code>compress-session</code> and <code>checkpoint</code> are companions, not substitutes:</p>
 <table class="caption-top table">
@@ -1940,12 +1946,12 @@ Orchestrator executes the plan end-to-end --- no prompts.</code></pre>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/03-system-in-action.html" class="pagination-link" aria-label="The System in Action">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The System in Action</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The System in Action</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/05-workflow-patterns.html" class="pagination-link" aria-label="Workflow Patterns">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
