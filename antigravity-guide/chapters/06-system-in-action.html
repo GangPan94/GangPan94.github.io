@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; The Context Window &amp; Memory Architecture – Agentic Workflows for Accounting Academics</title>
+<title>6&nbsp; The System in Action – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/05-building-blocks.html" rel="next">
-<link href="../chapters/03-under-the-hood.html" rel="prev">
+<link href="../chapters/07-workflow-patterns.html" rel="next">
+<link href="../chapters/05-building-blocks.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -137,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/04-context-and-memory.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/06-system-in-action.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The System in Action</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/04-context-and-memory.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/04-context-and-memory.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></a>
   </div>
 </li>
@@ -200,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/06-system-in-action.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/06-system-in-action.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The System in Action</span></span></a>
   </div>
 </li>
@@ -255,26 +284,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-context-window" id="toc-sec-context-window" class="nav-link active" data-scroll-target="#sec-context-window"><span class="header-section-number">4.1</span> The Context Window: The Agent’s Working Memory</a>
+  <li><a href="#why-specialized-agents-beat-one-size-fits-all" id="toc-why-specialized-agents-beat-one-size-fits-all" class="nav-link active" data-scroll-target="#why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">6.1</span> Why Specialized Agents Beat One-Size-Fits-All</a></li>
+  <li><a href="#the-adversarial-pattern-critic-fixer" id="toc-the-adversarial-pattern-critic-fixer" class="nav-link" data-scroll-target="#the-adversarial-pattern-critic-fixer"><span class="header-section-number">6.2</span> The Adversarial Pattern: Critic + Fixer</a></li>
+  <li><a href="#the-orchestrator-a-pattern-not-a-daemon" id="toc-the-orchestrator-a-pattern-not-a-daemon" class="nav-link" data-scroll-target="#the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">6.3</span> The Orchestrator: A Pattern, Not a Daemon</a></li>
+  <li><a href="#sec-quality" id="toc-sec-quality" class="nav-link" data-scroll-target="#sec-quality"><span class="header-section-number">6.4</span> Quality Review: The 80/90/95 System</a>
   <ul class="collapse">
-  <li><a href="#the-lost-in-the-middle-effect-attention-dilution" id="toc-the-lost-in-the-middle-effect-attention-dilution" class="nav-link" data-scroll-target="#the-lost-in-the-middle-effect-attention-dilution"><span class="header-section-number">4.1.1</span> The “Lost in the Middle” Effect &amp; Attention Dilution</a></li>
-  <li><a href="#context-pollution-the-silent-performance-killer" id="toc-context-pollution-the-silent-performance-killer" class="nav-link" data-scroll-target="#context-pollution-the-silent-performance-killer"><span class="header-section-number">4.1.2</span> Context Pollution: The Silent Performance Killer</a></li>
-  <li><a href="#auto-compaction-when-the-window-fills-up" id="toc-auto-compaction-when-the-window-fills-up" class="nav-link" data-scroll-target="#auto-compaction-when-the-window-fills-up"><span class="header-section-number">4.1.3</span> Auto-Compaction: When the Window Fills Up</a></li>
+  <li><a href="#how-scores-are-calculated" id="toc-how-scores-are-calculated" class="nav-link" data-scroll-target="#how-scores-are-calculated"><span class="header-section-number">6.4.1</span> How Scores Are Calculated</a></li>
+  <li><a href="#mandatory-verification" id="toc-mandatory-verification" class="nav-link" data-scroll-target="#mandatory-verification"><span class="header-section-number">6.4.2</span> Mandatory Verification</a></li>
+  <li><a href="#submission-readiness-stacking-the-verification-lenses" id="toc-submission-readiness-stacking-the-verification-lenses" class="nav-link" data-scroll-target="#submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">6.4.3</span> Submission-readiness: stacking the verification lenses</a></li>
   </ul></li>
-  <li><a href="#sec-memory-hierarchy" id="toc-sec-memory-hierarchy" class="nav-link" data-scroll-target="#sec-memory-hierarchy"><span class="header-section-number">4.2</span> The Memory Hierarchy in Agentic Workflows</a>
+  <li><a href="#sec-domain-reviewer" id="toc-sec-domain-reviewer" class="nav-link" data-scroll-target="#sec-domain-reviewer"><span class="header-section-number">6.5</span> Creating Your Own Domain Reviewer</a>
   <ul class="collapse">
-  <li><a href="#level-1-ephemeral-working-memory-the-chat-window" id="toc-level-1-ephemeral-working-memory-the-chat-window" class="nav-link" data-scroll-target="#level-1-ephemeral-working-memory-the-chat-window"><span class="header-section-number">4.2.1</span> Level 1: Ephemeral Working Memory (The Chat Window)</a></li>
-  <li><a href="#level-2-task-memory-quality_reportsplans" id="toc-level-2-task-memory-quality_reportsplans" class="nav-link" data-scroll-target="#level-2-task-memory-quality_reportsplans"><span class="header-section-number">4.2.2</span> Level 2: Task Memory (<code>quality_reports/plans/</code>)</a></li>
-  <li><a href="#level-3-persistent-project-memory-gemini.md-memory.md" id="toc-level-3-persistent-project-memory-gemini.md-memory.md" class="nav-link" data-scroll-target="#level-3-persistent-project-memory-gemini.md-memory.md"><span class="header-section-number">4.2.3</span> Level 3: Persistent Project Memory (<code>GEMINI.md</code> &amp; <code>MEMORY.md</code>)</a></li>
-  <li><a href="#the-rule-budget-why-gemini.md-must-stay-lean" id="toc-the-rule-budget-why-gemini.md-must-stay-lean" class="nav-link" data-scroll-target="#the-rule-budget-why-gemini.md-must-stay-lean"><span class="header-section-number">4.2.4</span> The Rule Budget: Why <code>GEMINI.md</code> Must Stay Lean</a></li>
+  <li><a href="#the-5-lens-framework" id="toc-the-5-lens-framework" class="nav-link" data-scroll-target="#the-5-lens-framework"><span class="header-section-number">6.5.1</span> The 5-Lens Framework</a></li>
   </ul></li>
-  <li><a href="#sec-caching-economics" id="toc-sec-caching-economics" class="nav-link" data-scroll-target="#sec-caching-economics"><span class="header-section-number">4.3</span> Context Caching and API Economics</a>
-  <ul class="collapse">
-  <li><a href="#how-context-caching-works" id="toc-how-context-caching-works" class="nav-link" data-scroll-target="#how-context-caching-works"><span class="header-section-number">4.3.1</span> How Context Caching Works</a></li>
-  <li><a href="#the-two-golden-rules-of-cache-efficiency" id="toc-the-two-golden-rules-of-cache-efficiency" class="nav-link" data-scroll-target="#the-two-golden-rules-of-cache-efficiency"><span class="header-section-number">4.3.2</span> The Two Golden Rules of Cache Efficiency</a></li>
-  </ul></li>
-  <li><a href="#sec-context-isolation" id="toc-sec-context-isolation" class="nav-link" data-scroll-target="#sec-context-isolation"><span class="header-section-number">4.4</span> Looking Ahead: The Multi-Agent Solution to Context Limits</a></li>
-  <li><a href="#summary-context-memory-checklist-for-scholars" id="toc-summary-context-memory-checklist-for-scholars" class="nav-link" data-scroll-target="#summary-context-memory-checklist-for-scholars"><span class="header-section-number">4.5</span> Summary: Context &amp; Memory Checklist for Scholars</a></li>
   </ul>
 </nav>
     </div>
@@ -283,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-context-memory" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span></h1>
+<h1 class="title"><span id="sec-system" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">The System in Action</span></span></h1>
 </div>
 
 
@@ -300,244 +322,354 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In casual chatbot usage, the context window is often treated as a simple counter: “how long can my conversation be?” In <strong>agentic research workflows</strong>, however, the context window is the central operating bottleneck.</p>
-<p>Understanding how working memory functions—and how persistent memory is maintained across sessions—is what separates a fragile setup from a robust, production-grade research system.</p>
-<p>This chapter explores how the context window operates as working memory, why context pollution degrades agent performance, how the <strong>three-tier memory hierarchy</strong> protects long-term projects, and how <strong>multi-agent isolation</strong> keeps attention sharp on large tasks.</p>
-<hr>
-<section id="sec-context-window" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="sec-context-window"><span class="header-section-number">4.1</span> The Context Window: The Agent’s Working Memory</h2>
-<p>The <strong>context window</strong> is the maximum number of tokens an LLM can receive and process in a single inference call. It represents the agent’s total <strong>working memory</strong>.</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
-│                        THE CONTEXT WINDOW (RAM)                        │
-│                                                                        │
-│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────┐  │
-│  │ System Rules     │  │ Workspace Files  │  │ Conversation &amp; Logs  │  │
-│  │ (GEMINI.md, etc) │  │ (Read into chat) │  │ (User &amp; Agent turns) │  │
-│  └──────────────────┘  └──────────────────┘  └──────────────────────┘  │
-│                                                                        │
-└────────────────────────────────────────────────────────────────────────┘</code></pre>
-<p>While million-token (and even multi-million-token) context windows have become standard across modern frontier models, having such a massive working memory does not mean you should fill it carelessly.</p>
-<section id="the-lost-in-the-middle-effect-attention-dilution" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="the-lost-in-the-middle-effect-attention-dilution"><span class="header-section-number">4.1.1</span> The “Lost in the Middle” Effect &amp; Attention Dilution</h3>
-<p>Research has documented a consistent, counter-intuitive quirk in how large language models handle long prompts: <strong>their attention follows a U-shaped curve</strong> (<a href="https://arxiv.org/abs/2307.03172">Liu et al., 2024</a>). Information placed at the very beginning (primacy effect) or the very end (recency effect) of a session is recalled and followed reliably, but instructions and details buried in the middle are frequently missed.</p>
-<p>Furthermore, long-context benchmarks like RULER (<a href="https://arxiv.org/abs/2404.06654">Hsieh et al., 2024</a>) show that while models can easily find simple keywords in a huge document (“needle-in-a-haystack”), their ability to perform <strong>multi-step reasoning, synthesis, or strict rule-following</strong> (such as <em>“never modify column X”</em> or <em>“keep equations under 3 lines”</em>) decays noticeably as the conversation grows beyond 50,000–100,000 tokens.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Under the Hood: Why Does This Happen? (Optional)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>While the exact root causes remain an active area of investigation among AI researchers, the primary intuitive factors include:</p>
+<p>With the underlying building blocks, configuration layers, and agent definitions covered in <a href="05-building-blocks.html" class="quarto-xref"><span>Chapter 5</span></a>, here is how the system executes in dynamic action. This chapter walks through the core mechanisms that make the runtime workflow powerful: specialized multi-agent review, adversarial QA loops, the orchestrator pattern, and automatic quality scoring.</p>
+<section id="why-specialized-agents-beat-one-size-fits-all" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="why-specialized-agents-beat-one-size-fits-all"><span class="header-section-number">6.1</span> Why Specialized Agents Beat One-Size-Fits-All</h2>
+<p>Consider proofreading a 140-slide lecture deck. You could ask Gemini:</p>
+<blockquote class="blockquote">
+<p>“Review these slides for grammar, layout, math correctness, code quality, and pedagogical flow.”</p>
+</blockquote>
+<p>Gemini will skim everything and catch some issues. But it will miss:</p>
 <ul>
-<li><strong>Attention Dilution:</strong> The model has a finite “attention budget.” As the context grows, that budget gets spread across thousands of tokens, lowering the signal-to-noise ratio for any single item in the middle.</li>
-<li><strong>Natural “Edge” Anchors:</strong> System prompts at the very top and recent prompts at the very bottom serve as natural anchors. Models are trained on data where key instructions and questions are at the edges, so the middle is often treated like background text.</li>
-<li><strong>Positional Fuzziness:</strong> Position representations become less sharp over vast token distances, making it harder for the model to link distant concepts.</li>
-<li><strong>Reading vs.&nbsp;Generating Gap:</strong> A model may successfully read a fact in the middle, but fail to route its attention back to that fact when composing its final answer.</li>
+<li>The equation on slide 42 where a subscript changed from <span class="math inline">\(m_t^{d=0}\)</span> to <span class="math inline">\(m_t^0\)</span></li>
+<li>The TikZ diagram where two labels overlap at presentation resolution</li>
+<li>The R script that uses <code>k=10</code> covariates but the slide says <code>k=5</code></li>
 </ul>
-</div>
-</div>
-</div>
-</section>
-<section id="context-pollution-the-silent-performance-killer" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="context-pollution-the-silent-performance-killer"><span class="header-section-number">4.1.2</span> Context Pollution: The Silent Performance Killer</h3>
-<p>The most common reason an agentic workflow starts behaving erratically or ignoring instructions is <strong>context pollution</strong>. Context pollution occurs when the active conversation becomes cluttered with:</p>
-<ul>
-<li>Giant terminal error logs (e.g., dumping 500 lines of raw stack traces).</li>
-<li>Repeated failed attempts to edit a file without clearing the history.</li>
-<li>Irrelevant files read into the context that have no bearing on the current task.</li>
-<li>Rambling back-and-forth conversational chatter.</li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Context Hygiene
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Treat the context window as a precious resource. A concise, focused 10,000-token session with clear instructions will consistently outperform a bloated 150,000-token session filled with dead-end debugging attempts.</p>
-</div>
-</div>
-</section>
-<section id="auto-compaction-when-the-window-fills-up" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="auto-compaction-when-the-window-fills-up"><span class="header-section-number">4.1.3</span> Auto-Compaction: When the Window Fills Up</h3>
-<p>As you work through an extensive research task, your conversation history accumulates thousands of tokens of code edits, terminal outputs, file reads, and intermediate back-and-forth dialogue.</p>
-<section id="what-is-auto-compaction" class="level4" data-number="4.1.3.1">
-<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="what-is-auto-compaction"><span class="header-section-number">4.1.3.1</span> What is Auto-Compaction?</h4>
-<p><strong>Auto-compaction</strong> (or context compression) is an automated memory-management process. When an active session approaches the model’s context capacity, the agent harness intercepts the conversation, uses a summarization model to condense earlier dialogue and prune bulky tool outputs, replaces the long history with a structured summary, and seamlessly continues the session.</p>
-</section>
-<section id="the-trade-offs-pros-and-cons" class="level4" data-number="4.1.3.2">
-<h4 data-number="4.1.3.2" class="anchored" data-anchor-id="the-trade-offs-pros-and-cons"><span class="header-section-number">4.1.3.2</span> The Trade-Offs: Pros and Cons</h4>
-<p>While auto-compaction is essential for long-running workflows, it comes with important trade-offs:</p>
+<p>Now compare with specialized agents:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 54%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Advantage (Pros)</th>
-<th>Limitation (Cons)</th>
+<th>Agent</th>
+<th>Focus</th>
+<th>What It Catches</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Uninterrupted Workflows:</strong> Prevents hard “Context Exceeded” errors, allowing complex, multi-hour research tasks to continue in a single thread.</td>
-<td><strong>Lossy Information Loss:</strong> Fine details—such as exact line numbers, raw compiler logs, and nuanced negative constraints—are summarized away.</td>
+<td><code>proofreader</code></td>
+<td>Grammar only</td>
+<td>“principle” vs “principal”</td>
 </tr>
 <tr class="even">
-<td><strong>Restored Attention Focus:</strong> Strips out hundreds of lines of dead-end debugging traces, reducing attention dilution and sharpening the model’s focus.</td>
-<td><strong>Context Drift &amp; Amnesia:</strong> Early conversational decisions or subtle econometric notation conventions agreed upon 20 turns ago can be forgotten.</td>
+<td><code>slide-auditor</code></td>
+<td>Layout only</td>
+<td>Text overflow on slide 37</td>
 </tr>
 <tr class="odd">
-<td><strong>Lower Cost &amp; Latency:</strong> Smaller active prompt sizes reduce per-turn token consumption and speed up inference times.</td>
-<td><strong>False Sense of Security:</strong> Users may mistakenly assume the agent retains verbatim memory of everything discussed earlier in the session.</td>
+<td><code>pedagogy-reviewer</code></td>
+<td>Flow only</td>
+<td>Missing framing sentence before Theorem 3.1</td>
+</tr>
+<tr class="even">
+<td><code>r-reviewer</code></td>
+<td>Code only</td>
+<td>Missing <code>set.seed()</code></td>
+</tr>
+<tr class="odd">
+<td><code>domain-reviewer</code></td>
+<td>Substance</td>
+<td>Slide says 10,000 MC reps, code runs 1,000</td>
 </tr>
 </tbody>
 </table>
+<p>Each agent reads the same file but examines a different dimension with full attention. The <code>slide-excellence</code> skill runs them all in parallel.</p>
 </section>
-<section id="how-auto-compaction-works-in-google-antigravity" class="level4" data-number="4.1.3.3">
-<h4 data-number="4.1.3.3" class="anchored" data-anchor-id="how-auto-compaction-works-in-google-antigravity"><span class="header-section-number">4.1.3.3</span> How Auto-Compaction Works in Google Antigravity</h4>
-<p>To handle long sessions without crashing, Google Antigravity uses a built-in context compaction pipeline, which our academic workflow pairs with disk-based persistence:</p>
-<ol type="1">
-<li><strong>Native Token Monitoring:</strong> In the background, the Antigravity harness continuously tracks the session’s token consumption. When context utilization approaches capacity (typically <strong>~80%–90% of the active context window</strong>), the harness automatically triggers an internal compaction pass.</li>
-<li><strong>Summarization &amp; Output Truncation:</strong> The harness sends earlier conversational turns to a fast model to produce a structured summary. Simultaneously, bulky tool outputs (such as massive terminal stack traces and large file reads) are truncated or pruned.</li>
-<li><strong>Prompt Buffer Replacement:</strong> The full historical transcript in the active prompt is replaced with this concise summary, while keeping top-level system instructions, <code>GEMINI.md</code> rules, and the most recent turns intact.</li>
-<li><strong>State Restoration via Workflow Hooks:</strong> Because raw summarization is lossy, our template’s lifecycle hooks (<code>context-monitor.py</code> and <code>post-compact-restore.py</code>) monitor context health, ensure active plans (<code>quality_reports/plans/</code>) are saved, and automatically re-inject the current task checklist into the fresh context so the agent never loses its place.</li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>The Golden Rule of Agentic Memory
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Never rely on ephemeral chat history to preserve important project constraints. Use <strong>persistent disk files</strong> (<code>GEMINI.md</code> for constitutional rules, <code>MEMORY.md</code> for learned preferences, and <code>quality_reports/plans/</code> for active roadmaps) so critical knowledge survives across compaction cycles and new sessions.</p>
-</div>
-</div>
-<hr>
-</section>
-</section>
-</section>
-<section id="sec-memory-hierarchy" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="sec-memory-hierarchy"><span class="header-section-number">4.2</span> The Memory Hierarchy in Agentic Workflows</h2>
-<p>To solve the limitations of ephemeral context windows, a well-designed agentic system uses a <strong>three-tier memory architecture</strong>, directly mirroring the memory hierarchy of computer hardware:</p>
-<pre><code>┌────────────────────────────────────────────────────────────────────────┐
-│ LEVEL 1: Ephemeral Working Memory (RAM)                                │
-│ Active Context Window • Chat messages • Current file buffers          │
-│ Fast, immediate, but wiped clean on session reset or compaction.       │
-├────────────────────────────────────────────────────────────────────────┤
-│ LEVEL 2: Task Memory (Scratchpad / SSD)                                │
-│ quality_reports/plans/ • Implementation plans • Scratch scripts        │
-│ Preserves structured goals and step-by-step checklists across turns.   │
-├────────────────────────────────────────────────────────────────────────┤
-│ LEVEL 3: Persistent Project Memory (Hard Drive)                       │
-│ GEMINI.md • MEMORY.md • Session Logs • Git History                     │
-│ Endures across days, weeks, and completely fresh sessions.            │
-└────────────────────────────────────────────────────────────────────────┘</code></pre>
+<section id="the-adversarial-pattern-critic-fixer" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="the-adversarial-pattern-critic-fixer"><span class="header-section-number">6.2</span> The Adversarial Pattern: Critic + Fixer</h2>
+<p>The single most powerful pattern in this system is the <strong>adversarial QA loop</strong>:</p>
+<pre><code>+------------------+
+|  quarto-critic   |  "I found 12 issues. 3 Critical."
+|  (READ-ONLY)     |
++--------+---------+
+         |
+    +----v----+
+    | Verdict |
+    +----+----+
+     /       \
+APPROVED   NEEDS WORK
+    |          |
+  Done    +----v---------+
+          | quarto-fixer |  "Fixed 12/12 issues."
+          | (READ-WRITE) |
+          +----+---------+
+               |
+          +----v----------+
+          | quarto-critic |  "Re-audit: 2 remaining."
+          | (Round 2)     |
+          +----+----------+
+               |
+          ... (up to 5 rounds)</code></pre>
+<p><strong>Why it works:</strong> The critic can’t fix files (read-only), so it has no incentive to downplay issues. The fixer can’t approve itself (the critic re-audits). This prevents the common failure of Gemini saying “looks good” about its own work.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>The Compounding Memory Pattern
+<span class="screen-reader-only">Note</span>Closing the visual loop with Native Multimodal Vision
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This three-tier hierarchy directly mirrors the knowledge architecture articulated by AI researcher Andrej Karpathy in his <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"><em>LLM Wiki</em></a> framework: rather than treating the AI as a stateless chatbot that rediscovers facts from scratch on every prompt, the agent incrementally maintains a persistent, compounding codebase of Markdown files on disk. The active chat session is ephemeral RAM; your disk files are the permanent knowledge base.</p>
+<p>The critic-fixer loop above is text-only — it compares LaTeX source to Quarto source. It can’t see the <em>rendered</em> slides. Google’s <strong>Multimodal Vision</strong> capabilities let Gemini accept rendered slide images (such as PDF slides converted to PNGs) directly into the agent context to verify layouts visually. If you want closed-loop visual QA — “does the rendered slide actually look right?” — this multimodal capability closes the gap.</p>
+<p>Optional, not required: <code>qa-quarto</code> and <code>visual-audit</code> already catch most issues without it. Treat visual verification as an extra rung when text-level audits aren’t enough (e.g., suspecting a TikZ render glitch that the source code looks fine for).</p>
 </div>
 </div>
-<section id="level-1-ephemeral-working-memory-the-chat-window" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="level-1-ephemeral-working-memory-the-chat-window"><span class="header-section-number">4.2.1</span> Level 1: Ephemeral Working Memory (The Chat Window)</h3>
+</section>
+<section id="the-orchestrator-a-pattern-not-a-daemon" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-orchestrator-a-pattern-not-a-daemon"><span class="header-section-number">6.3</span> The Orchestrator: A Pattern, Not a Daemon</h2>
+<p>Individual agents are specialists. Skills like <code>slide-excellence</code> and <code>qa-quarto</code> coordinate a few agents for specific tasks. In day-to-day work, you don’t have to think about which agents to run — the right skill runs the right agents for you.</p>
+<p>The <strong>orchestrator protocol</strong> (<code>.agents/rules/orchestrator-protocol.md</code>) defines the 6-step loop (IMPLEMENT → VERIFY → REVIEW → FIX → RE-VERIFY → SCORE) that skills implement internally. It is <strong>not</strong> a runtime daemon: plan approval does NOT auto-trigger this loop. You invoke a skill (e.g., <code>create-lecture</code>, <code>qa-quarto</code>, <code>review-paper --adversarial</code>) and the skill runs the pattern within its own scope.</p>
+<p>What’s mechanically implemented today: <code>commit</code> (verifier + quality_score), <code>qa-quarto</code> (critic-fixer loop), <code>review-paper --adversarial</code> (critic-fixer loop), <code>slide-excellence</code> (multi-agent fanout), <code>review-paper --peer</code> (editor + 2 referees + cross-artifact). See <a href="07-workflow-patterns.html#pattern-2-contractor-mode-orchestrator">Pattern 2</a> for the complete workflow.</p>
+</section>
+<section id="sec-quality" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="sec-quality"><span class="header-section-number">6.4</span> Quality Review: The 80/90/95 System</h2>
+<p>The <a href="05-building-blocks.html">quality-gates rule</a> (<code>quality-gates.md</code>) defines scoring thresholds that <code>commit</code> and review skills apply. Thresholds are <strong>advisory</strong> — enforced inside specific skills, not by a repo-wide git pre-commit hook. A direct <code>git commit</code> bypasses the review. Every file gets a quality score from 0 to 100:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 31%">
+<col style="width: 25%">
+<col style="width: 22%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Score</th>
+<th>Threshold</th>
+<th>Meaning</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>80+</strong></td>
+<td>Commit</td>
+<td>Safe to save progress</td>
+<td><code>git commit</code> allowed</td>
+</tr>
+<tr class="even">
+<td><strong>90+</strong></td>
+<td>PR</td>
+<td>Ready for deployment</td>
+<td><code>gh pr create</code> encouraged</td>
+</tr>
+<tr class="odd">
+<td><strong>95+</strong></td>
+<td>Excellence</td>
+<td>Exceptional quality</td>
+<td>Aspirational target</td>
+</tr>
+<tr class="even">
+<td><strong>&lt; 80</strong></td>
+<td>Blocked</td>
+<td>Critical issues exist</td>
+<td>Must fix before committing</td>
+</tr>
+</tbody>
+</table>
+<section id="how-scores-are-calculated" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="how-scores-are-calculated"><span class="header-section-number">6.4.1</span> How Scores Are Calculated</h3>
+<p>Points are deducted for issues:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Issue</th>
+<th>Deduction</th>
+<th>Why Critical</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Equation overflow</td>
+<td>-20</td>
+<td>Math cut off = unusable</td>
+</tr>
+<tr class="even">
+<td>Broken citation</td>
+<td>-15</td>
+<td>Academic integrity</td>
+</tr>
+<tr class="odd">
+<td>Equation typo</td>
+<td>-10</td>
+<td>Teaches wrong content</td>
+</tr>
+<tr class="even">
+<td>Text overflow</td>
+<td>-5</td>
+<td>Content cut off</td>
+</tr>
+<tr class="odd">
+<td>Label overlap</td>
+<td>-5</td>
+<td>Diagram illegible</td>
+</tr>
+<tr class="even">
+<td>Notation inconsistency</td>
+<td>-3</td>
+<td>Student confusion</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mandatory-verification" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="mandatory-verification"><span class="header-section-number">6.4.2</span> Mandatory Verification</h3>
+<p>The verification protocol (<code>.agents/rules/verification-protocol.md</code>) requires that Gemini compile, render, or otherwise verify every output before reporting a task as complete. Skills that implement the orchestrator pattern enforce this as Step 2: VERIFY. This means Gemini <strong>cannot</strong> say “done” from within those skills without actually checking the output.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Don’t Skip Verification
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Verification catches errors that might silently deploy, like broken diagrams or missing intercepts in scripts.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Model quality can regress — verification is the only durable defence
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>AI providers regularly update model checkpoints and release system changes. These updates can sometimes lead to model-quality drift or subtle regressions on highly specialized tasks. Implication for our workflow: do not treat any given model checkpoint as a stable baseline.</p>
+<p>The defences in this template all assume <strong>model quality drifts</strong>:</p>
 <ul>
-<li><strong>What it is:</strong> The tokens currently inside the active prompt.</li>
-<li><strong>Lifespan:</strong> Single conversation session.</li>
-<li><strong>Role:</strong> Instant communication, quick iterations, scratchpad debugging.</li>
+<li><strong><code>verify-claims</code></strong> with the Chain-of-Verification forked-verifier (the verifier cannot self-confirm even if the orchestrator’s checkpoint regressed).</li>
+<li><strong><code>audit-reproducibility</code></strong> with <code>passport.yaml</code> (numeric claims are anchored to specific script output values, not to the model’s recall of the values).</li>
+<li><strong>The cross-artifact review rule</strong> (a paper’s claims are checked against the code that produced them, not against the model’s intuition about whether they’re “plausible”).</li>
+<li><strong>HIGH-WARN gate-refuse on <code>commit</code></strong> (Pass 3A I) — a fabricated citation or numerical contradiction blocks the commit even if the model “feels confident.”</li>
 </ul>
+<p>This is also a useful reminder that running <code>review-paper --variance N</code> (Pass 2C E) is the empirical answer to “should I trust this output?” — a single point estimate of model quality on a single task hides variance that the template’s adversarial-review patterns surface.</p>
+</div>
+</div>
 </section>
-<section id="level-2-task-memory-quality_reportsplans" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="level-2-task-memory-quality_reportsplans"><span class="header-section-number">4.2.2</span> Level 2: Task Memory (<code>quality_reports/plans/</code>)</h3>
-<ul>
-<li><strong>What it is:</strong> Markdown plan files written directly to disk.</li>
-<li><strong>Lifespan:</strong> The duration of a specific milestone or task.</li>
-<li><strong>Role:</strong> Protects multi-step tasks against context degradation. If the agent loses focus or auto-compacts, reading the plan file immediately restores full task orientation.</li>
-</ul>
+<section id="submission-readiness-stacking-the-verification-lenses" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="submission-readiness-stacking-the-verification-lenses"><span class="header-section-number">6.4.3</span> Submission-readiness: stacking the verification lenses</h3>
+<p>For a paper headed to a journal, three orthogonal lenses run together — each catches a different class of failure:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Lens</th>
+<th>Skill</th>
+<th>What it catches</th>
+<th>Block-<code>commit</code> on failure?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Grammar / overflow</strong></td>
+<td><a href="10-appendix.html#all-skills"><code>proofread</code></a></td>
+<td>typos, search-and-replace artifacts, overfull <code>\hbox</code>, citation-format inconsistency</td>
+<td>No (advisory)</td>
+</tr>
+<tr class="even">
+<td><strong>AI-voice tells</strong> (v1.9.0)</td>
+<td><a href="10-appendix.html#all-skills"><code>humanize</code></a></td>
+<td>boilerplate transitions (“Moreover”, “It is important to note”), AI-cliché lexicon (“delve”, “navigate the complexities”), hedging stacking, sycophancy</td>
+<td>No (advisory; author edits manually)</td>
+</tr>
+<tr class="odd">
+<td><strong>Factual claims</strong></td>
+<td><a href="10-appendix.html#all-skills"><code>verify-claims</code></a></td>
+<td>fabricated citations, numerical contradictions, directional contradictions</td>
+<td><strong>Yes — HIGH-WARN gate-refuses</strong> (v1.9.0)</td>
+</tr>
+<tr class="even">
+<td><strong>Numeric provenance</strong></td>
+<td><a href="10-appendix.html#all-skills"><code>audit-reproducibility</code></a></td>
+<td>manuscript value ≠ script output value within tolerance</td>
+<td>Yes via <code>passport.yaml</code> (v1.9.0)</td>
+</tr>
+</tbody>
+</table>
+<p>These are <em>complementary</em>, not redundant. A paper can pass <code>proofread</code> (clean grammar) and fail <code>humanize</code> (the prose reads as AI-drafted). It can pass <code>humanize</code> (your own voice) and fail <code>verify-claims</code> (citation fabricated). It can pass <code>verify-claims</code> (citations real) and fail <code>audit-reproducibility</code> (Table 2 doesn’t match the code). Run all four before submission; reach for <code>review-paper --variance N</code> for the simulated peer-review verdict on top.</p>
+<p><strong><code>humanize</code> design choice</strong>: detect-only, no <code>--rewrite</code> mode. Auto-rewriting AI tells degrades prose quality (cross-vendor research finding) and introduces new tells. The author reads the report and edits — that manual step is the price of preserving voice. If the report flags 8+ HIGH-severity tells per 1000 words, rewrite the affected paragraph from scratch rather than patching tell-by-tell.</p>
 </section>
-<section id="level-3-persistent-project-memory-gemini.md-memory.md" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="level-3-persistent-project-memory-gemini.md-memory.md"><span class="header-section-number">4.2.3</span> Level 3: Persistent Project Memory (<code>GEMINI.md</code> &amp; <code>MEMORY.md</code>)</h3>
-<ul>
-<li><strong>What it is:</strong> Dedicated repository documentation that the agent reads at the start of every session.</li>
-<li><strong>Lifespan:</strong> Permanent (committed to Git).</li>
-<li><strong>Role:</strong> Stores institutional project knowledge:
-<ul>
-<li><strong><code>GEMINI.md</code>:</strong> The project’s <em>Constitution</em> (folder structure, core commands, notation standards).</li>
-<li><strong><code>MEMORY.md</code>:</strong> The project’s <em>Corrections Log</em> (<code>[LEARN]</code> tags capturing user preferences and past corrections).</li>
-<li><strong><code>quality_reports/session_logs/</code>:</strong> A record of <em>why</em> decisions were made.</li>
-</ul></li>
-</ul>
 </section>
-<section id="the-rule-budget-why-gemini.md-must-stay-lean" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="the-rule-budget-why-gemini.md-must-stay-lean"><span class="header-section-number">4.2.4</span> The Rule Budget: Why <code>GEMINI.md</code> Must Stay Lean</h3>
-<p>Because <code>GEMINI.md</code> and always-on rules are prepended to the context on <strong>every single turn</strong>, they consume working memory and attention.</p>
-<p>Empirical testing across LLMs reveals a consistent <strong>rule budget</strong>:</p>
-<ul>
-<li>An LLM reliably follows approximately <strong>100 to 150 custom instructions</strong>.</li>
-<li>If your <code>GEMINI.md</code> file balloons into a 600-line manual, the model begins suffering from instruction fatigue and will silently ignore rules.</li>
-<li><strong>Solution:</strong> Keep <code>GEMINI.md</code> under ~120 lines for top-level principles, and move specific domain rules into <strong>path-scoped rules</strong> (which only load when editing matching files like <code>.R</code> or <code>.tex</code>).</li>
-</ul>
-<hr>
-</section>
-</section>
-<section id="sec-caching-economics" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="sec-caching-economics"><span class="header-section-number">4.3</span> Context Caching and API Economics</h2>
-<p>In large academic projects—where an agent session might carry hundreds of pages of LaTeX code, empirical regression scripts, and extensive literature bases—re-processing that entire context on every turn would quickly become slow and expensive.</p>
-<section id="how-context-caching-works" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="how-context-caching-works"><span class="header-section-number">4.3.1</span> How Context Caching Works</h3>
-<p>Both Google Gemini (Antigravity) and Anthropic (Claude) utilize <strong>Prompt / Context Caching</strong> to eliminate this bottleneck:</p>
-<ul>
-<li><strong>Neural Activation Reuse:</strong> When static context (such as system instructions, <code>GEMINI.md</code>, and loaded background files) remains unchanged between turns, the API server caches the computed Key-Value (KV) activations in memory.</li>
-<li><strong>Massive Cost and Latency Reductions:</strong> Subsequent turns read from the cache at a <strong>75%–90% cost discount</strong> and with near-instant processing latency (slashing response times from 15+ seconds down to 2–3 seconds).</li>
-</ul>
-</section>
-<section id="the-two-golden-rules-of-cache-efficiency" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="the-two-golden-rules-of-cache-efficiency"><span class="header-section-number">4.3.2</span> The Two Golden Rules of Cache Efficiency</h3>
-<p>To maximize context caching in your research workflows, keep two principles in mind:</p>
+<section id="sec-domain-reviewer" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="sec-domain-reviewer"><span class="header-section-number">6.5</span> Creating Your Own Domain Reviewer</h2>
+<p>The template includes <code>domain-reviewer.md</code> — a skeleton for building a substance reviewer specific to your field.</p>
+<section id="the-5-lens-framework" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="the-5-lens-framework"><span class="header-section-number">6.5.1</span> The 5-Lens Framework</h3>
+<p>Every domain can benefit from these five review lenses:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 18%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Lens</th>
+<th>What It Checks</th>
+<th>Example (Economics)</th>
+<th>Example (Political Science)</th>
+<th>Example (Physics)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Assumption Audit</strong></td>
+<td>Are stated assumptions sufficient?</td>
+<td>Is overlap required for ATT?</td>
+<td>Is ignorability defensible given the observed covariates?</td>
+<td>Is the adiabatic approximation valid here?</td>
+</tr>
+<tr class="even">
+<td><strong>Derivation Check</strong></td>
+<td>Does the math check out?</td>
+<td>Do decomposition terms sum?</td>
+<td>Do conjoint AMCEs identify under Hainmueller–Hopkins–Yamamoto assumptions?</td>
+<td>Do the units balance?</td>
+</tr>
+<tr class="odd">
+<td><strong>Citation Fidelity</strong></td>
+<td>Do slides match cited papers?</td>
+<td>Is the theorem from the right paper?</td>
+<td>Is the manipulation-check threshold cited from the original validation study?</td>
+<td>Is the experimental setup correctly described?</td>
+</tr>
+<tr class="even">
+<td><strong>Code-Theory Alignment</strong></td>
+<td>Does code implement the formula?</td>
+<td>R script matches the slide equation?</td>
+<td><code>cjoint</code>/<code>survey::svyglm</code> weights match the design?</td>
+<td>Simulation parameters match theory?</td>
+</tr>
+<tr class="odd">
+<td><strong>Logic Chain</strong></td>
+<td>Does the reasoning flow?</td>
+<td>Can a PhD student follow backwards?</td>
+<td>Does the causal claim survive the standard counterfactual challenge?</td>
+<td>Are prerequisites established?</td>
+</tr>
+</tbody>
+</table>
+<p>The template ships <strong>two concrete domain-reviewer customizations</strong> in <code>.agents/agents/domain-reviewer.md</code>: an econometrics example (assumptions, identification, R/Stata code-theory alignment) and a political-science example (ignorability, conjoint AMCEs, <code>cjoint</code>/<code>survey</code> package defaults). Both follow the 5-lens structure; either is a viable starting point for your own field.</p>
+<p>To customize, open <code>.agents/agents/domain-reviewer.md</code> and fill in:</p>
 <ol type="1">
-<li><strong>Keep the Conversation Moving (Cache TTL):</strong> Prompt caches are temporary. On modern provider backends, conversational caches use a Time-To-Live (TTL)—typically <strong>5 minutes</strong> for active interactive turns. Each continuous turn keeps the cache hot. If you pause and leave a session idle for an extended period, the cache expires, meaning your next prompt will incur the extra latency and token cost to re-warm the cache from scratch.</li>
-<li><strong>Preserve Prefix Stability:</strong> Context caching matches the <strong>exact token prefix</strong> starting from the very first token in the prompt. If you edit base configuration files like <code>GEMINI.md</code> or modify top-level system rules midway through a session, the prefix changes, invalidating the cached activations. Keeping base rules stable and placing task-specific details in plan or script files preserves unbroken cache hits.</li>
-</ol>
-<hr>
-</section>
-</section>
-<section id="sec-context-isolation" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-context-isolation"><span class="header-section-number">4.4</span> Looking Ahead: The Multi-Agent Solution to Context Limits</h2>
-<p>As research projects grow in complexity, you will encounter large tasks—such as reviewing a 50-page manuscript for econometric identification, grammar, and citations simultaneously—where asking a single prompt to do everything causes severe attention splitting.</p>
-<p>In <a href="chapters/04-building-blocks.html#agents---specialized-reviewers">Chapter 6 (The Building Blocks)</a>, we will explore how agentic workflows solve this through <strong>multi-agent context isolation</strong>: rather than overloading a single conversation window, the system dispatches specialized subagents in parallel—each operating within its own clean, 100% focused context window.</p>
-<hr>
-</section>
-<section id="summary-context-memory-checklist-for-scholars" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="summary-context-memory-checklist-for-scholars"><span class="header-section-number">4.5</span> Summary: Context &amp; Memory Checklist for Scholars</h2>
-<ol type="1">
-<li><strong>The Context Window is Working Memory (RAM):</strong> Treat it like precious RAM. Avoid dumping raw terminal traces or unneeded files into the conversation.</li>
-<li><strong>LLMs are Stateless Across Turns:</strong> If an instruction or preference is not in the active prompt or loaded from disk (<code>GEMINI.md</code>, <code>MEMORY.md</code>), it does not exist for the model.</li>
-<li><strong>Use Disk Files as Task Memory (SSDs):</strong> Save multi-step roadmaps to <code>quality_reports/plans/</code> so goals survive session compaction and restarts.</li>
-<li><strong>Protect the Rule Budget:</strong> Keep <code>GEMINI.md</code> lean (~120 lines) and move specialized domain guidelines into path-scoped rules.</li>
-<li><strong>Maintain Session Momentum for Cache:</strong> Keep active turns moving within the TTL window to maximize context caching and minimize latency.</li>
+<li>Your domain’s common assumption types</li>
+<li>Typical derivation patterns to verify</li>
+<li>Key papers and their correct attributions</li>
+<li>Code-theory alignment checks for your tools</li>
+<li>Logic chain requirements for your audience</li>
 </ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -943,13 +1075,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/03-under-the-hood.html" class="pagination-link" aria-label="Under the Hood: LLM Mechanics &amp; Deterministic Grounding">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span>
+      <a href="../chapters/05-building-blocks.html" class="pagination-link" aria-label="The Building Blocks">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/05-building-blocks.html" class="pagination-link" aria-label="The Building Blocks">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Building Blocks</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/07-workflow-patterns.html" class="pagination-link" aria-label="Workflow Patterns">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Workflow Patterns</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

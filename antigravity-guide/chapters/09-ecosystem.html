@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Under the Hood: LLM Mechanics &amp; Deterministic Grounding – Agentic Workflows for Accounting Academics</title>
+<title>Appendix A — Academic AI Setups &amp; Ecosystem – Agentic Workflows for Accounting Academics</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -33,8 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/04-context-and-memory.html" rel="next">
-<link href="../chapters/02-getting-started.html" rel="prev">
+<link href="../chapters/10-appendix.html" rel="next">
+<link href="../chapters/08-customizing.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -78,6 +78,57 @@ ul.task-list li input[type="checkbox"] {
 </head>
 
 <body class="nav-sidebar floating quarto-light">
+<!-- PASSWORD GATE START -->
+<div id="ag-gate-overlay" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#1a1a2e;z-index:99999;display:flex;align-items:center;justify-content:center;">
+  <div style="max-width:460px;margin:2em auto;padding:2.5em;text-align:center;background:#16213e;border:1px solid #30475e;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+    <h2 style="margin-top:0;font-size:1.5em;color:#e0e0e0;font-family:Georgia,serif;">Restricted Content</h2>
+    <p style="color:#a0a0b0;margin-bottom:1.8em;font-size:0.95em;">This chapter is password-protected. Please enter the password to continue.</p>
+    <input type="password" id="ag-pw-input" placeholder="Enter password" style="padding:0.7em 1em;font-size:1.05em;border:1px solid #30475e;border-radius:8px;width:280px;box-sizing:border-box;background:#0d1b2a;color:#e0e0e0;outline:none;" />
+    <br/><br/>
+    <button id="ag-unlock-btn" style="padding:0.7em 2.8em;font-size:1.05em;cursor:pointer;border:none;border-radius:8px;background:#3f72af;color:white;font-weight:600;transition:background 0.2s;" onmouseover="this.style.background='#5a8fd6'" onmouseout="this.style.background='#3f72af'">Unlock</button>
+    <p id="ag-error-msg" style="color:#e74c3c;margin-top:1em;display:none;font-size:0.9em;">Incorrect password. Please try again.</p>
+    <p style="color:#607080;margin-top:1.5em;font-size:0.8em;"><a href="/antigravity-guide/" style="color:#3f72af;text-decoration:none;">&larr; Back to guide overview</a></p>
+  </div>
+</div>
+<script>
+(function() {
+  var bodyContent = document.querySelectorAll('body > *:not(#ag-gate-overlay)');
+  bodyContent.forEach(function(el) { el.style.display = 'none'; });
+
+  function agUnlock() {
+    var pw = document.getElementById('ag-pw-input').value;
+    if (pw === 'ai2026') {
+      document.getElementById('ag-gate-overlay').style.display = 'none';
+      bodyContent.forEach(function(el) { el.style.display = ''; });
+      sessionStorage.setItem('ag-unlocked', 'true');
+    } else {
+      document.getElementById('ag-error-msg').style.display = 'block';
+      document.getElementById('ag-pw-input').value = '';
+      document.getElementById('ag-pw-input').focus();
+    }
+  }
+
+  if (sessionStorage.getItem('ag-unlocked') === 'true') {
+    document.getElementById('ag-gate-overlay').style.display = 'none';
+    bodyContent.forEach(function(el) { el.style.display = ''; });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('ag-unlock-btn');
+    var input = document.getElementById('ag-pw-input');
+    if (input) {
+      input.focus();
+      input.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') agUnlock();
+      });
+    }
+    if (btn) {
+      btn.addEventListener('click', agUnlock);
+    }
+  });
+})();
+</script>
+<!-- PASSWORD GATE END -->
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -86,7 +137,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/03-under-the-hood.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/09-ecosystem.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/09-ecosystem.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,7 +182,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/03-under-the-hood.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span></a>
   </div>
 </li>
@@ -176,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/09-ecosystem.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/09-ecosystem.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></span></a>
   </div>
 </li>
@@ -204,33 +255,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-how-llms-process" id="toc-sec-how-llms-process" class="nav-link active" data-scroll-target="#sec-how-llms-process"><span class="header-section-number">3.1</span> How Large Language Models Process and Generate Text</a>
-  <ul class="collapse">
-  <li><a href="#autoregressive-next-token-prediction" id="toc-autoregressive-next-token-prediction" class="nav-link" data-scroll-target="#autoregressive-next-token-prediction"><span class="header-section-number">3.1.1</span> Autoregressive Next-Token Prediction</a></li>
-  <li><a href="#the-stateless-nature-of-llms" id="toc-the-stateless-nature-of-llms" class="nav-link" data-scroll-target="#the-stateless-nature-of-llms"><span class="header-section-number">3.1.2</span> The Stateless Nature of LLMs</a></li>
-  <li><a href="#why-chain-of-thought-and-planning-work" id="toc-why-chain-of-thought-and-planning-work" class="nav-link" data-scroll-target="#why-chain-of-thought-and-planning-work"><span class="header-section-number">3.1.3</span> Why “Chain of Thought” and Planning Work</a></li>
-  <li><a href="#probabilistic-association-vs.-deterministic-logic" id="toc-probabilistic-association-vs.-deterministic-logic" class="nav-link" data-scroll-target="#probabilistic-association-vs.-deterministic-logic"><span class="header-section-number">3.1.4</span> Probabilistic Association vs.&nbsp;Deterministic Logic</a></li>
-  </ul></li>
-  <li><a href="#sec-grounding-tools" id="toc-sec-grounding-tools" class="nav-link" data-scroll-target="#sec-grounding-tools"><span class="header-section-number">3.2</span> Grounding and Deterministic Tool Execution</a>
-  <ul class="collapse">
-  <li><a href="#tool-grounding-as-the-anchor-of-truth" id="toc-tool-grounding-as-the-anchor-of-truth" class="nav-link" data-scroll-target="#tool-grounding-as-the-anchor-of-truth"><span class="header-section-number">3.2.1</span> Tool Grounding as the Anchor of Truth</a></li>
-  <li><a href="#model-drift-and-verification-gates" id="toc-model-drift-and-verification-gates" class="nav-link" data-scroll-target="#model-drift-and-verification-gates"><span class="header-section-number">3.2.2</span> Model Drift and Verification Gates</a></li>
-  </ul></li>
-  <li><a href="#sec-model-selection" id="toc-sec-model-selection" class="nav-link" data-scroll-target="#sec-model-selection"><span class="header-section-number">3.3</span> Model Selection and Reasoning Depth</a>
-  <ul class="collapse">
-  <li><a href="#model-tiers-matching-the-tool-to-the-task" id="toc-model-tiers-matching-the-tool-to-the-task" class="nav-link" data-scroll-target="#model-tiers-matching-the-tool-to-the-task"><span class="header-section-number">3.3.1</span> Model Tiers: Matching the Tool to the Task</a></li>
-  <li><a href="#reasoning-effort-thinking-tokens" id="toc-reasoning-effort-thinking-tokens" class="nav-link" data-scroll-target="#reasoning-effort-thinking-tokens"><span class="header-section-number">3.3.2</span> Reasoning Effort (Thinking Tokens)</a></li>
-  </ul></li>
-  <li><a href="#summary-mental-model-for-model-mechanics" id="toc-summary-mental-model-for-model-mechanics" class="nav-link" data-scroll-target="#summary-mental-model-for-model-mechanics"><span class="header-section-number">3.4</span> Summary: Mental Model for Model Mechanics</a></li>
+  <li><a href="#empirical-economics-data-workflows" id="toc-empirical-economics-data-workflows" class="nav-link active" data-scroll-target="#empirical-economics-data-workflows"><span class="header-section-number">A.1</span> Empirical Economics &amp; Data Workflows</a></li>
+  <li><a href="#paper-writing-peer-review" id="toc-paper-writing-peer-review" class="nav-link" data-scroll-target="#paper-writing-peer-review"><span class="header-section-number">A.2</span> Paper Writing &amp; Peer Review</a></li>
+  <li><a href="#reproducibility-research-standards" id="toc-reproducibility-research-standards" class="nav-link" data-scroll-target="#reproducibility-research-standards"><span class="header-section-number">A.3</span> Reproducibility &amp; Research Standards</a></li>
+  <li><a href="#presentations-general-academic-life" id="toc-presentations-general-academic-life" class="nav-link" data-scroll-target="#presentations-general-academic-life"><span class="header-section-number">A.4</span> Presentations &amp; General Academic Life</a></li>
+  <li><a href="#cross-platform-migration-tools" id="toc-cross-platform-migration-tools" class="nav-link" data-scroll-target="#cross-platform-migration-tools"><span class="header-section-number">A.5</span> Cross-Platform Migration Tools</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/09-ecosystem.html">Appendices</a></li><li class="breadcrumb-item"><a href="../chapters/09-ecosystem.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Academic AI Setups &amp; Ecosystem</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-under-the-hood" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Under the Hood: LLM Mechanics &amp; Deterministic Grounding</span></span></h1>
+<h1 class="title"><span id="sec-ecosystem" class="quarto-section-identifier">Appendix A — Academic AI Setups &amp; Ecosystem</span></h1>
 </div>
 
 
@@ -247,210 +285,44 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Once you have your agentic harness installed and running (as covered in <a href="02-getting-started.html" class="quarto-xref"><span>Chapter 2</span></a>), you are ready to dive straight into your research tasks. To get the most out of your agent—and steer complex projects with confidence—it helps to have an intuitive understanding of how the underlying engine operates.</p>
-<p>You do not need a computer science degree to steer an agentic system effectively. You simply need an <strong>accurate mental model</strong> of how LLMs process information, how they predict words, and how tools ensure reliability.</p>
-<p>This chapter pulls back the curtain on how Large Language Models (LLMs) process instructions, why step-by-step reasoning works, and how connecting models to deterministic tools anchors their output in reality.</p>
-<hr>
-<section id="sec-how-llms-process" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="sec-how-llms-process"><span class="header-section-number">3.1</span> How Large Language Models Process and Generate Text</h2>
-<p>The term “Artificial Intelligence” often creates the impression that an LLM possesses an internal mind, an ongoing stream of consciousness, or a persistent memory of past conversations. In reality, the mechanics of modern LLMs (such as Google Gemini, OpenAI GPT, or Anthropic Claude) are based on four fundamental principles:</p>
-<section id="autoregressive-next-token-prediction" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="autoregressive-next-token-prediction"><span class="header-section-number">3.1.1</span> Autoregressive Next-Token Prediction</h3>
-<p>At its core, a Large Language Model is an <strong>autoregressive statistical prediction engine</strong>.</p>
+<p>This appendix provides a curated directory of open-source setups, skill libraries, and workflow repositories developed by the academic community for economics, finance, and empirical research. You can explore or fork any of these repositories to add specialized capabilities to your project workspace.</p>
+<section id="empirical-economics-data-workflows" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="empirical-economics-data-workflows"><span class="header-section-number">A.1</span> Empirical Economics &amp; Data Workflows</h2>
 <ul>
-<li><strong>Tokens:</strong> Text is broken down into small units called <em>tokens</em> (a token is roughly 3–4 characters, or about 0.75 English words).</li>
-<li><strong>Prediction:</strong> Given a sequence of preceding tokens, the model calculates a probability distribution over all possible next tokens in its vocabulary and samples the next one.</li>
-<li><strong>Autoregression:</strong> Once a token is selected, it is appended to the sequence, and the model repeats the entire process to predict the token after that.</li>
-</ul>
-<p>The model does not plan out several sentences in advance or formulate a silent outline before speaking. It constructs meaning sequentially, one token at a time, guided by the statistical associations learned during training and the patterns present in your prompt.</p>
-</section>
-<section id="the-stateless-nature-of-llms" class="level3" data-number="3.1.2">
-<h3 data-number="3.1.2" class="anchored" data-anchor-id="the-stateless-nature-of-llms"><span class="header-section-number">3.1.2</span> The Stateless Nature of LLMs</h3>
-<p>A crucial insight for researchers is that <strong>LLMs have no hidden internal memory between requests</strong>.</p>
-<p>When you ask an agent a follow-up question in a chat window, the model does not “remember” what you discussed five minutes ago in some internal brain state. Instead, your harness (Antigravity, Claude Desktop, or VS Code) takes your <strong>entire past conversation history</strong>, packages it into a single prompt, and sends the whole package back to the model from scratch.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Key Insight: Every Turn is a Clean Re-Read
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Every time you send a message, the LLM reads your instructions, your loaded rules (<code>GEMINI.md</code>), and the conversation history anew. If a piece of information is not present in that active bundle of text, <strong>it does not exist for the model.</strong></p>
-</div>
-</div>
-</section>
-<section id="why-chain-of-thought-and-planning-work" class="level3" data-number="3.1.3">
-<h3 data-number="3.1.3" class="anchored" data-anchor-id="why-chain-of-thought-and-planning-work"><span class="header-section-number">3.1.3</span> Why “Chain of Thought” and Planning Work</h3>
-<p>Connecting back to the first two principles—that <strong>an LLM predicts one word at a time based only on the words in front of it</strong>—we can see why asking for an immediate answer to a complex problem usually fails, and why “showing its work” works so well.</p>
-<section id="the-problem-with-direct-answers" class="level4" data-number="3.1.3.1">
-<h4 data-number="3.1.3.1" class="anchored" data-anchor-id="the-problem-with-direct-answers"><span class="header-section-number">3.1.3.1</span> The Problem with Direct Answers</h4>
-<p>Suppose you give the model a multi-step task (like deriving an econometric formula, refactoring a complex script, or solving a logic puzzle) and ask for the final answer immediately.</p>
-<p>At that moment, the only text in the model’s text window is your raw question. Because the model has no hidden internal scratchpad and cannot “think silently” before it writes, it must try to predict the final conclusion in a single leap. The gap between a raw question and a complex conclusion is too wide for a single prediction step, forcing the model to make a statistical guess.</p>
-</section>
-<section id="how-chain-of-thought-bridges-the-gap" class="level4" data-number="3.1.3.2">
-<h4 data-number="3.1.3.2" class="anchored" data-anchor-id="how-chain-of-thought-bridges-the-gap"><span class="header-section-number">3.1.3.2</span> How Chain of Thought Bridges the Gap</h4>
-<p>When an agent writes out a <strong>Chain of Thought</strong> (step-by-step reasoning before stating the final conclusion), it uses each step to prepare the ground for the next:</p>
-<ol type="1">
-<li><strong>Step 1 is easy:</strong> Moving from the <em>Question</em> to the first simple step (like stating a definition or identifying known variables) is a straightforward, high-probability prediction.</li>
-<li><strong>Step 1 becomes context for Step 2:</strong> Once Step 1 is written, those words are added to the text window. The model now uses the <em>Question plus Step 1</em> to predict Step 2.</li>
-<li><strong>The final answer becomes obvious:</strong> By the time the model is ready to write the conclusion, all intermediate steps are sitting directly in its text window. Predicting the correct final answer is no longer a blind leap—it is the direct, logical next prediction based on the work already laid out.</li>
-</ol>
-<pre><code>Direct Answer (Blind Leap):
-[Question] ───────────────────────────────────────► [Final Answer] (Often a guess)
-               (No intermediate words to build on)
-
-Chain of Thought (Step-by-Step Context Building):
-[Question] ──► [Step 1] ──► [Step 2] ──► [Step 3] ──► [Final Answer] (Grounded)
-                 │            │            │                ▲
-                 └────────────┴────────────┴────────────────┘
-                   Each step is added to the text window,
-                   giving the model the context it needs to conclude.</code></pre>
-<p>In short: <strong>the model cannot think without writing.</strong> Writing intermediate steps is how an LLM creates its own working memory on the fly.</p>
-</section>
-<section id="scaling-from-prompts-to-projects-planning-mode" class="level4" data-number="3.1.3.3">
-<h4 data-number="3.1.3.3" class="anchored" data-anchor-id="scaling-from-prompts-to-projects-planning-mode"><span class="header-section-number">3.1.3.3</span> Scaling from Prompts to Projects: Planning Mode</h4>
-<p><strong>Planning Mode</strong> is this exact same principle scaled up to entire research projects:</p>
-<ul>
-<li>Instead of jumping straight into editing multiple <code>.tex</code>, <code>.qmd</code>, or <code>.R</code> files at once, the agent first writes an explicit <strong><code>implementation_plan.md</code></strong> file to disk.</li>
-<li>As the agent works through each task, it reads the plan into its text window.</li>
-<li>This keeps the full project roadmap directly in front of the model at each step, significantly reducing task drift, forgotten constraints, and skipped verification steps.</li>
+<li><strong><a href="https://github.com/Barrios88/barrios-skills">Barrios88/barrios-skills</a></strong> <em>(John Barrios, Washington University in St.&nbsp;Louis)</em>: Over 70 modular skills and MCP servers for empirical economics, Wharton Research Data Services (WRDS) access, SEC EDGAR filing extraction, financial NLP, and John Cochrane-inspired writing rules.</li>
+<li><strong><a href="https://paulgp.substack.com/">A Causal Affair</a></strong> <em>(Paul Goldsmith-Pinkham, Yale School of Management)</em>: Practical essays and video series on agentic AI workflows, out-of-core data pipelines with DuckDB and Polars, and unstructured-to-structured database building.</li>
+<li><strong><a href="https://github.com/SepineTam/stata-mcp">SepineTam/stata-mcp</a></strong> <em>(SepineTam)</em>: A Model Context Protocol (MCP) server that enables AI agents to execute Stata <code>.do</code> files securely with command safeguards and memory monitoring.</li>
+<li><strong><a href="https://github.com/meleantonio/awesome-econ-ai-stuff">meleantonio/awesome-econ-ai-stuff</a></strong> <em>(Antonio Mele, USI / Swiss Finance Institute)</em>: A curated directory of AI prompts, instructions, and workflows tailored for economics and finance researchers.</li>
 </ul>
 </section>
-</section>
-<section id="probabilistic-association-vs.-deterministic-logic" class="level3" data-number="3.1.4">
-<h3 data-number="3.1.4" class="anchored" data-anchor-id="probabilistic-association-vs.-deterministic-logic"><span class="header-section-number">3.1.4</span> Probabilistic Association vs.&nbsp;Deterministic Logic</h3>
-<p>LLMs are brilliant at semantic synthesis, drafting prose, translating concepts, and finding patterns. However, they are <strong>probabilistic associative engines</strong>, not deterministic calculators or compilers.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Task Type</th>
-<th>How LLMs Behave</th>
-<th>Recommended Strategy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Literature synthesis &amp; drafting</strong></td>
-<td>Exceptional; connects disparate concepts fluently</td>
-<td>Let LLM draft; verify key claims</td>
-</tr>
-<tr class="even">
-<td><strong>Code generation (R, Python, Stata)</strong></td>
-<td>High fluency with standard libraries and idioms</td>
-<td>Require agent to execute and test code</td>
-</tr>
-<tr class="odd">
-<td><strong>Arithmetic &amp; numerical calculations</strong></td>
-<td>Prone to subtle calculation errors</td>
-<td>Force agent to run code/calculator</td>
-</tr>
-<tr class="even">
-<td><strong>LaTeX compilation &amp; TikZ layout</strong></td>
-<td>Can hallucinate valid syntax that fails to compile</td>
-<td>Compile with <code>xelatex</code> and check logs</td>
-</tr>
-</tbody>
-</table>
-<p>Because LLMs can confidently generate syntactically plausible but factually incorrect code or equations, <strong>an agentic system must pair the model with deterministic tools</strong> (compilers, interpreters, and test suites) to verify its work.</p>
-<hr>
-</section>
-</section>
-<section id="sec-grounding-tools" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="sec-grounding-tools"><span class="header-section-number">3.2</span> Grounding and Deterministic Tool Execution</h2>
-<p>A foundational risk in academic AI adoption is the <strong>illusion of self-verification</strong>.</p>
-<p>If you ask an LLM: <em>“Did you check that this LaTeX code compiles without error?”</em>, it will almost always reply: <em>“Yes, the code is fully valid and will compile cleanly.”</em></p>
-<p>The model is not lying intentionally—it is predicting the most statistically plausible agreeable response. It cannot physically “run” the code inside its neural network.</p>
-<pre><code>               ┌─────────────────────────────────────────┐
-               │         THE ILLUSION OF SELF-QA         │
-               │  Agent: "The LaTeX compiles cleanly!"   │
-               │  (Pure prediction — no reality check)  │
-               └────────────────────┬────────────────────┘
-                                    │
-                        [ Reality: Syntax Error ]
-                                    │
-               ┌────────────────────▼────────────────────┐
-               │            GROUNDED TOOL QA             │
-               │  1. Agent writes file                   │
-               │  2. Agent executes: `xelatex file.tex`  │
-               │  3. Agent reads exit code (0 vs 1)      │
-               │  4. Agent fixes actual log errors       │
-               └─────────────────────────────────────────┘</code></pre>
-<section id="tool-grounding-as-the-anchor-of-truth" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="tool-grounding-as-the-anchor-of-truth"><span class="header-section-number">3.2.1</span> Tool Grounding as the Anchor of Truth</h3>
-<p>In an agentic harness, the AI is given <strong>tools</strong> to interact with your local operating system: 1. <strong>File System Tools:</strong> Read, write, and patch files in place. 2. <strong>Terminal Tools:</strong> Execute shell commands (<code>xelatex</code>, <code>Rscript</code>, <code>stata-mp</code>, <code>pytest</code>). 3. <strong>Inspection Tools:</strong> Search directories (<code>grep</code>, <code>find</code>), parse outputs, and inspect diffs.</p>
-<p>By requiring the agent to compile documents and execute scripts as part of its workflow, <strong>the agent is grounded in deterministic reality</strong>. If a figure label overlaps in TikZ or an econometric matrix is singular in R, the execution output forces the agent to confront the truth and fix the error.</p>
-</section>
-<section id="model-drift-and-verification-gates" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="model-drift-and-verification-gates"><span class="header-section-number">3.2.2</span> Model Drift and Verification Gates</h3>
-<p>Model checkpoints updated by AI providers can exhibit subtle shifts in style, capability, or adherence to edge cases.</p>
-<p>Because you cannot guarantee that a model behaves identically from month to month, your research repository must rely on <strong>verification gates</strong>: * <strong><code>quality-gates.md</code> (Scoring System):</strong> Automated checklists that deduct points for broken citations (-15) or equation overflows (-20). * <strong>Deterministic Scripts (<code>passport.yaml</code>):</strong> Anchoring numeric claims in a manuscript directly to the output log files produced by your R/Stata scripts.</p>
-<hr>
-</section>
-</section>
-<section id="sec-model-selection" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="sec-model-selection"><span class="header-section-number">3.3</span> Model Selection and Reasoning Depth</h2>
-<p>Not all tasks require the same computational power. Modern agentic systems allow you to select between different <strong>model tiers</strong> and adjust <strong>reasoning effort</strong>.</p>
-<section id="model-tiers-matching-the-tool-to-the-task" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="model-tiers-matching-the-tool-to-the-task"><span class="header-section-number">3.3.1</span> Model Tiers: Matching the Tool to the Task</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Model Tier</th>
-<th>Representative Models</th>
-<th>Strengths</th>
-<th>Ideal Academic Tasks</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Frontier / Deep Reasoning</strong></td>
-<td>Gemini 2.0/3.0 Pro, Claude 3.5/3.7 Sonnet, OpenAI o1/o3</td>
-<td>Deep logical reasoning, complex code generation, theorem proving</td>
-<td>Deriving proofs, structural modeling, architectural design, peer-review critique</td>
-</tr>
-<tr class="even">
-<td><strong>Fast / Lightweight</strong></td>
-<td>Gemini 2.0/3.0 Flash, Claude 3.5 Haiku, GPT-4o-mini</td>
-<td>Extremely fast, low cost, large context throughput</td>
-<td>Proofreading, typo scanning, bibliography validation, formatting checks</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="reasoning-effort-thinking-tokens" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="reasoning-effort-thinking-tokens"><span class="header-section-number">3.3.2</span> Reasoning Effort (Thinking Tokens)</h3>
-<p>Frontier models introduce variable <strong>reasoning effort</strong> (sometimes called <em>thinking tokens</em> or System 2 deliberation).</p>
+<section id="paper-writing-peer-review" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="paper-writing-peer-review"><span class="header-section-number">A.2</span> Paper Writing &amp; Peer Review</h2>
 <ul>
-<li><strong>Standard Inference (System 1):</strong> The model immediately begins generating response tokens. Excellent for straightforward tasks like renaming variables, drafting an email, or writing standard LaTeX tables.</li>
-<li><strong>High Reasoning Inference (System 2):</strong> Before outputting text, the model generates hidden reasoning tokens to explore alternatives, check corner cases, and verify mathematical consistency. Essential for complex econometric derivations or subtle code debugging.</li>
+<li><strong><a href="https://github.com/hugosantanna/clo-author">hugosantanna/clo-author</a></strong> <em>(Hugo Sant’Anna, UAB)</em>: A paper-centric research workflow featuring adversarial worker-critic agent pairs, simulated peer review, and journal submission pipelines.</li>
+<li><strong><a href="https://github.com/aspi6246/GeminiCodeTools">aspi6246/GeminiCodeTools</a></strong>: Structured academic reviewer personas (“The Editor”) executing sequential multi-pass audits and referee report response routing.</li>
+<li><strong><a href="https://github.com/morankor/theorist-toolbox">morankor/theorist-toolbox</a></strong> <em>(Moran Koren, Ben-Gurion University)</em>: An AI co-mathematician framework for theoretical economics, game theory, and formal Lean 4 theorem proving.</li>
 </ul>
-<pre><code>Standard (Low Effort):   User Prompt ──► [Immediate Generation] ──► Output
-High Reasoning Effort:   User Prompt ──► [Hidden Reasoning / Verification Loop] ──► Output</code></pre>
-<hr>
 </section>
+<section id="reproducibility-research-standards" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="reproducibility-research-standards"><span class="header-section-number">A.3</span> Reproducibility &amp; Research Standards</h2>
+<ul>
+<li><strong><a href="https://github.com/social-science-data-editors/template_README">social-science-data-editors/template_README</a></strong> <em>(Lars Vilhuber, Cornell / AEA Data Editor)</em>: The official compliance template for replication packages across major economics and social science journals.</li>
+<li><strong><a href="https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf">Scaling Reproducibility Paper</a></strong> <em>(Yiqing Xu, Stanford &amp; Leo Yang Yang, HKBU)</em>: Foundational paper on template-executor architecture and automated replication auditing.</li>
+</ul>
 </section>
-<section id="summary-mental-model-for-model-mechanics" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="summary-mental-model-for-model-mechanics"><span class="header-section-number">3.4</span> Summary: Mental Model for Model Mechanics</h2>
-<ol type="1">
-<li><strong>LLMs are Probabilistic Predictors:</strong> They generate one token at a time based on preceding text; they do not possess an internal subconscious mind.</li>
-<li><strong>Writing Creates Working Memory:</strong> An LLM cannot think without writing. Generating intermediate reasoning tokens turns difficult problems into manageable steps.</li>
-<li><strong>Tools Provide Deterministic Grounding:</strong> Never trust an LLM’s self-verification. Require it to execute compilers, linters, and statistical scripts.</li>
-<li><strong>Match the Model Tier to the Complexity:</strong> Use lightweight fast models for proofreading and bibliography audits; deploy high-reasoning frontier models for proofs and structural modeling.</li>
-</ol>
+<section id="presentations-general-academic-life" class="level2" data-number="A.4">
+<h2 data-number="A.4" class="anchored" data-anchor-id="presentations-general-academic-life"><span class="header-section-number">A.4</span> Presentations &amp; General Academic Life</h2>
+<ul>
+<li><strong><a href="https://github.com/scunning1975/MixtapeTools">scunning1975/MixtapeTools</a></strong> <em>(Scott Cunningham, Baylor University)</em>: Presentation design philosophy (“The Rhetoric of Decks”), Beamer themes, and adversarial empirical auditing prompts.</li>
+<li><strong><a href="https://github.com/chrisblattman/claudeblattman">chrisblattman/claudeblattman</a></strong> <em>(Chris Blattman, University of Chicago / <a href="https://claudeblattman.com">claudeblattman.com</a>)</em>: Workflows for non-technical academics covering grant proposals, executive assistance, and fresh-context critique.</li>
+<li><strong><a href="https://github.com/karpathy/autoresearch">karpathy/autoresearch</a></strong> <em>(Andrej Karpathy)</em>: Constraint-based autonomous experimentation framework using Markdown constitutional rules (<code>program.md</code>).</li>
+</ul>
+</section>
+<section id="cross-platform-migration-tools" class="level2" data-number="A.5">
+<h2 data-number="A.5" class="anchored" data-anchor-id="cross-platform-migration-tools"><span class="header-section-number">A.5</span> Cross-Platform Migration Tools</h2>
+<ul>
+<li><strong><a href="https://github.com/openai/skills/tree/HEAD/skills/.curated/migrate-to-codex">openai/skills (migrate-to-codex)</a></strong> <em>(OpenAI)</em>: Official curated migration skill to convert Claude Code or Cursor instructions and skills into native OpenAI Codex format (<code>AGENTS.md</code> and <code>.codex/</code> configs).</li>
+</ul>
 
 
 </section>
@@ -858,13 +730,13 @@ High Reasoning Effort:   User Prompt ──► [Hidden Reasoning / Verification 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/02-getting-started.html" class="pagination-link" aria-label="Getting Started">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Getting Started</span></span>
+      <a href="../chapters/08-customizing.html" class="pagination-link" aria-label="Customizing for Your Domain">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Customizing for Your Domain</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/04-context-and-memory.html" class="pagination-link" aria-label="The Context Window &amp; Memory Architecture">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">The Context Window &amp; Memory Architecture</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/10-appendix.html" class="pagination-link" aria-label="Appendix: File Reference">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Appendix: File Reference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
