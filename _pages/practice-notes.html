@@ -16,7 +16,7 @@ author_profile: true
   {% for note in practice_notes %}
     <div class="list__item">
       <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-        <h2 class="archive__item-title" itemprop="headline">{{ note.title | markdownify | remove: "<p>" | remove: "</p>" }}</h2>
+        <h2 class="archive__item-title" itemprop="headline">{% if note.link %}<a href="{{ note.link }}" target="_blank" rel="noopener noreferrer">{{ note.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>{% else %}{{ note.title | markdownify | remove: "<p>" | remove: "</p>" }}{% endif %}</h2>
         {% if note.status %}
         <p class="page__meta"><i class="fa fa-fw fa-tag" aria-hidden="true"></i> {{ note.status }}</p>
         {% endif %}
