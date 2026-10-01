@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bond Carrying Value Convergence Simulator | Accounting Ch 14 Interactive Tool</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#041E42',
+              blue: '#0C2340',
+              gold: '#A89968',
+              goldlight: '#C5B783',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.06); }
+    }
+    .active-period-pulse {
+      animation: pulse-subtle 2s infinite ease-in-out;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-full flex flex-col font-sans">
+
+  <!-- Header -->
+  <header class="bg-gradient-to-r from-[#041E42] via-[#0b2b5c] to-[#041E42] text-white shadow-lg border-b-4 border-[#A89968]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-[#A89968] text-[#041E42] text-xs font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+              Intermediate Accounting
+            </span>
+            <span class="text-slate-300 text-xs font-medium">Bonds & Long-Term Notes</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white flex items-center gap-3">
+            <i class="fa-solid fa-chart-line text-[#C5B783]"></i>
+            Bond Carrying Value Convergence Simulator
+          </h1>
+          <p class="text-slate-300 text-sm mt-1 max-w-2xl">
+            Control stated coupon rates and market yields to observe carrying value convergence toward Face Value at maturity under the Effective Interest Method.
+          </p>
+        </div>
+
+        <!-- Mode & Scenario Selector Buttons -->
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs text-slate-300 font-semibold uppercase tracking-wider block w-full md:w-auto">View Modes:</span>
+          
+          <button id="btn-mode-dual" onclick="setMode('dual')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#A89968] text-[#041E42] hover:bg-[#C5B783] shadow ring-2 ring-white ring-offset-2 ring-offset-[#041E42]">
+            <i class="fa-solid fa-code-compare mr-1"></i> Dual Curves Comparison
+          </button>
+          
+          <button id="btn-mode-single" onclick="setMode('single')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 border border-slate-500 text-slate-100 hover:bg-slate-700">
+            <i class="fa-solid fa-circle-dot mr-1"></i> Single Bond Focus
+          </button>
+
+          <div class="w-px h-6 bg-slate-600 hidden md:block"></div>
+
+          <button id="btn-preset-reset" onclick="resetDefaults()" class="px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-slate-700/60 border border-slate-500 text-slate-200 hover:bg-slate-600" title="Reset to Benchmark Parameters ($700k, 12% coupon, 10% vs 14%)">
+            <i class="fa-solid fa-rotate-left mr-1"></i> Reset Defaults
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full space-y-6">
+
+    <!-- Top Dashboard: Parameters & Canvas -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Parameters Card (5 cols) -->
+      <div class="lg:col-span-5 bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
+        <div>
+          <!-- Header of Panel -->
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-3">
+            <h2 class="text-base font-bold text-[#041E42] flex items-center gap-2">
+              <i class="fa-solid fa-sliders text-[#A89968]"></i>
+              <span id="panel-title">Dual Bond Controls</span>
+            </h2>
+            <span id="panel-mode-badge" class="text-[11px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+              2 Curves Active
+            </span>
+          </div>
+
+          <!-- Shared Parameters: Face Value & Term -->
+          <div class="grid grid-cols-2 gap-3 pb-3 mb-3 border-b border-slate-100">
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Face Value</span>
+                <span id="label-face" class="text-[#041E42] font-bold font-mono">$700,000</span>
+              </div>
+              <input type="range" id="input-face" min="100000" max="1000000" step="50000" value="700000"
+                class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#041E42]">
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Maturity Term</span>
+                <span id="label-term" class="text-[#041E42] font-bold font-mono">3 Yrs (6 Pds)</span>
+              </div>
+              <input type="range" id="input-term" min="1" max="10" step="1" value="3"
+                class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#041E42]">
+            </div>
+          </div>
+
+          <!-- DUAL BOND CONTROLS (Visible in 'dual' mode) -->
+          <div id="controls-dual-container" class="space-y-3">
+            
+            <!-- Link Stated Rates Toggle -->
+            <div class="flex items-center justify-between text-xs bg-slate-50 p-2 rounded-lg border border-slate-200">
+              <label for="toggle-link-coupons" class="font-semibold text-slate-700 cursor-pointer flex items-center gap-2">
+                <input type="checkbox" id="toggle-link-coupons" class="w-3.5 h-3.5 rounded text-blue-600 focus:ring-blue-500 cursor-pointer" checked>
+                <span>Lock Stated Rates Equal</span>
+              </label>
+              <span class="text-[10px] text-slate-500">Uncheck to set independently</span>
+            </div>
+
+            <!-- Curve 1 (Blue / Premium Bond) -->
+            <div class="p-3 rounded-lg border-2 border-blue-200 bg-blue-50/40 relative">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-blue-900 flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span>
+                  Curve 1: Blue Bond (Premium Yield Example)
+                </span>
+                <span id="badge-bond1-price" class="font-mono text-xs font-extrabold text-blue-800 bg-blue-100 px-2 py-0.5 rounded border border-blue-200">
+                  $735,533
+                </span>
+              </div>
+
+              <!-- Bond 1 Stated Rate -->
+              <div class="mb-2">
+                <div class="flex justify-between text-[11px] font-semibold text-slate-700 mb-0.5">
+                  <span>Stated Coupon Rate:</span>
+                  <span id="label-bond1-coupon" class="font-mono font-bold text-blue-900">12.0% ($42,000 / semi)</span>
+                </div>
+                <input type="range" id="input-bond1-coupon" min="2" max="20" step="1" value="12"
+                  class="w-full h-1.5 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+              </div>
+
+              <!-- Bond 1 Market Yield -->
+              <div>
+                <div class="flex justify-between text-[11px] font-semibold text-slate-700 mb-0.5">
+                  <span>Market Yield Rate:</span>
+                  <span id="label-bond1-market" class="font-mono font-bold text-blue-900">10.0% (Annual)</span>
+                </div>
+                <input type="range" id="input-bond1-market" min="4" max="20" step="0.5" value="10"
+                  class="w-full h-1.5 bg-blue-200 rounded-lg appearance-none cursor-pointer accent-blue-600">
+              </div>
+            </div>
+
+            <!-- Curve 2 (Red / Discount Bond) -->
+            <div class="p-3 rounded-lg border-2 border-red-200 bg-red-50/40 relative">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-red-900 flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span>
+                  Curve 2: Red Bond (Discount Yield Example)
+                </span>
+                <span id="badge-bond2-price" class="font-mono text-xs font-extrabold text-red-800 bg-red-100 px-2 py-0.5 rounded border border-red-200">
+                  $666,633
+                </span>
+              </div>
+
+              <!-- Bond 2 Stated Rate -->
+              <div class="mb-2">
+                <div class="flex justify-between text-[11px] font-semibold text-slate-700 mb-0.5">
+                  <span>Stated Coupon Rate:</span>
+                  <span id="label-bond2-coupon" class="font-mono font-bold text-red-900">12.0% ($42,000 / semi)</span>
+                </div>
+                <input type="range" id="input-bond2-coupon" min="2" max="20" step="1" value="12"
+                  class="w-full h-1.5 bg-red-200 rounded-lg appearance-none cursor-pointer accent-red-600">
+              </div>
+
+              <!-- Bond 2 Market Yield -->
+              <div>
+                <div class="flex justify-between text-[11px] font-semibold text-slate-700 mb-0.5">
+                  <span>Market Yield Rate:</span>
+                  <span id="label-bond2-market" class="font-mono font-bold text-red-900">14.0% (Annual)</span>
+                </div>
+                <input type="range" id="input-bond2-market" min="4" max="20" step="0.5" value="14"
+                  class="w-full h-1.5 bg-red-200 rounded-lg appearance-none cursor-pointer accent-red-600">
+              </div>
+            </div>
+
+          </div>
+
+          <!-- SINGLE BOND CONTROLS (Visible in 'single' mode) -->
+          <div id="controls-single-container" class="space-y-4 hidden">
+            <!-- Single Stated Coupon -->
+            <div>
+              <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+                <span>Stated Annual Coupon Rate</span>
+                <span id="label-single-coupon" class="text-[#041E42] font-bold font-mono">12.0% ($42,000 / semi)</span>
+              </div>
+              <input type="range" id="input-single-coupon" min="2" max="20" step="1" value="12"
+                class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#041E42]">
+              <p class="text-[11px] text-slate-500 mt-0.5">Determines periodic cash coupon paid: Face &times; Stated Rate / 2</p>
+            </div>
+
+            <!-- Single Market Yield -->
+            <div class="bg-amber-50/70 p-3 rounded-lg border border-amber-200">
+              <div class="flex justify-between text-xs font-bold text-amber-900 mb-1">
+                <span>Market Yield Rate (Effective Yield)</span>
+                <span id="label-single-market" class="text-amber-900 font-extrabold font-mono text-sm">14.0%</span>
+              </div>
+              <input type="range" id="input-single-market" min="4" max="20" step="0.5" value="14"
+                class="w-full h-2 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600">
+              <div class="flex justify-between text-[11px] text-amber-800 font-medium mt-1">
+                <span>&lt; Stated (Premium)</span>
+                <span class="font-bold">= Stated (Par)</span>
+                <span>&gt; Stated (Discount)</span>
+              </div>
+            </div>
+
+            <!-- Single Status Pill -->
+            <div id="single-status-pill" class="p-3 rounded-lg border text-xs">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- View Options: Straight-Line & Curvature Exaggeration -->
+          <div class="mt-3 pt-3 border-t border-slate-100 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label for="toggle-straight-line" class="text-xs font-semibold text-slate-700 cursor-pointer flex items-center gap-2">
+                <input type="checkbox" id="toggle-straight-line" class="w-3.5 h-3.5 rounded text-blue-600 focus:ring-blue-500 cursor-pointer" checked>
+                <span>Overlay Straight-Line (ASC 835-30)</span>
+              </label>
+              <span class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono">Shaded Bow</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <label for="toggle-exaggerated" class="text-xs font-semibold text-slate-700 cursor-pointer flex items-center gap-2">
+                <input type="checkbox" id="toggle-exaggerated" class="w-3.5 h-3.5 rounded text-amber-600 focus:ring-amber-500 cursor-pointer">
+                <span>Exaggerate Curvature (Stylized Mode)</span>
+              </label>
+              <span class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">Cartoon Mode</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inspector Selector (For Dual Mode) -->
+        <div id="inspector-switch-container" class="mt-3 pt-3 border-t border-slate-200">
+          <div class="flex items-center justify-between text-xs mb-1.5">
+            <span class="font-bold text-slate-700">Detailed Inspector Below:</span>
+            <span class="text-[11px] text-slate-500">Select which bond to display in tables</span>
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <button id="btn-inspect-bond1" onclick="setInspectBond(1)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all bg-blue-50 border-blue-400 text-blue-900 shadow-xs">
+              <i class="fa-solid fa-arrow-trend-down mr-1 text-blue-600"></i> Bond 1 (Blue)
+            </button>
+            <button id="btn-inspect-bond2" onclick="setInspectBond(2)" class="px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all bg-slate-50 border-slate-300 text-slate-700 hover:bg-red-50">
+              <i class="fa-solid fa-arrow-trend-up mr-1 text-red-600"></i> Bond 2 (Red)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Convergence Chart (7 cols) -->
+      <div class="lg:col-span-7 bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3 mb-2">
+          <div>
+            <h2 class="text-base font-bold text-[#041E42] flex items-center gap-2">
+              <i class="fa-solid fa-chart-area text-blue-600"></i>
+              Carrying Value Convergence Trajectory
+            </h2>
+            <p class="text-xs text-slate-500" id="chart-subtitle">Interactive visualization of bond carrying value convergence over time</p>
+          </div>
+          <div class="flex items-center gap-3 text-xs" id="chart-legend">
+            <!-- Dynamically populated legend -->
+          </div>
+        </div>
+
+        <!-- SVG Chart Container -->
+        <div class="relative w-full h-[290px] sm:h-[330px] bg-slate-50/50 rounded-lg p-2 border border-slate-100">
+          <svg id="convergence-svg" class="w-full h-full" viewBox="0 0 700 300" preserveAspectRatio="none">
+            <!-- Rendered dynamically -->
+          </svg>
+          <div id="chart-tooltip" class="absolute pointer-events-none hidden bg-slate-900/90 text-white text-xs px-2.5 py-1.5 rounded shadow-lg transition-all z-20"></div>
+        </div>
+
+        <!-- Timeline Period Scrubber -->
+        <div class="mt-4 pt-3 border-t border-slate-100">
+          <div class="flex items-center justify-between text-xs font-semibold text-slate-700 mb-1">
+            <span class="flex items-center gap-1.5 text-[#041E42]">
+              <i class="fa-regular fa-clock text-[#A89968]"></i>
+              Active Period Scrubber:
+              <span id="active-period-label" class="font-bold text-blue-700">Period 0 (1/1/2024)</span>
+            </span>
+            <div class="space-x-1">
+              <button onclick="stepPeriod(-1)" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs">
+                <i class="fa-solid fa-chevron-left"></i> Prev
+              </button>
+              <button onclick="togglePlay()" id="btn-play" class="px-2 py-0.5 bg-blue-50 hover:bg-blue-100 text-blue-700 rounded text-xs font-semibold">
+                <i class="fa-solid fa-play mr-1"></i> Animate
+              </button>
+              <button onclick="stepPeriod(1)" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs">
+                Next <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+          <input type="range" id="period-slider" min="0" max="6" step="1" value="0"
+            class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#041E42]">
+          <div class="flex justify-between text-[10px] text-slate-400 font-mono mt-1" id="timeline-labels">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspector Banner -->
+    <div id="inspector-active-banner" class="bg-gradient-to-r from-blue-900 via-[#041E42] to-blue-950 text-white px-4 py-2.5 rounded-lg flex items-center justify-between text-xs font-semibold shadow-xs">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-magnifying-glass text-[#C5B783]"></i>
+        <span>Displaying Detailed Accounting Mechanics For:</span>
+        <span id="inspector-banner-bond-name" class="font-bold text-[#C5B783] underline">Curve 1: Bond 1 (10% Yield, $735,533 Premium)</span>
+      </div>
+      <span class="text-[11px] text-slate-300 font-mono" id="inspector-banner-period">Period 0</span>
+    </div>
+
+    <!-- Middle Section: The Pedagogical "Tripwire" Mechanics at Current Period -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Box 1: Cash Paid vs. Interest Expense (The Engine of Amortization) -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+          <h3 class="text-sm font-bold text-[#041E42] flex items-center gap-2">
+            <i class="fa-solid fa-scale-balanced text-[#A89968]"></i>
+            The "Spread" Engine
+          </h3>
+          <span class="text-[11px] font-mono font-semibold text-slate-500" id="period-badge">Period 1</span>
+        </div>
+        <div class="space-y-3">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-600 font-medium">1. Cash Interest Paid:</span>
+            <span id="calc-cash" class="font-mono font-bold text-slate-900">$42,000</span>
+          </div>
+          <div class="text-[11px] text-slate-400 pl-3 -mt-2">
+            Formula: Face ($700,000) × Stated Rate/2
+          </div>
+
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-600 font-medium">2. Interest Expense:</span>
+            <span id="calc-expense" class="font-mono font-bold text-purple-700">$36,777</span>
+          </div>
+          <div class="text-[11px] text-slate-400 pl-3 -mt-2">
+            Formula: Prior Carrying Value × Market Yield/2
+          </div>
+
+          <div class="pt-2 border-t border-slate-100 flex justify-between items-center text-xs">
+            <span class="font-bold text-slate-800">Difference (Amortization):</span>
+            <span id="calc-amort" class="font-mono font-extrabold text-blue-700">$5,223</span>
+          </div>
+
+          <!-- Conceptual Explainer -->
+          <div id="spread-explainer-box" class="p-3 rounded-lg text-xs leading-relaxed mt-2 bg-slate-50 border border-slate-200 text-slate-700">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Box 2: T-Account & Balance Sheet Representation -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+          <h3 class="text-sm font-bold text-[#041E42] flex items-center gap-2">
+            <i class="fa-solid fa-book-bookmark text-[#A89968]"></i>
+            Balance Sheet Net Book Value
+          </h3>
+          <span class="text-[11px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded font-mono">Net Liability</span>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Balance Sheet Presentation -->
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 font-mono text-xs space-y-1.5">
+            <div class="flex justify-between text-slate-700">
+              <span>Bonds Payable (Face Value):</span>
+              <span id="bs-face" class="font-bold">$700,000</span>
+            </div>
+            <div class="flex justify-between" id="bs-adj-row">
+              <span id="bs-adj-label" class="text-blue-600">Add: Premium on Bonds Payable:</span>
+              <span id="bs-adj-val" class="font-bold text-blue-600">+$35,533</span>
+            </div>
+            <div class="border-t border-slate-300 pt-1.5 flex justify-between font-bold text-slate-900 text-sm">
+              <span>Net Carrying Value:</span>
+              <span id="bs-net-val" class="text-blue-800">$735,533</span>
+            </div>
+          </div>
+
+          <!-- Why it moves toward $700,000 -->
+          <div class="text-xs text-slate-600 leading-relaxed bg-blue-50/60 p-2.5 rounded-lg border border-blue-100">
+            <p id="bs-insight-text">
+              <!-- Dynamically populated -->
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Box 3: Synchronized Journal Entry -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5">
+        <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+          <h3 class="text-sm font-bold text-[#041E42] flex items-center gap-2">
+            <i class="fa-solid fa-pen-nib text-[#A89968]"></i>
+            General Journal Entry
+          </h3>
+          <span class="text-[11px] font-mono text-slate-400" id="je-date">1/1/2024</span>
+        </div>
+
+        <div class="font-mono text-xs space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-200" id="journal-entry-container">
+          <!-- Dynamically populated -->
+        </div>
+
+        <div class="mt-3 text-[11px] text-slate-500 flex items-center justify-between">
+          <span>Rule: Debits = Credits</span>
+          <span class="text-emerald-700 font-semibold" id="je-status"><i class="fa-solid fa-check"></i> Balanced</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complete Period Amortization Schedule Table -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="p-4 bg-slate-50 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div>
+          <h3 class="text-sm font-bold text-[#041E42] flex items-center gap-2">
+            <i class="fa-solid fa-table-list text-[#A89968]"></i>
+            Full Amortization Schedule (Effective Interest Method)
+          </h3>
+          <p class="text-xs text-slate-500" id="table-subtitle">Showing period-by-period numbers for the currently inspected bond.</p>
+        </div>
+        <div class="text-xs text-slate-600">
+          Click any row to jump the visualizer to that date.
+        </div>
+      </div>
+
+      <div class="overflow-x-auto custom-scrollbar">
+        <table class="min-w-full text-xs text-left divide-y divide-slate-200">
+          <thead class="bg-[#041E42] text-white font-semibold">
+            <tr>
+              <th class="px-4 py-2.5">Period / Date</th>
+              <th class="px-4 py-2.5 text-right">Cash Interest Paid<br><span class="text-[10px] font-normal text-slate-300">Face × Stated Rate/2</span></th>
+              <th class="px-4 py-2.5 text-right">Interest Expense<br><span class="text-[10px] font-normal text-slate-300">Carrying Value × Yield/2</span></th>
+              <th class="px-4 py-2.5 text-right">Amortization<br><span class="text-[10px] font-normal text-slate-300">|Expense − Cash|</span></th>
+              <th class="px-4 py-2.5 text-right">Unamortized Bal.<br><span class="text-[10px] font-normal text-slate-300">Discount or Premium</span></th>
+              <th class="px-4 py-2.5 text-right font-bold text-[#C5B783]">Carrying Value<br><span class="text-[10px] font-normal text-slate-300">Reported on Balance Sheet</span></th>
+            </tr>
+          </thead>
+          <tbody id="table-body" class="divide-y divide-slate-100 bg-white">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Pedagogical "Why Students Get Confused" Guide Accordion -->
+    <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200 p-5 shadow-sm">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold">
+          <i class="fa-solid fa-lightbulb"></i>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-amber-900">Teaching Guide: The 3 Classic Student Tripwires in Bond Accounting</h3>
+          <p class="text-xs text-amber-800">Use these interactive analogies in class to dissolve confusion immediately.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs mt-3">
+        <!-- Tripwire 1 -->
+        <div class="bg-white/80 p-3.5 rounded-lg border border-amber-200 shadow-xs">
+          <div class="font-bold text-amber-900 flex items-center gap-1.5 mb-1">
+            <span class="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.5 rounded font-mono font-bold">#1</span>
+            The "Opposite Directions" Paradox
+          </div>
+          <p class="text-slate-700 leading-relaxed">
+            <strong>Confusion:</strong> Students hear "amortization" and think it means "paying down" (shrinking). They ask: <em>"Why does discount carrying value INCREASE from $666,633 to $700,000?"</em><br>
+            <strong>Intuition:</strong> The <em>Discount</em> account is what shrinks to zero! Because Discount is a contra-liability (Face &minus; Discount = Net Liability), as the discount balance disappears, the net liability expands to full face value.
+          </p>
+        </div>
+
+        <!-- Tripwire 2 -->
+        <div class="bg-white/80 p-3.5 rounded-lg border border-amber-200 shadow-xs">
+          <div class="font-bold text-amber-900 flex items-center gap-1.5 mb-1">
+            <span class="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.5 rounded font-mono font-bold">#2</span>
+            Cash Paid ≠ Economic Cost
+          </div>
+          <p class="text-slate-700 leading-relaxed">
+            <strong>Confusion:</strong> <em>"If we only wrote a check for $42,000, why is interest expense $46,664?"</em><br>
+            <strong>Intuition:</strong> In a discount bond, the company borrowed $666,633 at a 14% market rate. The true economic interest is $46,664. Paying only $42,000 leaves $4,664 of unpaid interest that gets "tacked onto" the debt principal.
+          </p>
+        </div>
+
+        <!-- Tripwire 3 -->
+        <div class="bg-white/80 p-3.5 rounded-lg border border-amber-200 shadow-xs">
+          <div class="font-bold text-amber-900 flex items-center gap-1.5 mb-1">
+            <span class="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.5 rounded font-mono font-bold">#3</span>
+            The "Remaining Cash Flow" Proof
+          </div>
+          <p class="text-slate-700 leading-relaxed">
+            <strong>Aha! Moment:</strong> At any point in time, Carrying Value is <em>not</em> just arbitrary bookkeeper arithmetic. It is mathematically identical to re-discounting the <strong>remaining future cash flows</strong> back to that date at the historical market yield! At maturity, the only remaining cash flow is the $700,000 principal repayment, which is why Carrying Value always equals $700,000.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+      <div>
+        <span>&copy; 2026 Ernest (Gang) Pan. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Intermediate Accounting • Bonds & Long-Term Notes</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script>
+    // Central Application State
+    const state = {
+      mode: 'dual', // 'dual' (2 curves with independent controls) or 'single' (1 curve)
+      face: 700000,
+      years: 3,
+      periods: 6,
+      currentPeriod: 0,
+      straightLine: true,
+      exaggeratedCurvature: false,
+      linkCoupons: true,
+      inspectBond: 1, // 1 for Bond 1 (Blue), 2 for Bond 2 (Red)
+      isPlaying: false,
+      playTimer: null,
+      
+      // Bond 1 (Curve 1 - Blue)
+      bond1: {
+        couponRate: 0.12,
+        marketRate: 0.10
+      },
+
+      // Bond 2 (Curve 2 - Red)
+      bond2: {
+        couponRate: 0.12,
+        marketRate: 0.14
+      },
+
+      // Single Bond
+      single: {
+        couponRate: 0.12,
+        marketRate: 0.14
+      },
+
+      dates: []
+    };
+
+    // Calculate present value of bond
+    function calcBondPrice(face, couponRate, marketRate, periods) {
+      const r = marketRate / 2; // semiannual rate
+      const c = (face * couponRate) / 2; // semiannual coupon
+      if (r === 0) return face + c * periods;
+      const pvFace = face / Math.pow(1 + r, periods);
+      const pvCoupons = c * (1 - Math.pow(1 + r, -periods)) / r;
+      return pvFace + pvCoupons;
+    }
+
+    // Build amortization schedule
+    function buildSchedule(face, couponRate, marketRate, periods) {
+      const schedule = [];
+      const r = marketRate / 2;
+      const couponPmt = (face * couponRate) / 2;
+      let initialPrice = Math.round(calcBondPrice(face, couponRate, marketRate, periods));
+      let currentCV = initialPrice;
+      let unamortized = Math.abs(currentCV - face);
+
+      schedule.push({
+        period: 0,
+        date: state.dates[0] || 'Period 0',
+        payment: 0,
+        expense: 0,
+        amortization: 0,
+        unamortized: unamortized,
+        carryingValue: currentCV
+      });
+
+      const isDiscount = initialPrice < face;
+      const isPremium = initialPrice > face;
+
+      for (let i = 1; i <= periods; i++) {
+        let expense = Math.round(currentCV * r);
+        let amort = Math.abs(expense - couponPmt);
+
+        // Adjust for rounding at final maturity
+        if (i === periods) {
+          if (isDiscount) {
+            amort = face - currentCV;
+            expense = couponPmt + amort;
+            currentCV = face;
+          } else if (isPremium) {
+            amort = currentCV - face;
+            expense = couponPmt - amort;
+            currentCV = face;
+          } else {
+            expense = couponPmt;
+            amort = 0;
+            currentCV = face;
+          }
+          unamortized = 0;
+        } else {
+          if (isDiscount) {
+            currentCV += amort;
+          } else if (isPremium) {
+            currentCV -= amort;
+          }
+          unamortized = Math.abs(face - currentCV);
+        }
+
+        schedule.push({
+          period: i,
+          date: state.dates[i] || `Period ${i}`,
+          payment: couponPmt,
+          expense: expense,
+          amortization: amort,
+          unamortized: unamortized,
+          carryingValue: currentCV
+        });
+      }
+
+      return schedule;
+    }
+
+    // Straight-line schedule
+    function buildStraightLineSchedule(face, couponRate, marketRate, periods) {
+      const schedule = [];
+      const couponPmt = (face * couponRate) / 2;
+      let initialPrice = Math.round(calcBondPrice(face, couponRate, marketRate, periods));
+      let currentCV = initialPrice;
+      const totalAmort = Math.abs(face - initialPrice);
+      const perPeriodAmort = Math.round(totalAmort / periods);
+
+      schedule.push({
+        period: 0,
+        carryingValue: initialPrice
+      });
+
+      const isDiscount = initialPrice < face;
+      for (let i = 1; i <= periods; i++) {
+        if (i === periods) {
+          currentCV = face;
+        } else {
+          currentCV += isDiscount ? perPeriodAmort : -perPeriodAmort;
+        }
+        schedule.push({
+          period: i,
+          carryingValue: currentCV
+        });
+      }
+      return schedule;
+    }
+
+    // Set view mode ('dual' vs 'single')
+    function setMode(newMode) {
+      state.mode = newMode;
+      const btnDual = document.getElementById('btn-mode-dual');
+      const btnSingle = document.getElementById('btn-mode-single');
+      const dualControls = document.getElementById('controls-dual-container');
+      const singleControls = document.getElementById('controls-single-container');
+      const inspectorSwitch = document.getElementById('inspector-switch-container');
+      const inspectorBanner = document.getElementById('inspector-active-banner');
+
+      if (newMode === 'dual') {
+        btnDual.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#A89968] text-[#041E42] hover:bg-[#C5B783] shadow ring-2 ring-white ring-offset-2 ring-offset-[#041E42]';
+        btnSingle.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 border border-slate-500 text-slate-100 hover:bg-slate-700';
+        dualControls.classList.remove('hidden');
+        singleControls.classList.add('hidden');
+        inspectorSwitch.classList.remove('hidden');
+        inspectorBanner.classList.remove('hidden');
+        document.getElementById('panel-title').innerText = 'Dual Bond Controls';
+        document.getElementById('panel-mode-badge').innerText = '2 Curves Active';
+        document.getElementById('panel-mode-badge').className = 'text-[11px] font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800';
+        document.getElementById('chart-subtitle').innerText = 'Contrasting two bonds simultaneously (Discount vs. Premium)';
+      } else {
+        btnSingle.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-[#A89968] text-[#041E42] hover:bg-[#C5B783] shadow ring-2 ring-white ring-offset-2 ring-offset-[#041E42]';
+        btnDual.className = 'px-3 py-1.5 rounded-lg text-xs font-bold transition-all bg-slate-800 border border-slate-500 text-slate-100 hover:bg-slate-700';
+        dualControls.classList.add('hidden');
+        singleControls.classList.remove('hidden');
+        inspectorSwitch.classList.add('hidden');
+        inspectorBanner.classList.add('hidden');
+        document.getElementById('panel-title').innerText = 'Single Bond Controls';
+        document.getElementById('panel-mode-badge').innerText = '1 Curve Active';
+        document.getElementById('panel-mode-badge').className = 'text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800';
+        document.getElementById('chart-subtitle').innerText = 'Focus on one bond at a time (drag yield to switch between Discount, Par, and Premium)';
+      }
+
+      updateAll();
+    }
+
+    // Set inspected bond in dual mode
+    function setInspectBond(bondNum) {
+      state.inspectBond = bondNum;
+      const b1 = document.getElementById('btn-inspect-bond1');
+      const b2 = document.getElementById('btn-inspect-bond2');
+      if (bondNum === 1) {
+        b1.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all bg-blue-50 border-blue-400 text-blue-900 shadow-xs ring-1 ring-blue-400';
+        b2.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all bg-slate-50 border-slate-300 text-slate-700 hover:bg-red-50';
+      } else {
+        b2.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all bg-red-50 border-red-400 text-red-900 shadow-xs ring-1 ring-red-400';
+        b1.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold border transition-all bg-slate-50 border-slate-300 text-slate-700 hover:bg-blue-50';
+      }
+      updateVisualsOnly();
+    }
+
+    // Reset to defaults
+    function resetDefaults() {
+      state.face = 700000;
+      state.years = 3;
+      state.periods = 6;
+      state.linkCoupons = true;
+      state.bond1.couponRate = 0.12;
+      state.bond1.marketRate = 0.10;
+      state.bond2.couponRate = 0.12;
+      state.bond2.marketRate = 0.14;
+      state.single.couponRate = 0.12;
+      state.single.marketRate = 0.14;
+
+      document.getElementById('input-face').value = 700000;
+      document.getElementById('input-term').value = 3;
+      document.getElementById('toggle-link-coupons').checked = true;
+
+      document.getElementById('input-bond1-coupon').value = 12;
+      document.getElementById('input-bond1-market').value = 10;
+      document.getElementById('input-bond2-coupon').value = 12;
+      document.getElementById('input-bond2-market').value = 14;
+
+      document.getElementById('input-single-coupon').value = 12;
+      document.getElementById('input-single-market').value = 14;
+
+      setMode('dual');
+    }
+
+    // Step period
+    function stepPeriod(delta) {
+      state.currentPeriod = Math.max(0, Math.min(state.periods, state.currentPeriod + delta));
+      document.getElementById('period-slider').value = state.currentPeriod;
+      updateVisualsOnly();
+    }
+
+    function togglePlay() {
+      const btn = document.getElementById('btn-play');
+      if (state.isPlaying) {
+        clearInterval(state.playTimer);
+        state.isPlaying = false;
+        btn.innerHTML = '<i class="fa-solid fa-play mr-1"></i> Animate';
+      } else {
+        state.isPlaying = true;
+        btn.innerHTML = '<i class="fa-solid fa-pause mr-1"></i> Pause';
+        state.playTimer = setInterval(() => {
+          if (state.currentPeriod >= state.periods) {
+            state.currentPeriod = 0;
+          } else {
+            state.currentPeriod++;
+          }
+          document.getElementById('period-slider').value = state.currentPeriod;
+          updateVisualsOnly();
+        }, 1500);
+      }
+    }
+
+    // Format currency
+    function fmt(val) {
+      return '$' + Math.round(val).toLocaleString();
+    }
+
+    // Core update
+    function updateAll() {
+      // Read shared inputs
+      state.face = parseInt(document.getElementById('input-face').value);
+      state.years = parseInt(document.getElementById('input-term').value);
+      state.periods = state.years * 2;
+      state.straightLine = document.getElementById('toggle-straight-line').checked;
+      state.exaggeratedCurvature = document.getElementById('toggle-exaggerated').checked;
+      state.linkCoupons = document.getElementById('toggle-link-coupons').checked;
+
+      // Read Dual inputs
+      state.bond1.couponRate = parseInt(document.getElementById('input-bond1-coupon').value) / 100;
+      state.bond1.marketRate = parseFloat(document.getElementById('input-bond1-market').value) / 100;
+      
+      if (state.linkCoupons) {
+        state.bond2.couponRate = state.bond1.couponRate;
+        document.getElementById('input-bond2-coupon').value = Math.round(state.bond1.couponRate * 100);
+      } else {
+        state.bond2.couponRate = parseInt(document.getElementById('input-bond2-coupon').value) / 100;
+      }
+      state.bond2.marketRate = parseFloat(document.getElementById('input-bond2-market').value) / 100;
+
+      // Read Single inputs
+      state.single.couponRate = parseInt(document.getElementById('input-single-coupon').value) / 100;
+      state.single.marketRate = parseFloat(document.getElementById('input-single-market').value) / 100;
+
+      // Update labels
+      document.getElementById('label-face').innerText = fmt(state.face);
+      document.getElementById('label-term').innerText = `${state.years} Yrs (${state.periods} Pds)`;
+
+      // Dual labels
+      const b1Semi = (state.face * state.bond1.couponRate) / 2;
+      document.getElementById('label-bond1-coupon').innerText = `${(state.bond1.couponRate * 100).toFixed(1)}% (${fmt(b1Semi)} / semi)`;
+      document.getElementById('label-bond1-market').innerText = `${(state.bond1.marketRate * 100).toFixed(1)}%`;
+
+      const b2Semi = (state.face * state.bond2.couponRate) / 2;
+      document.getElementById('label-bond2-coupon').innerText = `${(state.bond2.couponRate * 100).toFixed(1)}% (${fmt(b2Semi)} / semi)`;
+      document.getElementById('label-bond2-market').innerText = `${(state.bond2.marketRate * 100).toFixed(1)}%`;
+
+      const b1Price = Math.round(calcBondPrice(state.face, state.bond1.couponRate, state.bond1.marketRate, state.periods));
+      const b2Price = Math.round(calcBondPrice(state.face, state.bond2.couponRate, state.bond2.marketRate, state.periods));
+      document.getElementById('badge-bond1-price').innerText = fmt(b1Price);
+      document.getElementById('badge-bond2-price').innerText = fmt(b2Price);
+
+      // Single labels
+      const sSemi = (state.face * state.single.couponRate) / 2;
+      document.getElementById('label-single-coupon').innerText = `${(state.single.couponRate * 100).toFixed(1)}% (${fmt(sSemi)} / semi)`;
+      document.getElementById('label-single-market').innerText = `${(state.single.marketRate * 100).toFixed(1)}%`;
+
+      // Single status pill
+      const sPrice = Math.round(calcBondPrice(state.face, state.single.couponRate, state.single.marketRate, state.periods));
+      const sPill = document.getElementById('single-status-pill');
+      if (sPrice < state.face) {
+        sPill.className = 'p-3 rounded-lg border text-xs bg-red-50 border-red-200 text-red-900';
+        sPill.innerHTML = `
+          <div class="flex justify-between font-bold">
+            <span><i class="fa-solid fa-arrow-trend-up text-red-600 mr-1"></i> Discount Bond (Market &gt; Stated)</span>
+            <span class="font-mono text-sm">${fmt(sPrice)}</span>
+          </div>
+          <p class="text-[11px] mt-0.5 text-red-800">Discount of ${fmt(state.face - sPrice)}. Carrying value will <strong>RISE</strong> to ${fmt(state.face)}.</p>
+        `;
+      } else if (sPrice > state.face) {
+        sPill.className = 'p-3 rounded-lg border text-xs bg-blue-50 border-blue-200 text-blue-900';
+        sPill.innerHTML = `
+          <div class="flex justify-between font-bold">
+            <span><i class="fa-solid fa-arrow-trend-down text-blue-600 mr-1"></i> Premium Bond (Market &lt; Stated)</span>
+            <span class="font-mono text-sm">${fmt(sPrice)}</span>
+          </div>
+          <p class="text-[11px] mt-0.5 text-blue-800">Premium of ${fmt(sPrice - state.face)}. Carrying value will <strong>FALL</strong> to ${fmt(state.face)}.</p>
+        `;
+      } else {
+        sPill.className = 'p-3 rounded-lg border text-xs bg-emerald-50 border-emerald-200 text-emerald-900';
+        sPill.innerHTML = `
+          <div class="flex justify-between font-bold">
+            <span><i class="fa-solid fa-equals text-emerald-600 mr-1"></i> Par Bond (Market = Stated)</span>
+            <span class="font-mono text-sm">${fmt(sPrice)}</span>
+          </div>
+          <p class="text-[11px] mt-0.5 text-emerald-800">Carrying value remains perfectly flat at ${fmt(state.face)} across all periods.</p>
+        `;
+      }
+
+      // Slider max
+      const pSlider = document.getElementById('period-slider');
+      pSlider.max = state.periods;
+      if (state.currentPeriod > state.periods) state.currentPeriod = state.periods;
+
+      // Generate dates
+      state.dates = [];
+      let startYear = 2024;
+      for (let p = 0; p <= state.periods; p++) {
+        let yr = startYear + Math.floor(p / 2);
+        let md = (p % 2 === 0) ? `1/1/${yr}` : `6/30/${yr}`;
+        if (p === state.periods && p % 2 === 0) md = `12/31/${yr - 1}`;
+        state.dates.push(md);
+      }
+
+      // Timeline labels
+      const tl = document.getElementById('timeline-labels');
+      tl.innerHTML = '';
+      for (let p = 0; p <= state.periods; p++) {
+        const span = document.createElement('span');
+        span.innerText = state.dates[p] || `P${p}`;
+        if (p === state.currentPeriod) span.className = 'font-bold text-blue-700';
+        tl.appendChild(span);
+      }
+
+      updateVisualsOnly();
+    }
+
+    function updateVisualsOnly() {
+      // Build schedules for Bond 1, Bond 2, and Single
+      const sched1 = buildSchedule(state.face, state.bond1.couponRate, state.bond1.marketRate, state.periods);
+      const sched2 = buildSchedule(state.face, state.bond2.couponRate, state.bond2.marketRate, state.periods);
+      const schedSingle = buildSchedule(state.face, state.single.couponRate, state.single.marketRate, state.periods);
+
+      // Determine active inspected schedule
+      let activeSchedule;
+      let inspectedName = '';
+      if (state.mode === 'dual') {
+        if (state.inspectBond === 1) {
+          activeSchedule = sched1;
+          const p1 = sched1[0].carryingValue;
+          const type1 = p1 > state.face ? 'Premium' : (p1 < state.face ? 'Discount' : 'Par');
+          inspectedName = `Curve 1 (Blue): ${(state.bond1.couponRate * 100).toFixed(1)}% Coupon vs. ${(state.bond1.marketRate * 100).toFixed(1)}% Yield (${type1}: ${fmt(p1)})`;
+        } else {
+          activeSchedule = sched2;
+          const p2 = sched2[0].carryingValue;
+          const type2 = p2 > state.face ? 'Premium' : (p2 < state.face ? 'Discount' : 'Par');
+          inspectedName = `Curve 2 (Red): ${(state.bond2.couponRate * 100).toFixed(1)}% Coupon vs. ${(state.bond2.marketRate * 100).toFixed(1)}% Yield (${type2}: ${fmt(p2)})`;
+        }
+      } else {
+        activeSchedule = schedSingle;
+        const pS = schedSingle[0].carryingValue;
+        const typeS = pS > state.face ? 'Premium' : (pS < state.face ? 'Discount' : 'Par');
+        inspectedName = `Active Bond: ${(state.single.couponRate * 100).toFixed(1)}% Coupon vs. ${(state.single.marketRate * 100).toFixed(1)}% Yield (${typeS}: ${fmt(pS)})`;
+      }
+
+      const curr = activeSchedule[state.currentPeriod] || activeSchedule[0];
+
+      // Update Inspector Banner
+      document.getElementById('inspector-banner-bond-name').innerText = inspectedName;
+      document.getElementById('inspector-banner-period').innerText = `Period ${state.currentPeriod} (${curr.date})`;
+
+      // Active period label
+      document.getElementById('active-period-label').innerText = `Period ${state.currentPeriod} (${curr.date})`;
+      document.getElementById('period-badge').innerText = `Period ${state.currentPeriod} (${curr.date})`;
+
+      // Render SVG Chart
+      renderSVGChart(sched1, sched2, schedSingle);
+
+      // Render Box 1: Spread Engine
+      renderSpreadEngine(curr, activeSchedule);
+
+      // Render Box 2: Balance Sheet
+      renderBalanceSheet(curr);
+
+      // Render Box 3: Journal Entry
+      renderJournalEntry(curr, activeSchedule);
+
+      // Render Table
+      renderTable(activeSchedule);
+    }
+
+    // Render SVG Chart
+    function renderSVGChart(sched1, sched2, schedSingle) {
+      const svg = document.getElementById('convergence-svg');
+      svg.innerHTML = '';
+
+      const W = 700;
+      const H = 300;
+      const padL = 75;
+      const padR = 110;
+      const padT = 35;
+      const padB = 40;
+
+      const chartW = W - padL - padR;
+      const chartH = H - padT - padB;
+
+      // Find min and max carrying values
+      let allCVs = [];
+      if (state.mode === 'dual') {
+        allCVs = sched1.map(d => d.carryingValue).concat(sched2.map(d => d.carryingValue));
+      } else {
+        allCVs = schedSingle.map(d => d.carryingValue);
+      }
+      allCVs.push(state.face);
+
+      let minCV = Math.min(...allCVs) * 0.98;
+      let maxCV = Math.max(...allCVs) * 1.02;
+
+      // Coordinate scaling functions
+      const getX = (period) => padL + (period / state.periods) * chartW;
+      const getY = (val) => padT + chartH - ((val - minCV) / (maxCV - minCV)) * chartH;
+
+      // Helper to get adjusted CV (if exaggerated)
+      const getAdjustedCV = (sched, period) => {
+        const item = sched[period];
+        let cv = item.carryingValue;
+        if (state.exaggeratedCurvature) {
+          const initialCV = sched[0].carryingValue;
+          const slCV = initialCV + (state.face - initialCV) * (period / state.periods);
+          const diff = cv - slCV;
+          cv = slCV + diff * 3.8; // amplify non-linearity for pedagogical visual clarity
+        }
+        return cv;
+      };
+
+      // Helper to generate path d
+      const makePath = (sched) => {
+        return sched.map((d, i) => `${i === 0 ? 'M' : 'L'} ${getX(d.period)} ${getY(getAdjustedCV(sched, d.period))}`).join(' ');
+      };
+
+      // Helper to create shaded ribbon between effective and straight-line
+      const makeShadedRibbon = (effSched, slSched) => {
+        const forwardPts = effSched.map(d => `${getX(d.period)},${getY(getAdjustedCV(effSched, d.period))}`).join(' L ');
+        const reversePts = [...slSched].reverse().map(d => `${getX(d.period)},${getY(d.carryingValue)}`).join(' L ');
+        return `M ${forwardPts} L ${reversePts} Z`;
+      };
+
+      // Axes & Grid
+      let svgContent = `
+        <!-- Axes -->
+        <line x1="${padL}" y1="${padT + chartH}" x2="${padL + chartW + 20}" y2="${padT + chartH}" stroke="#94a3b8" stroke-width="1.5" />
+        <line x1="${padL}" y1="${padT - 15}" x2="${padL}" y2="${padT + chartH}" stroke="#94a3b8" stroke-width="1.5" />
+        
+        <!-- Y-Axis Title -->
+        <text x="15" y="${padT + chartH/2}" fill="#64748b" font-size="11" font-weight="bold" transform="rotate(-90 15,${padT + chartH/2})" text-anchor="middle">Carrying Value ($)</text>
+        <text x="${padL + chartW + 15}" y="${padT + chartH + 18}" fill="#64748b" font-size="11" font-weight="bold" text-anchor="start">Time</text>
+      `;
+
+      // Face Value Horizon line
+      const faceY = getY(state.face);
+      svgContent += `
+        <line x1="${padL}" y1="${faceY}" x2="${padL + chartW}" y2="${faceY}" stroke="#A89968" stroke-width="2" stroke-dasharray="6,4" />
+        <circle cx="${padL + chartW}" cy="${faceY}" r="4.5" fill="#A89968" />
+        <text x="${padL + chartW + 10}" y="${faceY + 4}" fill="#041E42" font-size="11" font-weight="extrabold">${fmt(state.face)} (Face)</text>
+      `;
+
+      const legend = document.getElementById('chart-legend');
+
+      if (state.mode === 'dual') {
+        legend.innerHTML = `
+          <span class="flex items-center gap-1.5 font-medium text-slate-700">
+            <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span> Curve 1 (${(state.bond1.marketRate*100).toFixed(0)}% Yield)
+          </span>
+          <span class="flex items-center gap-1.5 font-medium text-slate-700">
+            <span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span> Curve 2 (${(state.bond2.marketRate*100).toFixed(0)}% Yield)
+          </span>
+          <span class="flex items-center gap-1.5 font-medium text-slate-700">
+            <span class="w-3 h-0.5 bg-[#A89968] inline-block border-t-2 border-dashed border-[#A89968]"></span> Par
+          </span>
+        `;
+
+        const sl1 = buildStraightLineSchedule(state.face, state.bond1.couponRate, state.bond1.marketRate, state.periods);
+        const sl2 = buildStraightLineSchedule(state.face, state.bond2.couponRate, state.bond2.marketRate, state.periods);
+
+        // Shaded ribbons if straight-line checked
+        if (state.straightLine) {
+          svgContent += `
+            <path d="${makeShadedRibbon(sched1, sl1)}" fill="#2563eb" fill-opacity="0.12" />
+            <path d="${makePath(sl1)}" fill="none" stroke="#93c5fd" stroke-width="1.5" stroke-dasharray="4,4" />
+            <path d="${makeShadedRibbon(sched2, sl2)}" fill="#dc2626" fill-opacity="0.12" />
+            <path d="${makePath(sl2)}" fill="none" stroke="#fca5a5" stroke-width="1.5" stroke-dasharray="4,4" />
+          `;
+        }
+
+        // Draw Curve 1 (Blue)
+        const p1Path = makePath(sched1);
+        const p1Init = sched1[0].carryingValue;
+        const p1Dir = p1Init > state.face ? 'Declines →' : (p1Init < state.face ? 'Rises →' : 'Flat');
+        svgContent += `
+          <path d="${p1Path}" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" />
+          <text x="${padL + 10}" y="${getY(getAdjustedCV(sched1, 0)) + (p1Init >= state.face ? -10 : 18)}" fill="#2563eb" font-size="11" font-weight="bold">
+            Curve 1 (${fmt(p1Init)}) ${p1Dir}
+          </text>
+        `;
+
+        // Draw Curve 2 (Red)
+        const p2Path = makePath(sched2);
+        const p2Init = sched2[0].carryingValue;
+        const p2Dir = p2Init > state.face ? 'Declines →' : (p2Init < state.face ? 'Rises →' : 'Flat');
+        svgContent += `
+          <path d="${p2Path}" fill="none" stroke="#dc2626" stroke-width="3.5" stroke-linecap="round" />
+          <text x="${padL + 10}" y="${getY(getAdjustedCV(sched2, 0)) + (p2Init > state.face ? -10 : 18)}" fill="#dc2626" font-size="11" font-weight="bold">
+            Curve 2 (${fmt(p2Init)}) ${p2Dir}
+          </text>
+        `;
+
+        // Dual tracking beacons
+        const activeX = getX(state.currentPeriod);
+        const y1 = getY(getAdjustedCV(sched1, state.currentPeriod));
+        const y2 = getY(getAdjustedCV(sched2, state.currentPeriod));
+
+        svgContent += `
+          <line x1="${activeX}" y1="${padT}" x2="${activeX}" y2="${padT + chartH}" stroke="#041E42" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.5" />
+          <circle cx="${activeX}" cy="${y1}" r="${state.inspectBond === 1 ? 7.5 : 5.5}" fill="#2563eb" stroke="#ffffff" stroke-width="2.5" class="active-period-pulse" />
+          <circle cx="${activeX}" cy="${y2}" r="${state.inspectBond === 2 ? 7.5 : 5.5}" fill="#dc2626" stroke="#ffffff" stroke-width="2.5" class="active-period-pulse" />
+        `;
+
+      } else {
+        // SINGLE BOND MODE
+        const pS = schedSingle[0].carryingValue;
+        const isDisc = pS < state.face;
+        const isPrem = pS > state.face;
+        const color = isDisc ? '#dc2626' : (isPrem ? '#2563eb' : '#059669');
+        const dir = isDisc ? 'Rises →' : (isPrem ? 'Declines →' : 'Flat');
+
+        legend.innerHTML = `
+          <span class="flex items-center gap-1.5 font-medium text-slate-700">
+            <span class="w-3 h-3 rounded-full inline-block" style="background-color: ${color}"></span> Bond (${(state.single.marketRate*100).toFixed(1)}% Yield)
+          </span>
+          <span class="flex items-center gap-1.5 font-medium text-slate-700">
+            <span class="w-3 h-0.5 bg-[#A89968] inline-block border-t-2 border-dashed border-[#A89968]"></span> Par
+          </span>
+        `;
+
+        if (state.straightLine && Math.abs(pS - state.face) > 100) {
+          const slS = buildStraightLineSchedule(state.face, state.single.couponRate, state.single.marketRate, state.periods);
+          svgContent += `
+            <path d="${makeShadedRibbon(schedSingle, slS)}" fill="${color}" fill-opacity="0.15" />
+            <path d="${makePath(slS)}" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="4,4" />
+          `;
+        }
+
+        const pathS = makePath(schedSingle);
+        svgContent += `
+          <path d="${pathS}" fill="none" stroke="${color}" stroke-width="3.5" stroke-linecap="round" />
+          <text x="${padL + 10}" y="${getY(getAdjustedCV(schedSingle, 0)) + (isDisc ? 18 : -10)}" fill="${color}" font-size="11" font-weight="bold">
+            ${isDisc ? 'Discount' : (isPrem ? 'Premium' : 'Par')} (${fmt(pS)}) ${dir}
+          </text>
+        `;
+
+        // Single tracking beacon
+        const activeX = getX(state.currentPeriod);
+        const yS = getY(getAdjustedCV(schedSingle, state.currentPeriod));
+        svgContent += `
+          <line x1="${activeX}" y1="${padT}" x2="${activeX}" y2="${padT + chartH}" stroke="#041E42" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6" />
+          <circle cx="${activeX}" cy="${yS}" r="7" fill="${color}" stroke="#ffffff" stroke-width="2.5" class="active-period-pulse" />
+          <circle cx="${activeX}" cy="${yS}" r="3" fill="#ffffff" />
+        `;
+      }
+
+      // Period ticks & labels
+      for (let p = 0; p <= state.periods; p++) {
+        const x = getX(p);
+        svgContent += `
+          <line x1="${x}" y1="${padT + chartH}" x2="${x}" y2="${padT + chartH + 5}" stroke="#94a3b8" />
+          <text x="${x}" y="${padT + chartH + 18}" fill="#64748b" font-size="9" text-anchor="middle" font-family="monospace">P${p}</text>
+        `;
+      }
+
+      svg.innerHTML = svgContent;
+    }
+
+    // Render Box 1: Spread Engine
+    function renderSpreadEngine(curr, schedule) {
+      if (state.currentPeriod === 0) {
+        document.getElementById('calc-cash').innerText = 'N/A (Day of Issuance)';
+        document.getElementById('calc-expense').innerText = 'N/A (Day of Issuance)';
+        document.getElementById('calc-amort').innerText = 'N/A';
+        document.getElementById('spread-explainer-box').innerHTML = `
+          <span class="font-bold text-slate-800">Day of Issuance (${curr.date}):</span><br>
+          No interest has accrued yet. The carrying value is set to the present value of cash flows discounted at the market yield (${fmt(curr.carryingValue)}).
+        `;
+        return;
+      }
+
+      document.getElementById('calc-cash').innerText = fmt(curr.payment);
+      document.getElementById('calc-expense').innerText = fmt(curr.expense);
+      document.getElementById('calc-amort').innerText = fmt(curr.amortization);
+
+      const isDiscount = schedule[0].carryingValue < state.face;
+      const isPremium = schedule[0].carryingValue > state.face;
+      const prevCV = schedule[state.currentPeriod - 1].carryingValue;
+
+      if (isDiscount) {
+        document.getElementById('spread-explainer-box').innerHTML = `
+          <div class="flex items-center gap-1 font-bold text-red-900 mb-1">
+            <i class="fa-solid fa-arrow-trend-up text-red-600"></i> Why Carrying Value Rises:
+          </div>
+          The market cost of debt is <strong>${fmt(curr.expense)}</strong>, but the borrower only pays <strong>${fmt(curr.payment)}</strong> in cash.<br>
+          The unpaid difference of <strong class="text-red-700">${fmt(curr.amortization)}</strong> is <span class="underline font-bold">compounded into the principal</span>, lifting carrying value from ${fmt(prevCV)} up to ${fmt(curr.carryingValue)}.
+        `;
+      } else if (isPremium) {
+        document.getElementById('spread-explainer-box').innerHTML = `
+          <div class="flex items-center gap-1 font-bold text-blue-900 mb-1">
+            <i class="fa-solid fa-arrow-trend-down text-blue-600"></i> Why Carrying Value Declines:
+          </div>
+          The borrower pays <strong>${fmt(curr.payment)}</strong> in cash, but true market interest expense is only <strong>${fmt(curr.expense)}</strong>.<br>
+          The excess cash paid of <strong class="text-blue-700">${fmt(curr.amortization)}</strong> is an <span class="underline font-bold">early return of principal</span>, pulling carrying value from ${fmt(prevCV)} down to ${fmt(curr.carryingValue)}.
+        `;
+      } else {
+        document.getElementById('spread-explainer-box').innerHTML = `
+          <div class="flex items-center gap-1 font-bold text-emerald-900 mb-1">
+            <i class="fa-solid fa-equals text-emerald-600"></i> Par Bond Equilibrium:
+          </div>
+          Cash paid ($${fmt(curr.payment)}) exactly equals interest expense ($${fmt(curr.expense)}). Amortization is $0, and carrying value remains unchanged at ${fmt(state.face)}.
+        `;
+      }
+    }
+
+    // Render Box 2: Balance Sheet
+    function renderBalanceSheet(curr) {
+      document.getElementById('bs-face').innerText = fmt(state.face);
+      const isDiscount = curr.carryingValue < state.face;
+      const isPremium = curr.carryingValue > state.face;
+      const unamort = curr.unamortized;
+
+      const adjRow = document.getElementById('bs-adj-row');
+      const adjLabel = document.getElementById('bs-adj-label');
+      const adjVal = document.getElementById('bs-adj-val');
+      const netVal = document.getElementById('bs-net-val');
+      const insightText = document.getElementById('bs-insight-text');
+
+      if (isDiscount) {
+        adjRow.className = 'flex justify-between text-red-600';
+        adjLabel.innerText = 'Less: Discount on Bonds Payable:';
+        adjVal.innerText = `(${fmt(unamort)})`;
+        netVal.className = 'text-red-700';
+        netVal.innerText = fmt(curr.carryingValue);
+
+        insightText.innerHTML = `
+          <strong>Contra-Liability Shrinkage:</strong> Discount started at ${fmt(state.face - curr.carryingValue + curr.amortization)} and gets credited down each period. As the contra-liability shrinks to <strong>$0</strong> at maturity, the net carrying value expands to exact face value ($700,000).
+        `;
+      } else if (isPremium) {
+        adjRow.className = 'flex justify-between text-blue-600';
+        adjLabel.innerText = 'Add: Premium on Bonds Payable:';
+        adjVal.innerText = `+${fmt(unamort)}`;
+        netVal.className = 'text-blue-700';
+        netVal.innerText = fmt(curr.carryingValue);
+
+        insightText.innerHTML = `
+          <strong>Adjunct-Liability Shrinkage:</strong> Premium started above face value and gets debited down each period. As the adjunct account shrinks to <strong>$0</strong> at maturity, the net carrying value settles at exact face value ($700,000).
+        `;
+      } else {
+        adjRow.className = 'flex justify-between text-slate-400';
+        adjLabel.innerText = 'Discount / Premium:';
+        adjVal.innerText = '$0';
+        netVal.className = 'text-slate-900';
+        netVal.innerText = fmt(state.face);
+
+        insightText.innerHTML = `
+          At maturity (or at par), unamortized balance is exactly $0. Net carrying value is identical to Face Value ($700,000).
+        `;
+      }
+    }
+
+    // Render Box 3: Journal Entry
+    function renderJournalEntry(curr, schedule) {
+      document.getElementById('je-date').innerText = curr.date;
+      const jeContainer = document.getElementById('journal-entry-container');
+      const isDiscount = schedule[0].carryingValue < state.face;
+      const isPremium = schedule[0].carryingValue > state.face;
+
+      if (state.currentPeriod === 0) {
+        // Issuance entry
+        const price = curr.carryingValue;
+        if (isDiscount) {
+          const disc = state.face - price;
+          jeContainer.innerHTML = `
+            <div class="text-slate-500 font-semibold mb-1 text-[11px]">// Issuance at a Discount</div>
+            <div class="flex justify-between">
+              <span class="font-bold text-slate-900">Cash</span>
+              <span class="text-emerald-700 font-bold">${fmt(price)} (Dr)</span>
+            </div>
+            <div class="flex justify-between pl-3 text-red-600">
+              <span>Discount on Bonds Payable</span>
+              <span class="font-bold">${fmt(disc)} (Dr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-slate-700">
+              <span>Bonds Payable (Face)</span>
+              <span class="font-bold text-purple-700">${fmt(state.face)} (Cr)</span>
+            </div>
+          `;
+        } else if (isPremium) {
+          const prem = price - state.face;
+          jeContainer.innerHTML = `
+            <div class="text-slate-500 font-semibold mb-1 text-[11px]">// Issuance at a Premium</div>
+            <div class="flex justify-between">
+              <span class="font-bold text-slate-900">Cash</span>
+              <span class="text-emerald-700 font-bold">${fmt(price)} (Dr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-blue-600">
+              <span>Premium on Bonds Payable</span>
+              <span class="font-bold">${fmt(prem)} (Cr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-slate-700">
+              <span>Bonds Payable (Face)</span>
+              <span class="font-bold text-purple-700">${fmt(state.face)} (Cr)</span>
+            </div>
+          `;
+        } else {
+          jeContainer.innerHTML = `
+            <div class="text-slate-500 font-semibold mb-1 text-[11px]">// Issuance at Par</div>
+            <div class="flex justify-between">
+              <span class="font-bold text-slate-900">Cash</span>
+              <span class="text-emerald-700 font-bold">${fmt(price)} (Dr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-slate-700">
+              <span>Bonds Payable</span>
+              <span class="font-bold text-purple-700">${fmt(state.face)} (Cr)</span>
+            </div>
+          `;
+        }
+      } else {
+        // Periodic semiannual interest payment
+        if (isDiscount) {
+          jeContainer.innerHTML = `
+            <div class="text-slate-500 font-semibold mb-1 text-[11px]">// Semiannual Interest Payment</div>
+            <div class="flex justify-between">
+              <span class="font-bold text-purple-800">Interest Expense</span>
+              <span class="font-bold text-purple-700">${fmt(curr.expense)} (Dr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-red-600">
+              <span>Discount on Bonds Payable</span>
+              <span class="font-bold">${fmt(curr.amortization)} (Cr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-emerald-800">
+              <span>Cash</span>
+              <span class="font-bold">${fmt(curr.payment)} (Cr)</span>
+            </div>
+          `;
+        } else if (isPremium) {
+          jeContainer.innerHTML = `
+            <div class="text-slate-500 font-semibold mb-1 text-[11px]">// Semiannual Interest Payment</div>
+            <div class="flex justify-between">
+              <span class="font-bold text-purple-800">Interest Expense</span>
+              <span class="font-bold text-purple-700">${fmt(curr.expense)} (Dr)</span>
+            </div>
+            <div class="flex justify-between text-blue-600">
+              <span class="font-bold">Premium on Bonds Payable</span>
+              <span class="font-bold">${fmt(curr.amortization)} (Dr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-emerald-800">
+              <span>Cash</span>
+              <span class="font-bold">${fmt(curr.payment)} (Cr)</span>
+            </div>
+          `;
+        } else {
+          jeContainer.innerHTML = `
+            <div class="text-slate-500 font-semibold mb-1 text-[11px]">// Semiannual Interest Payment</div>
+            <div class="flex justify-between">
+              <span class="font-bold text-purple-800">Interest Expense</span>
+              <span class="font-bold text-purple-700">${fmt(curr.expense)} (Dr)</span>
+            </div>
+            <div class="flex justify-between pl-6 text-emerald-800">
+              <span>Cash</span>
+              <span class="font-bold">${fmt(curr.payment)} (Cr)</span>
+            </div>
+          `;
+        }
+      }
+    }
+
+    // Render Table
+    function renderTable(schedule) {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      schedule.forEach((row) => {
+        const tr = document.createElement('tr');
+        const isActive = row.period === state.currentPeriod;
+        tr.className = `cursor-pointer transition-colors ${isActive ? 'bg-amber-100/70 font-semibold border-l-4 border-[#041E42]' : 'hover:bg-slate-50'}`;
+        tr.onclick = () => {
+          state.currentPeriod = row.period;
+          document.getElementById('period-slider').value = state.currentPeriod;
+          updateVisualsOnly();
+        };
+
+        tr.innerHTML = `
+          <td class="px-4 py-2 font-mono ${isActive ? 'text-[#041E42] font-bold' : 'text-slate-700'}">
+            ${row.period === 0 ? 'Issuance' : `Period ${row.period}`} <span class="text-slate-400 text-[10px]">(${row.date})</span>
+          </td>
+          <td class="px-4 py-2 text-right font-mono text-slate-800">
+            ${row.period === 0 ? '—' : fmt(row.payment)}
+          </td>
+          <td class="px-4 py-2 text-right font-mono ${isActive ? 'text-purple-900 font-bold' : 'text-purple-700'}">
+            ${row.period === 0 ? '—' : fmt(row.expense)}
+          </td>
+          <td class="px-4 py-2 text-right font-mono ${row.period === 0 ? 'text-slate-400' : 'text-blue-700 font-semibold'}">
+            ${row.period === 0 ? '—' : fmt(row.amortization)}
+          </td>
+          <td class="px-4 py-2 text-right font-mono text-slate-600">
+            ${fmt(row.unamortized)}
+          </td>
+          <td class="px-4 py-2 text-right font-mono font-bold ${isActive ? 'text-[#041E42] text-sm' : 'text-slate-900'}">
+            ${fmt(row.carryingValue)}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      // Shared listeners
+      document.getElementById('input-face').addEventListener('input', updateAll);
+      document.getElementById('input-term').addEventListener('input', updateAll);
+      document.getElementById('toggle-straight-line').addEventListener('change', updateAll);
+      document.getElementById('toggle-exaggerated').addEventListener('change', updateAll);
+      document.getElementById('toggle-link-coupons').addEventListener('change', updateAll);
+
+      // Dual listeners
+      document.getElementById('input-bond1-coupon').addEventListener('input', updateAll);
+      document.getElementById('input-bond1-market').addEventListener('input', updateAll);
+      document.getElementById('input-bond2-coupon').addEventListener('input', updateAll);
+      document.getElementById('input-bond2-market').addEventListener('input', updateAll);
+
+      // Single listeners
+      document.getElementById('input-single-coupon').addEventListener('input', updateAll);
+      document.getElementById('input-single-market').addEventListener('input', updateAll);
+
+      // Period slider
+      document.getElementById('period-slider').addEventListener('input', (e) => {
+        state.currentPeriod = parseInt(e.target.value);
+        updateVisualsOnly();
+      });
+
+      // Default load
+      resetDefaults();
+    });
+  </script>
+</body>
+</html>
