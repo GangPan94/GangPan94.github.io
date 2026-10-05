@@ -20,6 +20,9 @@ author_profile: true
         {% if note.status %}
         <p class="page__meta"><i class="fa fa-fw fa-tag" aria-hidden="true"></i> {{ note.status }}</p>
         {% endif %}
+        {% if note.repo %}
+        <p class="page__meta"><i class="fab fa-fw fa-github" aria-hidden="true"></i> <a href="{{ note.repo }}" target="_blank" rel="noopener noreferrer">Open-source skill &amp; code</a></p>
+        {% endif %}
         {% if note.authors %}
         <p class="archive__item-authors"><strong>Authors:</strong> {{ note.authors | markdownify | remove: "<p>" | remove: "</p>" }}</p>
         {% endif %}
