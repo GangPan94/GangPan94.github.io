@@ -86,7 +86,7 @@ I apply neoclassical economic analysis to the study of corporate taxation, the s
 ## Service and Leadership
 * **Ad Hoc Referee**, Business Horizons (2025)
 * **Ad Hoc Referee**, AAA Annual Meeting (2024)
-* **Ad Hoc Referee**, Hawaii Accounting Research Conference (2025)
+* **Ad Hoc Referee**, Hawaii Accounting Research Conference (2025, 2027)
 * **Ad Hoc Referee**, Annual American Taxation Association Midyear Meeting (2025)
 * **Ad Hoc Referee**, Annual Conference of the Accounting and Economics Society (2025)
 * **Research committee member**, The University of Akron (2024-present)
