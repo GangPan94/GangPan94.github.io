@@ -24,3 +24,5 @@ package-lock.json
 
 # Ignore the local photo drop zone (gitignored by design — see _inbox-images/README.md)
 _inbox-images/
+# Ignore the local video drop zone (gitignored by design — personal media, never publish)
+_inbox-videos/
