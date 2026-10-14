@@ -66,7 +66,7 @@ redirect_from:
 * **Visiting Assistant Professor in Accounting**, The University of Akron, 2024
 
 ## Research Interests
-I apply neoclassical economic analysis to the study of corporate taxation, the structure and role of capital information intermediaries, the real effects of accounting, the accounting labor market, and firm strategies.
+I apply neoclassical economic analysis to the study of corporate taxation, the structure and role of capital information intermediaries, the efficiency implications of accounting, the accounting labor market, and firm strategies.
 
 ## Research
 <p class="cv-section-pointer">
@@ -89,6 +89,12 @@ I apply neoclassical economic analysis to the study of corporate taxation, the s
 * **Ad Hoc Referee**, Hawaii Accounting Research Conference (2025, 2027)
 * **Ad Hoc Referee**, Annual American Taxation Association Midyear Meeting (2025)
 * **Ad Hoc Referee**, Annual Conference of the Accounting and Economics Society (2025)
+* **Ad Hoc Referee**, IAS Midyear Meeting (2027)
+* **AACSB accreditation committee member**, The University of Akron (2026-present)
+* **Curriculum committee member**, The University of Akron (2026-present)
+* **Program promotion committee member**, The University of Akron (2026-present)
+* **Jenkins fellowship advisor**, The University of Akron (2026-present)
+* **Research Advancement Committee member**, College of Business, The University of Akron (2026-present)
 * **Research committee member**, The University of Akron (2024-present)
 * **Hiring committee member**, The University of Akron (2025)
 * **Student professional development committee member**, The University of Akron (2024-2025)
