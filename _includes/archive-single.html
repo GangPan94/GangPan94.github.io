@@ -27,7 +27,9 @@
     {% endif %}
 
     <h2 class="archive__item-title" itemprop="headline">
-      {% if post.link %}
+      {% if post.has_subpage == false or post.subpage == false %}
+        {{ title }}
+      {% elsif post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
         <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
@@ -57,7 +59,7 @@
     {% endif %}
 
     {% if post.excerpt and site.read_more != 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+    <p class="archive__item-excerpt" itemprop="description">{% if post.collection == 'publications' and post.ancova_decomposition == nil and post.event_study == nil %}<strong>Abstract: </strong>{% endif %}{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>
     {% elsif post.excerpt and site.read_more == 'enabled' %}
     <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
@@ -72,6 +74,14 @@
         {% endif %}
       </div>
     </div>
+    {% endif %}
+
+    {% if post.keywords %}
+    <p class="archive__item-keywords"><strong>Keywords:</strong> {{ post.keywords }}</p>
+    {% endif %}
+
+    {% if post.jel %}
+    <p class="archive__item-jel"><strong>JEL Classifications:</strong> {{ post.jel }}</p>
     {% endif %}
     
     {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}

@@ -66,6 +66,13 @@
   }
 }
 
+.archive__item-keywords,
+.archive__item-jel {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+  font-size: $type-size-6;
+}
+
 .archive__item-teaser {
   border-radius: $border-radius;
   overflow: hidden;
@@ -79,7 +86,7 @@
     box-shadow: 0 0 10px rgba(#000, 0.25);
   }
 
-  .archive__item-title {
+  .archive__item-title a {
     text-decoration: underline;
   }
 }
