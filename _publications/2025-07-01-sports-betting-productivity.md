@@ -1,7 +1,7 @@
 ---
 title: "Labor Productivity and Firm Strategic Response: Evidence from Sports Betting Legalization"
 collection: publications
-category: working_papers
+category: manuscripts
 layout: paper
 inline_content: true
 event_study: true

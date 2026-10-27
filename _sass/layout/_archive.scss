@@ -59,18 +59,17 @@
 
 .archive__item-excerpt {
   margin-top: 0;
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 
   & + p {
     text-indent: 0;
   }
 }
 
-.archive__item-keywords,
-.archive__item-jel {
+.archive__item-keywords {
   margin-top: 0.35em;
   margin-bottom: 0.35em;
-  font-size: $type-size-6;
+  font-size: $type-size-5;
 }
 
 .archive__item-teaser {

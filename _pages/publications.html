@@ -18,7 +18,7 @@ author_profile: true
       {% continue %}
     {% endif %}
     {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
+    {% for post in site.publications %}
       {% if post.category != category[0] %}
         {% continue %}
       {% endif %}
@@ -32,7 +32,7 @@ author_profile: true
     {% endfor %}
   {% endfor %}
 {% else %}
-  {% for post in site.publications reversed %}
+  {% for post in site.publications %}
     {% if post.published != false %}
       {% include archive-single.html %}
     {% endif %}
