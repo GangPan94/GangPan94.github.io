@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -259,21 +288,26 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#the-lost-in-the-middle-effect-attention-dilution" id="toc-the-lost-in-the-middle-effect-attention-dilution" class="nav-link" data-scroll-target="#the-lost-in-the-middle-effect-attention-dilution"><span class="header-section-number">4.1.1</span> The “Lost in the Middle” Effect &amp; Attention Dilution</a></li>
   <li><a href="#context-pollution-the-silent-performance-killer" id="toc-context-pollution-the-silent-performance-killer" class="nav-link" data-scroll-target="#context-pollution-the-silent-performance-killer"><span class="header-section-number">4.1.2</span> Context Pollution: The Silent Performance Killer</a></li>
-  <li><a href="#auto-compaction-when-the-window-fills-up" id="toc-auto-compaction-when-the-window-fills-up" class="nav-link" data-scroll-target="#auto-compaction-when-the-window-fills-up"><span class="header-section-number">4.1.3</span> Auto-Compaction: When the Window Fills Up</a></li>
+  <li><a href="#context-compaction-managing-long-sessions" id="toc-context-compaction-managing-long-sessions" class="nav-link" data-scroll-target="#context-compaction-managing-long-sessions"><span class="header-section-number">4.1.3</span> Context Compaction: Managing Long Sessions</a></li>
   </ul></li>
   <li><a href="#sec-memory-hierarchy" id="toc-sec-memory-hierarchy" class="nav-link" data-scroll-target="#sec-memory-hierarchy"><span class="header-section-number">4.2</span> The Memory Hierarchy in Agentic Workflows</a>
   <ul class="collapse">
   <li><a href="#level-1-ephemeral-working-memory-the-chat-window" id="toc-level-1-ephemeral-working-memory-the-chat-window" class="nav-link" data-scroll-target="#level-1-ephemeral-working-memory-the-chat-window"><span class="header-section-number">4.2.1</span> Level 1: Ephemeral Working Memory (The Chat Window)</a></li>
   <li><a href="#level-2-task-memory-quality_reportsplans" id="toc-level-2-task-memory-quality_reportsplans" class="nav-link" data-scroll-target="#level-2-task-memory-quality_reportsplans"><span class="header-section-number">4.2.2</span> Level 2: Task Memory (<code>quality_reports/plans/</code>)</a></li>
   <li><a href="#level-3-persistent-project-memory-gemini.md-memory.md" id="toc-level-3-persistent-project-memory-gemini.md-memory.md" class="nav-link" data-scroll-target="#level-3-persistent-project-memory-gemini.md-memory.md"><span class="header-section-number">4.2.3</span> Level 3: Persistent Project Memory (<code>GEMINI.md</code> &amp; <code>MEMORY.md</code>)</a></li>
-  <li><a href="#the-rule-budget-why-gemini.md-must-stay-lean" id="toc-the-rule-budget-why-gemini.md-must-stay-lean" class="nav-link" data-scroll-target="#the-rule-budget-why-gemini.md-must-stay-lean"><span class="header-section-number">4.2.4</span> The Rule Budget: Why <code>GEMINI.md</code> Must Stay Lean</a></li>
+  <li><a href="#the-rule-budget-progressive-disclosure" id="toc-the-rule-budget-progressive-disclosure" class="nav-link" data-scroll-target="#the-rule-budget-progressive-disclosure"><span class="header-section-number">4.2.4</span> The Rule Budget &amp; Progressive Disclosure</a></li>
   </ul></li>
   <li><a href="#sec-caching-economics" id="toc-sec-caching-economics" class="nav-link" data-scroll-target="#sec-caching-economics"><span class="header-section-number">4.3</span> Context Caching and API Economics</a>
   <ul class="collapse">
   <li><a href="#how-context-caching-works" id="toc-how-context-caching-works" class="nav-link" data-scroll-target="#how-context-caching-works"><span class="header-section-number">4.3.1</span> How Context Caching Works</a></li>
   <li><a href="#the-two-golden-rules-of-cache-efficiency" id="toc-the-two-golden-rules-of-cache-efficiency" class="nav-link" data-scroll-target="#the-two-golden-rules-of-cache-efficiency"><span class="header-section-number">4.3.2</span> The Two Golden Rules of Cache Efficiency</a></li>
+  <li><a href="#single-loop-cache-warmth-vs.-multi-agent-cold-starts" id="toc-single-loop-cache-warmth-vs.-multi-agent-cold-starts" class="nav-link" data-scroll-target="#single-loop-cache-warmth-vs.-multi-agent-cold-starts"><span class="header-section-number">4.3.3</span> Single-Loop Cache Warmth vs.&nbsp;Multi-Agent Cold Starts</a></li>
   </ul></li>
-  <li><a href="#sec-context-isolation" id="toc-sec-context-isolation" class="nav-link" data-scroll-target="#sec-context-isolation"><span class="header-section-number">4.4</span> Looking Ahead: The Multi-Agent Solution to Context Limits</a></li>
+  <li><a href="#sec-context-isolation" id="toc-sec-context-isolation" class="nav-link" data-scroll-target="#sec-context-isolation"><span class="header-section-number">4.4</span> Looking Ahead: Single-Loop Default vs.&nbsp;When Subagents “Earn Their Keep”</a>
+  <ul class="collapse">
+  <li><a href="#the-single-loop-default" id="toc-the-single-loop-default" class="nav-link" data-scroll-target="#the-single-loop-default"><span class="header-section-number">4.4.1</span> The Single-Loop Default</a></li>
+  <li><a href="#the-three-part-subagent-justification-test" id="toc-the-three-part-subagent-justification-test" class="nav-link" data-scroll-target="#the-three-part-subagent-justification-test"><span class="header-section-number">4.4.2</span> The Three-Part Subagent Justification Test</a></li>
+  </ul></li>
   <li><a href="#summary-context-memory-checklist-for-scholars" id="toc-summary-context-memory-checklist-for-scholars" class="nav-link" data-scroll-target="#summary-context-memory-checklist-for-scholars"><span class="header-section-number">4.5</span> Summary: Context &amp; Memory Checklist for Scholars</a></li>
   </ul>
 </nav>
@@ -302,13 +336,32 @@ ul.task-list li input[type="checkbox"] {
 
 <p>In casual chatbot usage, the context window is often treated as a simple counter: “how long can my conversation be?” In <strong>agentic research workflows</strong>, however, the context window is the central operating bottleneck.</p>
 <p>Understanding how working memory functions—and how persistent memory is maintained across sessions—is what separates a fragile setup from a robust, production-grade research system.</p>
-<p>This chapter explores how the context window operates as working memory, why context pollution degrades agent performance, how the <strong>three-tier memory hierarchy</strong> protects long-term projects, and how <strong>multi-agent isolation</strong> keeps attention sharp on large tasks.</p>
+<p>This chapter explores how the context window operates as working memory, why context pollution degrades agent performance, how the <strong>three-tier memory hierarchy</strong> protects long-term projects, and why modern architectures default to <strong>single-loop progressive disclosure</strong> before selectively deploying <strong>isolated subagents</strong>.</p>
 <hr>
 <section id="sec-context-window" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-context-window"><span class="header-section-number">4.1</span> The Context Window: The Agent’s Working Memory</h2>
-<p>The <strong>context window</strong> is the maximum number of tokens an LLM can receive and process in a single inference call. It represents the agent’s total <strong>working memory</strong>.</p>
+<p>The <strong>context window</strong> is the maximum number of tokens an LLM can receive and process in a single inference call. It represents the agent’s total <strong>working memory</strong> during an active session.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The Hardware Analogy: The Context Window as “RAM”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In AI systems design, researchers and engineers frequently use computer hardware as an intuitive conceptual metaphor (popularized by Andrej Karpathy’s “LLM OS” model):</p>
+<ul>
+<li><strong>The LLM is the CPU:</strong> The reasoning engine executing instructions and choosing actions.</li>
+<li><strong>The Context Window is “RAM”:</strong> Fast, volatile working memory. Everything loaded into the active prompt is immediately accessible, but it disappears the moment the session ends, resets, or compacts.</li>
+<li><strong>Disk Files are Secondary Storage (SSD/Hard Drive):</strong> Slower to access via tool calls (like reading a file from disk), but persistent and permanent across sessions.</li>
+</ul>
+<p>While this analogy is helpful for building intuition about resource scarcity, remember its technical limit: physical computer RAM provides uniform <span class="math inline">\(O(1)\)</span> random access to any memory address, whereas an LLM’s attention is <strong>non-uniform</strong>—tokens in the middle of a large prompt are recalled far less reliably than those at the edges (as detailed below).</p>
+</div>
+</div>
 <pre><code>┌────────────────────────────────────────────────────────────────────────┐
-│                        THE CONTEXT WINDOW (RAM)                        │
+│               THE ACTIVE CONTEXT WINDOW (Working Memory)               │
 │                                                                        │
 │  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────┐  │
 │  │ System Rules     │  │ Workspace Files  │  │ Conversation &amp; Logs  │  │
@@ -322,7 +375,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Research has documented a consistent, counter-intuitive quirk in how large language models handle long prompts: <strong>their attention follows a U-shaped curve</strong> (<a href="https://arxiv.org/abs/2307.03172">Liu et al., 2024</a>). Information placed at the very beginning (primacy effect) or the very end (recency effect) of a session is recalled and followed reliably, but instructions and details buried in the middle are frequently missed.</p>
 <p>Furthermore, long-context benchmarks like RULER (<a href="https://arxiv.org/abs/2404.06654">Hsieh et al., 2024</a>) show that while models can easily find simple keywords in a huge document (“needle-in-a-haystack”), their ability to perform <strong>multi-step reasoning, synthesis, or strict rule-following</strong> (such as <em>“never modify column X”</em> or <em>“keep equations under 3 lines”</em>) decays noticeably as the conversation grows beyond 50,000–100,000 tokens.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -331,7 +384,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>While the exact root causes remain an active area of investigation among AI researchers, the primary intuitive factors include:</p>
 <ul>
@@ -348,11 +401,25 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="context-pollution-the-silent-performance-killer"><span class="header-section-number">4.1.2</span> Context Pollution: The Silent Performance Killer</h3>
 <p>The most common reason an agentic workflow starts behaving erratically or ignoring instructions is <strong>context pollution</strong>. Context pollution occurs when the active conversation becomes cluttered with:</p>
 <ul>
-<li>Giant terminal error logs (e.g., dumping 500 lines of raw stack traces).</li>
-<li>Repeated failed attempts to edit a file without clearing the history.</li>
+<li>Giant terminal error logs (e.g., dumping 500 lines of raw compiler or package installation stack traces).</li>
+<li>Repeated failed attempts to edit a file without rolling back or clearing the history.</li>
 <li>Irrelevant files read into the context that have no bearing on the current task.</li>
 <li>Rambling back-and-forth conversational chatter.</li>
 </ul>
+<section id="the-telephone-game-handoff-context-degradation" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="the-telephone-game-handoff-context-degradation"><span class="header-section-number">4.1.2.1</span> The “Telephone Game” (Handoff Context Degradation)</h4>
+<p>A subtle but pervasive form of context degradation occurs during agent-to-subagent handoffs—a failure mode identified by Anthropic’s Applied AI team as <strong>the “Telephone Game”</strong> (<a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic, 2026</a>).</p>
+<p>When an orchestrator attempts to break a task apart and hand pieces to specialized subagents, it must summarize and re-prompt the user’s intent:</p>
+<pre><code>User Prompt (with critical research nuances)
+      │
+      ▼
+Orchestrator Agent (compresses &amp; paraphrases)
+      │
+      ├───────────────────────────────┐
+      ▼                               ▼
+Subagent A ("Telephone" Handoff 1)   Subagent B ("Telephone" Handoff 2)
+[Lost: negative constraints]         [Lost: clustering specification]</code></pre>
+<p>In academic and empirical workflows, user instructions frequently carry delicate negative constraints (<em>“do not re-estimate Table 2”</em>, <em>“preserve clustering at the firm level”</em>, or <em>“keep equations under 3 lines”</em>). During multi-hop agent handoffs, these critical nuances are often dropped or warped in translation. Dividing work across a swarm of subagents frequently destroys context rather than preserving it.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -363,20 +430,38 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Treat the context window as a precious resource. A concise, focused 10,000-token session with clear instructions will consistently outperform a bloated 150,000-token session filled with dead-end debugging attempts.</p>
+<p>Treat the context window as a precious resource. A concise, focused 10,000-token session with clear instructions will consistently outperform a bloated 150,000-token session filled with dead-end debugging attempts or lossy multi-agent handoffs.</p>
 </div>
 </div>
 </section>
-<section id="auto-compaction-when-the-window-fills-up" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored" data-anchor-id="auto-compaction-when-the-window-fills-up"><span class="header-section-number">4.1.3</span> Auto-Compaction: When the Window Fills Up</h3>
+</section>
+<section id="context-compaction-managing-long-sessions" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="context-compaction-managing-long-sessions"><span class="header-section-number">4.1.3</span> Context Compaction: Managing Long Sessions</h3>
 <p>As you work through an extensive research task, your conversation history accumulates thousands of tokens of code edits, terminal outputs, file reads, and intermediate back-and-forth dialogue.</p>
-<section id="what-is-auto-compaction" class="level4" data-number="4.1.3.1">
-<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="what-is-auto-compaction"><span class="header-section-number">4.1.3.1</span> What is Auto-Compaction?</h4>
-<p><strong>Auto-compaction</strong> (or context compression) is an automated memory-management process. When an active session approaches the model’s context capacity, the agent harness intercepts the conversation, uses a summarization model to condense earlier dialogue and prune bulky tool outputs, replaces the long history with a structured summary, and seamlessly continues the session.</p>
+<section id="what-is-context-compaction" class="level4" data-number="4.1.3.1">
+<h4 data-number="4.1.3.1" class="anchored" data-anchor-id="what-is-context-compaction"><span class="header-section-number">4.1.3.1</span> What is Context Compaction?</h4>
+<p><strong>Context compaction</strong> is a memory-management process that condenses conversation history into a structured summary to prevent hitting context limits. In Google Antigravity, compaction operates in two complementary modes:</p>
+<ol type="1">
+<li><strong>Automatic Compaction (Auto-Compaction):</strong> When context utilization approaches capacity (typically <strong>~80%–90% of the active context window</strong>), the background harness intercepts the session, summarizes earlier conversational turns with a fast model, prunes bulky tool outputs, and seamlessly continues the thread.</li>
+<li><strong>Manual Compaction (<code>/compact</code>):</strong> You can proactively run the <code>/compact</code> slash command at any milestone transition (e.g., right after data cleaning is verified, before launching regressions) to clean up working memory on your own terms.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>The Transcript Archive: Compaction is Not Deletion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While compaction summarizes older turns out of the <strong>active prompt buffer</strong>, Antigravity preserves the full verbatim record on disk in the session directory (<code>.system_generated/logs/transcript.jsonl</code> and <code>transcript_full.jsonl</code>). Full tool outputs, terminal logs, and previous conversational turns remain permanently accessible on disk for auditing and inspection.</p>
+</div>
+</div>
 </section>
 <section id="the-trade-offs-pros-and-cons" class="level4" data-number="4.1.3.2">
 <h4 data-number="4.1.3.2" class="anchored" data-anchor-id="the-trade-offs-pros-and-cons"><span class="header-section-number">4.1.3.2</span> The Trade-Offs: Pros and Cons</h4>
-<p>While auto-compaction is essential for long-running workflows, it comes with important trade-offs:</p>
+<p>While context compaction is essential for long-running workflows, it comes with important trade-offs:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 50%">
@@ -391,28 +476,59 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td><strong>Uninterrupted Workflows:</strong> Prevents hard “Context Exceeded” errors, allowing complex, multi-hour research tasks to continue in a single thread.</td>
-<td><strong>Lossy Information Loss:</strong> Fine details—such as exact line numbers, raw compiler logs, and nuanced negative constraints—are summarized away.</td>
+<td><strong>Lossy Information Loss:</strong> Fine details—such as exact line numbers, raw compiler logs, and nuanced negative constraints—are summarized away from active memory.</td>
 </tr>
 <tr class="even">
 <td><strong>Restored Attention Focus:</strong> Strips out hundreds of lines of dead-end debugging traces, reducing attention dilution and sharpening the model’s focus.</td>
 <td><strong>Context Drift &amp; Amnesia:</strong> Early conversational decisions or subtle econometric notation conventions agreed upon 20 turns ago can be forgotten.</td>
 </tr>
 <tr class="odd">
-<td><strong>Lower Cost &amp; Latency:</strong> Smaller active prompt sizes reduce per-turn token consumption and speed up inference times.</td>
+<td><strong>Lower Cost &amp; Latency:</strong> Smaller active prompt sizes reduce per-turn token consumption, preserve KV cache efficiency, and speed up inference times.</td>
 <td><strong>False Sense of Security:</strong> Users may mistakenly assume the agent retains verbatim memory of everything discussed earlier in the session.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="how-auto-compaction-works-in-google-antigravity" class="level4" data-number="4.1.3.3">
-<h4 data-number="4.1.3.3" class="anchored" data-anchor-id="how-auto-compaction-works-in-google-antigravity"><span class="header-section-number">4.1.3.3</span> How Auto-Compaction Works in Google Antigravity</h4>
-<p>To handle long sessions without crashing, Google Antigravity uses a built-in context compaction pipeline, which our academic workflow pairs with disk-based persistence:</p>
+<section id="how-context-compaction-works-in-google-antigravity" class="level4" data-number="4.1.3.3">
+<h4 data-number="4.1.3.3" class="anchored" data-anchor-id="how-context-compaction-works-in-google-antigravity"><span class="header-section-number">4.1.3.3</span> How Context Compaction Works in Google Antigravity</h4>
+<p>To ensure critical task details survive compaction, Antigravity coordinates context compaction through a built-in pipeline paired with <strong>lifecycle hooks</strong>:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>What is a Lifecycle Hook?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>lifecycle hook</strong> is an event-driven script that runs automatically on your computer when a specific platform trigger occurs (such as right before context compaction, or after a tool runs). Unlike LLM instructions—which can be summarized away or forgotten during long sessions—hooks are deterministic code running outside the model’s context window. We explore how to configure custom hooks in depth in <a href="chapters/05-building-blocks.html#hooks---automated-enforcement">Chapter 5</a>.</p>
+</div>
+</div>
 <ol type="1">
-<li><strong>Native Token Monitoring:</strong> In the background, the Antigravity harness continuously tracks the session’s token consumption. When context utilization approaches capacity (typically <strong>~80%–90% of the active context window</strong>), the harness automatically triggers an internal compaction pass.</li>
-<li><strong>Summarization &amp; Output Truncation:</strong> The harness sends earlier conversational turns to a fast model to produce a structured summary. Simultaneously, bulky tool outputs (such as massive terminal stack traces and large file reads) are truncated or pruned.</li>
-<li><strong>Prompt Buffer Replacement:</strong> The full historical transcript in the active prompt is replaced with this concise summary, while keeping top-level system instructions, <code>GEMINI.md</code> rules, and the most recent turns intact.</li>
-<li><strong>State Restoration via Workflow Hooks:</strong> Because raw summarization is lossy, our template’s lifecycle hooks (<code>context-monitor.py</code> and <code>post-compact-restore.py</code>) monitor context health, ensure active plans (<code>quality_reports/plans/</code>) are saved, and automatically re-inject the current task checklist into the fresh context so the agent never loses its place.</li>
+<li><strong>Token Tracking &amp; Triggering:</strong> The harness continuously tracks token consumption. Compaction is triggered automatically at high thresholds or on demand via <code>/compact</code>.</li>
+<li><strong>Pre-Compaction State Capture (<code>PreCompact</code> Hook):</strong> Before the history is summarized, the <code>pre-compact.py</code> lifecycle hook snapshots the active implementation plan in <code>quality_reports/plans/</code> and records pending task states.</li>
+<li><strong>Summarization &amp; Output Truncation:</strong> Earlier dialogue is condensed into a structured summary block. Simultaneously, bulky tool outputs (stack traces, large file reads) are truncated in the active prompt buffer.</li>
+<li><strong>Prompt Buffer Replacement:</strong> The active prompt history is replaced with the structured summary, preserving system instructions (<code>GEMINI.md</code>) and the most recent interaction turns.</li>
+<li><strong>State Restoration (<code>PreInvocation</code> Hook):</strong> On the first turn following compaction, <code>post-compact-restore.py</code> detects that compaction occurred and injects an ephemeral message re-anchoring the active plan checklist, ensuring zero task disorientation.</li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The Context Toolbelt: Compact, Clear, and Rewind
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong><code>/compact</code></strong>: Use when continuing the same task after completing a major milestone to refresh working memory.</li>
+<li><strong><code>/clear</code></strong>: Use when switching to a completely unrelated task within the same project to start with a fresh prompt buffer.</li>
+<li><strong><code>/rewind</code> / <code>/fork</code></strong>: Use in the CLI or App to roll back a dead-end debugging rabbit hole rather than carrying polluted turns into a compaction cycle.</li>
+</ul>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -432,19 +548,19 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="sec-memory-hierarchy" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="sec-memory-hierarchy"><span class="header-section-number">4.2</span> The Memory Hierarchy in Agentic Workflows</h2>
-<p>To solve the limitations of ephemeral context windows, a well-designed agentic system uses a <strong>three-tier memory architecture</strong>, directly mirroring the memory hierarchy of computer hardware:</p>
+<p>To solve the limitations of ephemeral context windows, a well-designed agentic system uses a <strong>three-tier memory architecture</strong>. This structure is conceptually modeled on the familiar memory hierarchy in computer hardware:</p>
 <pre><code>┌────────────────────────────────────────────────────────────────────────┐
-│ LEVEL 1: Ephemeral Working Memory (RAM)                                │
-│ Active Context Window • Chat messages • Current file buffers          │
+│ LEVEL 1: Ephemeral Working Memory (Hardware Analogy: Volatile RAM)     │
+│ Active Context Window • In-flight chat messages • Open file buffers    │
 │ Fast, immediate, but wiped clean on session reset or compaction.       │
 ├────────────────────────────────────────────────────────────────────────┤
-│ LEVEL 2: Task Memory (Scratchpad / SSD)                                │
+│ LEVEL 2: Task Memory (Hardware Analogy: Local SSD / Scratchpad)        │
 │ quality_reports/plans/ • Implementation plans • Scratch scripts        │
 │ Preserves structured goals and step-by-step checklists across turns.   │
 ├────────────────────────────────────────────────────────────────────────┤
-│ LEVEL 3: Persistent Project Memory (Hard Drive)                       │
+│ LEVEL 3: Persistent Project Memory (Hardware Analogy: Hard Drive)      │
 │ GEMINI.md • MEMORY.md • Session Logs • Git History                     │
-│ Endures across days, weeks, and completely fresh sessions.            │
+│ Endures permanently across days, weeks, and completely fresh sessions. │
 └────────────────────────────────────────────────────────────────────────┘</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -456,7 +572,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This three-tier hierarchy directly mirrors the knowledge architecture articulated by AI researcher Andrej Karpathy in his <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"><em>LLM Wiki</em></a> framework: rather than treating the AI as a stateless chatbot that rediscovers facts from scratch on every prompt, the agent incrementally maintains a persistent, compounding codebase of Markdown files on disk. The active chat session is ephemeral RAM; your disk files are the permanent knowledge base.</p>
+<p>This three-tier hierarchy mirrors the knowledge architecture articulated by AI researcher Andrej Karpathy in his <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f"><em>LLM Wiki</em></a> framework: rather than treating the AI as a stateless chatbot that rediscovers facts from scratch on every prompt, the agent incrementally maintains a persistent, compounding codebase of Markdown files on disk. The active chat session is ephemeral working memory; your disk files are the permanent knowledge base.</p>
 </div>
 </div>
 <section id="level-1-ephemeral-working-memory-the-chat-window" class="level3" data-number="4.2.1">
@@ -488,16 +604,95 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 </section>
-<section id="the-rule-budget-why-gemini.md-must-stay-lean" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="the-rule-budget-why-gemini.md-must-stay-lean"><span class="header-section-number">4.2.4</span> The Rule Budget: Why <code>GEMINI.md</code> Must Stay Lean</h3>
+<section id="the-rule-budget-progressive-disclosure" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="the-rule-budget-progressive-disclosure"><span class="header-section-number">4.2.4</span> The Rule Budget &amp; Progressive Disclosure</h3>
 <p>Because <code>GEMINI.md</code> and always-on rules are prepended to the context on <strong>every single turn</strong>, they consume working memory and attention.</p>
 <p>Empirical testing across LLMs reveals a consistent <strong>rule budget</strong>:</p>
 <ul>
 <li>An LLM reliably follows approximately <strong>100 to 150 custom instructions</strong>.</li>
 <li>If your <code>GEMINI.md</code> file balloons into a 600-line manual, the model begins suffering from instruction fatigue and will silently ignore rules.</li>
-<li><strong>Solution:</strong> Keep <code>GEMINI.md</code> under ~120 lines for top-level principles, and move specific domain rules into <strong>path-scoped rules</strong> (which only load when editing matching files like <code>.R</code> or <code>.tex</code>).</li>
+<li><strong>Solution:</strong> Keep <code>GEMINI.md</code> under ~120 lines for top-level principles, and move specialized domain guidelines into <strong>path-scoped rules</strong> (which only load when editing matching files like <code>.R</code> or <code>.tex</code>).</li>
 </ul>
+<section id="the-architecture-of-progressive-disclosure" class="level4" data-number="4.2.4.1">
+<h4 data-number="4.2.4.1" class="anchored" data-anchor-id="the-architecture-of-progressive-disclosure"><span class="header-section-number">4.2.4.1</span> The Architecture of Progressive Disclosure</h4>
+<p>In production agent design, modern systems manage the rule budget through <strong>Progressive Disclosure</strong>—an architectural principle championed by Anthropic in their engineering of Claude Code (<a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic, 2026</a>):</p>
+<blockquote class="blockquote">
+<p>Instead of front-loading every rule, workflow instruction, and tool definition into the system prompt upfront, the agent is initialized with a minimal surface and discovers or loads detailed procedures <strong>just-in-time</strong> as task requirements unfold.</p>
+</blockquote>
+<p>Anthropic demonstrated that adopting progressive disclosure allowed them to <strong>reduce their core system prompt by over 80%</strong>, recovering massive amounts of attention and context budget.</p>
+<pre><code>┌────────────────────────────────────────────────────────────────────────┐
+│                        PROGRESSIVE DISCLOSURE                          │
+│                                                                        │
+│  TIER 1: Lean Constitutional Core (~100 lines)                         │
+│  GEMINI.md / System Rules (Always in context; high-level standards)   │
+│                                  │                                     │
+│                                  ▼ on-demand invocation                │
+│  TIER 2: Modular Skills (SKILL.md)                                     │
+│  Loaded into active context ONLY when specific task triggers           │
+│                                  │                                     │
+│                                  ▼ dynamic parameter resolution        │
+│  TIER 3: Deferred Tool Search &amp; Loading                                │
+│  Lightweight tool manifests; full tool schemas fetched on call         │
+└────────────────────────────────────────────────────────────────────────┘</code></pre>
+<p>In Google Antigravity, this three-tier disclosure is built directly into the harness architecture to keep the model’s active working memory uncluttered:</p>
+<div data-tbl-colwidths="[8, 14, 15, 13, 50]">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tier</th>
+<th style="text-align: left;">Layer</th>
+<th style="text-align: left;">Where It Lives</th>
+<th style="text-align: left;">When Loaded</th>
+<th style="text-align: left;">Research Purpose &amp; Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tier 1</strong></td>
+<td style="text-align: left;"><strong>Constitutional Core</strong></td>
+<td style="text-align: left;"><code>GEMINI.md</code> &amp; path rules</td>
+<td style="text-align: left;"><strong>Always On</strong><br><em>(Every prompt turn)</em></td>
+<td style="text-align: left;">Non-negotiable project boundaries, coding conventions, and repository layout (e.g., <em>“XeLaTeX only”</em>, <em>“verify numbers against logs”</em>, <em>“keep files clean”</em>).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Tier 2</strong></td>
+<td style="text-align: left;"><strong>Modular Skills</strong></td>
+<td style="text-align: left;"><code>.agents/skills/*/SKILL.md</code></td>
+<td style="text-align: left;"><strong>Just-in-Time</strong><br><em>(Only when invoked)</em></td>
+<td style="text-align: left;">Deep, multi-page procedural manuals and estimation recipes (e.g., DiD protocols in <code>r-econometrics</code>, 10-K parsing in <code>sec-edgar</code>, or BibTeX citation standards).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tier 3</strong></td>
+<td style="text-align: left;"><strong>Deferred Tools</strong></td>
+<td style="text-align: left;">MCP &amp; built-in tool schemas</td>
+<td style="text-align: left;"><strong>On Demand</strong><br><em>(When tool is called)</em></td>
+<td style="text-align: left;">Detailed parameter definitions and API contracts. The model sees compact tool names first; heavy JSON schemas are retrieved only when the tool is executed.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Why Progressive Disclosure Matters for Researchers
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you bundled all econometric estimation guidelines, LaTeX formatting manuals, and 40+ tool schemas directly into <code>GEMINI.md</code>, your agent would start every session with <strong>25,000+ tokens of static overhead</strong>. Progressive disclosure keeps the initial prompt under <strong>~1,500 tokens</strong>, leaving over 95% of the model’s attention budget free for your actual data, code, and econometric derivations.</p>
+</div>
+</div>
 <hr>
+</section>
 </section>
 </section>
 <section id="sec-caching-economics" class="level2" data-number="4.3">
@@ -515,27 +710,98 @@ ul.task-list li input[type="checkbox"] {
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="the-two-golden-rules-of-cache-efficiency"><span class="header-section-number">4.3.2</span> The Two Golden Rules of Cache Efficiency</h3>
 <p>To maximize context caching in your research workflows, keep two principles in mind:</p>
 <ol type="1">
-<li><strong>Keep the Conversation Moving (Cache TTL):</strong> Prompt caches are temporary. On modern provider backends, conversational caches use a Time-To-Live (TTL)—typically <strong>5 minutes</strong> for active interactive turns. Each continuous turn keeps the cache hot. If you pause and leave a session idle for an extended period, the cache expires, meaning your next prompt will incur the extra latency and token cost to re-warm the cache from scratch.</li>
-<li><strong>Preserve Prefix Stability:</strong> Context caching matches the <strong>exact token prefix</strong> starting from the very first token in the prompt. If you edit base configuration files like <code>GEMINI.md</code> or modify top-level system rules midway through a session, the prefix changes, invalidating the cached activations. Keeping base rules stable and placing task-specific details in plan or script files preserves unbroken cache hits.</li>
+<li><p><strong>Maintain Session Momentum (The 1-Hour Cache Window):</strong> Prompt caches are temporary. On modern provider backends and subscription tools (including Google Antigravity and Claude Code), conversational prompt caches typically use a <strong>1-hour Time-To-Live (TTL)</strong>.</p>
+<p>Each continuous turn keeps the cache hot. A 1-hour window gives you ample breathing room to step away, review regression logs, or read a paper draft without the cache going cold. However, if you leave a session idle for several hours or overnight, the server evicts the cache, meaning your next prompt will incur a one-time cold-start latency pass to re-warm the context from scratch.</p></li>
+<li><p><strong>Preserve Prefix Stability:</strong> Context caching matches the <strong>exact token prefix</strong> starting from the very first token in the prompt. If you edit base configuration files like <code>GEMINI.md</code> or modify top-level system rules midway through a session, the prefix changes, invalidating the cached activations. Keeping base rules stable and placing task-specific details in plan or script files preserves unbroken cache hits.</p></li>
 </ol>
+</section>
+<section id="single-loop-cache-warmth-vs.-multi-agent-cold-starts" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="single-loop-cache-warmth-vs.-multi-agent-cold-starts"><span class="header-section-number">4.3.3</span> Single-Loop Cache Warmth vs.&nbsp;Multi-Agent Cold Starts</h3>
+<p>Context caching introduces a profound, counter-intuitive insight into agentic performance: <strong>a single, continuous agent loop is often twice as fast and substantially cheaper than a sprawling multi-agent system</strong>.</p>
+<ul>
+<li><strong>Single Loop (Hot Cache):</strong> A single agent iterating on a task repeatedly queries the model with an incremental turn appended to an already-cached prompt prefix. The base system rules, workspace index, and historical steps are retrieved from the provider’s KV cache at a <strong>75%–90% cost discount</strong> and with instantaneous <strong>2–3 second response latencies</strong>.</li>
+<li><strong>Multi-Agent Swarm (Cold Starts &amp; Cache Misses):</strong> When an orchestrator spins up multiple distinct subagents, each subagent initializes its own brand-new context window. Each separate context incurs a cold-cache penalty, pays full price for initial prompt tokens, and adds cumulative round-trip latency. In real-world enterprise deployments, collapsing redundant subagent hierarchies into a single loop running with progressive disclosure cut execution times by <strong>~50%</strong> while noticeably decreasing overall token spend (<a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic, 2026</a>).</li>
+</ul>
 <hr>
 </section>
 </section>
 <section id="sec-context-isolation" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-context-isolation"><span class="header-section-number">4.4</span> Looking Ahead: The Multi-Agent Solution to Context Limits</h2>
-<p>As research projects grow in complexity, you will encounter large tasks—such as reviewing a 50-page manuscript for econometric identification, grammar, and citations simultaneously—where asking a single prompt to do everything causes severe attention splitting.</p>
-<p>In <a href="chapters/04-building-blocks.html#agents---specialized-reviewers">Chapter 6 (The Building Blocks)</a>, we will explore how agentic workflows solve this through <strong>multi-agent context isolation</strong>: rather than overloading a single conversation window, the system dispatches specialized subagents in parallel—each operating within its own clean, 100% focused context window.</p>
+<h2 data-number="4.4" class="anchored" data-anchor-id="sec-context-isolation"><span class="header-section-number">4.4</span> Looking Ahead: Single-Loop Default vs.&nbsp;When Subagents “Earn Their Keep”</h2>
+<p>When developers and academics first discover agentic workflows, there is an instinctive urge to over-engineer: creating an “intro agent”, a “literature agent”, a “regression agent”, a “proofreading agent”, and an “orchestrator agent” to manage them all.</p>
+<p>This mirrors what software engineers call <strong>Conway’s Law</strong> (<a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop">Anthropic, 2026</a>): teams divide multi-agent systems to reflect human organizational charts or mental silos rather than the optimal mathematical and computational architecture.</p>
+<section id="the-single-loop-default" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="the-single-loop-default"><span class="header-section-number">4.4.1</span> The Single-Loop Default</h3>
+<p>For the vast majority of research tasks, <strong>your default architecture should be a single, open-ended agent loop that maintains and revises its own plan.</strong></p>
+<p>A single agent loop equipped with the following capabilities consistently outperforms a swarm of subagents:</p>
+<ul>
+<li><strong>Disk-based task memory:</strong> An active implementation plan written to disk (<code>quality_reports/plans/task_plan.md</code>).</li>
+<li><strong>Progressive disclosure:</strong> On-demand skills loaded dynamically only when needed.</li>
+<li><strong>Direct environment tools:</strong> Continuous read/write workspace and terminal execution tools.</li>
+</ul>
+<p>By keeping execution in a single thread, the agent maintains unbroken ownership of the user’s intent, avoids handoff degradation (“the Telephone Game”), preserves hot context caches, and can dynamically adjust its hypothesis when an econometric script fails without having to coordinate across three intermediate agents.</p>
+</section>
+<section id="the-three-part-subagent-justification-test" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="the-three-part-subagent-justification-test"><span class="header-section-number">4.4.2</span> The Three-Part Subagent Justification Test</h3>
+<p>Subagents should not be eliminated entirely, but they must <strong>earn their keep</strong>. In production academic workflows, subagents are justified only when a task satisfies one of three rigorous architectural criteria:</p>
+<pre><code>                     IS A SUBAGENT JUSTIFIED?
+                                │
+        ┌───────────────────────┼───────────────────────┐
+        ▼                       ▼                       ▼
+ 1. Disposable Context   2. True Parallel        3. Fresh-Context
+    "Trash Can"             Fan-Out                 Verification
+  (Isolate heavy inputs   (Concurrent searches   (Unbiased adversarial
+   like 300-page SEC/PDFs  with zero shared       audit without prior
+   protects main context)  state dependencies)     confirmation bias)
+        │                       │                       │
+        └───────────────────────┼───────────────────────┘
+                                │ YES
+                                ▼
+                       DISPATCH SUBAGENT</code></pre>
+<ol type="1">
+<li><strong>The Disposable Context Sink (“Trash Can” Pattern):</strong>
+<ul>
+<li><strong>Problem:</strong> Ingesting massive raw data—such as parsing a 300-page SEC 10-K filing, reading 500 lines of raw compiler error logs, or scraping 30 web pages—permanently bloats and pollutes the primary agent’s working memory.</li>
+<li><strong>Solution:</strong> Dispatch an isolated subagent as a disposable context. The subagent reads the raw text, extracts the specific numbers or findings, writes the distilled synthesis back to disk or chat, and its bloated context window is promptly discarded. The main loop remains lean and pristine.</li>
+</ul></li>
+<li><strong>Genuinely Parallel Fan-Out:</strong>
+<ul>
+<li><strong>Problem:</strong> Some research steps involve searching across multiple independent sources that have zero dependencies on each other. Running them sequentially in a single loop wastes significant wall-clock time.</li>
+<li><strong>Solution:</strong> Dispatch multiple lightweight subagents concurrently—for example, searching OpenAlex, querying the FRED database, and checking SSRN working papers simultaneously—and synthesize their findings once all return.</li>
+</ul></li>
+<li><strong>Fresh-Context / Adversarial Verification (The Independence Principle):</strong>
+<ul>
+<li><strong>Problem:</strong> An agent that has spent 40 turns deriving a proof or writing an empirical analysis script suffers from <strong>self-confirmation bias</strong>. If asked to review its own work within the same session, it will instinctively defend its earlier logic, skim past subtle errors, and rubber-stamp its conclusions.</li>
+<li><strong>Solution:</strong> Spawn an independent reviewer subagent with a <strong>100% clean, blank-slate context window</strong> (such as <code>domain-referee</code> or <code>claim-verifier</code>). The reviewer receives <em>only</em> the output file and the verification rubric. Free from the conversational history and emotional baggage of how the result was derived, the subagent performs a truly objective, adversarial audit.</li>
+</ul></li>
+</ol>
+<p>In <a href="chapters/05-building-blocks.html#agents---specialized-reviewers">Chapter 5 (The Building Blocks)</a>, we will explore how Google Antigravity implements these specialized subagents alongside modular skills and lifecycle hooks.</p>
 <hr>
+</section>
 </section>
 <section id="summary-context-memory-checklist-for-scholars" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="summary-context-memory-checklist-for-scholars"><span class="header-section-number">4.5</span> Summary: Context &amp; Memory Checklist for Scholars</h2>
 <ol type="1">
-<li><strong>The Context Window is Working Memory (RAM):</strong> Treat it like precious RAM. Avoid dumping raw terminal traces or unneeded files into the conversation.</li>
-<li><strong>LLMs are Stateless Across Turns:</strong> If an instruction or preference is not in the active prompt or loaded from disk (<code>GEMINI.md</code>, <code>MEMORY.md</code>), it does not exist for the model.</li>
-<li><strong>Use Disk Files as Task Memory (SSDs):</strong> Save multi-step roadmaps to <code>quality_reports/plans/</code> so goals survive session compaction and restarts.</li>
-<li><strong>Protect the Rule Budget:</strong> Keep <code>GEMINI.md</code> lean (~120 lines) and move specialized domain guidelines into path-scoped rules.</li>
-<li><strong>Maintain Session Momentum for Cache:</strong> Keep active turns moving within the TTL window to maximize context caching and minimize latency.</li>
+<li><strong>The Context Window is Ephemeral Working Memory:</strong> Treat it like an operating system’s RAM—fast and immediate, but volatile and scarce. Avoid dumping raw terminal traces, unpruned file dumps, or rambling chatter into the conversation.</li>
+<li><strong>Default to a Single Open-Ended Loop:</strong> Keep task ownership in one continuous loop that maintains its own plan on disk (<code>quality_reports/plans/</code>).</li>
+<li><strong>Use Progressive Disclosure:</strong> Keep the core Constitution (<code>GEMINI.md</code>) lean (~120 lines). Load procedural knowledge (<code>SKILL.md</code>) and tool schemas dynamically on demand rather than front-loading everything.</li>
+<li><strong>Beware the Telephone Game:</strong> Subagent handoffs degrade nuance and lose negative constraints. Keep tightly coupled steps in the main loop.</li>
+<li><strong>Enforce the Subagent Justification Test:</strong> Only spawn subagents for disposable context sinks (heavy file ingestion), true parallel fan-out, or fresh-context adversarial verification.</li>
+<li><strong>Use Disk Files as Persistent Task Memory:</strong> Save multi-step roadmaps to disk (analogous to writing from volatile RAM to permanent SSD storage) so goals survive session compaction and restarts.</li>
+<li><strong>Capture KV Cache Hits:</strong> Keep sessions active within the ~1-hour TTL window to benefit from the 75%–90% cost discount and sub-3-second latencies.</li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Empirical Architecture: “Evals Over Vibes”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When deciding whether to split a research workflow across subagents or fold it into a single loop, resist designing by intuition. Follow the engineering discipline in Anthropic’s <a href="https://github.com/anthropics/single-agent-loop-kit"><code>single-agent-loop-kit</code></a>: establish a minimal benchmark of <strong>10 representative golden test cases</strong> with verified outputs. Measure task success rate, token cost, and wall-clock latency across multiple runs before committing to architectural complexity.</p>
+</div>
+</div>
 
 
 </section>
